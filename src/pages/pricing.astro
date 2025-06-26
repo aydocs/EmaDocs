@@ -1,0 +1,227 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Prices from '~/components/widgets/Pricing.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Fiyatlandırma',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText
+    tagline="Fiyatlandırma"
+    title="Her Yolculuğa Uygun Yıldız Gibi Fiyatlar"
+    subtitle="Kozmik hedeflerinize uyacak mükemmel planı seçin."
+  />
+
+  <!-- Pricing Widget ******************* -->
+
+<Prices
+  title="Fiyatlarımız"
+  subtitle="Sadece ihtiyacınız olan için ödeme yapın"
+  prices={[
+    {
+      title: 'Temel',
+      subtitle: 'Bireysel kullanım için ideal seçim',
+      price: 7500,
+      period: 'aylık',
+      items: [
+        { description: 'Serbest ve esnek kullanım' },
+        { description: 'Kolay ve hızlı erişim' },
+        { description: 'Güvenilir performans' },
+        { description: 'Kullanıcı dostu arayüz' },
+        { description: 'Temel raporlama özellikleri' },
+      ],
+      callToAction: {
+        target: '_blank',
+        text: 'Başlayın',
+        href: '/contact',
+      },
+    },
+    {
+      title: 'Standart',
+      subtitle: 'Küçük ekipler için en uygun seçenek',
+      price: 12500,
+      period: 'aylık',
+      items: [
+        { description: 'Gelişmiş özellikler' },
+        { description: 'Takım içi iş birliği' },
+        { description: 'Öncelikli destek' },
+        { description: 'Daha fazla depolama alanı' },
+        { description: 'Esnek planlama araçları' },
+        { description: 'Detaylı analiz ve raporlama' },
+        { description: 'Entegrasyon desteği' },
+      ],
+      callToAction: {
+        target: '_blank',
+        text: 'Başlayın',
+        href: '/contact',
+      },
+      hasRibbon: true,
+      ribbonTitle: 'Popüler',
+    },
+    {
+      title: 'Premium',
+      subtitle: 'Şirketler için özel çözüm',
+      price: 25000,
+      period: 'aylık',
+      items: [
+        { description: 'Gelişmiş özellikler' },
+        { description: 'Takım içi iş birliği' },
+        { description: 'Öncelikli destek' },
+        { description: 'Daha fazla depolama alanı' },
+        { description: 'Kişiye özel danışmanlık' },
+        { description: 'Yüksek öncelikli destek' },
+        { description: 'Özelleştirilebilir raporlar' },
+        { description: 'Kurumsal entegrasyonlar' },
+        { description: 'Özel eğitim ve onboarding' },
+        { description: '7/24 teknik destek' },
+        { description: 'Performans optimizasyonu' },
+        { description: 'Güvenlik ve uyumluluk danışmanlığı' },
+      ],
+      callToAction: {
+        target: '_blank',
+        text: 'Başlayın',
+        href: '/contact',
+      },
+    },
+  ]}
+/>
+
+
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Fiyatlandırma ile ilgili özellikler"
+    subtitle="Planlarımızı seçmenin avantajlarını keşfedin"
+    columns={2}
+    items={[
+      {
+        title: 'Katmanlı Fiyatlandırma Planları',
+        description: 'Farklı bütçe ve ihtiyaçlara uygun çeşitli fiyatlandırma planları arasından seçim yapabilirsiniz.',
+        icon: 'tabler:stairs',
+      },
+      {
+        title: 'Şeffaf Fiyatlandırma',
+        description: 'Her plan için net fiyat bilgileri, gizli maliyet veya sürpriz ücret yoktur.',
+        icon: 'tabler:flip-vertical',
+      },
+      {
+        title: 'Güvenli Ödeme Yöntemleri',
+        description: 'İşlemleriniz sırasında finansal bilgilerinizi koruyan güvenli ödeme sistemleri.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Anında Erişim',
+        description: `Abonelik sonrası seçtiğiniz planın özelliklerine ve şablonlara hemen erişim imkanı.`,
+        icon: 'tabler:accessible',
+      },
+      {
+        title: 'Yükseltme Avantajları',
+        description: 'Daha üst planlara geçiş yaparak daha fazla özellik ve avantajdan yararlanın.',
+        icon: 'tabler:chevrons-up',
+      },
+      {
+        title: '7/24 Destek',
+        description: 'Sorularınız canlı sohbet, e-posta veya telefon ile her gün cevaplanır.',
+        icon: 'tabler:headset',
+      },
+    ]}
+    classes={{ container: 'max-w-5xl' }}
+  />
+
+  <!-- Steps Widget ****************** -->
+
+<Steps
+  title="İletişimden teslimata adım adım süreç"
+  tagline="Sade ve rehberli bir ilerleyiş"
+  isReversed={true}
+  items={[
+    {
+      title: 'İhtiyacınızı bizimle paylaşın',
+      icon: 'tabler:number-1',
+    },
+    {
+      title: 'Size özel çözüm ve teklif sunalım',
+      icon: 'tabler:number-2',
+    },
+    {
+      title: 'Teklif onayını iletin',
+      icon: 'tabler:number-3',
+    },
+    {
+      title: 'Sözleşme ve faturalama adımı',
+      icon: 'tabler:number-4',
+    },
+    {
+      title: 'Ödemeyi gerçekleştirin',
+      icon: 'tabler:number-5',
+    },
+    {
+      title: 'Proje başlangıcı',
+      icon: 'tabler:number-6',
+    },
+    {
+      title: 'Teslim ve yayınlama',
+      icon: 'tabler:number-7',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80',
+    alt: 'İş akışı görseli',
+  }}
+/>
+
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Fiyatlandırma SSS"
+    subtitle="Doğru planı seçmek önemli, sorularınızı yanıtlamak için buradayız. Fiyatlandırma seçeneklerimiz hakkında merak ettikleriniz için doğru yerdesiniz."
+    columns={1}
+    items={[
+      {
+        title: 'Planlarla müşteri desteği geliyor mu?',
+        description:
+          'Kesinlikle, tüm planlarda size özel müşteri desteğine erişim sağlanır, her türlü soru ve sorununuza yardımcı olunur.',
+      },
+      {
+        title: 'Planlar için deneme süresi var mı?',
+        description:
+          'Maalesef planlar için deneme süresi sunmuyoruz. Ancak şablonlarımızın kalitesini önizleyebileceğiniz demo bölümümüzü inceleyebilirsiniz.',
+      },
+      {
+        title: 'Planlar arasında geçiş yapabilir miyim?',
+        description:
+          'Elbette! İhtiyaçlarınıza göre planınızı istediğiniz zaman yükseltebilir veya düşürebilirsiniz.',
+      },
+      {
+        title: 'Fiyat dışında gizli ücret var mı?',
+        description:
+          'Hayır, abonelik bedeli her plan için listelenen tüm özellik ve şablonları kapsar. Gizli ücret veya ek maliyet yoktur.',
+      },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    title="Projelerinizi güçlendirmeye hazır mısınız?"
+    subtitle="Şablonlarımızla işlerini dönüştüren memnun müşteriler topluluğumuza katılın."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Hemen başlayın',
+        href: '/',
+      },
+    ]}
+  />
+</Layout>

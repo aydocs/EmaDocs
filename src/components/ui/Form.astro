@@ -1,0 +1,104 @@
+---
+import type { Form as Props } from '~/types';
+import Button from '~/components/ui/Button.astro';
+
+type HTMLInputTypeAttribute =
+  | 'button' | 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email'
+  | 'file' | 'hidden' | 'image' | 'month' | 'number' | 'password' | 'radio'
+  | 'range' | 'reset' | 'search' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week';
+
+
+const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
+---
+
+<form id="contact-form" class="max-w-lg mx-auto" novalidate>
+  {inputs &&
+    inputs.map((field) => {
+      const {
+        type = 'text',
+        name,
+        label = '',
+        autocomplete = 'on',
+        placeholder = '',
+      } = field;
+
+      if (!name) return null;
+
+      const inputType = type as HTMLInputTypeAttribute;
+
+      return (
+        <div class="mb-6">
+          {label && (
+            <label for={name} class="block text-sm font-medium mb-1">
+              {label}
+            </label>
+          )}
+          <input
+            type={inputType}
+            name={name}
+            id={name}
+            autocomplete={autocomplete}
+            placeholder={placeholder}
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          />
+        </div>
+      );
+    })}
+
+  {textarea && (
+    <div class="mb-6">
+      <label for={textarea.name ?? 'message'} class="block text-sm font-medium mb-1">
+        {textarea.label}
+      </label>
+      <textarea
+        id={textarea.name ?? 'message'}
+        name={textarea.name ?? 'message'}
+        rows={textarea.rows ?? 4}
+        placeholder={textarea.placeholder}
+        class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+      />
+    </div>
+  )}
+
+  {disclaimer && (
+    <div class="mb-6 flex items-start">
+      <input
+        id="disclaimer"
+        name="disclaimer"
+        type="checkbox"
+        class="cursor-pointer mt-1 mr-3"
+      />
+      <label for="disclaimer" class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
+        {disclaimer.label}
+      </label>
+    </div>
+  )}
+
+  <div class="mt-8">
+    <Button variant="primary" type="submit">
+      {button}
+    </Button>
+  </div>
+
+  {description && (
+    <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">{description}</p>
+  )}
+</form>
+
+<script type="module">
+  document.getElementById('contact-form')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    console.log('Gönderilen form verisi:', payload);
+    alert('Form gönderildi!');
+  });
+</script>

@@ -1,0 +1,77 @@
+---
+publishDate: 2025-06-04T00:00:00Z
+title: Algoritma Karmaşıklığı ve Performans Analizi
+excerpt: Algoritmaların çalışma süresi ve bellek kullanımı gibi performans kriterlerinin değerlendirilmesi.
+image: https://images.unsplash.com/photo-1518773553398-650c184e0bb3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3
+category: Algoritmalar
+tags:
+  - algoritmalar
+  - performans
+  - big-o
+  - zaman karmaşıklığı
+metadata:
+  canonical: https://bgs.io/algoritma-performans
+---
+
+## Algoritma Karmaşıklığı Nedir?
+
+Algoritma karmaşıklığı, algoritmanın ne kadar kaynak (zaman, bellek) kullandığını ifade eder. Yazılımda performansı ölçmek ve iyileştirmek için temel göstergedir.
+
+---
+
+## Zaman Karmaşıklığı (Time Complexity)
+
+Bir algoritmanın çalışma süresinin, girdi büyüklüğüne göre nasıl değiştiğini gösterir. Genellikle **Big-O** notasyonu ile ifade edilir:
+
+- **O(1):** Sabit zaman — girdi boyutundan bağımsız.
+- **O(log n):** Logaritmik zaman — örneğin binary search.
+- **O(n):** Doğrusal zaman — her elemanı bir kere kontrol eder.
+- **O(n log n):** Log-linear — çoğu etkili sıralama algoritması.
+- **O(n²):** Kare zaman — nested döngülerde sık görülür.
+
+---
+
+## Uzay Karmaşıklığı (Space Complexity)
+
+Algoritmanın çalışma sırasında kullandığı ek bellek miktarını gösterir.
+
+---
+
+## Karmaşıklık Analizi Örnekleri
+
+### 1. Doğrusal Arama (Linear Search)
+
+Elemanları tek tek kontrol eder.  
+**Zaman karmaşıklığı:** O(n)
+
+### 2. İkili Arama (Binary Search)
+
+Sıralı dizide ortadan bölerek arama yapar.  
+**Zaman karmaşıklığı:** O(log n)
+
+### 3. Bubble Sort
+
+Her elemanı diğerleriyle karşılaştırır.  
+**Zaman karmaşıklığı:** O(n²)
+
+---
+
+## Big-O Notasyonu Detayları
+
+Big-O, algoritmanın en kötü durum performansını belirtir. Örneğin:
+
+- O(1): En hızlı ve ideal.
+- O(n): Girdi büyüdükçe performans doğrusal olarak düşer.
+- O(n²): Girdi arttıkça performans hızla düşer.
+
+---
+
+## Örnek Kod: Linear Search (JavaScript)
+
+```javascript
+function linearSearch(arr, target) {
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] === target) return i;
+  }
+  return -1;
+}

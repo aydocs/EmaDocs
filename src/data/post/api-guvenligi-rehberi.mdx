@@ -1,0 +1,104 @@
+---
+publishDate: 2024-05-27T00:00:00Z
+title: EmaDocs API Güvenliği Rehberi
+excerpt: API güvenliğinin temel prensipleri, en iyi uygulamalar ve yaygın tehditlere karşı alınabilecek önlemler.
+image: https://images.unsplash.com/photo-1690585703267-de31ea667ef0?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+category: Siber Güvenlik
+tags:
+  - api
+  - güvenlik
+  - siber güvenlik
+metadata:
+  canonical: https://bgs.io/api-guvenligi-rehberi
+---
+
+import DListItem from '~/components/ui/DListItem.astro';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+
+## Genel Bakış
+
+API’ler, modern uygulamaların temel taşlarıdır. Ancak, kötü niyetli saldırganlar için de zayıf noktalar olabilirler. API güvenliği, sadece verilerin korunması değil, aynı zamanda servis sürekliliğinin sağlanması için de kritik öneme sahiptir.
+
+Bu rehber, API güvenliği konusunda temel prensipleri, yaygın saldırı tiplerini ve en iyi uygulamaları detaylandırmaktadır.
+
+---
+
+## API Güvenliğinin Temel Prensipleri
+
+<DListItem dt="Kimlik Doğrulama (Authentication)">
+  API kullanıcılarının gerçekten beklenen kimlikte olduğunu doğrulamak için OAuth 2.0, JWT gibi standartlar kullanılır.
+</DListItem>
+
+---
+
+<DListItem dt="Yetkilendirme (Authorization)">
+  Kimlik doğrulama sonrası, kullanıcının hangi kaynaklara hangi işlemleri yapabileceği sıkı şekilde kontrol edilir.
+</DListItem>
+
+---
+
+<DListItem dt="Veri Şifreleme">
+  API trafiği TLS/SSL protokolü ile şifrelenir; hassas veriler ise gerektiğinde ek katmanlarla korunur.
+</DListItem>
+
+---
+
+<DListItem dt="Rate Limiting ve Throttling">
+  Hizmete aşırı yüklenmeyi ve kötü niyetli istekleri önlemek için istek sayısı sınırlandırılır.
+</DListItem>
+
+---
+
+<DListItem dt="Güvenli Kodlama ve Test">
+  API kodları düzenli olarak güvenlik testlerine tabi tutulur ve bilinen açıklar hızlıca kapatılır.
+</DListItem>
+
+---
+
+## Yaygın API Saldırı Türleri
+
+- **Injection (SQL, NoSQL, Command Injection):** Kötü niyetli girdilerin doğrudan işlenmesi.
+- **Cross-Site Scripting (XSS):** Zararlı scriptlerin API üzerinden yayılması.
+- **Denial of Service (DoS) / Distributed DoS:** Servisleri erişilemez hale getirmek için aşırı istek.
+- **Man-in-the-Middle (MITM) Saldırıları:** Veri iletişimi sırasında araya girme.
+- **Broken Authentication:** Zayıf kimlik doğrulama mekanizmaları.
+
+---
+
+## API Güvenliği İçin En İyi Uygulamalar
+
+### 1. Güçlü Kimlik Doğrulama ve Yetkilendirme
+
+- OAuth 2.0 ve OpenID Connect protokollerini kullanın.
+- JSON Web Token (JWT) ile erişim kontrolü sağlayın.
+- Access token’ların süresini ve kapsamını sınırlayın.
+
+### 2. HTTPS Zorunluluğu
+
+- Tüm API isteklerini HTTPS üzerinden alın.
+- HSTS (HTTP Strict Transport Security) kullanarak zorunlu HTTPS yönlendirmeleri yapın.
+
+### 3. Rate Limiting Uygulaması
+
+- IP başına veya kullanıcı başına istek sayısını sınırlandırın.
+- 429 Too Many Requests HTTP durum kodunu döndürün.
+
+### 4. Input Validation ve Sanitization
+
+- Tüm kullanıcı girdilerini doğrulayın ve temizleyin.
+- SQL sorgularında prepared statements kullanın.
+
+---
+
+## Örnek Kod: Express.js’de Basit Rate Limiting Middleware
+
+```javascript
+import rateLimit from 'express-rate-limit';
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 dakika
+  max: 100, // 15 dakikada en fazla 100 istek
+  message: 'Çok fazla istek yaptınız, lütfen biraz bekleyin.',
+});
+
+app.use('/api/', apiLimiter);

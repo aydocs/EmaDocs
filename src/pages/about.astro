@@ -1,0 +1,162 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Hakkımızda',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Hakkımızda"
+    image={{
+      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Caos Görseli',
+    }}
+  >
+    <Fragment slot="title">
+      Çevrim içi varlığınızı <br />
+      <span class="text-accent dark:text-white"> Güzel Web Sitesi Şablonlarımızla</span> Yükseltin
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Etkili çözümlerle güçlü bir dijital kimlik oluşturun. Profesyonel şablonlarımız sayesinde internette fark yaratın.
+    </Fragment>
+  </Hero>
+
+  <!-- İstatistikler Widget *********** -->
+
+  <Stats
+    title="EmaDocs ile Başarıya Ulaşın"
+    stats={[
+      { title: 'Mutlu Müşteri', amount: 102 },
+      { title: 'Tamamlanan Proje', amount: 218 },
+      { title: 'Ekibimiz', amount: 7 },
+      { title: 'Yılların Tecrübesi', amount: 6 },
+    ]}
+  />
+
+  <!-- Şablonlar Widget *************** -->
+
+  <Features3
+    title="Hizmetlerimiz"
+    subtitle="İhtiyacınıza uygun modern, etkili ve estetik web şablonları."
+    columns={3}
+    isBeforeContent={true}
+  />
+
+  <Features3
+    columns={3}
+    isAfterContent={true}
+    items={[
+      {
+        title: 'E-ticaret',
+        description: 'Satış odaklı, hızlı ve kullanıcı dostu e-ticaret çözümleri.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Blog',
+        description: 'Yazılarınızı şık bir şekilde yayınlayabileceğiniz blog tasarımları.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'İş Dünyası',
+        description: 'Kurumsal firmalar için prestijli web şablonları.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Markalaşma',
+        description: 'Markanızı dijital ortamda etkili şekilde sunmanızı sağlar.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Sağlık',
+        description: 'Klinikler ve sağlık kuruluşları için özel çözümler.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Moda Tasarımı',
+        description: 'Moda dünyasına hitap eden özgün ve şık şablonlar.',
+        icon: 'tabler:template',
+      },
+    ]}
+  />
+
+  <!-- Değerlerimiz ******************* -->
+
+  <Steps2
+    title="Değerlerimiz"
+    subtitle="İşimizi yaparken benimsediğimiz ilkelerle güçlü bir vizyon sunuyoruz."
+    items={[
+      {
+        title: 'Müşteri Odaklılık',
+        description: 'Müşteri memnuniyetini her zaman ön planda tutarız.',
+      },
+      {
+        title: 'Sürekli Gelişim',
+        description: 'Yenilikçi yaklaşımlarla hizmetlerimizi sürekli geliştiririz.',
+      },
+      {
+        title: 'Etik Çalışma Prensipleri',
+        description: 'Tüm iş süreçlerimizde etik kurallara bağlı kalırız.',
+      },
+    ]}
+  />
+
+  <!-- Başarılarımız ****************** -->
+
+  <Steps2
+    title="Başarılarımız"
+    subtitle="Global ölçekte kazandığımız başarılarımızla gurur duyuyoruz."
+    isReversed={true}
+    callToAction={{
+      text: 'Daha fazlasını gör',
+      href: '/',
+    }}
+    items={[
+      {
+        title: 'Erişim',
+        description: 'Türkiye genelinde geniş bir müşteri ağına sahibiz.',
+        icon: 'tabler:globe',
+      },
+      {
+        title: 'Müşteri Geri Bildirimleri',
+        description: 'Olumlu yorumlar ve yüksek müşteri memnuniyeti.',
+        icon: 'tabler:message-star',
+      },
+      {
+        title: 'Profesyonel Deneyim',
+        description: 'Yılların getirdiği bilgi birikimiyle sektörün ihtiyaçlarına hızlı ve etkili çözümler sunuyoruz.',
+        icon: 'tabler:briefcase',
+      },
+    ]}
+  />
+
+  <!-- Teknik Destek ***************** 
+
+  <Features2
+    title="Teknik Destek"
+    tagline="Bizimle iletişime geçin"
+    columns={2}
+    items={[
+      {
+        title: 'Canlı Sohbet',
+        description: 'Her an ulaşabileceğiniz çevrim içi destek hattı.',
+        icon: 'tabler:messages',
+      },
+      {
+        title: 'Telefon Desteği',
+        description: 'Hızlı destek için bizi arayın.',
+        icon: 'tabler:headset',
+      },
+    ]}
+  />
+  -->
+</Layout>

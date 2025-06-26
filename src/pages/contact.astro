@@ -1,0 +1,43 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'İletişim',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="İletişim" title="Hadi Bağlanalım!" />
+
+  <ContactUs
+    id="form"
+    title="Bugün bize bir mesaj bırakın!"
+    subtitle="Daha hızlı yanıtlar için SSS bölümümüzü inceleyin. Aradığınız çözümü orada bulabilirsiniz! Bulamazsanız, destek ekibimiz size yardımcı olmaktan mutluluk duyacaktır."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Adınız',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'E-posta',
+      },
+    ]}
+    textarea={{
+      label: 'Mesajınız',
+    }}
+    disclaimer={{
+      label:
+        'Bu iletişim formunu göndererek kişisel bilgilerinizin toplanmasını kabul etmiş olursunuz.',
+    }}
+    description="Destek ekibimiz genellikle 24 iş saati içinde yanıt verir."
+  />
+
+</Layout>

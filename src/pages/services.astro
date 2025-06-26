@@ -1,0 +1,205 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Hizmetler',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Hizmetler"
+    title="Projelerinizi göz alıcı şablonlarımızla yükseltin"
+    subtitle="Çeşitli sektörler ve amaçlar için özenle hazırlanmış şablonlarımızı keşfedin. Etkileyici sunumlardan işlevsel web sitesi tasarımlarına kadar, başarılı olmanız için gerekli araçları sunuyoruz."
+    actions={[{ variant: 'primary', target: '_blank', text: 'Keşfetmeye başlayın', href: '/' }]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      alt: 'AstroWind Hero Görseli',
+    }}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Çeşitli şablonlarımızı keşfedin"
+    subtitle="Projelerinizi kolaylaştırmak ve geliştirmek için aşağıdaki seçeneklerimizi inceleyin."
+    columns={3}
+    items={[
+      {
+        title: 'Eğitim',
+        description:
+          'Eğitsel içeriklerin oluşturulmasını hızlandıran ve görsel çekicilik kazandıran şablonlarla, etkileyici öğrenme ortamları yaratın.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'İç Mekan Tasarımı',
+        description:
+          'Konut ve ticari alanlar için işlevsel ve estetik mekanlar tasarlayın. Şablonlarımız düzen, renk ve mobilya yerleşimine odaklanır.',
+        icon: 'tabler:home-star',
+      },
+      {
+        title: 'Fotoğrafçılık',
+        description: 'Fotoğrafçılar için hikaye anlatımını güçlendiren, düzen, galeri ve tipografiye odaklanan şablonlar sunuyoruz.',
+        icon: 'tabler:photo',
+      },
+      {
+        title: 'E-ticaret',
+        description:
+          'Ürünlerinizi etkili biçimde sergilemenizi sağlayan dinamik online mağaza şablonları. Yeni girişimler veya yenilemeler için ideal.',
+        icon: 'tabler:shopping-cart',
+      },
+      {
+        title: 'Blog',
+        description:
+          'Yazarlara yönelik, tipografiye önem veren ve kullanıcı dostu blog şablonlarıyla içeriğinizi etkileyici biçimde sunun.',
+        icon: 'tabler:article',
+      },
+      {
+        title: 'İş Dünyası',
+        description:
+          'Yeni veya köklü şirketler için profesyonel bir marka imajı oluşturmanıza yardımcı olan şık ve etkili şablonlar.',
+        icon: 'tabler:building-store',
+      },
+      {
+        title: 'Markalaşma',
+        description:
+          'Logo ve pazarlama materyalleri dahil tutarlı bir marka kimliği için önceden tasarlanmış öğeler sunar. Yeni girişimler ve yenilemeler için ideal.',
+        icon: 'tabler:arrow-big-up-lines',
+      },
+      {
+        title: 'Sağlık',
+        description: 'Sunumlardan hasta formlarına kadar, sağlık profesyonelleri için iletişim etkinliğini artıran araçlar.',
+        icon: 'tabler:vaccine',
+      },
+      {
+        title: 'Moda Tasarımı',
+        description:
+          'Detaya önem veren, özelleştirilebilir ve çağdaş tasarımlarla tasarımcıların fikirlerini tutarlı şekilde sergilemelerini sağlar.',
+        icon: 'tabler:tie',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Yüksek Kaliteli Tasarımlar',
+        description:
+          'Şablonlarımız, projeleriniz için profesyonel ve şık bir görünüm sağlar.',
+        icon: 'tabler:wand',
+      },
+      {
+        title: 'Özelleştirme Araçları',
+        description:
+          'Renkler, yazı tipleri ve içerik gibi öğeleri kolayca kişiselleştirmenizi sağlayan kullanıcı dostu araçlar.',
+        icon: 'tabler:settings',
+      },
+      {
+        title: 'Önceden Tasarlanmış Öğeler',
+        description:
+          'Grafikler, ikonlar ve düzenler gibi hazır öğelerle zaman kazanın ve görsel çekiciliğinizi artırın.',
+        icon: 'tabler:presentation',
+      },
+      {
+        title: 'Önizleme ve Taslak Görünümleri',
+        description:
+          'Değişiklik yapmadan önce nihai sonucu görselleştirerek beklentilerinizi karşılayın.',
+        icon: 'tabler:carousel-horizontal',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      alt: 'Özellikler Görseli',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Ana Özellikler</h3>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'Zaman Tasarrufu',
+        description:
+          'İş akışınızı hızlandırarak, harika materyalleri hızlıca oluşturmanızı ve esas işlerinize daha fazla zaman ayırmanızı sağlar.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Profesyonel Görünüm',
+        description:
+          'Projelerinizi şık ve profesyonel görünüme kavuşturarak izleyicilerinizde kalıcı bir etki bırakır.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Maliyet Etkinliği',
+        description:
+          'Özel tasarım ihtiyacını azaltarak, profesyonel kalitede tasarımlara uygun fiyatlarla sahip olmanızı sağlar.',
+        icon: 'tabler:coin',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+      alt: 'Faydalar Görseli',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Faydalar</h3>
+    </Fragment>
+  </Content>
+
+  <!-- Testimonials Widget *********** 
+
+  <Testimonials
+    title="Gerçek müşterilerimizin sözleri"
+    testimonials={[
+      {
+        testimonial: 'Tasarım sadece görsel olarak çekici değil, aynı zamanda çok profesyonel. Şablonlar bana önemli ölçüde zaman kazandırdı ve müşterilerim üzerinde kalıcı bir izlenim bıraktım.',
+        name: 'Emily Kennedy',
+        job: 'Ön Uç Geliştirici',
+        image: {
+          src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
+          alt: 'Emily Kennedy Görseli',
+        },
+      },
+      {
+        testimonial: 'Çalışmalarımı temiz ve şık tasarımıyla güzelce sergiliyor. Özelleştirme benim gibi teknik olmayan biri için bile çok kolaydı. Sonuç, çok sayıda övgü alan profesyonel ve etkileyici bir portfolyo oldu.',
+        name: 'Sarah Hansen',
+        job: 'Fotoğrafçı',
+        image: {
+          src: 'https://images.unsplash.com/photo-1561406636-b80293969660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+          alt: 'Sarah Hansen Görseli',
+        },
+      },
+      {
+        testimonial: 'Bu şablonları keşfettim ve çeşitliliği ile kalitesinden çok etkilendim. Pazarlama ve sosyal platformlarda tutarlı bir marka imajı oluşturmama yardımcı oldular ve işimin genel görünümünü yükselttiler.',
+        name: 'Mark Wilkinson',
+        job: 'Küçük İşletme Sahibi',
+        image: {
+          src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=824&q=80',
+          alt: 'Mark Wilkinson Görseli',
+        },
+      },
+    ]}
+    callToAction={{
+      target: '_blank',
+      text: 'Daha fazla yorum...',
+      href: 'https://github.com/onwidget/astrowind',
+      icon: 'tabler:chevron-right',
+    }}
+  />
+-->
+</Layout>

@@ -1,0 +1,67 @@
+---
+publishDate: 2025-06-03T00:00:00Z
+title: Algoritma Nedir? Temel Kavramlar ve Türleri
+excerpt: Algoritmanın ne olduğu, temel özellikleri ve yaygın algoritma türlerinin açıklaması.
+image: https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3
+category: Algoritmalar
+tags:
+  - algoritmalar
+  - programlama
+  - temel kavramlar
+metadata:
+  canonical: https://bgs.io/algoritmalar-temelleri
+---
+
+## Algoritma Nedir?
+
+Algoritma, belirli bir problemi çözmek için tasarlanmış, sonlu ve açık adımlardan oluşan işlemler dizisidir. Yazılım geliştirmede en temel yapı taşlarından biridir.
+
+---
+
+## Algoritmanın Temel Özellikleri
+
+- Sonlu sayıda adım içerir.
+- Her adımı açık ve net tanımlanmıştır.
+- Girdi alabilir, çıktı üretir.
+- Uygulanabilir ve etkilidir.
+
+---
+
+## Algoritma Türleri
+
+### 1. Sıralama Algoritmaları
+
+Veri listesini belirli bir düzene göre sıralamak için kullanılır.  
+Örnekler: Bubble Sort, Quick Sort, Merge Sort.
+
+### 2. Arama Algoritmaları
+
+Bir veri içinde belirli bir elemanı bulmaya yarar.  
+Örnekler: Linear Search, Binary Search.
+
+### 3. Grafik Algoritmaları
+
+Grafik yapılarında düğümler arasında yol bulma ve bağlantı işlemleri yapar.  
+Örnekler: DFS, BFS, Dijkstra.
+
+### 4. Dinamik Programlama
+
+Alt problemlere bölerek çözüm arayan yöntemler.
+
+---
+
+## Örnek Kod: Bubble Sort (JavaScript)
+
+```javascript
+function bubbleSort(arr) {
+  let n = arr.length;
+  for(let i = 0; i < n - 1; i++) {
+    for(let j = 0; j < n - i -1; j++) {
+      if(arr[j] > arr[j + 1]) {
+        [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}
+console.log(bubbleSort([5,3,8,4,2]));

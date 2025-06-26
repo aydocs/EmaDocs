@@ -1,0 +1,73 @@
+---
+publishDate: 2025-05-27T00:00:00Z
+title: Port, DNS ve Ağ Güvenliğinde Temel Kavramlar ve Uygulamalar
+excerpt: Portlar, DNS ve ağ güvenliği hakkında temel bilgiler ve etkili koruma yöntemleri.
+image: https://media.istockphoto.com/id/2182303984/tr/foto%C4%9Fraf/dns-domain-name-system-and-web-server-network-system-concept-a-person-uses-a-laptop-with.jpg?s=612x612&w=0&k=20&c=-VSe7kIvEuRKvvaFkMOFts0GOiYQPBSkxqCDAFBnLPc=
+category: Siber Güvenlik
+tags:
+  - ağ güvenliği
+  - DNS
+  - port yönetimi
+metadata:
+  canonical: https://bgs.io/port-dns-ag-guvenligi
+---
+
+import DListItem from '~/components/ui/DListItem.astro';
+
+# Port, DNS ve Ağ Güvenliğinde Temel Kavramlar ve Uygulamalar
+
+Modern ağ altyapılarında, port yönetimi ve DNS güvenliği kritik öneme sahiptir. Bu unsurların doğru yönetilmemesi, sistemlerin saldırılara açık hale gelmesine neden olabilir. Bu makalede, portlar, DNS ve ağ güvenliği konularında temel kavramları ve pratik koruma yöntemlerini inceleyeceğiz.
+
+---
+
+## Port Nedir ve Neden Önemlidir?
+
+Portlar, bilgisayar sistemlerinde ağ trafiğinin yönlendirildiği sanal bağlantı noktalarıdır. Her port, farklı bir servise işaret eder ve iletişimin belirli bir uygulama veya protokolle yapılmasını sağlar.
+
+<DListItem dt="Port Yönetimi Önemi">
+  - Gereksiz portların kapatılması, saldırı yüzeyini azaltır.<br />
+  - Yetkisiz erişimleri önlemek için firewall kuralları ile port bazlı filtreleme yapılmalıdır.<br />
+  - Port taramaları ile açık portlar düzenli olarak kontrol edilmelidir.
+</DListItem>
+
+---
+
+## DNS (Domain Name System) ve Güvenliği
+
+DNS, alan adlarını IP adreslerine çevirerek internet üzerindeki iletişimi kolaylaştırır. Ancak DNS sorguları ve kayıtları hedef alındığında, sistem güvenliği tehlikeye girer.
+
+<DListItem dt="DNS Güvenlik Riskleri">
+  - DNS Spoofing ve Cache Poisoning saldırıları.<br />
+  - Yetkisiz DNS değişiklikleri ile trafik yönlendirme.<br />
+  - DNS üzerinden DDoS saldırıları (DNS Amplification).
+</DListItem>
+
+<DListItem dt="DNS Güvenliği Önlemleri">
+  - DNSSEC (Domain Name System Security Extensions) ile veri bütünlüğü sağlanmalı.<br />
+  - Yetkisiz DNS değişikliklerini önlemek için güçlü erişim kontrolleri uygulanmalı.<br />
+  - DNS sunucuları için güvenlik yamaları ve güncellemeleri düzenli yapılmalı.
+</DListItem>
+
+---
+
+## Ağ Güvenliği İçin Pratik Yaklaşımlar
+
+Güvenli bir ağ altyapısı oluşturmak için aşağıdaki temel yaklaşımlar önemlidir:
+
+<DListItem dt="Firewall ve IDS/IPS Kullanımı">
+  - Ağ trafiği kontrolü ve anormal aktivitelerin tespiti için firewall ve IDS/IPS çözümleri kullanılmalıdır.
+</DListItem>
+
+<DListItem dt="Ağ Segmentasyonu">
+  - Kritik sistemler ve veriler farklı segmentlerde izole edilerek saldırganların hareket kabiliyeti kısıtlanmalıdır.
+</DListItem>
+
+<DListItem dt="Güvenli Protokoller">
+  - Şifreli iletişim protokolleri (TLS, SSH) tercih edilmeli ve eski, zayıf protokoller devre dışı bırakılmalıdır.
+</DListItem>
+
+---
+
+## Sonuç
+
+Port ve DNS yönetimi ile ağ güvenliği, siber saldırılara karşı ilk ve en önemli savunma katmanlarıdır. Düzenli denetimler, güncellemeler ve proaktif güvenlik politikaları ile sistemlerinizin güvenliğini artırabilirsiniz. Unutmayın, güvenlik bir süreçtir ve sürekli iyileştirme gerektirir.

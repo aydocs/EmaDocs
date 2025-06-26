@@ -1,0 +1,91 @@
+---
+publishDate: 2025-06-03T00:00:00Z
+title: Algoritmalar Nedir? Temel Kavramlar, Türler ve Örneklerle Anlatım
+excerpt: Algoritmaların temel tanımı, çeşitleri, çalışma prensipleri ve yazılım geliştirmedeki önemi üzerine kapsamlı rehber.
+image: https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3
+category: Algoritmalar
+tags:
+  - algoritmalar
+  - veri yapıları
+  - programlama
+  - yazılım geliştirme
+metadata:
+  canonical: https://bgs.io/algoritmalar-giris
+---
+
+## Algoritma Nedir?
+
+Algoritma, belirli bir problemi çözmek veya belirli bir işi yapmak için tasarlanmış, sonlu sayıda adım içeren, açık ve net talimatlar dizisidir. Yazılım geliştirmenin temel yapı taşlarından biridir.
+
+---
+
+## Algoritmaların Temel Özellikleri
+
+- **Sonluluk:** Algoritma sonlu sayıda adımda tamamlanmalıdır.
+- **Belirlilik:** Her adım açık ve net olmalı, belirsizlik içermemelidir.
+- **Girdi:** Algoritma dışarıdan sıfır veya daha fazla girdi alabilir.
+- **Çıktı:** En az bir çıktı üretmelidir.
+- **Etkililik:** Her adım uygulanabilir olmalı, pratik olarak gerçekleştirilebilir olmalıdır.
+
+---
+
+## Algoritma Türleri
+
+### 1. Sıralama Algoritmaları
+
+Veri dizilerini belirli bir düzene göre sıralamak için kullanılır.
+
+- **Bubble Sort:** Komşu elemanları karşılaştırıp takas ederek çalışır.
+- **Insertion Sort:** Verileri tek tek alıp, sıralı diziye yerleştirir.
+- **Merge Sort:** Böl ve yönet prensibiyle diziyi parçalara ayırır, sıralayıp birleştirir.
+- **Quick Sort:** Pivot seçerek diziyi parçalar ve hızlıca sıralar.
+
+### 2. Arama Algoritmaları
+
+Bir veri yapısında istenilen elemanı bulmak için kullanılır.
+
+- **Linear Search:** Tüm elemanları tek tek kontrol eder.
+- **Binary Search:** Sıralı dizide ortadaki elemanı kontrol edip, aramayı daraltır.
+
+### 3. Grafik Algoritmaları
+
+Graf teorisinde, düğümler ve kenarlar üzerinde çalışan algoritmalar.
+
+- **DFS (Depth-First Search):** Derinlemesine arama yapar.
+- **BFS (Breadth-First Search):** Genişlik bazında arama yapar.
+- **Dijkstra:** En kısa yol algoritmasıdır.
+- **Kruskal ve Prim:** Minimum spanning tree algoritmalarıdır.
+
+### 4. Dinamik Programlama
+
+Karmaşık problemleri alt problemlere bölüp çözümleri kaydederek tekrar hesaplamayı önler.
+
+---
+
+## Algoritma Karmaşıklığı (Zaman ve Uzay)
+
+Algoritmanın performansını ifade eder.
+
+- **Zaman Karmaşıklığı:** Algoritmanın çalışma süresi, genellikle Big-O gösterimi ile ifade edilir (örn. O(n), O(log n)).
+- **Uzay Karmaşıklığı:** Algoritmanın kullandığı bellek miktarı.
+
+---
+
+## Örnek: Basit Bir Sıralama Algoritması - Bubble Sort (JavaScript)
+
+```javascript
+function bubbleSort(arr) {
+  let n = arr.length;
+  for(let i = 0; i < n - 1; i++) {
+    for(let j = 0; j < n - i -1; j++) {
+      if(arr[j] > arr[j + 1]) {
+        // Elemanları takas et
+        [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}
+
+console.log(bubbleSort([5, 3, 8, 4, 2]));
+// Çıktı: [2, 3, 4, 5, 8]

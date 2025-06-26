@@ -1,0 +1,5 @@
+{
+  "source": "/(.*)",
+  "has": [{ "type": "host", "value": "blog.emadocs.com" }],
+  "destination": "/blog/$1"
+}

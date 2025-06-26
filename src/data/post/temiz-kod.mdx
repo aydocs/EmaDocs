@@ -1,0 +1,40 @@
+---
+publishDate: 2024-06-03T00:00:00Z
+title: Yazılım Mühendisliğinde Temiz Kod Yazmanın Önemi
+excerpt: Yazılımda sürdürülebilirlik için temiz kod prensipleri ve uygulamaları.
+image: https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+category: Yazılım
+tags:
+  - temiz kod
+  - yazılım mühendisliği
+  - kod kalitesi
+metadata:
+  canonical: https://bgs.io/temiz-kod
+---
+
+## Temiz Kod Nedir?
+
+Temiz kod, kolay okunabilir, anlaşılabilir ve bakım yapılabilir kod demektir. Robert C. Martin'in “Clean Code” kitabı bu konudaki en önemli kaynaklardan biridir.
+
+---
+
+## Temiz Kodun Temel Prensipleri
+
+- **Anlamlı İsimlendirme:** Fonksiyon, değişken, sınıf isimleri amaçlarını açıkça belirtmeli.
+- **Fonksiyonlar Küçük Olmalı:** Tek bir iş yapmalı.
+- **Yinelenen Koddan Kaçının:** DRY prensibi.
+- **Yorumlar:** Gerektiğinde açıklayıcı ve kısa olmalı.
+- **Kod Düzeni:** Tutarlı boşluklar ve girintileme.
+
+---
+
+## Örnek: Temiz ve Kirli Kod Karşılaştırması
+
+```javascript
+// Kirli kod
+function d(a,b){return a+b;}
+
+// Temiz kod
+function topla(sayi1, sayi2) {
+  return sayi1 + sayi2;
+}

@@ -1,0 +1,65 @@
+---
+publishDate: 2024-06-03T00:00:00Z
+title: Bulut Bilişim Güvenliği ve Uyumluluk Kılavuzu
+excerpt: Bulut ortamlarında veri ve servis güvenliğini sağlamak için kritik noktalar, riskler ve uyumluluk standartları.
+image: https://media.istockphoto.com/id/2153739511/photo/digital-data-security-concept-cloud-computing-security.webp?a=1&b=1&s=612x612&w=0&k=20&c=hsuGOJ6HOaYIdn-c8e8Xvzp1Yasf5hgG01JBhj9tlU4=
+category: Bulut
+tags:
+  - bulut
+  - güvenlik
+  - uyumluluk
+metadata:
+  canonical: https://bgs.io/bulut-guvenligi-kilavuzu
+---
+
+import DListItem from '~/components/ui/DListItem.astro';
+
+## Genel Bakış
+
+Bulut bilişim, esneklik ve ölçeklenebilirlik sağlasa da güvenlik riskleri taşır. Bu rehber, bulut güvenliği için temel prensipler ve uyumluluk süreçlerini açıklar.
+
+## Temel Prensipler
+
+<DListItem dt="Kimlik ve Erişim Yönetimi (IAM)">
+  Kullanıcı ve servis hesapları için en az ayrıcalık prensibi uygulanmalı, çok faktörlü kimlik doğrulama aktif edilmeli.
+</DListItem>
+
+<DListItem dt="Veri Şifreleme">
+  Hem aktarım hem de depolama sırasında veri mutlaka şifrelenmelidir.
+</DListItem>
+
+<DListItem dt="Ağ Güvenliği">
+  Sanal ağlar segmentlere ayrılmalı, güvenlik duvarları ve izleme sistemleri kurulmalıdır.
+</DListItem>
+
+<DListItem dt="Uyumluluk Standartları">
+  GDPR, HIPAA, PCI-DSS gibi standartlara uyum sağlanarak hem yasal gereklilikler hem de güvenlik artırılır.
+</DListItem>
+
+## Yaygın Riskler
+
+- Yanlış yapılandırılmış depolama alanları  
+- Hesap ele geçirme saldırıları  
+- Veri sızıntıları  
+- Uyumsuzluk ve ceza riskleri  
+
+## En İyi Uygulamalar
+
+- Düzenli güvenlik taramaları yapın.  
+- Rol bazlı erişim kontrolleri uygulayın.  
+- Kritik olaylar için izleme ve alarm mekanizmaları kurun.  
+- Bulut sağlayıcınızın sunduğu güvenlik özelliklerini tam kullanın.
+
+---
+
+## Örnek Kod: AWS IAM Rol Politika Örneği
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": "s3:ListBucket",
+    "Resource": "arn:aws:s3:::my-bucket"
+  }]
+}

@@ -1,0 +1,148 @@
+---
+publishDate: 2024-05-27T00:00:00Z
+title: Yazılım Güvenliği ve Veritabanı Koruma Stratejileri Derinlemesine Rehber
+excerpt: Yazılım geliştirme süreçlerinde güvenliği sağlamak, veritabanlarını saldırılardan korumak için kullanılan kapsamlı yöntemler, yaygın tehditler, detaylı uygulamalar ve örneklerle dolu kapsamlı rehber.
+image: https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0
+category: Yazılım Güvenliği
+tags:
+  - yazılım güvenliği
+  - veritabanı güvenliği
+  - siber güvenlik
+  - kodlama standartları
+  - veri şifreleme
+metadata:
+  canonical: https://bgs.io/yazilim-guvenligi-veritabani-koruma-stratejileri
+---
+
+import DListItem from '~/components/ui/DListItem.astro';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+
+## Giriş: Yazılım Güvenliği ve Veritabanı Korumanın Önemi
+
+Günümüzde dijitalleşmenin artmasıyla birlikte yazılım sistemleri ve veritabanları her zamankinden daha kritik bir rol oynamaktadır. Veriler, işletmeler için en değerli varlık haline gelirken, bu verilerin korunması için yazılım güvenliği stratejileri de hayati önem taşır. Siber saldırılar, veri ihlalleri ve yetkisiz erişimler ciddi finansal ve itibari kayıplara yol açabilir.
+
+Yazılım güvenliği yalnızca teknik bir konu değil; aynı zamanda süreç, politika ve insan faktörünü de kapsayan çok katmanlı bir yaklaşımdır. Bu rehberde yazılım güvenliğinin temel prensipleri, veritabanı koruma yöntemleri, karşılaşılan yaygın tehditler ve en iyi uygulamalar detaylı şekilde ele alınacaktır.
+
+---
+
+## Bölüm 1: Yazılım Güvenliğinin Temelleri
+
+Yazılım güvenliği, geliştirilen uygulamaların kötü niyetli saldırılara karşı dayanıklı olmasını sağlar. Bu, sadece kod yazmakla bitmeyip, mimariden testlere kadar tüm yaşam döngüsünü kapsar.
+
+### 1.1 Güvenli Yazılım Geliştirme Yaşam Döngüsü (SDLC)
+
+- **Planlama:** Güvenlik gereksinimlerinin belirlenmesi, tehdit modellemesi yapılması.
+- **Tasarım:** Güvenli mimari desenlerin uygulanması, örneğin katmanlı mimari ve güvenlik katmanlarının belirlenmesi.
+- **Kodlama:** Güvenli kodlama standartlarının kullanılması (örn. OWASP Secure Coding Practices).
+- **Test:** Statik kod analizi, dinamik testler ve penetrasyon testlerinin yapılması.
+- **Dağıtım ve Bakım:** Güncelleme, yama yönetimi ve izleme süreçlerinin uygulanması.
+
+### 1.2 Güvenlik İlkeleri
+
+- **En Az Yetki (Least Privilege):** Kullanıcılar ve bileşenler sadece görevleri için gerekli izinlere sahip olmalı.
+- **Savunma Derinliği (Defense in Depth):** Çok katmanlı güvenlik mekanizmaları kullanmak.
+- **Hata Yönetimi:** Hata mesajları saldırganlara bilgi sızdırmamalı.
+- **Kabul Edilebilir Risk:** Her güvenlik açığının kapatılması mümkün olmayabilir; risk analizleri ile önceliklendirme yapılmalı.
+
+---
+
+## Bölüm 2: Veritabanı Güvenliği Stratejileri
+
+Veritabanları, uygulama verilerinin merkezi olduğu kritik bileşenlerdir. Veritabanı güvenliği, veri kaybı ve yetkisiz erişimi engellemek için çok yönlü önlemler gerektirir.
+
+### 2.1 Erişim Kontrolü ve Kimlik Doğrulama
+
+- **Rollere Dayalı Erişim Kontrolü (RBAC):** Kullanıcılar rollere atanarak yetkiler yönetilir.
+- **İnce Taneli Yetkilendirme:** Veri satırı veya sütun bazında erişim kontrolleri.
+- **Çok Faktörlü Kimlik Doğrulama:** Parola dışı ek doğrulama mekanizmaları.
+- **İzleme ve Loglama:** Kim, ne zaman hangi veriye erişti kaydedilmeli.
+
+### 2.2 Veri Şifreleme
+
+- **Veri “At Rest” Şifreleme:** Veritabanı dosyaları ve yedekler güçlü algoritmalarla şifrelenmeli.
+- **Veri “In Transit” Şifreleme:** Veritabanı bağlantıları TLS gibi protokollerle korunmalı.
+- **Alan Bazlı Şifreleme:** Hassas alanlar (örn. kredi kartı numarası) uygulama katmanında şifrelenmeli.
+
+### 2.3 Yedekleme ve Kurtarma
+
+- **Düzenli Yedekleme:** Veri kaybına karşı düzenli ve test edilmiş yedekleme süreçleri.
+- **Yedeklerin Güvenliği:** Yedekler de şifrelenmeli ve güvenli ortamlarda saklanmalı.
+- **Felaket Kurtarma Planı:** Olası veri ihlallerine karşı planlı müdahale prosedürleri.
+
+---
+
+## Bölüm 3: Yaygın Yazılım ve Veritabanı Güvenlik Tehditleri
+
+### 3.1 SQL Injection (SQLi)
+
+- En kritik açıklardan biri.
+- Kullanıcı girdilerinin doğrudan SQL sorgularına eklenmesiyle ortaya çıkar.
+- Parametrized Query ve Stored Procedure kullanarak önlenir.
+
+### 3.2 Cross-Site Scripting (XSS)
+
+- Kötü amaçlı scriptlerin uygulama üzerinden yayılması.
+- Input Validation ve Output Encoding ile engellenir.
+
+### 3.3 Denial of Service (DoS) ve Distributed DoS (DDoS)
+
+- Sistem kaynaklarının aşırı yüklenmesiyle hizmetin durdurulması.
+- Rate Limiting ve Firewall kuralları ile önlem alınır.
+
+### 3.4 Yetkisiz Veri Erişimi
+
+- Yanlış yapılandırılmış izinler sonucu hassas verilere erişim.
+- Düzenli izin denetimleri ve log analizleri ile engellenir.
+
+### 3.5 Veri Sızıntıları ve İç Tehditler
+
+- Dış saldırıların yanı sıra çalışan kaynaklı veri ihlalleri.
+- Veri maskeleme ve erişim kontrolleri önemlidir.
+
+---
+
+## Bölüm 4: Yazılım Güvenliği İçin En İyi Uygulamalar
+
+### 4.1 Güvenli Kodlama Prensipleri
+
+- Girdi doğrulama ve temizleme
+- Hazır kütüphanelerdeki güvenlik açıklarının takip edilmesi
+- Kodu sade ve anlaşılır yazma
+- Otomatik statik analiz araçları kullanma (SonarQube, Checkmarx)
+
+### 4.2 Kod İncelemeleri (Code Review)
+
+- Güvenlik odaklı kod incelemeleri düzenli yapılmalı.
+- Peer review ve otomatik güvenlik testleri entegre edilmeli.
+
+### 4.3 Otomatik Testler ve Sürekli Entegrasyon (CI/CD)
+
+- Güvenlik testleri CI/CD pipeline'larına eklenmeli.
+- Dışarıdan bağımlı kütüphanelerin güvenliği kontrol edilmeli.
+
+### 4.4 Güçlü Kimlik Doğrulama ve Yetkilendirme
+
+- Parola politikaları (uzunluk, karmaşıklık, süre)
+- Çok faktörlü kimlik doğrulama
+- Token tabanlı erişim kontrolü (JWT, OAuth2)
+
+### 4.5 Loglama ve İzleme
+
+- Tüm kritik işlemler kaydedilmeli.
+- Anormal aktiviteler için uyarılar ve otomatik engellemeler yapılmalı.
+
+---
+
+## Bölüm 5: Pratik Kod Örnekleri ile Güvenlik Uygulamaları
+
+### 5.1 SQL Injection Koruması - Node.js Örneği
+
+```javascript
+const mysql = require('mysql2/promise');
+
+async function getUser(username) {
+  const connection = await mysql.createConnection({host: 'localhost', user: 'root', database: 'appdb'});
+  const [rows] = await connection.execute('SELECT * FROM users WHERE username = ?', [username]);
+  await connection.end();
+  return rows;
+}

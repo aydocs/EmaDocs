@@ -1,0 +1,64 @@
+---
+publishDate: 2024-05-27T00:00:00Z
+title: Web Performans Optimizasyonu Rehberi
+excerpt: Web sitelerinin hızlı, stabil ve verimli çalışması için performans iyileştirme teknikleri, araçları ve stratejileri.
+category: Performans
+tags:
+  - web
+  - performans
+  - optimizasyon
+image: https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1650&q=80
+metadata:
+  canonical: https://bgs.io/web-performans-optimizasyonu
+---
+
+## Genel Bakış
+
+Web performansı, kullanıcı deneyimini doğrudan etkileyen temel bir bileşendir. Bir sayfanın yüklenme hızı ve interaktif hale gelme süresi, ziyaretçilerin siteyi terk etme oranını ve dönüşüm oranlarını belirler. Google gibi arama motorları da sıralamalarını bu kritere göre etkiler.
+
+Performans optimizasyonu, sadece hızlı yükleme değil, aynı zamanda sorunsuz ve enerji verimli çalışan bir web sitesi sunmak demektir. Bu rehberde hem ön yüz hem de sunucu tarafı iyileştirmelerden, güncel tarayıcı teknolojilerine kadar geniş bir perspektif sunulmaktadır.
+
+## Performans Metrikleri
+
+- **First Contentful Paint (FCP):** Sayfanın ilk görsel ya da metin öğesinin yüklenme süresi.
+- **Largest Contentful Paint (LCP):** Kullanıcının ekranında en büyük içerik öğesinin render süresi.
+- **Time to Interactive (TTI):** Sayfanın kullanıcı ile tam etkileşimli hale gelme süresi.
+- **Cumulative Layout Shift (CLS):** Sayfa yüklenirken beklenmedik yer değiştiren içeriklerin oranı.
+
+Bu metrikler, sayfanızın kullanıcı deneyimini ölçmek için kritik öneme sahiptir ve sürekli izlenmelidir.
+
+## Kritik Performans İyileştirme Teknikleri
+
+### 1. Kaynak Optimizasyonu
+
+- **Dosya Boyutlarının Azaltılması:** CSS, JS, HTML dosyalarının minify edilmesi, gereksiz kodların çıkarılması.
+- **Resim Optimizasyonu:** Görsellerin doğru formatta (WebP, AVIF), boyutlandırılmış ve sıkıştırılmış olması. Lazy load kullanımı ile sadece görünür alandaki resimlerin yüklenmesi.
+- **Font Optimizasyonu:** Yalnızca kullanılan font ağırlıklarının ve karakter setlerinin yüklenmesi, font-display: swap kullanımı.
+
+### 2. Ön Bellekleme Stratejileri
+
+- **Tarayıcı Önbellekleme:** Cache-control header’ları ile statik içeriklerin kullanıcı tarafında saklanması.
+- **Content Delivery Network (CDN):** İçeriğin coğrafi olarak kullanıcılara en yakın sunuculardan dağıtılması.
+- **Service Worker Kullanımı:** Progresif web uygulamalarında offline destek ve önbelleğe alma mekanizmaları.
+
+### 3. Ağ İyileştirmeleri
+
+- **HTTP/2 veya HTTP/3:** Çoklu isteklerin tek bağlantı üzerinden hızlı iletimi.
+- **Lazy Loading:** Sayfa render’ını engellemeyen içeriklerin geciktirilerek yüklenmesi.
+- **Prefetch & Preload:** Kritik kaynakların önceden yüklenmesi.
+
+### 4. Kod Bölme ve Asenkron Yükleme
+
+- JavaScript dosyalarının parçalara ayrılarak sadece gerekli olan kodun yüklenmesi.
+- Async ve defer attributeleri ile scriptlerin yükleme önceliklerinin ayarlanması.
+
+## Performans Ölçüm Araçları
+
+- **Google Lighthouse:** Hem mobil hem masaüstü için detaylı raporlar.
+- **WebPageTest:** Gerçek kullanıcı senaryoları ile detaylı testler.
+- **Chrome DevTools Performance Tab:** Gerçek zamanlı analiz imkanı.
+
+## Örnek Kod: Lazy Load Görsel
+
+```html
+<img src="placeholder.jpg" data-src="image.webp" loading="lazy" alt="Optimizasyon Örneği" />

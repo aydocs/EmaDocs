@@ -1,0 +1,372 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title:
+    'EmaDocs Yazılım Ajansı | Sakarya, İstanbul, Kayseri ve Türkiye Geneli Özel Yazılım, Web Tasarım & Dijital Çözümler',
+  ignoreTitleTemplate: true,
+  description:
+    'EmaDocs Yazılım Ajansı olarak Sakarya, İstanbul, Kayseri ve Türkiye genelinde; özel yazılım geliştirme, web tasarım, mobil uygulama geliştirme ve dijital pazarlama hizmetleri sunuyoruz. Projelerinizi dijitalde güçlendirmek için bizimle iletişime geçin.',
+  keywords: [
+    'yazılım ajansı',
+    'web tasarım hizmetleri',
+    'mobil uygulama geliştirme',
+    'özel yazılım geliştirme',
+    'dijital pazarlama',
+    'Sakarya yazılım ajansı',
+    'İstanbul yazılım ajansı',
+    'Kayseri yazılım çözümleri',
+    'EmaDocs dijital çözümler',
+    'SEO hizmetleri',
+    'e-ticaret çözümleri',
+    'kurumsal yazılım',
+  ],
+  author: 'EmaDocs Yazılım Ajansı',
+  robots: 'index, follow',
+  canonical: 'https://emadocs.com',
+  viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+  charset: 'utf-8',
+  og: {
+    title: 'EmaDocs Yazılım Ajansı | Türkiye Geneli Yazılım ve Dijital Çözümler',
+    description:
+      'Profesyonel yazılım, web tasarım ve dijital pazarlama hizmetleri ile projelerinizi dijitalde bir üst seviyeye taşıyoruz.',
+    url: 'https://emadocs.com',
+    image: 'https://emadocs.com/assets/og-image.png',
+    type: 'website',
+    locale: 'tr_TR',
+    site_name: 'EmaDocs Yazılım Ajansı',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@emadocs',
+    creator: '@emadocs',
+    title: 'EmaDocs Yazılım Ajansı',
+    description:
+      'Sakarya, İstanbul, Kayseri ve Türkiye geneline özel yazılım, web tasarım ve dijital pazarlama hizmetleri.',
+    image: 'https://emadocs.com/assets/twitter-image.png',
+  },
+  favicon: '/images/favicon.png',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'İletişime Geç ',
+        href: '/contact',
+        icon: 'tabler:mail-forward',
+      },
+      {
+        text: 'Detaylı Bilgi',
+        href: '#features',
+        icon: 'tabler:circle-chevron-right',
+      },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'EmaDocs Hero Görseli' }}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white">Emadocs</span> Yazılım Ajansı ile Türkiye genelinde modern ve profesyonel
+      çözümler.
+    </Fragment>
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">EmaDocs</span>, özel yazılım geliştirme, web tasarım ve dijital dönüşüm alanlarında
+        Sakarya, İstanbul, Kayseri ve Türkiye'nin her yerinde hizmetinizde.</span
+      >
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">EmaDocs: Profesyonel Yazılım Ajansı.</span>
+      Küçük işletmelerden büyük firmalara kadar her ölçek için çözümler.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="Felsefemiz:" description="Basitlik, En İyi Uygulamalar ve Yüksek Performans" />
+
+  <!-- Features Widget *************** -->
+
+ <Features
+  id="features"
+  tagline="Avantajlar"
+  title="EmaDocs ile Gelen Temel Özellikler"
+  subtitle="Modern web geliştirme için ihtiyacınız olan tüm yapı taşları bir arada."
+  items={[
+    {
+      title: 'Hafif ve Hızlı',
+      description: 'Performans için optimize edilmiş temiz kod yapısı.',
+      icon: 'tabler:brand-speedtest',
+    },
+    {
+      title: 'Modüler Yapı',
+      description: 'Her bölüm bağımsız olarak yönetilebilir ve özelleştirilebilir.',
+      icon: 'tabler:components',
+    },
+    {
+      title: 'Karanlık Mod Desteği',
+      description: 'Kullanıcı deneyimini artıran tema geçiş özellikleri.',
+      icon: 'tabler:moon-stars',
+    },
+    {
+      title: 'Çoklu Dil Uyumluluğu',
+      description: 'Farklı dil seçenekleriyle geniş kitlelere ulaşın.',
+      icon: 'tabler:language',
+    },
+    {
+      title: 'Responsive Tasarım',
+      description: 'Tüm cihazlarda sorunsuz ve uyumlu görünüm.',
+      icon: 'tabler:device-laptop',
+    },
+    {
+      title: 'Kolay Entegrasyon',
+      description: 'Harici servislerle hızlı ve zahmetsiz bağlantı.',
+      icon: 'tabler:plug-connected',
+    },
+    {
+      title: 'SEO Uyumlu',
+      description: 'Arama motorlarında daha görünür olmanız için yapılandırılmış sayfalar.',
+      icon: 'tabler:search',
+    },
+    {
+      title: 'Geliştirici Dostu',
+      description: 'Net dosya yapısı, yorumlu kodlar ve sade mimari.',
+      icon: 'tabler:code',
+    },
+    {
+      title: 'Sürekli Güncellenen Altyapı',
+      description: 'Yeni trendlerle uyumlu kalmak için aktif bakım ve gelişim.',
+      icon: 'tabler:refresh',
+    },
+    {
+      title: 'Detaylı Dokümantasyon',
+      description: 'Projeyi daha hızlı anlamak ve geliştirmek için kapsamlı rehberler.',
+      icon: 'tabler:book',
+    },
+  ]}
+/>
+
+
+  <!-- Content Widget **************** -->
+
+ <Content
+  isReversed
+  tagline="Hakkımızda"
+  title="Sadece Bir Web Sitesi Değil, Dijital Kimliğinizin Temeli"
+  items={[
+    {
+      title: 'İlham Veren Tasarım',
+      description:
+        'Markanızın dijital dünyadaki ilk izlenimi, sade, anlaşılır ve etkileyici bir deneyim sunar.',
+    },
+    {
+      title: 'Detaylarda Saklı Güç',
+      description:
+        'Her unsur, sizi ve değerlerinizi en iyi şekilde yansıtmak için özenle hazırlandı.',
+    },
+    {
+      title: 'Daha İyi Deneyim',
+      description:
+        'Kullanıcılarınızın ihtiyaçlarını göz önünde bulundurarak, akıcı ve sezgisel bir yapı kurduk.',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2070&q=80',
+    alt: 'Dijital Deneyim Görseli',
+  }}
+>
+  <Fragment slot="content">
+    <h3 className="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+      İlham Veren Dijital Varlıklar
+    </h3>
+    Markanız için sadece bir web sitesi değil, güçlü ve kalıcı bir izlenim yaratıyoruz.
+  </Fragment>
+
+  <Fragment slot="bg">
+    <div className="absolute inset-0 bg-gray-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
+
+<Content
+  isAfterContent
+  items={[
+    {
+      title: 'Hızlı ve Akıcı',
+      description:
+        'Ziyaretçilerinizin beklemeden bilgiye ulaşması için özenle optimize edildi.',
+    },
+    {
+      title: 'Her Ekrana Uyumlu',
+      description:
+        'Bilgisayar, tablet veya telefonda fark etmeksizin kusursuz görünüm sağlar.',
+    },
+    {
+      title: 'Sezgisel Kullanım',
+      description:
+        'Basit ve anlaşılır yapısıyla herkesin kolayca kullanabileceği bir deneyim sunar.',
+    },
+    {
+      title: 'Güçlü ve Dayanıklı',
+      description:
+        'Zamanla güncellenen içerik ve sağlam yapı ile uzun vadeli başarıyı hedefler.',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2194&q=80',
+    alt: 'Modern Tasarım Görseli',
+  }}
+>
+  <Fragment slot="content">
+    Online dünyada markanızı en iyi şekilde temsil edecek yapıyı sizin için oluşturduk.
+  </Fragment>
+
+  <Fragment slot="bg">
+    <div className="absolute inset-0 bg-gray-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
+
+<Content
+  isReversed
+  isAfterContent
+  items={[
+    {
+      title: 'Artan Etkileşim',
+      description:
+        'Kullanıcı dostu yapısıyla ziyaretçilerinizi daha uzun süre sitenizde tutar.',
+    },
+    {
+      title: 'Sürekli Gelişim',
+      description:
+        'Her zaman yeniliklere açık, güncel ve dinamik içeriklerle doludur.',
+    },
+    {
+      title: 'Kolay Yönetim',
+      description:
+        'İçeriğinizi istediğiniz zaman kolayca düzenleyip güncelleyebilirsiniz.',
+    },
+    {
+      title: 'Destek ve Topluluk',
+      description:
+        'İhtiyacınız olduğunda her zaman yanınızda olacak güçlü bir destek ağına sahipsiniz.',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2070&q=80',
+    alt: 'Başarı ve Büyüme Görseli',
+  }}
+>
+  <Fragment slot="content">Dijital dünyada büyüme ve başarı için yanınızdayız.</Fragment>
+
+  <Fragment slot="bg">
+    <div className="absolute inset-0 bg-gray-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
+
+<Steps
+  title="Hayalinizdeki web sitesine ulaşmak için kolay adımlar."
+  items={[
+    {
+      title: 'Adım 1: <span class="font-medium">Bize Ulaşın</span>',
+      description:
+        'İhtiyaçlarınızı anlatın, size en uygun çözümleri birlikte keşfedelim.',
+      icon: 'tabler:message-2',
+    },
+    {
+      title: 'Adım 2: <span class="font-medium">İçeriğinizi Paylaşın</span>',
+      description:
+        'Markanızı yansıtan içerikleri bize iletin, temelini birlikte oluşturalım.',
+      icon: 'tabler:photo-edit',
+    },
+    {
+      title: 'Adım 3: <span class="font-medium">Tasarıma Başlayalım</span>',
+      description:
+        'Görünüm ve işleyişi isteğinize göre şekillendiriyoruz.',
+      icon: 'tabler:brush',
+    },
+    {
+      title: 'Adım 4: <span class="font-medium">Yayınla ve Büyü</span>',
+      description:
+        'Onayınız sonrası siteniz yayında, dijital dünyada yerinizi alın.',
+      icon: 'tabler:check',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=987&q=80',
+    alt: 'Kolay Web Süreci Görseli',
+  }}
+/>
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="Blogumuzda Daha Fazla İçerik Keşfedin"
+    information={`EmaDocs Blog, yazılım geliştirme, proje yönetimi ve dijital çözümler üzerine düşünülmüş içerikler sunar.<br />
+  <br />
+  Her makalemizde, sektörde edindiğimiz deneyimleri ve güncel teknolojik gelişmeleri anlaşılır bir dille paylaşmayı amaçlıyoruz.<br />
+  `}
+  />
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Sıkça Sorulan Sorular"
+    subtitle="EmaDocs'in sunduğu güçlü özellikleri ve web geliştirme yolculuğunuzu nasıl kolaylaştıracağını öğrenmek için aşağıdaki sorulara göz atın."
+    tagline="SSS"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Neden EmaDocs?',
+        description:
+          'EmaDocs, müşterilerine güvenilir ve etkili çözümler sunmayı amaçlayan bir yazılım ajansıdır. Uzman kadromuzla her ihtiyaca uygun projeler geliştiriyoruz.',
+      },
+      {
+        title: 'Başlamak için teknik bilgi gerekli mi?',
+        description:
+          'Hayır, ancak temel HTML ve CSS bilgisi süreci hızlandırır. Bizimle iletişime geçerek profesyonel destek alabilirsiniz.',
+      },
+      {
+        title: 'Şablon ne kadar esnek?',
+        description: 'Tamamen özelleştirilebilir. İhtiyacınıza göre modifiye edilebilir ve genişletilebilir.',
+      },
+      {
+        title: 'Mobil uyumluluk var mı?',
+        description: 'Evet, tüm bileşenler mobil cihazlarla uyumludur ve responsive olarak tasarlanmıştır.',
+      },
+      {
+        title: 'EmaDocs hangi şehirlerde hizmet veriyor?',
+        description:
+          'Sakarya, İstanbul, Kayseri başta olmak üzere Türkiye’nin her yerinde müşterilerimize ulaşmaktayız.',
+      },
+      {
+        title: 'Destek alabilir miyim?',
+        description: 'Elbette, projelerinizde sürekli destek ve güncellemeler sunuyoruz.',
+      },
+    ]}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="EmaDocs ile Başarıya Ulaşın"
+    stats={[
+      { title: 'Mutlu Müşteri', amount: 102 },
+      { title: 'Tamamlanan Proje', amount: 218 },
+      { title: 'Ekibimiz', amount: 7 },
+      { title: 'Yılların Tecrübesi', amount: 6 },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+</Layout>
