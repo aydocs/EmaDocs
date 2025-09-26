@@ -100,6 +100,6 @@ export const footerData = {
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/bgs' },
   ],
   footNote: `
-    Made by <a class="text-purple-600 dark:text-muted no-underline" href="https://bgs.io/">BGS</a> · Tüm hakları saklıdır.
+    Made by <a class="text-purple-600 dark:text-muted no-underline" href="https://EmaDocs.com/">EmaDocs</a> · Tüm hakları saklıdır.
   `,
 };
