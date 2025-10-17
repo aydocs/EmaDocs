@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revolution - Ema Framework</title>
+    <meta name="description" content="Revolutionary design system and cutting-edge web development with Ema Framework">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <link rel="stylesheet" href="../css/ema-colors.css">
+    
+    <style>
+        /* Revolutionary Design System */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Revolutionary Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6f42c1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #6f42c1, #8e5fd1, #6f42c1);
+            border-radius: 12px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 0.3;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .logo:hover .logo-icon::before {
+            animation: logoShine 0.6s ease;
+        }
+
+        @keyframes logoShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        /* Revolutionary Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(111, 66, 193, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(111, 66, 193, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .bg-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #6f42c1;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bg-particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .bg-particle:nth-child(2) { top: 40%; left: 80%; animation-delay: 1s; }
+        .bg-particle:nth-child(3) { top: 60%; left: 40%; animation-delay: 2s; }
+        .bg-particle:nth-child(4) { top: 80%; left: 60%; animation-delay: 3s; }
+        .bg-particle:nth-child(5) { top: 30%; left: 70%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-text {
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(111, 66, 193, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6f42c1;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-badge:hover::before {
+            left: 100%;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .title-line {
+            display: block;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: titleReveal 0.8s ease forwards;
+        }
+
+        .title-line:nth-child(1) { animation-delay: 0.2s; }
+        .title-line:nth-child(2) { animation-delay: 0.4s; }
+        .title-line:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes titleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1, #ff6b6b);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .highlight-text {
+            position: relative;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            border-radius: 2px;
+            animation: underlineGrow 0.8s ease 1s forwards;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        @keyframes underlineGrow {
+            to { transform: scaleX(1); }
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #6f42c1;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* Revolutionary Stats Grid */
+        .revolutionary-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(111, 66, 193, 0.4);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stat-content {
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #6f42c1;
+        }
+
+        .stat-suffix {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8e5fd1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #a0a0a0;
+            font-weight: 500;
+        }
+
+        .stat-progress {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            border-radius: 2px;
+            width: 0;
+            animation: progressFill 2s ease 1s forwards;
+        }
+
+        @keyframes progressFill {
+            to { width: var(--width, 0%); }
+        }
+
+        /* Revolutionary Action Grid */
+        .revolutionary-actions {
+            margin-bottom: 2rem;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            height: 200px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-action {
+            grid-row: span 2;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            font-size: 1.125rem;
+        }
+
+        .secondary-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: #6f42c1;
+        }
+
+        .tertiary-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: #8e5fd1;
+        }
+
+        .quaternary-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: #ff6b6b;
+        }
+
+        .quinary-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: #4ecdc4;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.3);
+        }
+
+        .btn-icon {
+            font-size: 1.5rem;
+        }
+
+        .btn-text {
+            font-size: 0.875rem;
+        }
+
+        /* Revolutionary Visual */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 3D Code Cube */
+        .code-cube-container {
+            perspective: 1000px;
+            animation: cubeRotate 20s linear infinite;
+        }
+
+        @keyframes cubeRotate {
+            from { transform: rotateY(0deg) rotateX(10deg); }
+            to { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        .code-cube {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cubeFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes cubeFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #6f42c1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .cube-face.front { transform: translateZ(150px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(150px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(150px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(150px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(150px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+        .code-block {
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .code-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-keyword { color: #ff6b6b; }
+        .code-function { color: #4ecdc4; }
+        .code-string { color: #ffe66d; }
+        .code-comment { color: #a0a0a0; }
+
+        /* Floating Tech Elements */
+        .floating-tech {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .tech-element {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            animation: techFloat 6s ease-in-out infinite;
+        }
+
+        .tech-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .tech-element:nth-child(2) {
+            top: 20%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .tech-element:nth-child(3) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .tech-element:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .tech-element:nth-child(5) {
+            top: 50%;
+            left: 5%;
+            animation-delay: 4s;
+        }
+
+        .tech-element:nth-child(6) {
+            top: 60%;
+            right: 5%;
+            animation-delay: 5s;
+        }
+
+        @keyframes techFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .tech-icon {
+            font-size: 1.5rem;
+        }
+
+        .tech-label {
+            font-size: 0.75rem;
+            color: #a0a0a0;
+            font-weight: 500;
+        }
+
+        /* Particle System */
+        .particle-system {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #6f42c1;
+            border-radius: 50%;
+            animation: particleMove 8s linear infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 40%; left: 70%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 80%; left: 80%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { top: 70%; left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { top: 10%; left: 80%; animation-delay: 6s; }
+        .particle:nth-child(8) { top: 90%; left: 40%; animation-delay: 7s; }
+
+        @keyframes particleMove {
+            0% { transform: translate(0, 0) scale(0); opacity: 0; }
+            10% { transform: translate(10px, -10px) scale(1); opacity: 1; }
+            90% { transform: translate(-10px, 10px) scale(1); opacity: 1; }
+            100% { transform: translate(0, 0) scale(0); opacity: 0; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .action-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 1fr);
+                height: auto;
+            }
+
+            .primary-action {
+                grid-column: span 2;
+            }
+
+            .revolutionary-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .code-cube {
+                width: 200px;
+                height: 200px;
+            }
+
+            .cube-face {
+                width: 200px;
+                height: 200px;
+            }
+
+            .cube-face.front { transform: translateZ(100px); }
+            .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Revolutionary Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Ema Revolution</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
+                    <li><a href="components.html" class="nav-link">Components</a></li>
+                    <li><a href="examples.html" class="nav-link">Examples</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="playground.html" class="nav-link">Playground</a></li>
+                    <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+                    <li><a href="revolution.html" class="nav-link active">Revolution</a></li>
+                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+            
+            <a href="getting-started.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Revolutionary Hero Section -->
+    <section class="hero">
+        <!-- Animated Background -->
+        <div class="hero-background">
+            <div class="bg-grid"></div>
+            <div class="bg-particles">
+                <div class="bg-particle"></div>
+                <div class="bg-particle"></div>
+                <div class="bg-particle"></div>
+                <div class="bg-particle"></div>
+                <div class="bg-particle"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="badge-icon">✨</span>
+                    <span class="badge-text">v4.1 - Revolutionary Release</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="title-line">The Future of</span>
+                    <span class="title-line gradient-text">Web Development</span>
+                    <span class="title-line">is <span class="highlight-text">Here</span></span>
+                </h1>
+                
+                <p class="hero-description">
+                    Build <span class="highlight">stunning</span>, <span class="highlight">high-performance</span> web applications with Ema Framework. 
+                    <span class="highlight">250+ components</span>, <span class="highlight">100+ modules</span>, and <span class="highlight">500+ features</span> in a single revolutionary package.
+                </p>
+                
+                <!-- Revolutionary Stats Grid -->
+                <div class="revolutionary-stats">
+                    <div class="stat-card stat-card-1">
+                        <div class="stat-icon">🎨</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="250">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="progress-bar" style="--width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-2">
+                        <div class="stat-icon">⚙️</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="100">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Modules</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="progress-bar" style="--width: 88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-3">
+                        <div class="stat-icon">✨</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="500">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Features</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="progress-bar" style="--width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Revolutionary Action Grid -->
+                <div class="revolutionary-actions">
+                    <div class="action-grid">
+                        <a href="pages/getting-started.html" class="action-btn primary-action">
+                            <span class="btn-icon">🚀</span>
+                            <span class="btn-text">Start Building</span>
+                        </a>
+                        
+                        <a href="pages/examples.html" class="action-btn secondary-action">
+                            <span class="btn-icon">💡</span>
+                            <span class="btn-text">Examples</span>
+                        </a>
+                        
+                        <a href="pages/dashboard.html" class="action-btn tertiary-action">
+                            <span class="btn-icon">🎯</span>
+                            <span class="btn-text">Dashboard</span>
+                        </a>
+                        
+                        <a href="pages/playground.html" class="action-btn quaternary-action">
+                            <span class="btn-icon">🎮</span>
+                            <span class="btn-text">Playground</span>
+                        </a>
+                        
+                        <a href="pages/showcase.html" class="action-btn quinary-action">
+                            <span class="btn-icon">🎨</span>
+                            <span class="btn-text">Showcase</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Revolutionary Visual -->
+            <div class="hero-visual">
+                <!-- 3D Code Cube -->
+                <div class="code-cube-container">
+                    <div class="code-cube">
+                        <div class="cube-face front">
+                            <div class="code-block">
+                                <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>();</div>
+                                <div class="code-line"><span class="code-comment">// Revolutionary Framework</span></div>
+                            </div>
+                        </div>
+                        <div class="cube-face back">
+                            <div class="code-block">
+                                <div class="code-line"><span class="code-function">app</span>.<span class="code-function">init</span>({</div>
+                                <div class="code-line">&nbsp;&nbsp;<span class="code-string">'3d'</span>: <span class="code-keyword">true</span></div>
+                            </div>
+                        </div>
+                        <div class="cube-face right">
+                            <div class="code-block">
+                                <div class="code-line"><span class="code-string">'theme'</span>: <span class="code-string">'purple'</span></div>
+                                <div class="code-line">});</div>
+                            </div>
+                        </div>
+                        <div class="cube-face left">
+                            <div class="code-block">
+                                <div class="code-line"><span class="code-comment">// 250+ Components</span></div>
+                                <div class="code-line"><span class="code-comment">// 100+ Modules</span></div>
+                            </div>
+                        </div>
+                        <div class="cube-face top">
+                            <div class="code-block">
+                                <div class="code-line"><span class="code-comment">// 500+ Features</span></div>
+                            </div>
+                        </div>
+                        <div class="cube-face bottom">
+                            <div class="code-block">
+                                <div class="code-line"><span class="code-comment">// Future Ready</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Tech Elements -->
+                <div class="floating-tech">
+                    <div class="tech-element tech-1">
+                        <div class="tech-icon">🎨</div>
+                        <div class="tech-label">Design System</div>
+                    </div>
+                    <div class="tech-element tech-2">
+                        <div class="tech-icon">⚡</div>
+                        <div class="tech-label">Performance</div>
+                    </div>
+                    <div class="tech-element tech-3">
+                        <div class="tech-icon">🎮</div>
+                        <div class="tech-label">3D Engine</div>
+                    </div>
+                    <div class="tech-element tech-4">
+                        <div class="tech-icon">📱</div>
+                        <div class="tech-label">Responsive</div>
+                    </div>
+                    <div class="tech-element tech-5">
+                        <div class="tech-icon">🔧</div>
+                        <div class="tech-label">Zero Config</div>
+                    </div>
+                    <div class="tech-element tech-6">
+                        <div class="tech-icon">♿</div>
+                        <div class="tech-label">Accessible</div>
+                    </div>
+                </div>
+                
+                <!-- Particle System -->
+                <div class="particle-system">
+                    <div class="particle particle-1"></div>
+                    <div class="particle particle-2"></div>
+                    <div class="particle particle-3"></div>
+                    <div class="particle particle-4"></div>
+                    <div class="particle particle-5"></div>
+                    <div class="particle particle-6"></div>
+                    <div class="particle particle-7"></div>
+                    <div class="particle particle-8"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.target);
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('revolutionary-stats')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe stats section
+            const statsSection = document.querySelector('.revolutionary-stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+
+            // Initialize 3D effects
+            if (typeof ema3DEffects !== 'undefined') {
+                ema3DEffects.init();
+            }
+
+            // Initialize alerts
+            if (typeof emaAlerts !== 'undefined') {
+                setTimeout(() => {
+                    emaAlerts.success('Welcome to the Ema Revolution! 🚀', {
+                        title: 'Revolutionary Framework',
+                        timer: 4000
+                    });
+                }, 1000);
+            }
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                if (typeof ema3DEffects !== 'undefined') {
+                    const rect = btn.getBoundingClientRect();
+                    ema3DEffects.createExplosion(
+                        rect.left + rect.width / 2,
+                        rect.top + rect.height / 2,
+                        [0.4, 0.2, 0.7],
+                        10
+                    );
+                }
+            });
+        });
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-background');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+
+    <!-- Load framework scripts -->
+    <script src="../js/core.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/emadocs.js"></script>
+    
+    <!-- Initialize application -->
+    <script src="../js/app-init.js"></script>
+</body>
+</html>

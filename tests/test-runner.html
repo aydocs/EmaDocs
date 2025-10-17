@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adiox Framework - Test Runner</title>
+  <link rel="stylesheet" href="../css/adiox.css">
+  <style>
+    .test-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+    .test-suite {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--adi-surface);
+      border-radius: var(--adi-radius);
+      border: 1px solid var(--adi-border);
+    }
+    .test-suite h2 {
+      margin-bottom: 1rem;
+      color: var(--adi-primary);
+    }
+    .test-case {
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: var(--adi-radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .test-case.pass {
+      background: var(--adi-success-light);
+      border-left: 4px solid var(--adi-success);
+    }
+    .test-case.fail {
+      background: var(--adi-danger-light);
+      border-left: 4px solid var(--adi-danger);
+    }
+    .test-case.pending {
+      background: var(--adi-warning-light);
+      border-left: 4px solid var(--adi-warning);
+    }
+    .test-icon {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    .test-summary {
+      padding: 1.5rem;
+      background: var(--adi-surface-secondary);
+      border-radius: var(--adi-radius);
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-number {
+      font-size: 2rem;
+      font-weight: bold;
+      display: block;
+    }
+    .summary-label {
+      color: var(--adi-text-secondary);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1 class="adi-text-center">Adiox Framework Test Suite</h1>
+    
+    <div class="test-summary" id="summary">
+      <div class="summary-item">
+        <span class="summary-number" id="total-tests">0</span>
+        <span class="summary-label">Total Tests</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-number" style="color: var(--adi-success);" id="passed-tests">0</span>
+        <span class="summary-label">Passed</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-number" style="color: var(--adi-danger);" id="failed-tests">0</span>
+        <span class="summary-label">Failed</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-number" id="duration">0ms</span>
+        <span class="summary-label">Duration</span>
+      </div>
+    </div>
+
+    <div id="test-results"></div>
+  </div>
+
+  <!-- Load framework -->
+  <script src="../js/core.js"></script>
+  <script src="../js/router.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/adiox.js"></script>
+
+  <!-- Test Framework -->
+  <script>
+    class TestRunner {
+      constructor() {
+        this.suites = [];
+        this.results = {
+          total: 0,
+          passed: 0,
+          failed: 0,
+          duration: 0
+        };
+      }
+
+      describe(name, fn) {
+        const suite = {
+          name,
+          tests: [],
+          beforeEach: null,
+          afterEach: null
+        };
+        
+        this.currentSuite = suite;
+        fn();
+        this.suites.push(suite);
+        this.currentSuite = null;
+      }
+
+      it(description, fn) {
+        if (!this.currentSuite) {
+          throw new Error('it() must be called inside describe()');
+        }
+        
+        this.currentSuite.tests.push({
+          description,
+          fn,
+          status: 'pending'
+        });
+      }
+
+      beforeEach(fn) {
+        if (this.currentSuite) {
+          this.currentSuite.beforeEach = fn;
+        }
+      }
+
+      afterEach(fn) {
+        if (this.currentSuite) {
+          this.currentSuite.afterEach = fn;
+        }
+      }
+
+      async run() {
+        const startTime = performance.now();
+        const resultsContainer = document.getElementById('test-results');
+        resultsContainer.innerHTML = '';
+
+        for (const suite of this.suites) {
+          const suiteEl = document.createElement('div');
+          suiteEl.className = 'test-suite';
+          suiteEl.innerHTML = `<h2>${suite.name}</h2>`;
+
+          for (const test of suite.tests) {
+            this.results.total++;
+
+            try {
+              if (suite.beforeEach) await suite.beforeEach();
+              await test.fn();
+              if (suite.afterEach) await suite.afterEach();
+              
+              test.status = 'pass';
+              this.results.passed++;
+            } catch (error) {
+              test.status = 'fail';
+              test.error = error.message;
+              this.results.failed++;
+            }
+
+            const testEl = document.createElement('div');
+            testEl.className = `test-case ${test.status}`;
+            testEl.innerHTML = `
+              <span class="test-icon">${test.status === 'pass' ? '✓' : '✗'}</span>
+              <span>${test.description}</span>
+              ${test.error ? `<span style="color: var(--adi-danger); margin-left: auto;">${test.error}</span>` : ''}
+            `;
+            suiteEl.appendChild(testEl);
+          }
+
+          resultsContainer.appendChild(suiteEl);
+        }
+
+        this.results.duration = Math.round(performance.now() - startTime);
+        this.updateSummary();
+      }
+
+      updateSummary() {
+        document.getElementById('total-tests').textContent = this.results.total;
+        document.getElementById('passed-tests').textContent = this.results.passed;
+        document.getElementById('failed-tests').textContent = this.results.failed;
+        document.getElementById('duration').textContent = this.results.duration + 'ms';
+      }
+    }
+
+    // Assertion helpers
+    function expect(actual) {
+      return {
+        toBe(expected) {
+          if (actual !== expected) {
+            throw new Error(`Expected ${actual} to be ${expected}`);
+          }
+        },
+        toEqual(expected) {
+          if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+            throw new Error(`Expected ${JSON.stringify(actual)} to equal ${JSON.stringify(expected)}`);
+          }
+        },
+        toBeTruthy() {
+          if (!actual) {
+            throw new Error(`Expected ${actual} to be truthy`);
+          }
+        },
+        toBeFalsy() {
+          if (actual) {
+            throw new Error(`Expected ${actual} to be falsy`);
+          }
+        },
+        toContain(item) {
+          if (!actual.includes(item)) {
+            throw new Error(`Expected ${actual} to contain ${item}`);
+          }
+        },
+        toBeInstanceOf(constructor) {
+          if (!(actual instanceof constructor)) {
+            throw new Error(`Expected ${actual} to be instance of ${constructor.name}`);
+          }
+        },
+        toThrow() {
+          try {
+            actual();
+            throw new Error('Expected function to throw');
+          } catch (e) {
+            // Expected
+          }
+        }
+      };
+    }
+
+    // Create test runner
+    const runner = new TestRunner();
+    const { describe, it, beforeEach, afterEach } = {
+      describe: runner.describe.bind(runner),
+      it: runner.it.bind(runner),
+      beforeEach: runner.beforeEach.bind(runner),
+      afterEach: runner.afterEach.bind(runner)
+    };
+
+    // ============================================
+    // TESTS
+    // ============================================
+
+    describe('Core Module', () => {
+      it('should have Core module available', () => {
+        expect(window.AdiCore).toBeTruthy();
+      });
+
+      it('should emit and listen to events', () => {
+        let called = false;
+        const unsubscribe = Adiox.Core.on('test-event', () => {
+          called = true;
+        });
+        
+        Adiox.Core.emit('test-event');
+        expect(called).toBeTruthy();
+        unsubscribe();
+      });
+
+      it('should unsubscribe from events', () => {
+        let count = 0;
+        const unsubscribe = Adiox.Core.on('test-event-2', () => {
+          count++;
+        });
+        
+        Adiox.Core.emit('test-event-2');
+        unsubscribe();
+        Adiox.Core.emit('test-event-2');
+        
+        expect(count).toBe(1);
+      });
+
+      it('should support once listeners', () => {
+        let count = 0;
+        Adiox.Core.once('test-once', () => {
+          count++;
+        });
+        
+        Adiox.Core.emit('test-once');
+        Adiox.Core.emit('test-once');
+        
+        expect(count).toBe(1);
+      });
+    });
+
+    describe('Store Module', () => {
+      beforeEach(() => {
+        Adiox.Store.clear({ clearStorage: true });
+      });
+
+      it('should set and get values', () => {
+        Adiox.Store.set('test', 'value');
+        expect(Adiox.Store.get('test')).toBe('value');
+      });
+
+      it('should support dot notation', () => {
+        Adiox.Store.set('user.name', 'John');
+        expect(Adiox.Store.get('user.name')).toBe('John');
+      });
+
+      it('should watch for changes', () => {
+        let newValue = null;
+        const unwatch = Adiox.Store.watch('counter', (val) => {
+          newValue = val;
+        });
+        
+        Adiox.Store.set('counter', 42);
+        expect(newValue).toBe(42);
+        unwatch();
+      });
+
+      it('should check if key exists', () => {
+        Adiox.Store.set('exists', true);
+        expect(Adiox.Store.has('exists')).toBeTruthy();
+        expect(Adiox.Store.has('notexists')).toBeFalsy();
+      });
+
+      it('should delete keys', () => {
+        Adiox.Store.set('temp', 'value');
+        Adiox.Store.delete('temp');
+        expect(Adiox.Store.has('temp')).toBeFalsy();
+      });
+    });
+
+    describe('Router Module', () => {
+      it('should have Router module available', () => {
+        expect(window.AdiRouter).toBeTruthy();
+      });
+
+      it('should add routes', () => {
+        Adiox.Router.addRoute('/test', () => '<h1>Test</h1>');
+        expect(Adiox.Router.routes.has('/test')).toBeTruthy();
+      });
+
+      it('should match route params', () => {
+        const match = Adiox.Router.matchRoute('/user/:id', '/user/123');
+        expect(match).toBeTruthy();
+        expect(match.params.id).toBe('123');
+      });
+
+      it('should not match different routes', () => {
+        const match = Adiox.Router.matchRoute('/user/:id', '/post/123');
+        expect(match).toBeFalsy();
+      });
+    });
+
+    describe('Utils Module', () => {
+      it('should sanitize HTML', () => {
+        const safe = Adiox.Utils.sanitizeHTML('<script>alert("xss")</script>');
+        expect(safe).toContain('&lt;script&gt;');
+      });
+
+      it('should generate unique IDs', () => {
+        const id1 = Adiox.Utils.generateId();
+        const id2 = Adiox.Utils.generateId();
+        expect(id1).not.toBe(id2);
+      });
+
+      it('should format dates', () => {
+        const date = new Date('2025-01-15');
+        const formatted = Adiox.Utils.formatDate(date, 'YYYY-MM-DD');
+        expect(formatted).toBe('2025-01-15');
+      });
+
+      it('should validate emails', () => {
+        expect(Adiox.Utils.isEmail('test@example.com')).toBeTruthy();
+        expect(Adiox.Utils.isEmail('invalid')).toBeFalsy();
+      });
+
+      it('should validate URLs', () => {
+        expect(Adiox.Utils.isURL('https://example.com')).toBeTruthy();
+        expect(Adiox.Utils.isURL('not-a-url')).toBeFalsy();
+      });
+
+      it('should capitalize strings', () => {
+        expect(Adiox.Utils.capitalize('hello')).toBe('Hello');
+      });
+
+      it('should convert to kebab-case', () => {
+        expect(Adiox.Utils.kebabCase('helloWorld')).toBe('hello-world');
+      });
+
+      it('should truncate strings', () => {
+        const result = Adiox.Utils.truncate('Hello World', 8);
+        expect(result).toBe('Hello...');
+      });
+    });
+
+    describe('Theme Module', () => {
+      it('should have Theme module available', () => {
+        expect(window.AdiTheme).toBeTruthy();
+      });
+
+      it('should get current theme', () => {
+        const theme = Adiox.Theme.get();
+        expect(theme).toBeTruthy();
+      });
+
+      it('should set theme', () => {
+        Adiox.Theme.set('dark');
+        expect(Adiox.Theme.get()).toBe('dark');
+        expect(Adiox.Theme.isDark()).toBeTruthy();
+      });
+
+      it('should toggle theme', () => {
+        const before = Adiox.Theme.get();
+        Adiox.Theme.toggle();
+        const after = Adiox.Theme.get();
+        expect(before).not.toBe(after);
+      });
+    });
+
+    describe('I18n Module', () => {
+      beforeEach(() => {
+        Adiox.I18n.load('en', {
+          hello: 'Hello',
+          greeting: 'Hello {name}!'
+        });
+      });
+
+      it('should translate keys', () => {
+        Adiox.I18n.setLocale('en');
+        expect(Adiox.I18n.t('hello')).toBe('Hello');
+      });
+
+      it('should interpolate parameters', () => {
+        Adiox.I18n.setLocale('en');
+        const result = Adiox.I18n.t('greeting', { name: 'John' });
+        expect(result).toBe('Hello John!');
+      });
+
+      it('should check RTL locales', () => {
+        expect(Adiox.I18n.isRTL('ar')).toBeTruthy();
+        expect(Adiox.I18n.isRTL('en')).toBeFalsy();
+      });
+    });
+
+    describe('Animations Module', () => {
+      it('should have Animations module available', () => {
+        expect(window.AdiAnimations).toBeTruthy();
+      });
+
+      it('should have animation presets', () => {
+        expect(Adiox.Animations.presets.fadeIn).toBeTruthy();
+        expect(Adiox.Animations.presets.slideUp).toBeTruthy();
+        expect(Adiox.Animations.presets.bounce).toBeTruthy();
+      });
+
+      it('should detect reduced motion preference', () => {
+        const prefersReduced = Adiox.Animations.prefersReducedMotion();
+        expect(typeof prefersReduced).toBe('boolean');
+      });
+    });
+
+    // Run tests
+    window.addEventListener('load', () => {
+      runner.run();
+    });
+  </script>
+</body>
+</html>

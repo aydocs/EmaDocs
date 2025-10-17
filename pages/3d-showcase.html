@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Showcase - Ema Framework</title>
+    <meta name="description" content="Experience the power of Ema Framework's built-in 3D graphics engine with interactive WebGL demos and visualizations">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <link rel="stylesheet" href="../css/ema-colors.css">
+    
+    <style>
+        /* 3D Showcase Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #8e5fd1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #8e5fd1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="100" cy="100" r="1" fill="%236f42c1" opacity="0.6"/><circle cx="900" cy="200" r="1.5" fill="%238e5fd1" opacity="0.4"/><circle cx="200" cy="800" r="1" fill="%236f42c1" opacity="0.5"/><circle cx="800" cy="900" r="1.2" fill="%238e5fd1" opacity="0.3"/><circle cx="500" cy="500" r="0.8" fill="%236f42c1" opacity="0.7"/></svg>') repeat;
+            animation: starfield 20s linear infinite;
+        }
+
+        @keyframes starfield {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(111, 66, 193, 0.2);
+            color: #8e5fd1;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(111, 66, 193, 0.3);
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #8e5fd1 50%, #6f42c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        /* 3D Canvas */
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+        }
+
+        #webgl-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: grab;
+        }
+
+        #webgl-canvas:active {
+            cursor: grabbing;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 200px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #8e5fd1;
+        }
+
+        .control-slider {
+            width: 100%;
+            height: 4px;
+            background: rgba(111, 66, 193, 0.3);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .control-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(111, 66, 193, 0.4);
+        }
+
+        .control-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(111, 66, 193, 0.4);
+        }
+
+        .control-button {
+            background: rgba(111, 66, 193, 0.2);
+            color: #8e5fd1;
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            background: rgba(111, 66, 193, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .control-button.active {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-width: 400px;
+        }
+
+        .info-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #8e5fd1;
+            margin-bottom: 1rem;
+        }
+
+        .info-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .info-stats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .info-stat {
+            text-align: center;
+        }
+
+        .info-stat-value {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #8e5fd1;
+            display: block;
+        }
+
+        .info-stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Demo Sections */
+        .demo-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #8e5fd1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .demo-card {
+            background: rgba(26, 26, 46, 0.5);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+        }
+
+        .demo-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(111, 66, 193, 0.6);
+            box-shadow: 0 12px 40px rgba(111, 66, 193, 0.2);
+        }
+
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8e5fd1;
+            margin-bottom: 1rem;
+        }
+
+        .demo-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-button {
+            background: rgba(111, 66, 193, 0.2);
+            color: #8e5fd1;
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            color: white;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(111, 66, 193, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #8e5fd1;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #8e5fd1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(111, 66, 193, 0.2);
+            color: #64748b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .controls {
+                position: fixed;
+                top: auto;
+                bottom: 2rem;
+                right: 2rem;
+                left: 2rem;
+                transform: none;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .info-panel {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin: 2rem;
+                max-width: none;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Ema</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
+                    <li><a href="components.html" class="nav-link">Components</a></li>
+                    <li><a href="examples.html" class="nav-link">Examples</a></li>
+                    <li><a href="3d-showcase.html" class="nav-link active">3D Showcase</a></li>
+                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+            
+            <a href="getting-started.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- 3D Canvas Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <div class="hero-badge">
+                <span>WebGL Engine</span>
+                <span>•</span>
+                <span>Real-time 3D</span>
+            </div>
+            
+            <h1 class="hero-title">
+                3D Graphics Engine
+            </h1>
+            
+            <p class="hero-subtitle">
+                Experience the power of our built-in WebGL 3D engine. Create stunning 
+                visualizations, interactive scenes, and immersive experiences.
+            </p>
+        </div>
+    </section>
+
+    <!-- Interactive 3D Scene -->
+    <section class="canvas-container">
+        <canvas id="webgl-canvas"></canvas>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <div class="control-group">
+                <label class="control-label">Rotation Speed</label>
+                <input type="range" class="control-slider" id="rotation-speed" min="0" max="0.05" step="0.005" value="0.01">
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">Scale</label>
+                <input type="range" class="control-slider" id="scale" min="0.5" max="2" step="0.1" value="1">
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">Color Intensity</label>
+                <input type="range" class="control-slider" id="color-intensity" min="0" max="1" step="0.1" value="0.8">
+            </div>
+            
+            <button class="control-button" id="toggle-wireframe">Wireframe</button>
+            <button class="control-button" id="toggle-animation">Pause</button>
+            <button class="control-button" id="reset-scene">Reset</button>
+        </div>
+        
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <h3 class="info-title">Interactive 3D Scene</h3>
+            <p class="info-description">
+                This is a real-time 3D scene rendered with WebGL. Use the controls to 
+                manipulate the scene and experience the power of Ema's 3D engine.
+            </p>
+            <div class="info-stats">
+                <div class="info-stat">
+                    <span class="info-stat-value" id="fps-counter">60</span>
+                    <span class="info-stat-label">FPS</span>
+                </div>
+                <div class="info-stat">
+                    <span class="info-stat-value">1000+</span>
+                    <span class="info-stat-label">Triangles</span>
+                </div>
+                <div class="info-stat">
+                    <span class="info-stat-value">3D</span>
+                    <span class="info-stat-label">Objects</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Sections -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">3D Capabilities</h2>
+                <p class="section-subtitle">
+                    Explore the advanced 3D features and capabilities of Ema Framework
+                </p>
+            </div>
+            
+            <div class="demo-grid">
+                <div class="demo-card fade-in stagger-1">
+                    <h3 class="demo-title">Real-time Rendering</h3>
+                    <p class="demo-description">
+                        High-performance WebGL rendering with support for complex 3D models, 
+                        textures, and lighting effects.
+                    </p>
+                    <button class="demo-button">View Demo</button>
+                </div>
+                
+                <div class="demo-card fade-in stagger-2">
+                    <h3 class="demo-title">Physics Simulation</h3>
+                    <p class="demo-description">
+                        Built-in physics engine with collision detection, gravity, and 
+                        realistic object interactions.
+                    </p>
+                    <button class="demo-button">View Demo</button>
+                </div>
+                
+                <div class="demo-card fade-in stagger-3">
+                    <h3 class="demo-title">Particle Systems</h3>
+                    <p class="demo-description">
+                        Create stunning visual effects with customizable particle systems 
+                        for fire, smoke, and magic effects.
+                    </p>
+                    <button class="demo-button">View Demo</button>
+                </div>
+                
+                <div class="demo-card fade-in stagger-4">
+                    <h3 class="demo-title">Post-processing</h3>
+                    <p class="demo-description">
+                        Advanced post-processing effects including bloom, shadows, and 
+                        ambient occlusion for cinematic quality.
+                    </p>
+                    <button class="demo-button">View Demo</button>
+                </div>
+                
+                <div class="demo-card fade-in stagger-1">
+                    <h3 class="demo-title">VR/AR Support</h3>
+                    <p class="demo-description">
+                        Ready for virtual and augmented reality experiences with 
+                        WebXR integration and device compatibility.
+                    </p>
+                    <button class="demo-button">View Demo</button>
+                </div>
+                
+                <div class="demo-card fade-in stagger-2">
+                    <h3 class="demo-title">Procedural Generation</h3>
+                    <p class="demo-description">
+                        Generate infinite worlds and objects procedurally with 
+                        advanced algorithms and customizable parameters.
+                    </p>
+                    <button class="demo-button">View Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ema Framework</h4>
+                    <p style="color: #94a3b8; margin-bottom: 1rem;">
+                        The future of web development is here. Build amazing applications 
+                        with the most advanced JavaScript framework ever created.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/aydocs/emadocs">GitHub</a></li>
+                        <li><a href="https://github.com/aydocs/emadocs/discussions">Discussions</a></li>
+                        <li><a href="https://twitter.com/emaframework">Twitter</a></li>
+                        <li><a href="https://discord.gg/emaframework">Discord</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="3d-showcase.html">3D Showcase</a></li>
+                        <li><a href="examples.html">Live Examples</a></li>
+                        <li><a href="https://blog.emaframework.com">Blog</a></li>
+                        <li><a href="https://status.emaframework.com">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ema Framework. Built with passion for the future of web development.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 3D Engine Script -->
+    <script>
+        // Simple 3D WebGL Scene
+        class WebGL3DEngine {
+            constructor() {
+                this.canvas = document.getElementById('webgl-canvas');
+                this.gl = this.canvas.getContext('webgl') || this.canvas.getContext('experimental-webgl');
+                this.program = null;
+                this.vertices = [];
+                this.colors = [];
+                this.rotationX = 0;
+                this.rotationY = 0;
+                this.rotationSpeed = 0.01;
+                this.scale = 1;
+                this.colorIntensity = 0.8;
+                this.animationId = null;
+                this.frameCount = 0;
+                this.lastTime = 0;
+                this.isAnimating = true;
+                this.isWireframe = false;
+                
+                this.init();
+                this.setupEventListeners();
+                this.animate();
+            }
+            
+            init() {
+                if (!this.gl) {
+                    console.error('WebGL not supported');
+                    return;
+                }
+                
+                this.setupCanvas();
+                this.createGeometry();
+                this.createShaders();
+                this.setupBuffers();
+                this.setupUniforms();
+            }
+            
+            setupCanvas() {
+                const resizeCanvas = () => {
+                    this.canvas.width = window.innerWidth;
+                    this.canvas.height = window.innerHeight;
+                    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+                };
+                
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+            }
+            
+            createGeometry() {
+                // Create a complex 3D shape (multiple cubes)
+                const size = 0.3;
+                const positions = [
+                    // Cube 1
+                    -size, -size, -size,  size, -size, -size,  size,  size, -size, -size,  size, -size,  // back
+                    -size, -size,  size,  size, -size,  size,  size,  size,  size, -size,  size,  size,  // front
+                    -size, -size, -size, -size, -size,  size, -size,  size,  size, -size,  size, -size,  // left
+                     size, -size, -size,  size, -size,  size,  size,  size,  size,  size,  size, -size,  // right
+                    -size, -size, -size,  size, -size, -size,  size, -size,  size, -size, -size,  size,  // bottom
+                    -size,  size, -size,  size,  size, -size,  size,  size,  size, -size,  size,  size   // top
+                ];
+                
+                // Add multiple cubes at different positions
+                for (let i = 0; i < 8; i++) {
+                    const offsetX = (Math.random() - 0.5) * 4;
+                    const offsetY = (Math.random() - 0.5) * 4;
+                    const offsetZ = (Math.random() - 0.5) * 4;
+                    
+                    positions.forEach((coord, index) => {
+                        if (index % 3 === 0) this.vertices.push(coord + offsetX);
+                        else if (index % 3 === 1) this.vertices.push(coord + offsetY);
+                        else this.vertices.push(coord + offsetZ);
+                    });
+                }
+                
+                // Create colors (purple gradient)
+                for (let i = 0; i < this.vertices.length / 3; i++) {
+                    const intensity = Math.random() * 0.5 + 0.5;
+                    this.colors.push(
+                        intensity * this.colorIntensity,  // R
+                        intensity * this.colorIntensity * 0.4,  // G
+                        intensity * this.colorIntensity * 0.8,  // B
+                        1.0  // A
+                    );
+                }
+            }
+            
+            createShaders() {
+                const vertexShaderSource = `
+                    attribute vec3 position;
+                    attribute vec4 color;
+                    uniform mat4 modelViewMatrix;
+                    uniform mat4 projectionMatrix;
+                    varying vec4 vColor;
+                    
+                    void main() {
+                        vColor = color;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `;
+                
+                const fragmentShaderSource = `
+                    precision mediump float;
+                    varying vec4 vColor;
+                    
+                    void main() {
+                        gl_FragColor = vColor;
+                    }
+                `;
+                
+                const vertexShader = this.createShader(this.gl.VERTEX_SHADER, vertexShaderSource);
+                const fragmentShader = this.createShader(this.gl.FRAGMENT_SHADER, fragmentShaderSource);
+                
+                this.program = this.createProgram(vertexShader, fragmentShader);
+                this.gl.useProgram(this.program);
+            }
+            
+            createShader(type, source) {
+                const shader = this.gl.createShader(type);
+                this.gl.shaderSource(shader, source);
+                this.gl.compileShader(shader);
+                
+                if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+                    console.error('Shader compilation error:', this.gl.getShaderInfoLog(shader));
+                    this.gl.deleteShader(shader);
+                    return null;
+                }
+                
+                return shader;
+            }
+            
+            createProgram(vertexShader, fragmentShader) {
+                const program = this.gl.createProgram();
+                this.gl.attachShader(program, vertexShader);
+                this.gl.attachShader(program, fragmentShader);
+                this.gl.linkProgram(program);
+                
+                if (!this.gl.getProgramParameter(program, this.gl.LINK_STATUS)) {
+                    console.error('Program linking error:', this.gl.getProgramInfoLog(program));
+                    this.gl.deleteProgram(program);
+                    return null;
+                }
+                
+                return program;
+            }
+            
+            setupBuffers() {
+                // Position buffer
+                const positionBuffer = this.gl.createBuffer();
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+                this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(this.vertices), this.gl.STATIC_DRAW);
+                
+                const positionLocation = this.gl.getAttribLocation(this.program, 'position');
+                this.gl.enableVertexAttribArray(positionLocation);
+                this.gl.vertexAttribPointer(positionLocation, 3, this.gl.FLOAT, false, 0, 0);
+                
+                // Color buffer
+                const colorBuffer = this.gl.createBuffer();
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, colorBuffer);
+                this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(this.colors), this.gl.STATIC_DRAW);
+                
+                const colorLocation = this.gl.getAttribLocation(this.program, 'color');
+                this.gl.enableVertexAttribArray(colorLocation);
+                this.gl.vertexAttribPointer(colorLocation, 4, this.gl.FLOAT, false, 0, 0);
+            }
+            
+            setupUniforms() {
+                this.modelViewMatrixLocation = this.gl.getUniformLocation(this.program, 'modelViewMatrix');
+                this.projectionMatrixLocation = this.gl.getUniformLocation(this.program, 'projectionMatrix');
+                
+                // Set up projection matrix
+                const fov = 45 * Math.PI / 180;
+                const aspect = this.canvas.width / this.canvas.height;
+                const near = 0.1;
+                const far = 100.0;
+                
+                this.projectionMatrix = this.perspective(fov, aspect, near, far);
+            }
+            
+            perspective(fov, aspect, near, far) {
+                const f = Math.tan(Math.PI * 0.5 - 0.5 * fov);
+                const rangeInv = 1.0 / (near - far);
+                
+                return [
+                    f / aspect, 0, 0, 0,
+                    0, f, 0, 0,
+                    0, 0, (near + far) * rangeInv, -1,
+                    0, 0, near * far * rangeInv * 2, 0
+                ];
+            }
+            
+            setupEventListeners() {
+                // Mouse controls
+                let isDragging = false;
+                let lastMouseX = 0;
+                let lastMouseY = 0;
+                
+                this.canvas.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    lastMouseX = e.clientX;
+                    lastMouseY = e.clientY;
+                });
+                
+                this.canvas.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    
+                    const deltaX = e.clientX - lastMouseX;
+                    const deltaY = e.clientY - lastMouseY;
+                    
+                    this.rotationY += deltaX * 0.01;
+                    this.rotationX += deltaY * 0.01;
+                    
+                    lastMouseX = e.clientX;
+                    lastMouseY = e.clientY;
+                });
+                
+                this.canvas.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+                
+                // Control sliders
+                document.getElementById('rotation-speed').addEventListener('input', (e) => {
+                    this.rotationSpeed = parseFloat(e.target.value);
+                });
+                
+                document.getElementById('scale').addEventListener('input', (e) => {
+                    this.scale = parseFloat(e.target.value);
+                });
+                
+                document.getElementById('color-intensity').addEventListener('input', (e) => {
+                    this.colorIntensity = parseFloat(e.target.value);
+                    this.updateColors();
+                });
+                
+                // Control buttons
+                document.getElementById('toggle-wireframe').addEventListener('click', () => {
+                    this.isWireframe = !this.isWireframe;
+                    document.getElementById('toggle-wireframe').classList.toggle('active', this.isWireframe);
+                });
+                
+                document.getElementById('toggle-animation').addEventListener('click', () => {
+                    this.isAnimating = !this.isAnimating;
+                    document.getElementById('toggle-animation').textContent = this.isAnimating ? 'Pause' : 'Play';
+                });
+                
+                document.getElementById('reset-scene').addEventListener('click', () => {
+                    this.rotationX = 0;
+                    this.rotationY = 0;
+                    this.scale = 1;
+                    document.getElementById('scale').value = 1;
+                    document.getElementById('rotation-speed').value = 0.01;
+                    this.rotationSpeed = 0.01;
+                });
+            }
+            
+            updateColors() {
+                const colors = [];
+                for (let i = 0; i < this.vertices.length / 3; i++) {
+                    const intensity = Math.random() * 0.5 + 0.5;
+                    colors.push(
+                        intensity * this.colorIntensity,
+                        intensity * this.colorIntensity * 0.4,
+                        intensity * this.colorIntensity * 0.8,
+                        1.0
+                    );
+                }
+                
+                const colorBuffer = this.gl.createBuffer();
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, colorBuffer);
+                this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(colors), this.gl.STATIC_DRAW);
+                
+                const colorLocation = this.gl.getAttribLocation(this.program, 'color');
+                this.gl.enableVertexAttribArray(colorLocation);
+                this.gl.vertexAttribPointer(colorLocation, 4, this.gl.FLOAT, false, 0, 0);
+            }
+            
+            animate() {
+                const animate = (currentTime) => {
+                    this.frameCount++;
+                    
+                    if (currentTime - this.lastTime >= 1000) {
+                        document.getElementById('fps-counter').textContent = this.frameCount;
+                        this.frameCount = 0;
+                        this.lastTime = currentTime;
+                    }
+                    
+                    if (this.isAnimating) {
+                        this.rotationX += this.rotationSpeed;
+                        this.rotationY += this.rotationSpeed;
+                    }
+                    
+                    this.render();
+                    this.animationId = requestAnimationFrame(animate);
+                };
+                
+                this.animationId = requestAnimationFrame(animate);
+            }
+            
+            render() {
+                this.gl.clearColor(0.05, 0.05, 0.1, 1.0);
+                this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+                this.gl.enable(this.gl.DEPTH_TEST);
+                
+                // Set wireframe mode
+                if (this.isWireframe) {
+                    this.gl.polygonOffset(1.0, 1.0);
+                    this.gl.enable(this.gl.POLYGON_OFFSET_LINE);
+                    this.gl.polygonMode(this.gl.FRONT_AND_BACK, this.gl.LINE);
+                } else {
+                    this.gl.disable(this.gl.POLYGON_OFFSET_LINE);
+                }
+                
+                // Create model-view matrix
+                const modelViewMatrix = this.createModelViewMatrix();
+                
+                // Set uniforms
+                this.gl.uniformMatrix4fv(this.modelViewMatrixLocation, false, modelViewMatrix);
+                this.gl.uniformMatrix4fv(this.projectionMatrixLocation, false, this.projectionMatrix);
+                
+                // Draw
+                this.gl.drawArrays(this.gl.TRIANGLES, 0, this.vertices.length / 3);
+            }
+            
+            createModelViewMatrix() {
+                const matrix = this.identity();
+                this.translate(matrix, 0, 0, -5);
+                this.rotateX(matrix, this.rotationX);
+                this.rotateY(matrix, this.rotationY);
+                this.scaleMatrix(matrix, this.scale, this.scale, this.scale);
+                return matrix;
+            }
+            
+            identity() {
+                return [
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1
+                ];
+            }
+            
+            translate(matrix, x, y, z) {
+                matrix[12] += x;
+                matrix[13] += y;
+                matrix[14] += z;
+                return matrix;
+            }
+            
+            rotateX(matrix, angle) {
+                const c = Math.cos(angle);
+                const s = Math.sin(angle);
+                const temp = [...matrix];
+                
+                matrix[4] = temp[4] * c + temp[8] * s;
+                matrix[5] = temp[5] * c + temp[9] * s;
+                matrix[6] = temp[6] * c + temp[10] * s;
+                matrix[7] = temp[7] * c + temp[11] * s;
+                matrix[8] = temp[4] * -s + temp[8] * c;
+                matrix[9] = temp[5] * -s + temp[9] * c;
+                matrix[10] = temp[6] * -s + temp[10] * c;
+                matrix[11] = temp[7] * -s + temp[11] * c;
+                
+                return matrix;
+            }
+            
+            rotateY(matrix, angle) {
+                const c = Math.cos(angle);
+                const s = Math.sin(angle);
+                const temp = [...matrix];
+                
+                matrix[0] = temp[0] * c + temp[8] * -s;
+                matrix[1] = temp[1] * c + temp[9] * -s;
+                matrix[2] = temp[2] * c + temp[10] * -s;
+                matrix[3] = temp[3] * c + temp[11] * -s;
+                matrix[8] = temp[0] * s + temp[8] * c;
+                matrix[9] = temp[1] * s + temp[9] * c;
+                matrix[10] = temp[2] * s + temp[10] * c;
+                matrix[11] = temp[3] * s + temp[11] * c;
+                
+                return matrix;
+            }
+            
+            scaleMatrix(matrix, x, y, z) {
+                matrix[0] *= x;
+                matrix[1] *= x;
+                matrix[2] *= x;
+                matrix[3] *= x;
+                matrix[4] *= y;
+                matrix[5] *= y;
+                matrix[6] *= y;
+                matrix[7] *= y;
+                matrix[8] *= z;
+                matrix[9] *= z;
+                matrix[10] *= z;
+                matrix[11] *= z;
+                
+                return matrix;
+            }
+        }
+        
+        // Initialize 3D engine when page loads
+        window.addEventListener('load', () => {
+            new WebGL3DEngine();
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- Load framework scripts -->
+    <script src="../js/core.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/emadocs.js"></script>
+    
+    <!-- Initialize application -->
+    <script src="../js/app-init.js"></script>
+</body>
+</html>

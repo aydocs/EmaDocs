@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adiox Framework - Başlangıç Rehberi</title>
+  <link rel="stylesheet" href="css/adiox.css">
+</head>
+<body>
+  <div class="container py-8">
+    <h1 class="text-4xl font-bold mb-4">🚀 Adiox Framework Nasıl Çalışır?</h1>
+    <p class="text-lg mb-8">Adiox'u kullanmaya başlamak için sadece 3 adım!</p>
+
+    <!-- Adım 1: Dosyaları Dahil Et -->
+    <section class="card mb-6">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold mb-4">1️⃣ Dosyaları Dahil Et</h2>
+        <p class="mb-4">HTML dosyanıza CSS ve JS dosyalarını ekleyin:</p>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="css/adiox.css"&gt;
+
+&lt;!-- JavaScript (body sonunda) --&gt;
+&lt;script src="js/adiox.js" type="module"&gt;&lt;/script&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Adım 2: Bileşenleri Kullan -->
+    <section class="card mb-6">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold mb-4">2️⃣ Bileşenleri Kullan</h2>
+        <p class="mb-4">Adiox bileşenlerini HTML'de direkt kullanabilirsiniz:</p>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Buton Örneği:</h3>
+        <div class="mb-4">
+          <adi-button variant="primary">Birincil Buton</adi-button>
+          <adi-button variant="success">Başarılı</adi-button>
+          <adi-button variant="danger">Tehlike</adi-button>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>&lt;adi-button variant="primary"&gt;Birincil Buton&lt;/adi-button&gt;
+&lt;adi-button variant="success"&gt;Başarılı&lt;/adi-button&gt;
+&lt;adi-button variant="danger"&gt;Tehlike&lt;/adi-button&gt;</code></pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Kart Örneği:</h3>
+        <adi-card class="mb-4">
+          <div slot="header">Kart Başlığı</div>
+          <div slot="body">
+            <p>Bu bir kart içeriğidir. Adiox kartları header, body ve footer slotlarına sahiptir.</p>
+          </div>
+          <div slot="footer">
+            <adi-button variant="primary" size="small">Kaydet</adi-button>
+          </div>
+        </adi-card>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>&lt;adi-card&gt;
+  &lt;div slot="header"&gt;Kart Başlığı&lt;/div&gt;
+  &lt;div slot="body"&gt;İçerik buraya...&lt;/div&gt;
+  &lt;div slot="footer"&gt;
+    &lt;adi-button variant="primary"&gt;Kaydet&lt;/adi-button&gt;
+  &lt;/div&gt;
+&lt;/adi-card&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Adım 3: JavaScript API Kullan -->
+    <section class="card mb-6">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold mb-4">3️⃣ JavaScript API'yi Kullan</h2>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Toast Bildirimleri:</h3>
+        <div class="flex gap-2 mb-4">
+          <adi-button variant="success" id="showSuccessToast">Başarılı Toast</adi-button>
+          <adi-button variant="danger" id="showErrorToast">Hata Toast</adi-button>
+          <adi-button variant="primary" id="showInfoToast">Bilgi Toast</adi-button>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>// Toast göster
+Adiox.UI.toast('İşlem başarılı!', 'success');
+Adiox.UI.toast('Bir hata oluştu!', 'error');
+Adiox.UI.toast('Bilgi mesajı', 'info');</code></pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Modal Diyaloglar:</h3>
+        <div class="mb-4">
+          <adi-button variant="primary" id="showModal">Modal Aç</adi-button>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>// Modal göster
+Adiox.UI.modal({
+  title: 'Onay Gerekli',
+  content: 'Bu işlemi yapmak istediğinizden emin misiniz?',
+  buttons: [
+    { text: 'İptal', variant: 'outline' },
+    { text: 'Onayla', variant: 'primary' }
+  ]
+}).then(result => {
+  console.log('Seçilen:', result);
+});</code></pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Reaktif Store:</h3>
+        <div class="mb-4">
+          <p>Sayaç: <strong id="counter">0</strong></p>
+          <adi-button variant="primary" id="incrementBtn">Artır</adi-button>
+          <adi-button variant="outline" id="decrementBtn">Azalt</adi-button>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>// Store oluştur
+const store = Adiox.Store.create({
+  count: 0
+});
+
+// Store'u HTML'e bağla
+store.bind('count', '#counter');
+
+// Store'u güncelle
+document.querySelector('#incrementBtn').addEventListener('click', () => {
+  store.set('count', store.get('count') + 1);
+});
+
+// Store değişikliklerini izle
+store.watch('count', (newValue, oldValue) => {
+  console.log(`Sayaç ${oldValue}'dan ${newValue}'a değişti`);
+});</code></pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">SPA Router:</h3>
+        <div class="mb-4">
+          <adi-button variant="outline" id="goHome">Ana Sayfa</adi-button>
+          <adi-button variant="outline" id="goAbout">Hakkında</adi-button>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>// Route tanımla
+Adiox.Router.addRoute('/', () => {
+  document.querySelector('#app').innerHTML = '&lt;h1&gt;Ana Sayfa&lt;/h1&gt;';
+});
+
+Adiox.Router.addRoute('/about', () => {
+  document.querySelector('#app').innerHTML = '&lt;h1&gt;Hakkında&lt;/h1&gt;';
+});
+
+// Router'ı başlat
+Adiox.Router.init();
+
+// Programatik navigasyon
+Adiox.Router.navigate('/about');</code></pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Animasyonlar:</h3>
+        <div class="mb-4">
+          <div id="animBox" class="bg-primary text-white p-4 rounded inline-block">
+            Animasyon Kutusu
+          </div>
+          <div class="mt-4 flex gap-2">
+            <adi-button variant="outline" id="fadeInBtn">Fade In</adi-button>
+            <adi-button variant="outline" id="slideUpBtn">Slide Up</adi-button>
+            <adi-button variant="outline" id="bounceBtn">Bounce</adi-button>
+          </div>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>// Animasyon uygula
+Adiox.Animations.animate('#animBox', 'fadeIn', { duration: 500 });
+Adiox.Animations.animate('#animBox', 'slideUp', { duration: 600 });
+Adiox.Animations.animate('#animBox', 'bounce', { duration: 800 });</code></pre>
+      </div>
+    </section>
+
+    <!-- Utility Classes -->
+    <section class="card mb-6">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold mb-4">🎨 Utility Classes (Tailwind Tarzı)</h2>
+        <p class="mb-4">Adiox, Tailwind benzeri utility class'lar sunar:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-gray-100 p-4 rounded">
+            <h4 class="font-semibold mb-2">Spacing:</h4>
+            <code>p-4, m-2, px-6, py-3, mt-8, mb-4</code>
+          </div>
+          <div class="bg-gray-100 p-4 rounded">
+            <h4 class="font-semibold mb-2">Colors:</h4>
+            <code>bg-primary, text-danger, border-success</code>
+          </div>
+          <div class="bg-gray-100 p-4 rounded">
+            <h4 class="font-semibold mb-2">Typography:</h4>
+            <code>text-xl, font-bold, text-center</code>
+          </div>
+          <div class="bg-gray-100 p-4 rounded">
+            <h4 class="font-semibold mb-2">Layout:</h4>
+            <code>flex, grid, items-center, justify-between</code>
+          </div>
+        </div>
+
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>&lt;div class="flex items-center justify-between p-4 bg-primary text-white rounded"&gt;
+  &lt;h3 class="text-xl font-bold"&gt;Başlık&lt;/h3&gt;
+  &lt;adi-button variant="outline"&gt;Buton&lt;/adi-button&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Dark Mode -->
+    <section class="card mb-6">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold mb-4">🌙 Dark Mode</h2>
+        <p class="mb-4">Adiox otomatik dark mode desteği sunar:</p>
+        <div class="mb-4">
+          <adi-button variant="outline" id="toggleTheme">Temayı Değiştir</adi-button>
+        </div>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>// Temayı değiştir
+Adiox.Theme.setTheme('dark');  // veya 'light'
+Adiox.Theme.toggle();          // Tema değiştir
+
+// Mevcut temayı al
+const currentTheme = Adiox.Theme.getTheme();</code></pre>
+      </div>
+    </section>
+
+    <!-- Daha Fazla -->
+    <section class="card">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold mb-4">📚 Daha Fazla Bilgi</h2>
+        <p class="mb-4">Adiox'un tüm özelliklerini keşfetmek için:</p>
+        <ul class="list-disc list-inside space-y-2">
+          <li><a href="docs/api.md" class="text-primary hover:underline">API Dokümantasyonu</a></li>
+          <li><a href="docs/components.md" class="text-primary hover:underline">Bileşen Rehberi</a></li>
+          <li><a href="examples/components.html" class="text-primary hover:underline">Tüm Bileşenler Demo</a></li>
+          <li><a href="tests/test-runner.html" class="text-primary hover:underline">Test Sonuçları</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/adiox.js" type="module"></script>
+  <script type="module">
+    // Toast örnekleri
+    document.getElementById('showSuccessToast').addEventListener('click', () => {
+      Adiox.UI.toast('İşlem başarıyla tamamlandı!', 'success');
+    });
+
+    document.getElementById('showErrorToast').addEventListener('click', () => {
+      Adiox.UI.toast('Bir hata oluştu!', 'error');
+    });
+
+    document.getElementById('showInfoToast').addEventListener('click', () => {
+      Adiox.UI.toast('Bilgilendirme mesajı', 'info');
+    });
+
+    // Modal örneği
+    document.getElementById('showModal').addEventListener('click', () => {
+      Adiox.UI.modal({
+        title: 'Onay Gerekli',
+        content: 'Bu işlemi yapmak istediğinizden emin misiniz?',
+        buttons: [
+          { text: 'İptal', variant: 'outline' },
+          { text: 'Onayla', variant: 'primary' }
+        ]
+      }).then(result => {
+        if (result === 1) {
+          Adiox.UI.toast('İşlem onaylandı!', 'success');
+        } else {
+          Adiox.UI.toast('İşlem iptal edildi', 'info');
+        }
+      });
+    });
+
+    // Store örneği
+    const counterStore = Adiox.Store.create({ count: 0 });
+    counterStore.bind('count', '#counter');
+
+    document.getElementById('incrementBtn').addEventListener('click', () => {
+      counterStore.set('count', counterStore.get('count') + 1);
+    });
+
+    document.getElementById('decrementBtn').addEventListener('click', () => {
+      counterStore.set('count', counterStore.get('count') - 1);
+    });
+
+    counterStore.watch('count', (newValue) => {
+      if (newValue > 10) {
+        Adiox.UI.toast('Sayaç 10\'u geçti!', 'warning');
+      }
+    });
+
+    // Animasyon örnekleri
+    document.getElementById('fadeInBtn').addEventListener('click', () => {
+      Adiox.Animations.animate('#animBox', 'fadeIn', { duration: 500 });
+    });
+
+    document.getElementById('slideUpBtn').addEventListener('click', () => {
+      Adiox.Animations.animate('#animBox', 'slideUp', { duration: 600 });
+    });
+
+    document.getElementById('bounceBtn').addEventListener('click', () => {
+      Adiox.Animations.animate('#animBox', 'bounce', { duration: 800 });
+    });
+
+    // Tema değiştirme
+    document.getElementById('toggleTheme').addEventListener('click', () => {
+      Adiox.Theme.toggle();
+      Adiox.UI.toast(`Tema: ${Adiox.Theme.getTheme()}`, 'info');
+    });
+  </script>
+</body>
+</html>

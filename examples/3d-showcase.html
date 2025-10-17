@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>emadocs 3D Showcase</title>
+    <link rel="stylesheet" href="../css/emadocs.css" />
+    <style>
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+      .demo-card {
+        background: var(--ema-surface);
+        border-radius: var(--ema-radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--ema-shadow-lg);
+      }
+      .demo-canvas {
+        width: 100%;
+        height: 300px;
+        border-radius: var(--ema-radius-md);
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ema-container">
+      <header class="ema-header ema-hero-gradient">
+        <h1 class="ema-title">emadocs 3D Showcase</h1>
+        <p class="ema-subtitle">5 Advanced 3D Features with WebGL</p>
+      </header>
+
+      <main class="ema-main">
+        <div class="demo-grid">
+          <!-- Feature 1: Rotating Shapes -->
+          <div class="demo-card">
+            <h3>1. Multi-Shape Scene</h3>
+            <p>Cube, sphere, and torus with independent rotations</p>
+            <canvas id="canvas-shapes" class="demo-canvas"></canvas>
+            <div class="ema-button-group">
+              <ema-button variant="primary" onclick="startShapes()">Start</ema-button>
+              <ema-button variant="danger" onclick="stopShapes()">Stop</ema-button>
+            </div>
+          </div>
+
+          <!-- Feature 2: Particle Galaxy -->
+          <div class="demo-card">
+            <h3>2. Particle Galaxy</h3>
+            <p>1000 particles in spiral galaxy formation</p>
+            <canvas id="canvas-galaxy" class="demo-canvas"></canvas>
+            <div class="ema-button-group">
+              <ema-button variant="primary" onclick="startGalaxy()">Start</ema-button>
+              <ema-button variant="danger" onclick="stopGalaxy()">Stop</ema-button>
+            </div>
+          </div>
+
+          <!-- Feature 3: DNA Helix -->
+          <div class="demo-card">
+            <h3>3. DNA Double Helix</h3>
+            <p>Animated double helix structure</p>
+            <canvas id="canvas-dna" class="demo-canvas"></canvas>
+            <div class="ema-button-group">
+              <ema-button variant="primary" onclick="startDNA()">Start</ema-button>
+              <ema-button variant="danger" onclick="stopDNA()">Stop</ema-button>
+            </div>
+          </div>
+
+          <!-- Feature 4: Morphing Shape -->
+          <div class="demo-card">
+            <h3>4. Morphing Cube</h3>
+            <p>Shape morphing with scale animation</p>
+            <canvas id="canvas-morph" class="demo-canvas"></canvas>
+            <div class="ema-button-group">
+              <ema-button variant="primary" onclick="startMorph()">Start</ema-button>
+              <ema-button variant="danger" onclick="stopMorph()">Stop</ema-button>
+            </div>
+          </div>
+
+          <!-- Feature 5: Tunnel Effect -->
+          <div class="demo-card">
+            <h3>5. Infinite Tunnel</h3>
+            <p>Hypnotic tunnel with depth effect</p>
+            <canvas id="canvas-tunnel" class="demo-canvas"></canvas>
+            <div class="ema-button-group">
+              <ema-button variant="primary" onclick="startTunnel()">Start</ema-button>
+              <ema-button variant="danger" onclick="stopTunnel()">Stop</ema-button>
+            </div>
+          </div>
+
+          <!-- Feature 6: Physics Simulation -->
+          <div class="demo-card">
+            <h3>6. Physics Simulation</h3>
+            <p>Bouncing spheres with gravity</p>
+            <canvas id="canvas-physics" class="demo-canvas"></canvas>
+            <div class="ema-button-group">
+              <ema-button variant="primary" onclick="startPhysics()">Start</ema-button>
+              <ema-button variant="success" onclick="addPhysicsSphere()">Add Sphere</ema-button>
+              <ema-button variant="danger" onclick="stopPhysics()">Stop</ema-button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Load framework -->
+    <script src="../js/core.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/3d-helpers.js"></script>
+    <script src="../js/3d-physics.js"></script>
+    <script src="../js/emadocs.js"></script>
+    <script src="../components/ema-button.js"></script>
+
+    <script>
+      // Feature 1: Multi-Shape Scene
+      function startShapes() {
+        Ema3DHelpers.createShowcaseScene("canvas-shapes")
+      }
+      function stopShapes() {
+        Ema3D.stop("canvas-shapes")
+      }
+
+      // Feature 2: Particle Galaxy
+      function startGalaxy() {
+        Ema3DHelpers.createGalaxy("canvas-galaxy", 1000)
+      }
+      function stopGalaxy() {
+        Ema3D.stop("canvas-galaxy")
+      }
+
+      // Feature 3: DNA Helix
+      function startDNA() {
+        Ema3DHelpers.createDNAHelix("canvas-dna")
+      }
+      function stopDNA() {
+        Ema3D.stop("canvas-dna")
+      }
+
+      // Feature 4: Morphing Shape
+      function startMorph() {
+        Ema3DHelpers.createMorphingShape("canvas-morph")
+      }
+      function stopMorph() {
+        Ema3D.stop("canvas-morph")
+      }
+
+      // Feature 5: Tunnel Effect
+      function startTunnel() {
+        Ema3DHelpers.createTunnel("canvas-tunnel", 20)
+      }
+      function stopTunnel() {
+        Ema3D.stop("canvas-tunnel")
+      }
+
+      // Feature 6: Physics Simulation
+      let physicsKeys = []
+      function startPhysics() {
+        const scene = Ema3D.init("canvas-physics")
+        if (scene) {
+          Ema3D.createPlane("canvas-physics", {
+            position: { x: 0, y: -2, z: 0 },
+            scale: 10,
+          })
+          addPhysicsSphere()
+          addPhysicsSphere()
+          addPhysicsSphere()
+          Ema3D.start("canvas-physics")
+        }
+      }
+      function addPhysicsSphere() {
+        const sphere = Ema3D.createSphere("canvas-physics", {
+          position: {
+            x: (Math.random() - 0.5) * 4,
+            y: 3 + Math.random() * 2,
+            z: (Math.random() - 0.5) * 2,
+          },
+          scale: 0.3 + Math.random() * 0.3,
+          color: [Math.random() * 0.5 + 0.5, Math.random() * 0.3 + 0.3, Math.random() * 0.2 + 0.8, 1.0],
+        })
+        if (sphere) {
+          const key = Ema3DPhysics.enablePhysics("canvas-physics", sphere, {
+            velocity: {
+              x: (Math.random() - 0.5) * 2,
+              y: 0,
+              z: (Math.random() - 0.5) * 2,
+            },
+            restitution: 0.7,
+          })
+          physicsKeys.push(key)
+        }
+      }
+      function stopPhysics() {
+        Ema3D.stop("canvas-physics")
+        physicsKeys.forEach((key) => Ema3DPhysics.removePhysics(key))
+        physicsKeys = []
+      }
+    </script>
+  </body>
+</html>

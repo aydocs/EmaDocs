@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Ema Framework</title>
+    <meta name="description" content="Get started with Ema Framework - the revolutionary web development framework with 250+ components and 500+ features">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <link rel="stylesheet" href="../css/ema-colors.css">
+    
+    <style>
+        /* Revolutionary Getting Started Page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6f42c1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #6f42c1;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            border-radius: 1px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #6f42c1, #8e5fd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Quick Start Cards */
+        .quick-start {
+            padding: 4rem 0;
+        }
+
+        .quick-start-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .quick-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .quick-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .quick-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(111, 66, 193, 0.4);
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.15);
+        }
+
+        .quick-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            margin: 0 auto 1.5rem;
+        }
+
+        .quick-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .quick-description {
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .quick-time {
+            background: rgba(111, 66, 193, 0.1);
+            color: #6f42c1;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Installation Section */
+        .installation {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .installation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .install-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .install-method {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .method-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .method-description {
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+        }
+
+        .code-title {
+            color: #a0a0a0;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            background: rgba(111, 66, 193, 0.2);
+            color: #6f42c1;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(111, 66, 193, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .code-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .code-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-keyword { color: #ff6b6b; }
+        .code-string { color: #ffe66d; }
+        .code-comment { color: #a0a0a0; }
+        .code-url { color: #4ecdc4; }
+
+        /* Tutorial Steps */
+        .tutorial {
+            padding: 4rem 0;
+        }
+
+        .tutorial-steps {
+            display: grid;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(111, 66, 193, 0.4);
+            box-shadow: 0 12px 32px rgba(111, 66, 193, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: white;
+        }
+
+        .step-content {
+            margin-top: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .step-example {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Features Showcase */
+        .features-showcase {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(111, 66, 193, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        /* Interactive Demo */
+        .interactive-demo {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .demo-subtitle {
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(111, 66, 193, 0.4);
+        }
+
+        .demo-btn.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: #6f42c1;
+        }
+
+        .demo-btn.secondary:hover {
+            background: rgba(111, 66, 193, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .quick-start-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .install-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .demo-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .installation,
+            .interactive-demo,
+            .features-showcase {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Ema</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="getting-started.html" class="nav-link active">Documentation</a></li>
+                    <li><a href="components.html" class="nav-link">Components</a></li>
+                    <li><a href="examples.html" class="nav-link">Examples</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="playground.html" class="nav-link">Playground</a></li>
+                    <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+                    <li><a href="revolution.html" class="nav-link">Revolution</a></li>
+                    <li><a href="api.html" class="nav-link">API</a></li>
+                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+            
+            <a href="getting-started.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Getting Started</h1>
+            <p class="hero-subtitle">
+                Welcome to Ema Framework! Get up and running in minutes with our comprehensive guide. 
+                Build amazing web applications with 250+ components and 500+ features.
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <div class="container">
+        <section class="quick-start">
+            <div class="quick-start-grid">
+                <div class="quick-card" data-step="1">
+                    <div class="quick-icon">📦</div>
+                    <h3 class="quick-title">Installation</h3>
+                    <p class="quick-description">
+                        Get Ema Framework up and running in your project with just a few simple steps.
+                        No build tools or dependencies required.
+                    </p>
+                    <span class="quick-time">2 minutes</span>
+                </div>
+
+                <div class="quick-card" data-step="2">
+                    <div class="quick-icon">🎨</div>
+                    <h3 class="quick-title">First Component</h3>
+                    <p class="quick-description">
+                        Create your first component and see Ema's powerful features in action.
+                        Beautiful UI components with 8 color variants.
+                    </p>
+                    <span class="quick-time">5 minutes</span>
+                </div>
+
+                <div class="quick-card" data-step="3">
+                    <div class="quick-icon">🚀</div>
+                    <h3 class="quick-title">Build Something</h3>
+                    <p class="quick-description">
+                        Follow our tutorial to build a complete application using Ema Framework's
+                        advanced features and 3D effects.
+                    </p>
+                    <span class="quick-time">15 minutes</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation -->
+        <section class="installation">
+            <h2 class="section-title">Installation</h2>
+            <p class="section-subtitle">
+                Choose your preferred method to get started with Ema Framework
+            </p>
+
+            <div class="install-methods">
+                <div class="install-method">
+                    <div class="method-header">
+                        <div class="method-icon">📁</div>
+                        <h3 class="method-title">Download & Include</h3>
+                    </div>
+                    
+                    <p class="method-description">
+                        Download the framework files and include them directly in your HTML.
+                        Perfect for quick prototyping and simple projects.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">HTML</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line"><span class="code-comment"><!-- Include CSS --></span></div>
+                            <div class="code-line"><span class="code-keyword">&lt;link</span> <span class="code-string">rel="stylesheet"</span> <span class="code-string">href="css/ema-colors.css"</span><span class="code-keyword">&gt;</span></div>
+                            <div class="code-line"><span class="code-keyword">&lt;link</span> <span class="code-string">rel="stylesheet"</span> <span class="code-string">href="css/emadocs.css"</span><span class="code-keyword">&gt;</span></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="code-comment"><!-- Include JavaScript --></span></div>
+                            <div class="code-line"><span class="code-keyword">&lt;script</span> <span class="code-string">src="js/core.js"</span><span class="code-keyword">&gt;&lt;/script&gt;</span></div>
+                            <div class="code-line"><span class="code-keyword">&lt;script</span> <span class="code-string">src="js/app-init.js"</span><span class="code-keyword">&gt;&lt;/script&gt;</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-method">
+                    <div class="method-header">
+                        <div class="method-icon">🌐</div>
+                        <h3 class="method-title">CDN (Coming Soon)</h3>
+                    </div>
+                    
+                    <p class="method-description">
+                        Include Ema Framework directly from our CDN. No download required,
+                        always get the latest version automatically.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">HTML</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line"><span class="code-comment"><!-- CSS --></span></div>
+                            <div class="code-line"><span class="code-keyword">&lt;link</span> <span class="code-string">rel="stylesheet"</span> <span class="code-string">href="</span><span class="code-url">https://cdn.ema.dev/latest/ema.css</span><span class="code-string">"</span><span class="code-keyword">&gt;</span></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="code-comment"><!-- JavaScript --></span></div>
+                            <div class="code-line"><span class="code-keyword">&lt;script</span> <span class="code-string">src="</span><span class="code-url">https://cdn.ema.dev/latest/ema.js</span><span class="code-string">"</span><span class="code-keyword">&gt;&lt;/script&gt;</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorial Steps -->
+        <section class="tutorial">
+            <div class="tutorial-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Initialize Ema Framework</h3>
+                        <p class="step-description">
+                            Create a new Ema instance and initialize it with your preferred settings.
+                            You can customize the theme, enable 3D effects, and configure other options.
+                        </p>
+                        
+                        <div class="step-example">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-title">JavaScript</span>
+                                    <button class="copy-btn">Copy</button>
+                                </div>
+                                <div class="code-content">
+                                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-string">app</span> = <span class="code-keyword">new</span> <span class="code-string">Ema</span>({</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'theme'</span>: <span class="code-string">'purple'</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'3d'</span>: <span class="code-keyword">true</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'animations'</span>: <span class="code-keyword">true</span></div>
+                                    <div class="code-line">});</div>
+                                    <div class="code-line"></div>
+                                    <div class="code-line"><span class="code-string">app</span>.<span class="code-keyword">init</span>();</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Create Your First Component</h3>
+                        <p class="step-description">
+                            Use Ema's component system to create beautiful UI elements. Each component
+                            comes with 8 color variants and advanced customization options.
+                        </p>
+                        
+                        <div class="step-example">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-title">JavaScript</span>
+                                    <button class="copy-btn">Copy</button>
+                                </div>
+                                <div class="code-content">
+                                    <div class="code-line"><span class="code-comment">// Create a button component</span></div>
+                                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-string">button</span> = <span class="code-string">app</span>.<span class="code-keyword">createComponent</span>(<span class="code-string">'button'</span>, {</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'text'</span>: <span class="code-string">'Hello Ema!'</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'variant'</span>: <span class="code-string">'purple'</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'size'</span>: <span class="code-string">'large'</span></div>
+                                    <div class="code-line">});</div>
+                                    <div class="code-line"></div>
+                                    <div class="code-line"><span class="code-comment">// Add to your page</span></div>
+                                    <div class="code-line"><span class="code-string">document</span>.<span class="code-keyword">getElementById</span>(<span class="code-string">'app'</span>).<span class="code-keyword">appendChild</span>(<span class="code-string">button</span>.<span class="code-keyword">element</span>);</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Add 3D Effects & Animations</h3>
+                        <p class="step-description">
+                            Enhance your application with stunning 3D effects and smooth animations.
+                            Ema's 3D engine is powered by WebGL for optimal performance.
+                        </p>
+                        
+                        <div class="step-example">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-title">JavaScript</span>
+                                    <button class="copy-btn">Copy</button>
+                                </div>
+                                <div class="code-content">
+                                    <div class="code-line"><span class="code-comment">// Add 3D effects on button click</span></div>
+                                    <div class="code-line"><span class="code-string">button</span>.<span class="code-keyword">onClick</span>(() => {</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">app</span>.<span class="code-keyword">effects</span>.<span class="code-keyword">createExplosion</span>({</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'x'</span>: <span class="code-string">button</span>.<span class="code-keyword">x</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'y'</span>: <span class="code-string">button</span>.<span class="code-keyword">y</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'color'</span>: [<span class="code-string">0.4</span>, <span class="code-string">0.2</span>, <span class="code-string">0.7</span>]</div>
+                                    <div class="code-line">&nbsp;&nbsp;});</div>
+                                    <div class="code-line">});</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Build Your Application</h3>
+                        <p class="step-description">
+                            Combine multiple components to create complex applications. Use Ema's
+                            advanced features like routing, state management, and real-time updates.
+                        </p>
+                        
+                        <div class="step-example">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-title">JavaScript</span>
+                                    <button class="copy-btn">Copy</button>
+                                </div>
+                                <div class="code-content">
+                                    <div class="code-line"><span class="code-comment">// Create a complete dashboard</span></div>
+                                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-string">dashboard</span> = <span class="code-string">app</span>.<span class="code-keyword">createComponent</span>(<span class="code-string">'dashboard'</span>, {</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'charts'</span>: <span class="code-keyword">true</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'realTime'</span>: <span class="code-keyword">true</span>,</div>
+                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'theme'</span>: <span class="code-string">'purple'</span></div>
+                                    <div class="code-line">});</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Showcase -->
+        <section class="features-showcase">
+            <h2 class="section-title">Why Choose Ema Framework?</h2>
+            <p class="section-subtitle">
+                Discover the powerful features that make Ema the best choice for modern web development
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">
+                        Optimized for performance with minimal bundle size and blazing fast load times.
+                        No virtual DOM overhead.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">250+ Components</h3>
+                    <p class="feature-description">
+                        Comprehensive collection of UI components with 8 color variants each.
+                        Beautiful design system out of the box.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🎮</span>
+                    <h3 class="feature-title">3D Engine</h3>
+                    <p class="feature-description">
+                        Built-in WebGL 3D engine with particle systems, physics simulation,
+                        and advanced rendering capabilities.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">Mobile First</h3>
+                    <p class="feature-description">
+                        Responsive by default with mobile-first design principles.
+                        Perfect on every device and screen size.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🔧</span>
+                    <h3 class="feature-title">Zero Configuration</h3>
+                    <p class="feature-description">
+                        No build tools, no dependencies, no configuration required.
+                        Just include and start building amazing applications.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">♿</span>
+                    <h3 class="feature-title">Accessibility First</h3>
+                    <p class="feature-description">
+                        WCAG 2.1 AA compliant with built-in ARIA support, keyboard navigation,
+                        and screen reader optimization.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Demo -->
+        <section class="interactive-demo">
+            <h2 class="demo-title">Try It Now</h2>
+            <p class="demo-subtitle">
+                Experience Ema Framework's power with our interactive demos
+            </p>
+
+            <div class="demo-buttons">
+                <button class="demo-btn" id="demo-alert">Show Alert</button>
+                <button class="demo-btn" id="demo-3d">3D Effect</button>
+                <button class="demo-btn secondary" id="demo-component">Create Component</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Quick start card interactions
+        document.querySelectorAll('.quick-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const step = card.dataset.step;
+                
+                // Create explosion effect
+                if (typeof ema3DEffects !== 'undefined') {
+                    const rect = card.getBoundingClientRect();
+                    ema3DEffects.createExplosion(
+                        rect.left + rect.width / 2,
+                        rect.top + rect.height / 2,
+                        [0.4, 0.2, 0.7],
+                        10
+                    );
+                }
+
+                // Show alert based on step
+                if (typeof emaAlerts !== 'undefined') {
+                    const messages = {
+                        '1': 'Let\'s start with installation! 📦',
+                        '2': 'Time to create your first component! 🎨',
+                        '3': 'Ready to build something amazing! 🚀'
+                    };
+                    
+                    emaAlerts.info(messages[step], {
+                        title: 'Getting Started',
+                        timer: 3000
+                    });
+                }
+            });
+        });
+
+        // Copy buttons
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const codeBlock = btn.closest('.code-block').querySelector('.code-content');
+                const text = codeBlock.textContent;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        btn.textContent = 'Copy';
+                    }, 2000);
+                });
+            });
+        });
+
+        // Interactive demo buttons
+        document.getElementById('demo-alert')?.addEventListener('click', () => {
+            if (typeof emaAlerts !== 'undefined') {
+                emaAlerts.success('Welcome to Ema Framework! 🎉', {
+                    title: 'Getting Started Demo',
+                    timer: 4000
+                });
+            }
+        });
+
+        document.getElementById('demo-3d')?.addEventListener('click', () => {
+            if (typeof ema3DEffects !== 'undefined') {
+                const button = document.getElementById('demo-3d');
+                const rect = button.getBoundingClientRect();
+                ema3DEffects.createExplosion(
+                    rect.left + rect.width / 2,
+                    rect.top + rect.height / 2,
+                    [0.4, 0.2, 0.7],
+                    15
+                );
+            }
+        });
+
+        document.getElementById('demo-component')?.addEventListener('click', () => {
+            if (typeof emaAlerts !== 'undefined') {
+                emaAlerts.info('Component created successfully! 🎨', {
+                    title: 'Demo Component',
+                    timer: 3000
+                });
+            }
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize 3D effects
+            if (typeof ema3DEffects !== 'undefined') {
+                ema3DEffects.init();
+            }
+
+            // Welcome message
+            setTimeout(() => {
+                if (typeof emaAlerts !== 'undefined') {
+                    emaAlerts.success('Welcome to Ema Framework! 🚀', {
+                        title: 'Getting Started Guide',
+                        timer: 5000
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+
+    <!-- Load framework scripts -->
+    <script src="../js/core.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/emadocs.js"></script>
+    
+    <!-- Initialize application -->
+    <script src="../js/app-init.js"></script>
+</body>
+</html>

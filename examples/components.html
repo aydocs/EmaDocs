@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adiox Components - Interactive Examples</title>
+  <link rel="stylesheet" href="../css/adiox.css">
+</head>
+<body>
+  <adi-navbar brand="Adiox Components" sticky>
+    <a href="../index.html" slot="nav">Home</a>
+    <a href="components.html" slot="nav">Components</a>
+    <a href="examples.html" slot="nav">Examples</a>
+    <adi-button slot="actions" variant="primary" size="sm">Get Started</adi-button>
+  </adi-navbar>
+
+  <div class="adi-container" style="padding: 3rem 0;">
+    <h1 class="adi-text-4xl adi-font-bold adi-mb-8">Component Showcase</h1>
+
+    <!-- Buttons Section -->
+    <section class="adi-mb-12">
+      <h2 class="adi-text-2xl adi-font-bold adi-mb-4">Buttons</h2>
+      <div class="adi-flex adi-gap-4 adi-flex-wrap">
+        <adi-button variant="primary">Primary</adi-button>
+        <adi-button variant="secondary">Secondary</adi-button>
+        <adi-button variant="outline">Outline</adi-button>
+        <adi-button variant="danger">Danger</adi-button>
+        <adi-button variant="success">Success</adi-button>
+        <adi-button disabled>Disabled</adi-button>
+      </div>
+
+      <h3 class="adi-text-xl adi-font-semibold adi-mt-6 adi-mb-3">Button Sizes</h3>
+      <div class="adi-flex adi-gap-4 adi-items-center">
+        <adi-button size="sm">Small</adi-button>
+        <adi-button size="md">Medium</adi-button>
+        <adi-button size="lg">Large</adi-button>
+      </div>
+
+      <h3 class="adi-text-xl adi-font-semibold adi-mt-6 adi-mb-3">Loading State</h3>
+      <adi-button id="loadingBtn" variant="primary">Click to Load</adi-button>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="adi-mb-12">
+      <h2 class="adi-text-2xl adi-font-bold adi-mb-4">Cards</h2>
+      <div class="adi-grid adi-grid-cols-1 md:adi-grid-cols-3 adi-gap-6">
+        <adi-card>
+          <h3 slot="header">Simple Card</h3>
+          <p>This is a basic card with header and body content.</p>
+        </adi-card>
+
+        <adi-card>
+          <h3 slot="header">Card with Footer</h3>
+          <p>This card includes a footer section with actions.</p>
+          <div slot="footer" class="adi-flex adi-gap-2">
+            <adi-button size="sm" variant="outline">Cancel</adi-button>
+            <adi-button size="sm" variant="primary">Confirm</adi-button>
+          </div>
+        </adi-card>
+
+        <adi-card hoverable>
+          <h3 slot="header">Hoverable Card</h3>
+          <p>This card has a hover effect. Try hovering over it!</p>
+        </adi-card>
+      </div>
+    </section>
+
+    <!-- Inputs Section -->
+    <section class="adi-mb-12">
+      <h2 class="adi-text-2xl adi-font-bold adi-mb-4">Input Fields</h2>
+      <div class="adi-grid adi-grid-cols-1 md:adi-grid-cols-2 adi-gap-6">
+        <adi-input 
+          label="Email Address" 
+          type="email" 
+          placeholder="you@example.com"
+          helper="We'll never share your email."
+        ></adi-input>
+
+        <adi-input 
+          label="Password" 
+          type="password" 
+          placeholder="Enter password"
+          required
+        ></adi-input>
+
+        <adi-input 
+          label="Username" 
+          type="text" 
+          placeholder="johndoe"
+          icon="👤"
+        ></adi-input>
+
+        <adi-input 
+          label="Search" 
+          type="text" 
+          placeholder="Search..."
+          icon="🔍"
+        ></adi-input>
+      </div>
+
+      <h3 class="adi-text-xl adi-font-semibold adi-mt-6 adi-mb-3">Validation States</h3>
+      <div class="adi-grid adi-grid-cols-1 md:adi-grid-cols-2 adi-gap-6">
+        <adi-input 
+          label="Email with Error" 
+          type="email" 
+          value="invalid-email"
+          error="Please enter a valid email address"
+        ></adi-input>
+
+        <adi-input 
+          label="Username Available" 
+          type="text" 
+          value="johndoe"
+          success="This username is available!"
+        ></adi-input>
+      </div>
+    </section>
+
+    <!-- Dropdown Section -->
+    <section class="adi-mb-12">
+      <h2 class="adi-text-2xl adi-font-bold adi-mb-4">Dropdowns</h2>
+      <div class="adi-flex adi-gap-4 adi-flex-wrap">
+        <adi-dropdown>
+          <adi-button slot="trigger" variant="outline">Open Menu</adi-button>
+          <div slot="content">
+            <a href="#profile">Profile</a>
+            <a href="#settings">Settings</a>
+            <a href="#logout">Logout</a>
+          </div>
+        </adi-dropdown>
+
+        <adi-dropdown position="bottom-end">
+          <adi-button slot="trigger" variant="primary">Actions ▼</adi-button>
+          <div slot="content">
+            <button>Edit</button>
+            <button>Duplicate</button>
+            <button>Delete</button>
+          </div>
+        </adi-dropdown>
+      </div>
+    </section>
+
+    <!-- Modals Section -->
+    <section class="adi-mb-12">
+      <h2 class="adi-text-2xl adi-font-bold adi-mb-4">Modals</h2>
+      <div class="adi-flex adi-gap-4">
+        <adi-button id="openModal" variant="primary">Open Modal</adi-button>
+        <adi-button id="openConfirm" variant="danger">Confirm Action</adi-button>
+      </div>
+    </section>
+
+    <!-- Toasts Section -->
+    <section class="adi-mb-12">
+      <h2 class="adi-text-2xl adi-font-bold adi-mb-4">Toast Notifications</h2>
+      <div class="adi-flex adi-gap-4 adi-flex-wrap">
+        <adi-button id="toastSuccess" variant="success">Success Toast</adi-button>
+        <adi-button id="toastError" variant="danger">Error Toast</adi-button>
+        <adi-button id="toastWarning" variant="outline">Warning Toast</adi-button>
+        <adi-button id="toastInfo" variant="primary">Info Toast</adi-button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Load Adiox Framework -->
+  <script src="../js/core.js"></script>
+  <script src="../js/router.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/adiox.js"></script>
+
+  <!-- Load Components -->
+  <script src="../components/adi-button.js"></script>
+  <script src="../components/adi-card.js"></script>
+  <script src="../components/adi-input.js"></script>
+  <script src="../components/adi-dropdown.js"></script>
+  <script src="../components/adi-navbar.js"></script>
+  <script src="../components/adi-modal.js"></script>
+  <script src="../components/adi-toast.js"></script>
+
+  <script>
+    // Initialize Adiox
+    Adiox.init();
+
+    // Button loading demo
+    document.getElementById('loadingBtn')?.addEventListener('click', function() {
+      this.setAttribute('loading', '');
+      setTimeout(() => {
+        this.removeAttribute('loading');
+      }, 2000);
+    });
+
+    // Modal demos
+    document.getElementById('openModal')?.addEventListener('click', () => {
+      Adiox.UI.modal({
+        title: 'Welcome to Adiox',
+        content: 'This is a modal dialog built with the Adiox framework. It supports keyboard navigation, focus trapping, and accessibility features.',
+        confirmText: 'Got it!',
+        showCancel: false
+      });
+    });
+
+    document.getElementById('openConfirm')?.addEventListener('click', async () => {
+      const confirmed = await Adiox.UI.modal({
+        title: 'Confirm Action',
+        content: 'Are you sure you want to proceed? This action cannot be undone.',
+        confirmText: 'Yes, proceed',
+        cancelText: 'Cancel',
+        variant: 'danger'
+      });
+
+      if (confirmed) {
+        Adiox.UI.toast('Action confirmed!', 'success');
+      } else {
+        Adiox.UI.toast('Action cancelled', 'info');
+      }
+    });
+
+    // Toast demos
+    document.getElementById('toastSuccess')?.addEventListener('click', () => {
+      Adiox.UI.toast('Operation completed successfully!', 'success');
+    });
+
+    document.getElementById('toastError')?.addEventListener('click', () => {
+      Adiox.UI.toast('An error occurred. Please try again.', 'error');
+    });
+
+    document.getElementById('toastWarning')?.addEventListener('click', () => {
+      Adiox.UI.toast('Warning: This action requires confirmation.', 'warning');
+    });
+
+    document.getElementById('toastInfo')?.addEventListener('click', () => {
+      Adiox.UI.toast('New updates are available!', 'info');
+    });
+  </script>
+</body>
+</html>

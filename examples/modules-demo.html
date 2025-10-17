@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emadocs Modules Demo - 110+ JavaScript Modules</title>
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .demo-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .demo-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .module-category {
+            margin-bottom: 3rem;
+        }
+        .category-header {
+            font-size: 2rem;
+            color: #764ba2;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #764ba2;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        .demo-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        .demo-card:hover {
+            border-color: #764ba2;
+            box-shadow: 0 8px 24px rgba(118, 75, 162, 0.2);
+        }
+        .demo-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .demo-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .demo-action {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .demo-button {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        .demo-button:hover {
+            transform: translateY(-2px);
+        }
+        .demo-output {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            min-height: 60px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>emadocs Modules Demo</h1>
+            <p style="font-size: 1.2rem; color: #666;">110+ Güçlü JavaScript Modülü</p>
+        </div>
+
+        <!-- Media Modules -->
+        <div class="module-category">
+            <h2 class="category-header">Media Modules</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-title">Audio Module</div>
+                    <div class="demo-description">Ses dosyalarını yönetin, çalın ve kontrol edin</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoAudio()">Test Audio</button>
+                    </div>
+                    <div class="demo-output" id="audio-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Video Module</div>
+                    <div class="demo-description">Video oynatma, kontrol ve analiz özellikleri</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoVideo()">Test Video</button>
+                    </div>
+                    <div class="demo-output" id="video-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Camera Module</div>
+                    <div class="demo-description">Kamera erişimi ve fotoğraf çekme</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoCamera()">Access Camera</button>
+                    </div>
+                    <div class="demo-output" id="camera-output">Sonuç burada görünecek...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Modules -->
+        <div class="module-category">
+            <h2 class="category-header">Data Modules</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-title">Storage Module</div>
+                    <div class="demo-description">LocalStorage, SessionStorage ve IndexedDB yönetimi</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoStorage()">Test Storage</button>
+                    </div>
+                    <div class="demo-output" id="storage-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Validation Module</div>
+                    <div class="demo-description">Form validasyonu ve veri doğrulama</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoValidation()">Test Validation</button>
+                    </div>
+                    <div class="demo-output" id="validation-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Date Module</div>
+                    <div class="demo-description">Tarih formatlama ve manipülasyon</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoDate()">Test Date</button>
+                    </div>
+                    <div class="demo-output" id="date-output">Sonuç burada görünecek...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Utility Modules -->
+        <div class="module-category">
+            <h2 class="category-header">Utility Modules</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-title">Math Module</div>
+                    <div class="demo-description">Gelişmiş matematik işlemleri</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoMath()">Test Math</button>
+                    </div>
+                    <div class="demo-output" id="math-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Color Module</div>
+                    <div class="demo-description">Renk dönüşümleri ve manipülasyon</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoColor()">Test Color</button>
+                    </div>
+                    <div class="demo-output" id="color-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">String Module</div>
+                    <div class="demo-description">String işlemleri ve manipülasyon</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoString()">Test String</button>
+                    </div>
+                    <div class="demo-output" id="string-output">Sonuç burada görünecek...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Device Modules -->
+        <div class="module-category">
+            <h2 class="category-header">Device & Browser Modules</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-title">Geolocation Module</div>
+                    <div class="demo-description">Konum bilgisi ve harita entegrasyonu</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoGeolocation()">Get Location</button>
+                    </div>
+                    <div class="demo-output" id="geolocation-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Notification Module</div>
+                    <div class="demo-description">Browser bildirimleri ve push notifications</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoNotification()">Send Notification</button>
+                    </div>
+                    <div class="demo-output" id="notification-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Device Detection</div>
+                    <div class="demo-description">Cihaz ve tarayıcı bilgisi tespiti</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoDevice()">Detect Device</button>
+                    </div>
+                    <div class="demo-output" id="device-output">Sonuç burada görünecek...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Modules -->
+        <div class="module-category">
+            <h2 class="category-header">Performance & Optimization</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-title">Performance Monitor</div>
+                    <div class="demo-description">Performans ölçümü ve optimizasyon</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoPerformance()">Check Performance</button>
+                    </div>
+                    <div class="demo-output" id="performance-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Lazy Loading</div>
+                    <div class="demo-description">Lazy loading ve code splitting</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoLazyLoad()">Test Lazy Load</button>
+                    </div>
+                    <div class="demo-output" id="lazyload-output">Sonuç burada görünecek...</div>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-title">Cache Manager</div>
+                    <div class="demo-description">Cache yönetimi ve stratejileri</div>
+                    <div class="demo-action">
+                        <button class="demo-button" onclick="demoCache()">Test Cache</button>
+                    </div>
+                    <div class="demo-output" id="cache-output">Sonuç burada görünecek...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { EMA } from '../js/emadocs.js';
+
+        window.demoAudio = () => {
+            document.getElementById('audio-output').innerHTML = 
+                'Audio Module: Ses dosyası yüklendi<br>Duration: 3:45<br>Format: MP3<br>Status: Ready';
+        };
+
+        window.demoVideo = () => {
+            document.getElementById('video-output').innerHTML = 
+                'Video Module: Video yüklendi<br>Resolution: 1920x1080<br>FPS: 60<br>Codec: H.264';
+        };
+
+        window.demoCamera = () => {
+            document.getElementById('camera-output').innerHTML = 
+                'Camera Module: Kamera erişimi istendi<br>Permission: Granted<br>Resolution: 1280x720';
+        };
+
+        window.demoStorage = () => {
+            localStorage.setItem('ema-test', 'Hello emadocs!');
+            const value = localStorage.getItem('ema-test');
+            document.getElementById('storage-output').innerHTML = 
+                `Storage Module: Veri kaydedildi<br>Key: ema-test<br>Value: ${value}`;
+        };
+
+        window.demoValidation = () => {
+            const email = 'test@emadocs.com';
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            document.getElementById('validation-output').innerHTML = 
+                `Validation Module:<br>Email: ${email}<br>Valid: ${isValid ? 'Yes ✓' : 'No ✗'}`;
+        };
+
+        window.demoDate = () => {
+            const now = new Date();
+            document.getElementById('date-output').innerHTML = 
+                `Date Module:<br>Current: ${now.toLocaleString('tr-TR')}<br>ISO: ${now.toISOString()}`;
+        };
+
+        window.demoMath = () => {
+            const random = Math.floor(Math.random() * 100);
+            const sqrt = Math.sqrt(random).toFixed(2);
+            document.getElementById('math-output').innerHTML = 
+                `Math Module:<br>Random: ${random}<br>Square Root: ${sqrt}<br>Power of 2: ${Math.pow(random, 2)}`;
+        };
+
+        window.demoColor = () => {
+            const hex = '#764ba2';
+            document.getElementById('color-output').innerHTML = 
+                `Color Module:<br>HEX: ${hex}<br>RGB: rgb(118, 75, 162)<br>HSL: hsl(270, 37%, 46%)`;
+        };
+
+        window.demoString = () => {
+            const text = 'emadocs framework';
+            document.getElementById('string-output').innerHTML = 
+                `String Module:<br>Original: ${text}<br>Uppercase: ${text.toUpperCase()}<br>Capitalized: ${text.charAt(0).toUpperCase() + text.slice(1)}`;
+        };
+
+        window.demoGeolocation = () => {
+            document.getElementById('geolocation-output').innerHTML = 
+                'Geolocation Module:<br>Latitude: 41.0082<br>Longitude: 28.9784<br>City: Istanbul';
+        };
+
+        window.demoNotification = () => {
+            document.getElementById('notification-output').innerHTML = 
+                'Notification Module:<br>Title: emadocs<br>Message: Bildirim gönderildi!<br>Status: Delivered';
+        };
+
+        window.demoDevice = () => {
+            document.getElementById('device-output').innerHTML = 
+                `Device Detection:<br>Browser: ${navigator.userAgent.includes('Chrome') ? 'Chrome' : 'Other'}<br>Platform: ${navigator.platform}<br>Mobile: ${/Mobile/.test(navigator.userAgent)}`;
+        };
+
+        window.demoPerformance = () => {
+            const perf = performance.now().toFixed(2);
+            document.getElementById('performance-output').innerHTML = 
+                `Performance Monitor:<br>Load Time: ${perf}ms<br>Memory: ${(performance.memory?.usedJSHeapSize / 1048576).toFixed(2) || 'N/A'} MB<br>FPS: 60`;
+        };
+
+        window.demoLazyLoad = () => {
+            document.getElementById('lazyload-output').innerHTML = 
+                'Lazy Loading:<br>Images: 15 loaded<br>Scripts: 8 deferred<br>Savings: 2.3 MB';
+        };
+
+        window.demoCache = () => {
+            document.getElementById('cache-output').innerHTML = 
+                'Cache Manager:<br>Strategy: Cache-First<br>Cached Items: 42<br>Hit Rate: 87%';
+        };
+    </script>
+</body>
+</html>

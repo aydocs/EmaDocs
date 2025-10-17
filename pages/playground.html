@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground - Ema Framework</title>
+    <meta name="description" content="Interactive playground to experiment with Ema Framework components, 3D features, and advanced functionality">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <link rel="stylesheet" href="../css/ema-colors.css">
+    
+    <style>
+        /* Playground Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6f42c1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #6f42c1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
+        }
+
+        /* Playground Layout */
+        .playground-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid rgba(111, 66, 193, 0.1);
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .sidebar-content {
+            padding: 0 1.5rem;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #6f42c1;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .component-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0.25rem;
+            border: 1px solid transparent;
+        }
+
+        .component-item:hover {
+            background: rgba(111, 66, 193, 0.1);
+            border-color: rgba(111, 66, 193, 0.2);
+        }
+
+        .component-item.active {
+            background: rgba(111, 66, 193, 0.1);
+            border-color: #6f42c1;
+        }
+
+        .component-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .component-info {
+            flex: 1;
+        }
+
+        .component-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .component-desc {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Main Playground Area */
+        .playground-main {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-right: 1px solid rgba(111, 66, 193, 0.1);
+        }
+
+        .playground-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .playground-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .playground-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            box-shadow: 0 2px 8px rgba(111, 66, 193, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(111, 66, 193, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #6f42c1;
+            border: 1px solid #6f42c1;
+        }
+
+        .btn-secondary:hover {
+            background: #6f42c1;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .playground-canvas {
+            flex: 1;
+            padding: 2rem;
+            overflow: auto;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .canvas-area {
+            min-height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .canvas-placeholder {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .canvas-placeholder h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        /* Properties Panel */
+        .properties-panel {
+            background: white;
+            border-left: 1px solid rgba(111, 66, 193, 0.1);
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .properties-content {
+            padding: 0 1.5rem;
+        }
+
+        .property-group {
+            margin-bottom: 2rem;
+        }
+
+        .property-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .property-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .property-input:focus {
+            outline: none;
+            border-color: #6f42c1;
+            box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1);
+        }
+
+        .property-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.active {
+            border-color: #6f42c1;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .playground-layout {
+                grid-template-columns: 250px 1fr 250px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .playground-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .sidebar, .properties-panel {
+                position: fixed;
+                top: 80px;
+                height: calc(100vh - 80px);
+                z-index: 100;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar {
+                left: 0;
+            }
+            
+            .properties-panel {
+                right: 0;
+                transform: translateX(100%);
+            }
+            
+            .sidebar.open, .properties-panel.open {
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .playground-canvas {
+                padding: 1rem;
+            }
+            
+            .canvas-area {
+                padding: 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Ema Playground</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
+                    <li><a href="components.html" class="nav-link">Components</a></li>
+                    <li><a href="examples.html" class="nav-link">Examples</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="playground.html" class="nav-link active">Playground</a></li>
+                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+            
+            <a href="getting-started.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Playground Layout -->
+    <div class="playground-layout">
+        <!-- Component Library Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">UI Components</h3>
+                    
+                    <div class="component-item" data-component="button">
+                        <div class="component-icon">🔘</div>
+                        <div class="component-info">
+                            <div class="component-name">Button</div>
+                            <div class="component-desc">Interactive buttons</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="input">
+                        <div class="component-icon">📝</div>
+                        <div class="component-info">
+                            <div class="component-name">Input</div>
+                            <div class="component-desc">Text inputs</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="card">
+                        <div class="component-icon">🃏</div>
+                        <div class="component-info">
+                            <div class="component-name">Card</div>
+                            <div class="component-desc">Content cards</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="modal">
+                        <div class="component-icon">🪟</div>
+                        <div class="component-info">
+                            <div class="component-name">Modal</div>
+                            <div class="component-desc">Dialog windows</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="alert">
+                        <div class="component-icon">🚨</div>
+                        <div class="component-info">
+                            <div class="component-name">Alert</div>
+                            <div class="component-desc">Notifications</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">3D Features</h3>
+                    
+                    <div class="component-item" data-component="cube">
+                        <div class="component-icon">🧊</div>
+                        <div class="component-info">
+                            <div class="component-name">3D Cube</div>
+                            <div class="component-desc">Interactive cube</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="sphere">
+                        <div class="component-icon">🌐</div>
+                        <div class="component-info">
+                            <div class="component-name">3D Sphere</div>
+                            <div class="component-desc">Rotating sphere</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="particles">
+                        <div class="component-icon">✨</div>
+                        <div class="component-info">
+                            <div class="component-name">Particles</div>
+                            <div class="component-desc">Particle system</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="scene">
+                        <div class="component-icon">🎬</div>
+                        <div class="component-info">
+                            <div class="component-name">3D Scene</div>
+                            <div class="component-desc">Full scene</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Advanced</h3>
+                    
+                    <div class="component-item" data-component="chart">
+                        <div class="component-icon">📊</div>
+                        <div class="component-info">
+                            <div class="component-name">Interactive Charts</div>
+                            <div class="component-desc">Real-time data visualization</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="form">
+                        <div class="component-icon">📋</div>
+                        <div class="component-info">
+                            <div class="component-name">Smart Forms</div>
+                            <div class="component-desc">Validation & auto-save</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="animation">
+                        <div class="component-icon">🎭</div>
+                        <div class="component-info">
+                            <div class="component-name">Advanced Animations</div>
+                            <div class="component-desc">Custom keyframe animations</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="gallery">
+                        <div class="component-icon">🖼️</div>
+                        <div class="component-info">
+                            <div class="component-name">Image Gallery</div>
+                            <div class="component-desc">Lightbox & carousel</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="timeline">
+                        <div class="component-icon">⏰</div>
+                        <div class="component-info">
+                            <div class="component-name">Timeline</div>
+                            <div class="component-desc">Interactive timeline</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="kanban">
+                        <div class="component-icon">📋</div>
+                        <div class="component-info">
+                            <div class="component-name">Kanban Board</div>
+                            <div class="component-desc">Drag & drop board</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Templates</h3>
+                    
+                    <div class="component-item" data-component="landing">
+                        <div class="component-icon">🏠</div>
+                        <div class="component-info">
+                            <div class="component-name">Landing Page</div>
+                            <div class="component-desc">Complete landing template</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="dashboard">
+                        <div class="component-icon">📊</div>
+                        <div class="component-info">
+                            <div class="component-name">Dashboard</div>
+                            <div class="component-desc">Admin dashboard template</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="portfolio">
+                        <div class="component-icon">💼</div>
+                        <div class="component-info">
+                            <div class="component-name">Portfolio</div>
+                            <div class="component-desc">Creative portfolio template</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-item" data-component="ecommerce">
+                        <div class="component-icon">🛒</div>
+                        <div class="component-info">
+                            <div class="component-name">E-commerce</div>
+                            <div class="component-desc">Online store template</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Playground Area -->
+        <main class="playground-main">
+            <div class="playground-header">
+                <h2 class="playground-title">Interactive Playground</h2>
+                <div class="playground-actions">
+                    <button class="btn btn-secondary" onclick="clearCanvas()">
+                        🗑️ Clear
+                    </button>
+                    <button class="btn btn-primary" onclick="exportCode()">
+                        📤 Export Code
+                    </button>
+                    <button class="btn btn-secondary" onclick="saveProject()">
+                        💾 Save
+                    </button>
+                </div>
+            </div>
+            
+            <div class="playground-canvas">
+                <div class="canvas-area" id="playground-canvas">
+                    <div class="canvas-placeholder">
+                        <h3>🎮 Ema Framework Playground</h3>
+                        <p>Select a component from the left panel to start building</p>
+                        <p style="font-size: 0.875rem; color: #94a3b8;">
+                            Drag components here and customize them in the properties panel
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Properties Panel -->
+        <aside class="properties-panel">
+            <div class="properties-content">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Properties</h3>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Component Type</label>
+                        <select class="property-select" id="component-type">
+                            <option value="button">Button</option>
+                            <option value="input">Input</option>
+                            <option value="card">Card</option>
+                            <option value="modal">Modal</option>
+                            <option value="alert">Alert</option>
+                        </select>
+                    </div>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Color Theme</label>
+                        <div class="color-picker">
+                            <div class="color-option active" data-color="purple" style="background: #6f42c1;"></div>
+                            <div class="color-option" data-color="blue" style="background: #007bff;"></div>
+                            <div class="color-option" data-color="green" style="background: #28a745;"></div>
+                            <div class="color-option" data-color="yellow" style="background: #ffc107;"></div>
+                            <div class="color-option" data-color="red" style="background: #dc3545;"></div>
+                            <div class="color-option" data-color="orange" style="background: #fd7e14;"></div>
+                            <div class="color-option" data-color="gray" style="background: #6c757d;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Size</label>
+                        <select class="property-select" id="component-size">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Text</label>
+                        <input type="text" class="property-input" id="component-text" placeholder="Enter text...">
+                    </div>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Width</label>
+                        <input type="range" class="property-input" id="component-width" min="100" max="500" value="200">
+                        <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">
+                            <span id="width-value">200px</span>
+                        </div>
+                    </div>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Height</label>
+                        <input type="range" class="property-input" id="component-height" min="30" max="200" value="40">
+                        <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">
+                            <span id="height-value">40px</span>
+                        </div>
+                    </div>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Animation</label>
+                        <select class="property-select" id="component-animation">
+                            <option value="none">None</option>
+                            <option value="fade">Fade In</option>
+                            <option value="slide">Slide Up</option>
+                            <option value="bounce">Bounce</option>
+                            <option value="scale">Scale In</option>
+                        </select>
+                    </div>
+                    
+                    <div class="property-group">
+                        <button class="btn btn-primary" style="width: 100%;" onclick="updateComponent()">
+                            🔄 Update Component
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        let currentComponent = null;
+        let currentColor = 'purple';
+        
+        // Initialize playground
+        document.addEventListener('DOMContentLoaded', () => {
+            ema3DEffects.init();
+            
+            // Component selection
+            const componentItems = document.querySelectorAll('.component-item');
+            componentItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    componentItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    const componentType = item.dataset.component;
+                    addComponentToCanvas(componentType);
+                });
+            });
+            
+            // Color selection
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    colorOptions.forEach(o => o.classList.remove('active'));
+                    option.classList.add('active');
+                    currentColor = option.dataset.color;
+                    updateComponent();
+                });
+            });
+            
+            // Range inputs
+            const widthSlider = document.getElementById('component-width');
+            const heightSlider = document.getElementById('component-height');
+            
+            widthSlider.addEventListener('input', (e) => {
+                document.getElementById('width-value').textContent = e.target.value + 'px';
+                updateComponent();
+            });
+            
+            heightSlider.addEventListener('input', (e) => {
+                document.getElementById('height-value').textContent = e.target.value + 'px';
+                updateComponent();
+            });
+            
+            // Text input
+            document.getElementById('component-text').addEventListener('input', updateComponent);
+            
+            // Size and animation selects
+            document.getElementById('component-size').addEventListener('change', updateComponent);
+            document.getElementById('component-animation').addEventListener('change', updateComponent);
+        });
+
+        function addComponentToCanvas(componentType) {
+            const canvas = document.getElementById('playground-canvas');
+            
+            // Clear placeholder
+            if (canvas.querySelector('.canvas-placeholder')) {
+                canvas.innerHTML = '';
+            }
+            
+            // Create component
+            const component = createComponent(componentType);
+            canvas.appendChild(component);
+            
+            currentComponent = component;
+            updateComponent();
+            
+            // Add click effects
+            const rect = component.getBoundingClientRect();
+            ema3DEffects.createExplosion(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                15
+            );
+            
+            emaAlerts.success(`${componentType} component added to canvas!`, {
+                title: 'Component Added',
+                timer: 2000
+            });
+        }
+
+        function createComponent(type) {
+            const colors = {
+                purple: '#6f42c1',
+                blue: '#007bff',
+                green: '#28a745',
+                yellow: '#ffc107',
+                red: '#dc3545',
+                orange: '#fd7e14',
+                gray: '#6c757d'
+            };
+            
+            const component = document.createElement('div');
+            component.className = 'playground-component';
+            component.style.cssText = `
+                margin: 1rem;
+                cursor: move;
+                transition: all 0.3s ease;
+            `;
+            
+            switch (type) {
+                case 'button':
+                    component.innerHTML = `
+                        <button style="
+                            background: ${colors[currentColor]};
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            padding: 0.75rem 1.5rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            Click Me
+                        </button>
+                    `;
+                    break;
+                    
+                case 'input':
+                    component.innerHTML = `
+                        <input type="text" placeholder="Enter text..." style="
+                            padding: 0.75rem;
+                            border: 2px solid ${colors[currentColor]};
+                            border-radius: 8px;
+                            font-size: 1rem;
+                            outline: none;
+                            transition: border-color 0.2s ease;
+                        " onfocus="this.style.borderColor='${colors[currentColor]}'" onblur="this.style.borderColor='${colors[currentColor]}'">
+                    `;
+                    break;
+                    
+                case 'card':
+                    component.innerHTML = `
+                        <div style="
+                            background: white;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                            border-left: 4px solid ${colors[currentColor]};
+                        ">
+                            <h3 style="margin-bottom: 1rem; color: #0f172a;">Card Title</h3>
+                            <p style="color: #64748b; margin-bottom: 1rem;">This is a sample card component with customizable styling.</p>
+                            <button style="
+                                background: ${colors[currentColor]};
+                                color: white;
+                                border: none;
+                                border-radius: 6px;
+                                padding: 0.5rem 1rem;
+                                font-weight: 600;
+                                cursor: pointer;
+                            ">Action</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'alert':
+                    component.innerHTML = `
+                        <div style="
+                            background: rgba(${currentColor === 'purple' ? '111, 66, 193' : currentColor === 'blue' ? '0, 123, 255' : currentColor === 'green' ? '40, 167, 69' : '220, 53, 69'}, 0.1);
+                            border-left: 4px solid ${colors[currentColor]};
+                            padding: 1rem;
+                            border-radius: 8px;
+                            color: ${colors[currentColor]};
+                        ">
+                            <strong>Alert:</strong> This is a sample alert message with customizable colors and styling.
+                        </div>
+                    `;
+                    break;
+                    
+                case 'cube':
+                    component.innerHTML = `
+                        <div style="
+                            width: 100px;
+                            height: 100px;
+                            background: linear-gradient(45deg, ${colors[currentColor]}, ${colors[currentColor]}88);
+                            border-radius: 8px;
+                            transform-style: preserve-3d;
+                            animation: rotate3d 3s linear infinite;
+                            cursor: pointer;
+                        " onclick="createCubeExplosion(this)">
+                        </div>
+                        <style>
+                            @keyframes rotate3d {
+                                0% { transform: rotateX(0deg) rotateY(0deg); }
+                                100% { transform: rotateX(360deg) rotateY(360deg); }
+                            }
+                        </style>
+                    `;
+                    break;
+                    
+                case 'particles':
+                    component.innerHTML = `
+                        <div style="
+                            width: 200px;
+                            height: 100px;
+                            background: radial-gradient(circle, ${colors[currentColor]}22, transparent);
+                            border-radius: 12px;
+                            position: relative;
+                            cursor: pointer;
+                        " onclick="createParticleExplosion(this)">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: ${colors[currentColor]}; font-weight: 600;">
+                                Click for Particles!
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'chart':
+                    component.innerHTML = `
+                        <div style="
+                            width: 300px;
+                            height: 200px;
+                            background: white;
+                            border-radius: 12px;
+                            padding: 1rem;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                            position: relative;
+                        ">
+                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Sample Chart</h4>
+                            <canvas id="demo-chart" width="280" height="150" style="width: 100%; height: 150px;"></canvas>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'form':
+                    component.innerHTML = `
+                        <div style="
+                            width: 300px;
+                            background: white;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                        ">
+                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Contact Form</h4>
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <input type="text" placeholder="Your Name" style="padding: 0.75rem; border: 2px solid ${colors[currentColor]}; border-radius: 8px; outline: none;">
+                                <input type="email" placeholder="Email Address" style="padding: 0.75rem; border: 2px solid ${colors[currentColor]}; border-radius: 8px; outline: none;">
+                                <textarea placeholder="Message" style="padding: 0.75rem; border: 2px solid ${colors[currentColor]}; border-radius: 8px; outline: none; min-height: 80px; resize: vertical;"></textarea>
+                                <button style="background: ${colors[currentColor]}; color: white; border: none; padding: 0.75rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                    Send Message
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'gallery':
+                    component.innerHTML = `
+                        <div style="
+                            width: 300px;
+                            background: white;
+                            border-radius: 12px;
+                            padding: 1rem;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                        ">
+                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Image Gallery</h4>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}, ${colors[currentColor]}88); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
+                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}88, ${colors[currentColor]}44); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
+                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}44, ${colors[currentColor]}22); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
+                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}22, ${colors[currentColor]}11); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
+                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}11, ${colors[currentColor]}08); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
+                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}08, ${colors[currentColor]}04); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'timeline':
+                    component.innerHTML = `
+                        <div style="
+                            width: 300px;
+                            background: white;
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                            position: relative;
+                        ">
+                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Project Timeline</h4>
+                            <div style="position: relative; padding-left: 2rem;">
+                                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: ${colors[currentColor]};"></div>
+                                <div style="margin-bottom: 1rem; position: relative;">
+                                    <div style="position: absolute; left: -2rem; top: 0; width: 12px; height: 12px; background: ${colors[currentColor]}; border-radius: 50%;"></div>
+                                    <h5 style="margin: 0; color: #0f172a;">Project Start</h5>
+                                    <p style="margin: 0; font-size: 0.875rem; color: #64748b;">Initial planning phase</p>
+                                </div>
+                                <div style="margin-bottom: 1rem; position: relative;">
+                                    <div style="position: absolute; left: -2rem; top: 0; width: 12px; height: 12px; background: ${colors[currentColor]}; border-radius: 50%;"></div>
+                                    <h5 style="margin: 0; color: #0f172a;">Development</h5>
+                                    <p style="margin: 0; font-size: 0.875rem; color: #64748b;">Building the application</p>
+                                </div>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; left: -2rem; top: 0; width: 12px; height: 12px; background: ${colors[currentColor]}; border-radius: 50%;"></div>
+                                    <h5 style="margin: 0; color: #0f172a;">Launch</h5>
+                                    <p style="margin: 0; font-size: 0.875rem; color: #64748b;">Going live</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'kanban':
+                    component.innerHTML = `
+                        <div style="
+                            width: 400px;
+                            background: white;
+                            border-radius: 12px;
+                            padding: 1rem;
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                        ">
+                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Kanban Board</h4>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                                <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; min-height: 150px;">
+                                    <h5 style="margin: 0 0 0.5rem 0; color: #0f172a; font-size: 0.875rem;">To Do</h5>
+                                    <div style="background: white; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;" onclick="moveCard(this)">
+                                        <div style="font-size: 0.875rem; color: #0f172a;">Task 1</div>
+                                    </div>
+                                </div>
+                                <div style="background: #fff3cd; border-radius: 8px; padding: 1rem; min-height: 150px;">
+                                    <h5 style="margin: 0 0 0.5rem 0; color: #0f172a; font-size: 0.875rem;">In Progress</h5>
+                                    <div style="background: white; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;" onclick="moveCard(this)">
+                                        <div style="font-size: 0.875rem; color: #0f172a;">Task 2</div>
+                                    </div>
+                                </div>
+                                <div style="background: #d4edda; border-radius: 8px; padding: 1rem; min-height: 150px;">
+                                    <h5 style="margin: 0 0 0.5rem 0; color: #0f172a; font-size: 0.875rem;">Done</h5>
+                                    <div style="background: white; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;" onclick="moveCard(this)">
+                                        <div style="font-size: 0.875rem; color: #0f172a;">Task 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                default:
+                    component.innerHTML = `
+                        <div style="
+                            background: ${colors[currentColor]};
+                            color: white;
+                            padding: 1rem;
+                            border-radius: 8px;
+                            text-align: center;
+                            font-weight: 600;
+                        ">
+                            ${type} Component
+                        </div>
+                    `;
+            }
+            
+            return component;
+        }
+
+        function updateComponent() {
+            if (!currentComponent) return;
+            
+            const text = document.getElementById('component-text').value;
+            const size = document.getElementById('component-size').value;
+            const animation = document.getElementById('component-animation').value;
+            const width = document.getElementById('component-width').value;
+            const height = document.getElementById('component-height').value;
+            
+            // Update component based on current type
+            const componentType = document.querySelector('.component-item.active').dataset.component;
+            
+            // Remove old component and create new one
+            const canvas = document.getElementById('playground-canvas');
+            const newComponent = createComponent(componentType);
+            
+            // Apply custom properties
+            newComponent.style.width = width + 'px';
+            newComponent.style.height = height + 'px';
+            
+            // Apply animation
+            if (animation !== 'none') {
+                newComponent.style.animation = animation + ' 0.6s ease';
+            }
+            
+            // Apply size
+            const scale = size === 'small' ? 0.8 : size === 'large' ? 1.2 : 1;
+            newComponent.style.transform = `scale(${scale})`;
+            
+            // Replace component
+            canvas.replaceChild(newComponent, currentComponent);
+            currentComponent = newComponent;
+            
+            // Add update effect
+            ema3DEffects.createTrail(
+                currentComponent.offsetLeft + currentComponent.offsetWidth / 2,
+                currentComponent.offsetTop + currentComponent.offsetHeight / 2,
+                [0.4, 0.2, 0.7],
+                8
+            );
+        }
+
+        function createCubeExplosion(element) {
+            const rect = element.getBoundingClientRect();
+            ema3DEffects.createExplosion(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                20
+            );
+            
+            emaAlerts.info('3D cube explosion created!', {
+                title: '3D Effect',
+                timer: 2000
+            });
+        }
+
+        function createParticleExplosion(element) {
+            const rect = element.getBoundingClientRect();
+            ema3DEffects.createTrail(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                15
+            );
+            
+            emaAlerts.success('Particle trail created!', {
+                title: 'Particle Effect',
+                timer: 2000
+            });
+        }
+
+        function clearCanvas() {
+            const canvas = document.getElementById('playground-canvas');
+            canvas.innerHTML = `
+                <div class="canvas-placeholder">
+                    <h3>🎮 Ema Framework Playground</h3>
+                    <p>Select a component from the left panel to start building</p>
+                    <p style="font-size: 0.875rem; color: #94a3b8;">
+                        Drag components here and customize them in the properties panel
+                    </p>
+                </div>
+            `;
+            
+            currentComponent = null;
+            
+            emaAlerts.success('Canvas cleared!', {
+                title: 'Canvas Cleared',
+                timer: 2000
+            });
+        }
+
+        function exportCode() {
+            if (!currentComponent) {
+                emaAlerts.warning('No component to export. Add a component first.', {
+                    title: 'Nothing to Export'
+                });
+                return;
+            }
+            
+            const code = currentComponent.outerHTML;
+            
+            emaAlerts.prompt('Enter a filename for your component:', {
+                title: 'Export Component',
+                placeholder: 'my-component.html'
+            }).then(filename => {
+                if (filename) {
+                    const blob = new Blob([code], { type: 'text/html' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename.endsWith('.html') ? filename : filename + '.html';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    
+                    emaAlerts.success('Component exported successfully!', {
+                        title: 'Export Complete'
+                    });
+                }
+            });
+        }
+
+        function saveProject() {
+            emaAlerts.success('Project saved successfully!', {
+                title: 'Project Saved',
+                timer: 2000
+            });
+            
+            // Create save effect
+            ema3DEffects.createExplosion(
+                window.innerWidth / 2,
+                window.innerHeight / 2,
+                [0.4, 0.2, 0.7],
+                25
+            );
+        }
+
+        // New interactive functions
+        function showImageModal(element) {
+            emaAlerts.info('Image modal opened! In a real implementation, this would show a lightbox.', {
+                title: 'Image Gallery',
+                timer: 3000
+            });
+            
+            // Create image effect
+            const rect = element.getBoundingClientRect();
+            ema3DEffects.createExplosion(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                15
+            );
+        }
+
+        function moveCard(element) {
+            // Simulate card movement
+            element.style.transform = 'translateX(10px)';
+            element.style.transition = 'transform 0.3s ease';
+            
+            setTimeout(() => {
+                element.style.transform = 'translateX(0)';
+            }, 300);
+            
+            emaAlerts.success('Card moved! Drag & drop functionality would be implemented here.', {
+                title: 'Kanban Board',
+                timer: 2000
+            });
+            
+            // Create movement effect
+            const rect = element.getBoundingClientRect();
+            ema3DEffects.createTrail(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                8
+            );
+        }
+
+        // Chart rendering for demo
+        function renderDemoChart() {
+            const canvas = document.getElementById('demo-chart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Sample data
+            const data = [65, 59, 80, 81, 56, 55, 40];
+            const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            
+            // Draw chart
+            const barWidth = width / data.length * 0.8;
+            const barSpacing = width / data.length * 0.2;
+            const maxValue = Math.max(...data);
+            
+            data.forEach((value, index) => {
+                const barHeight = (value / maxValue) * (height - 40);
+                const x = index * (barWidth + barSpacing) + barSpacing / 2;
+                const y = height - barHeight - 20;
+                
+                // Draw bar
+                ctx.fillStyle = `hsl(${200 + index * 30}, 70%, 60%)`;
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // Draw label
+                ctx.fillStyle = '#666';
+                ctx.font = '12px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(labels[index], x + barWidth / 2, height - 5);
+            });
+        }
+
+        // Enhanced component creation with chart support
+        const originalAddComponentToCanvas = addComponentToCanvas;
+        addComponentToCanvas = function(componentType) {
+            originalAddComponentToCanvas(componentType);
+            
+            // Render chart if it's a chart component
+            if (componentType === 'chart') {
+                setTimeout(() => {
+                    renderDemoChart();
+                }, 100);
+            }
+        };
+
+        // Template functions
+        function createTemplate(templateType) {
+            const templates = {
+                landing: {
+                    name: 'Landing Page',
+                    components: ['hero', 'features', 'testimonials', 'contact'],
+                    description: 'Complete landing page with hero section, features, testimonials and contact form'
+                },
+                dashboard: {
+                    name: 'Admin Dashboard',
+                    components: ['sidebar', 'charts', 'tables', 'stats'],
+                    description: 'Professional admin dashboard with analytics and data visualization'
+                },
+                portfolio: {
+                    name: 'Creative Portfolio',
+                    components: ['gallery', 'timeline', 'skills', 'contact'],
+                    description: 'Modern portfolio with image gallery, project timeline and skills showcase'
+                },
+                ecommerce: {
+                    name: 'E-commerce Store',
+                    components: ['product-grid', 'cart', 'checkout', 'reviews'],
+                    description: 'Complete online store with product catalog, shopping cart and checkout'
+                }
+            };
+            
+            const template = templates[templateType];
+            if (template) {
+                emaAlerts.success(`Template "${template.name}" loaded!`, {
+                    title: 'Template Loaded',
+                    timer: 3000
+                });
+                
+                // Create template effect
+                ema3DEffects.createExplosion(
+                    window.innerWidth / 2,
+                    window.innerHeight / 2,
+                    [0.4, 0.2, 0.7],
+                    40
+                );
+            }
+        }
+
+        // Enhanced component creation for templates
+        function addComponentToCanvas(componentType) {
+            const canvas = document.getElementById('playground-canvas');
+            
+            // Clear placeholder
+            if (canvas.querySelector('.canvas-placeholder')) {
+                canvas.innerHTML = '';
+            }
+            
+            // Create component
+            const component = createComponent(componentType);
+            canvas.appendChild(component);
+            
+            currentComponent = component;
+            updateComponent();
+            
+            // Add click effects
+            const rect = component.getBoundingClientRect();
+            ema3DEffects.createExplosion(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                15
+            );
+            
+            emaAlerts.success(`${componentType} component added to canvas!`, {
+                title: 'Component Added',
+                timer: 2000
+            });
+        }
+
+        // Welcome message
+        setTimeout(() => {
+            emaAlerts.success('Welcome to the Ema Framework Playground! 🎮', {
+                title: 'Playground Loaded',
+                timer: 4000
+            });
+        }, 1000);
+    </script>
+
+    <!-- Load framework scripts -->
+    <script src="../js/core.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/emadocs.js"></script>
+    
+    <!-- Initialize application -->
+    <script src="../js/app-init.js"></script>
+</body>
+</html>
+

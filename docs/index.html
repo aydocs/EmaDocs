@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emadocs Framework - Documentation</title>
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <style>
+        .docs-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .docs-sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+            background: var(--ema-surface);
+            padding: 1.5rem;
+            border-radius: var(--ema-radius-lg);
+            box-shadow: var(--ema-shadow-md);
+        }
+        
+        .docs-sidebar h3 {
+            color: var(--ema-primary);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+        
+        .docs-nav {
+            list-style: none;
+        }
+        
+        .docs-nav li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .docs-nav a {
+            color: var(--ema-foreground);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: var(--ema-radius-sm);
+            transition: all var(--ema-transition-fast);
+        }
+        
+        .docs-nav a:hover {
+            background: var(--ema-muted);
+            color: var(--ema-primary);
+        }
+        
+        .docs-nav a.active {
+            background: var(--ema-primary);
+            color: var(--ema-white);
+        }
+        
+        .docs-content {
+            background: var(--ema-surface);
+            padding: 2rem;
+            border-radius: var(--ema-radius-lg);
+            box-shadow: var(--ema-shadow-md);
+        }
+        
+        .docs-content h1 {
+            color: var(--ema-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .docs-content h2 {
+            color: var(--ema-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ema-border);
+        }
+        
+        .docs-content code {
+            background: var(--ema-muted);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--ema-radius-sm);
+            font-family: var(--ema-font-mono);
+            font-size: 0.875rem;
+        }
+        
+        .docs-content pre {
+            background: var(--ema-muted);
+            padding: 1rem;
+            border-radius: var(--ema-radius-md);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .docs-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: var(--ema-background);
+            padding: 1.5rem;
+            border-radius: var(--ema-radius-md);
+            border: 2px solid var(--ema-border);
+        }
+        
+        .feature-card h3 {
+            color: var(--ema-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--ema-primary), var(--ema-accent));
+            color: var(--ema-white);
+            padding: 1.5rem;
+            border-radius: var(--ema-radius-lg);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .docs-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ema-container">
+        <header class="ema-header ema-hero-gradient">
+            <h1 class="ema-title">emadocs Documentation</h1>
+            <p class="ema-subtitle">Complete guide to the 500+ feature framework</p>
+        </header>
+
+        <div class="docs-container">
+            <aside class="docs-sidebar">
+                <h3>Documentation</h3>
+                <ul class="docs-nav">
+                    <li><a href="#introduction" class="active">Introduction</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#components">Components</a></li>
+                    <li><a href="#modules">Modules</a></li>
+                    <li><a href="#3d-engine">3D Engine</a></li>
+                    <li><a href="#theming">Theming</a></li>
+                    <li><a href="#api-reference">API Reference</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                </ul>
+            </aside>
+
+            <main class="docs-content">
+                <section id="introduction">
+                    <h1>Introduction to emadocs</h1>
+                    <p>emadocs is a comprehensive, modern front-end framework with 500+ features, 250+ UI components, and 100+ JavaScript modules. Built with pure HTML, CSS, and vanilla JavaScript, it provides enterprise-grade functionality without dependencies.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Total Features</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">260+</div>
+                            <div class="stat-label">UI Components</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">110+</div>
+                            <div class="stat-label">JS Modules</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Dependencies</div>
+                        </div>
+                    </div>
+
+                    <h2>Key Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>Web Components</h3>
+                            <p>260+ components built with Shadow DOM for true encapsulation and reusability.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>3D Engine</h3>
+                            <p>WebGL-based 3D rendering with physics simulation and particle systems.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>State Management</h3>
+                            <p>Reactive store with automatic UI updates and localStorage persistence.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>SPA Router</h3>
+                            <p>Client-side routing with animations and route parameters.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Purple Theme</h3>
+                            <p>Beautiful purple-themed design system with dark mode support.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Zero Dependencies</h3>
+                            <p>Pure vanilla JavaScript with no external libraries required.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <p>Get up and running with emadocs in minutes.</p>
+
+                    <h3>Installation</h3>
+                    <p>Include the framework files in your HTML:</p>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/emadocs.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="app"&gt;&lt;/div&gt;
+
+  &lt;script src="js/core.js"&gt;&lt;/script&gt;
+  &lt;script src="js/emadocs.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    <h3>Basic Usage</h3>
+                    <pre><code>// Initialize the framework
+Emadocs.init({
+  router: { mode: 'hash' }
+});
+
+// Show a notification
+Emadocs.UI.toast('Welcome to emadocs!', { 
+  type: 'success' 
+});
+
+// Store data
+Emadocs.Store.set('user', { name: 'John' });
+
+// Navigate
+Emadocs.Router.navigate('/dashboard');</code></pre>
+                </section>
+
+                <section id="components">
+                    <h2>Components</h2>
+                    <p>emadocs includes 260+ UI components organized into 14 categories.</p>
+
+                    <h3>Component Categories</h3>
+                    <ul>
+                        <li><strong>Basic Components (20)</strong> - Buttons, links, text, images</li>
+                        <li><strong>Form Components (30)</strong> - Inputs, selects, checkboxes, date pickers</li>
+                        <li><strong>Navigation (25)</strong> - Navbar, sidebar, breadcrumbs, pagination</li>
+                        <li><strong>Feedback (20)</strong> - Toasts, alerts, modals, progress bars</li>
+                        <li><strong>Data Display (30)</strong> - Cards, tables, lists, timelines</li>
+                        <li><strong>Layout (20)</strong> - Grid, flex, containers, panels</li>
+                        <li><strong>Media (15)</strong> - Carousel, gallery, video players</li>
+                        <li><strong>Charts (15)</strong> - Line, bar, pie, area charts</li>
+                        <li><strong>Advanced (25)</strong> - Calendar, kanban, editors</li>
+                        <li><strong>3D Components (10)</strong> - 3D canvas, shapes, particles</li>
+                        <li><strong>And more...</strong></li>
+                    </ul>
+
+                    <h3>Example Usage</h3>
+                    <pre><code>&lt;!-- Button --&gt;
+&lt;ema-button variant="primary"&gt;Click Me&lt;/ema-button&gt;
+
+&lt;!-- Input --&gt;
+&lt;ema-input type="email" placeholder="Email"&gt;&lt;/ema-input&gt;
+
+&lt;!-- Card --&gt;
+&lt;ema-card&gt;
+  &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
+  &lt;p slot="body"&gt;Content&lt;/p&gt;
+&lt;/ema-card&gt;</code></pre>
+                </section>
+
+                <section id="modules">
+                    <h2>JavaScript Modules</h2>
+                    <p>110+ JavaScript modules providing comprehensive functionality.</p>
+
+                    <h3>Core Modules</h3>
+                    <ul>
+                        <li><code>EmaCore</code> - Event bus and plugin system</li>
+                        <li><code>EmaRouter</code> - SPA routing</li>
+                        <li><code>EmaStore</code> - State management</li>
+                        <li><code>EmaUI</code> - UI utilities</li>
+                        <li><code>EmaAnimations</code> - Animation system</li>
+                    </ul>
+
+                    <h3>Utility Modules</h3>
+                    <ul>
+                        <li><code>EmaDate</code> - Date formatting and manipulation</li>
+                        <li><code>EmaMath</code> - Math utilities</li>
+                        <li><code>EmaString</code> - String manipulation</li>
+                        <li><code>EmaArray</code> - Array utilities</li>
+                        <li><code>EmaColor</code> - Color manipulation</li>
+                    </ul>
+
+                    <h3>Advanced Modules</h3>
+                    <ul>
+                        <li><code>Ema3D</code> - 3D engine</li>
+                        <li><code>EmaAudio</code> - Audio playback</li>
+                        <li><code>EmaVideo</code> - Video controls</li>
+                        <li><code>EmaCamera</code> - Webcam capture</li>
+                        <li><code>EmaGeo</code> - Geolocation</li>
+                    </ul>
+                </section>
+
+                <section id="3d-engine">
+                    <h2>3D Engine</h2>
+                    <p>Built-in WebGL 3D engine with physics simulation.</p>
+
+                    <h3>Creating a 3D Scene</h3>
+                    <pre><code>// Initialize 3D canvas
+const scene = Ema3D.init('myCanvas');
+
+// Create objects
+Ema3D.createCube('myCanvas', {
+  color: [0.54, 0.36, 0.96, 1.0],
+  rotationSpeed: { x: 0.01, y: 0.02, z: 0 }
+});
+
+Ema3D.createSphere('myCanvas', {
+  position: { x: 2, y: 0, z: 0 }
+});
+
+// Start rendering
+Ema3D.start('myCanvas');</code></pre>
+
+                    <h3>3D Features</h3>
+                    <ul>
+                        <li>Multiple 3D shapes (cube, sphere, torus, cylinder)</li>
+                        <li>Particle systems with 1000+ particles</li>
+                        <li>Physics simulation with gravity and collisions</li>
+                        <li>Camera controls and animations</li>
+                        <li>Post-processing effects (bloom, motion blur)</li>
+                    </ul>
+                </section>
+
+                <section id="theming">
+                    <h2>Theming</h2>
+                    <p>emadocs features a beautiful purple theme with full customization.</p>
+
+                    <h3>Color System</h3>
+                    <pre><code>:root {
+  --ema-primary: #8b5cf6;
+  --ema-accent: #ec4899;
+  --ema-success: #10b981;
+  --ema-warning: #f59e0b;
+  --ema-danger: #ef4444;
+}</code></pre>
+
+                    <h3>Dark Mode</h3>
+                    <pre><code>// Toggle theme
+Emadocs.Theme.toggle();
+
+// Set specific theme
+Emadocs.Theme.set('dark');
+
+// Check current theme
+if (Emadocs.Theme.isDark()) {
+  console.log('Dark mode active');
+}</code></pre>
+                </section>
+
+                <section id="api-reference">
+                    <h2>API Reference</h2>
+                    <p>Complete API documentation for all modules.</p>
+
+                    <h3>Router API</h3>
+                    <pre><code>// Add route
+Emadocs.Router.addRoute('/path', () => {
+  return '&lt;div&gt;Content&lt;/div&gt;';
+});
+
+// Navigate
+Emadocs.Router.navigate('/path');
+
+// Get current route
+const route = Emadocs.Router.getCurrentRoute();</code></pre>
+
+                    <h3>Store API</h3>
+                    <pre><code>// Set value
+Emadocs.Store.set('key', value);
+
+// Get value
+const value = Emadocs.Store.get('key');
+
+// Watch changes
+Emadocs.Store.watch('key', (newVal, oldVal) => {
+  console.log('Changed:', newVal);
+});
+
+// Bind to DOM
+Emadocs.Store.bind('key', '#element');</code></pre>
+
+                    <h3>UI API</h3>
+                    <pre><code>// Toast
+Emadocs.UI.toast('Message', { type: 'success' });
+
+// Modal
+Emadocs.UI.modal({
+  title: 'Title',
+  html: '&lt;p&gt;Content&lt;/p&gt;',
+  primaryText: 'OK'
+});
+
+// Alert
+await Emadocs.UI.alert('Alert message');
+
+// Confirm
+const confirmed = await Emadocs.UI.confirm('Are you sure?');</code></pre>
+                </section>
+
+                <section id="examples">
+                    <h2>Examples</h2>
+                    <p>Explore complete examples and demos.</p>
+
+                    <ul>
+                        <li><a href="../examples/components.html">Component Showcase</a></li>
+                        <li><a href="../examples/3d-showcase.html">3D Demos</a></li>
+                        <li><a href="../getting-started.html">Getting Started Guide</a></li>
+                        <li><a href="../index.html">Main Demo</a></li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/core.js"></script>
+    <script src="../js/emadocs.js"></script>
+    <script>
+        // Smooth scroll to sections
+        document.querySelectorAll('.docs-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Update active state
+                    document.querySelectorAll('.docs-nav a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

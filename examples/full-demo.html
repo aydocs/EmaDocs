@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emadocs - Complete Framework Demo</title>
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0a;
+            color: white;
+        }
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+        }
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        .stats-container {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 3rem;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .features-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #764ba2;
+            transform: translateY(-8px);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #764ba2;
+        }
+        .feature-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: white;
+            color: #764ba2;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        #canvas-3d {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <canvas id="canvas-3d"></canvas>
+        <div class="hero-content">
+            <h1>emadocs</h1>
+            <p>Next-Generation Web Framework</p>
+            <p style="font-size: 1.2rem; opacity: 0.9;">260+ Components • 110+ Modules • 500+ Features</p>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-number">260+</span>
+                    <span class="stat-label">UI Components</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">110+</span>
+                    <span class="stat-label">JS Modules</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Features</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">3D Features</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">260+ UI Components</h3>
+                <p class="feature-description">Comprehensive component library with forms, navigation, data display, feedback, layout, media, charts, and advanced components.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">110+ JavaScript Modules</h3>
+                <p class="feature-description">Powerful modules for media, data, utilities, device detection, performance, networking, and much more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3 class="feature-title">3D Graphics Engine</div>
+                <p class="feature-description">Built-in WebGL engine with shapes, particles, physics, post-processing effects, and interactive 3D scenes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">State Management</h3>
+                <p class="feature-description">Reactive state management with observers, computed values, and automatic UI updates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">Router System</h3>
+                <p class="feature-description">Client-side routing with lazy loading, nested routes, guards, and smooth transitions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💜</div>
+                <h3 class="feature-title">Purple Theme</h3>
+                <p class="feature-description">Beautiful purple-themed design system with gradients, shadows, and modern aesthetics.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Responsive Design</h3>
+                <p class="feature-description">Mobile-first approach with breakpoints, flexible layouts, and adaptive components.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3 class="feature-title">Developer Tools</h3>
+                <p class="feature-description">Built-in devtools, performance monitoring, debugging utilities, and comprehensive documentation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3 class="feature-title">Internationalization</h3>
+                <p class="feature-description">Multi-language support with easy translation management and locale switching.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 style="font-size: 3rem; margin-bottom: 2rem;">Ready to Build Amazing Apps?</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.95;">Start using emadocs today and experience the future of web development</p>
+        <a href="../docs/index.html" class="cta-button">Get Started →</a>
+    </section>
+
+    <script type="module">
+        import { EMA3D } from '../js/3d-engine.js';
+
+        // Initialize 3D background
+        const canvas = document.getElementById('canvas-3d');
+        const engine = new EMA3D(canvas);
+        
+        // Create animated particles
+        const particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: (Math.random() - 0.5) * 20,
+                y: (Math.random() - 0.5) * 20,
+                z: (Math.random() - 0.5) * 20,
+                vx: (Math.random() - 0.5) * 0.02,
+                vy: (Math.random() - 0.5) * 0.02,
+                vz: (Math.random() - 0.5) * 0.02
+            });
+        }
+
+        function animate() {
+            engine.clear();
+            
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.z += p.vz;
+                
+                if (Math.abs(p.x) > 10) p.vx *= -1;
+                if (Math.abs(p.y) > 10) p.vy *= -1;
+                if (Math.abs(p.z) > 10) p.vz *= -1;
+                
+                engine.createParticles([p], { color: '#ffffff', size: 3 });
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    </script>
+</body>
+</html>

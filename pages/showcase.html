@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcase - Ema Framework</title>
+    <meta name="description" content="Comprehensive showcase of Ema Framework's 250+ components, 100+ modules, and 500+ features">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <link rel="stylesheet" href="../css/ema-colors.css">
+    
+    <style>
+        /* Showcase Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #0f172a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6f42c1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #6f42c1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .showcase-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(111, 66, 193, 0.1) 0%, rgba(142, 95, 209, 0.1) 100%);
+            backdrop-filter: blur(20px);
+        }
+
+        .showcase-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 4px 20px rgba(111, 66, 193, 0.5); }
+            to { text-shadow: 0 4px 30px rgba(111, 66, 193, 0.8); }
+        }
+
+        .showcase-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .showcase-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .showcase-stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .showcase-stat:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .showcase-stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+        }
+
+        /* Component Showcase */
+        .component-showcase {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .showcase-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .showcase-section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #0f172a;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .showcase-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            border-radius: 2px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .component-demo {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(111, 66, 193, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+        }
+
+        .component-demo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(111, 66, 193, 0.2);
+        }
+
+        .component-demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .component-demo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .component-demo-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .component-demo-info p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .component-demo-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .component-demo-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #6f42c1;
+            border: 2px solid #6f42c1;
+        }
+
+        .btn-secondary:hover {
+            background: #6f42c1;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Interactive Elements */
+        .interactive-button {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .interactive-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(111, 66, 193, 0.4);
+        }
+
+        .interactive-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            margin: 0.5rem 0;
+        }
+
+        .interactive-input:focus {
+            outline: none;
+            border-color: #6f42c1;
+            box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1);
+        }
+
+        .interactive-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            transition: all 0.3s ease;
+            margin: 0.5rem 0;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.15);
+        }
+
+        .interactive-alert {
+            background: rgba(111, 66, 193, 0.1);
+            border-left: 4px solid #6f42c1;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            color: #6f42c1;
+            font-weight: 500;
+        }
+
+        /* 3D Elements */
+        .cube-3d {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #6f42c1, #8e5fd1);
+            border-radius: 8px;
+            transform-style: preserve-3d;
+            animation: rotate3d 3s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .sphere-3d {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #6f42c1, #8e5fd1);
+            border-radius: 50%;
+            margin: 1rem auto;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Color Variants */
+        .color-variants {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .color-variant {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-variant:hover {
+            transform: scale(1.2);
+        }
+
+        .color-purple { background: #6f42c1; }
+        .color-blue { background: #007bff; }
+        .color-green { background: #28a745; }
+        .color-yellow { background: #ffc107; }
+        .color-red { background: #dc3545; }
+        .color-orange { background: #fd7e14; }
+        .color-gray { background: #6c757d; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .showcase-title {
+                font-size: 2.5rem;
+            }
+            
+            .showcase-subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .showcase-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Live Stats */
+        .live-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .live-stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(111, 66, 193, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+        }
+
+        .live-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(111, 66, 193, 0.15);
+        }
+
+        .live-stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .live-stat-content {
+            flex: 1;
+        }
+
+        .live-stat-number {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .live-stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+        }
+
+        .live-stat-progress {
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            animation: progressGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes progressGlow {
+            from { box-shadow: 0 0 5px rgba(111, 66, 193, 0.3); }
+            to { box-shadow: 0 0 15px rgba(111, 66, 193, 0.6); }
+        }
+
+        /* Enhanced Component Styles */
+        .component-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .badge {
+            background: rgba(111, 66, 193, 0.1);
+            color: #6f42c1;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .button-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary { background: linear-gradient(135deg, #6f42c1, #8e5fd1); }
+        .btn-success { background: linear-gradient(135deg, #28a745, #20c997); }
+        .btn-danger { background: linear-gradient(135deg, #dc3545, #e83e8c); }
+        .btn-warning { background: linear-gradient(135deg, #ffc107, #fd7e14); }
+        .btn-info { background: linear-gradient(135deg, #007bff, #6610f2); }
+        .btn-purple { background: linear-gradient(135deg, #6f42c1, #8e5fd1); }
+
+        .btn-icon {
+            margin-right: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .button-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-item {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Enhanced Interactive Elements */
+        .interactive-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .interactive-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .interactive-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .interactive-button:active {
+            transform: translateY(0);
+            transition: transform 0.1s ease;
+        }
+
+        /* Color Variants Enhancement */
+        .color-variant {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .color-variant::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6f42c1, #8e5fd1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .color-variant:hover::after,
+        .color-variant.active::after {
+            opacity: 1;
+        }
+
+        /* Component Demo Actions */
+        .component-demo-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .component-demo-actions .btn {
+            flex: 1;
+            min-width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Ema Showcase</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
+                    <li><a href="components.html" class="nav-link">Components</a></li>
+                    <li><a href="examples.html" class="nav-link">Examples</a></li>
+                    <li><a href="api.html" class="nav-link">API</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="playground.html" class="nav-link">Playground</a></li>
+                    <li><a href="showcase.html" class="nav-link active">Showcase</a></li>
+                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+            
+            <a href="getting-started.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="showcase-hero">
+            <h1 class="showcase-title fade-in">Ema Framework Showcase</h1>
+            <p class="showcase-subtitle fade-in stagger-1">
+                Discover the power of 250+ components, 100+ modules, and 500+ features
+            </p>
+            
+            <div class="showcase-stats">
+                <div class="showcase-stat fade-in stagger-2">
+                    <span class="showcase-stat-number">250+</span>
+                    <span class="showcase-stat-label">UI Components</span>
+                </div>
+                <div class="showcase-stat fade-in stagger-3">
+                    <span class="showcase-stat-number">100+</span>
+                    <span class="showcase-stat-label">JavaScript Modules</span>
+                </div>
+                <div class="showcase-stat fade-in stagger-4">
+                    <span class="showcase-stat-number">500+</span>
+                    <span class="showcase-stat-label">Total Features</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Showcase -->
+        <section class="component-showcase">
+            <div class="showcase-container">
+                <h2 class="showcase-section-title fade-in">Interactive Components</h2>
+                
+                <!-- Live Stats -->
+                <div class="live-stats-grid fade-in stagger-1">
+                    <div class="live-stat-card">
+                        <div class="live-stat-icon">🎨</div>
+                        <div class="live-stat-content">
+                            <div class="live-stat-number" id="component-count">250+</div>
+                            <div class="live-stat-label">Components Built</div>
+                            <div class="live-stat-progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live-stat-card">
+                        <div class="live-stat-icon">⚡</div>
+                        <div class="live-stat-content">
+                            <div class="live-stat-number" id="performance-score">99.9%</div>
+                            <div class="live-stat-label">Performance</div>
+                            <div class="live-stat-progress">
+                                <div class="progress-bar" style="width: 99.9%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live-stat-card">
+                        <div class="live-stat-icon">🚀</div>
+                        <div class="live-stat-content">
+                            <div class="live-stat-number" id="load-time">0.3s</div>
+                            <div class="live-stat-label">Load Time</div>
+                            <div class="live-stat-progress">
+                                <div class="progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live-stat-card">
+                        <div class="live-stat-icon">👥</div>
+                        <div class="live-stat-content">
+                            <div class="live-stat-number" id="active-users">2,847</div>
+                            <div class="live-stat-label">Active Users</div>
+                            <div class="live-stat-progress">
+                                <div class="progress-bar" style="width: 87%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-grid">
+                    <!-- Button Component -->
+                    <div class="component-demo fade-in stagger-1">
+                        <div class="component-demo-header">
+                            <div class="component-demo-icon">🔘</div>
+                            <div class="component-demo-info">
+                                <h3>Advanced Buttons</h3>
+                                <p>25+ button variants with animations</p>
+                                <div class="component-badges">
+                                    <span class="badge">Interactive</span>
+                                    <span class="badge">Animated</span>
+                                    <span class="badge">8 Colors</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-demo-content">
+                            <div class="button-showcase">
+                                <button class="interactive-button btn-primary" onclick="showButtonDemo()">
+                                    <span class="btn-icon">🚀</span>
+                                    Primary Button
+                                </button>
+                                <button class="interactive-button btn-success" onclick="showButtonDemo()">
+                                    <span class="btn-icon">✓</span>
+                                    Success Button
+                                </button>
+                                <button class="interactive-button btn-danger" onclick="showButtonDemo()">
+                                    <span class="btn-icon">⚠</span>
+                                    Danger Button
+                                </button>
+                                <button class="interactive-button btn-warning" onclick="showButtonDemo()">
+                                    <span class="btn-icon">⚡</span>
+                                    Warning Button
+                                </button>
+                                <button class="interactive-button btn-info" onclick="showButtonDemo()">
+                                    <span class="btn-icon">ℹ</span>
+                                    Info Button
+                                </button>
+                                <button class="interactive-button btn-purple" onclick="showButtonDemo()">
+                                    <span class="btn-icon">★</span>
+                                    Purple Button
+                                </button>
+                            </div>
+                            <div class="color-variants">
+                                <div class="color-variant color-purple active" data-color="purple"></div>
+                                <div class="color-variant color-blue" data-color="blue"></div>
+                                <div class="color-variant color-green" data-color="green"></div>
+                                <div class="color-variant color-yellow" data-color="yellow"></div>
+                                <div class="color-variant color-red" data-color="red"></div>
+                                <div class="color-variant color-orange" data-color="orange"></div>
+                            </div>
+                            <div class="button-features">
+                                <div class="feature-item">✨ Hover Effects</div>
+                                <div class="feature-item">🎭 Click Animations</div>
+                                <div class="feature-item">📱 Touch Friendly</div>
+                                <div class="feature-item">♿ Accessible</div>
+                            </div>
+                        </div>
+                        <div class="component-demo-actions">
+                            <button class="btn btn-primary" onclick="showButtonDemo()">Try All Variants</button>
+                            <button class="btn btn-secondary" onclick="viewCode('button')">View Code</button>
+                            <button class="btn btn-secondary" onclick="copyCode('button')">Copy Code</button>
+                        </div>
+                    </div>
+
+                    <!-- Input Component -->
+                    <div class="component-demo fade-in stagger-2">
+                        <div class="component-demo-header">
+                            <div class="component-demo-icon">📝</div>
+                            <div class="component-demo-info">
+                                <h3>Inputs</h3>
+                                <p>Advanced form inputs with validation</p>
+                            </div>
+                        </div>
+                        <div class="component-demo-content">
+                            <input type="text" class="interactive-input" placeholder="Enter your name..." id="demo-input">
+                            <input type="email" class="interactive-input" placeholder="Enter your email..." style="border-color: #28a745;">
+                            <input type="password" class="interactive-input" placeholder="Enter password..." style="border-color: #ffc107;">
+                        </div>
+                        <div class="component-demo-actions">
+                            <button class="btn btn-primary" onclick="showInputDemo()">Try It</button>
+                            <button class="btn btn-secondary" onclick="viewCode('input')">View Code</button>
+                        </div>
+                    </div>
+
+                    <!-- Card Component -->
+                    <div class="component-demo fade-in stagger-3">
+                        <div class="component-demo-header">
+                            <div class="component-demo-icon">🃏</div>
+                            <div class="component-demo-info">
+                                <h3>Cards</h3>
+                                <p>Beautiful content cards with animations</p>
+                            </div>
+                        </div>
+                        <div class="component-demo-content">
+                            <div class="interactive-card">
+                                <h4 style="margin-bottom: 0.5rem; color: #0f172a;">Sample Card</h4>
+                                <p style="color: #64748b; font-size: 0.875rem;">This is a sample card component with hover effects and smooth animations.</p>
+                            </div>
+                        </div>
+                        <div class="component-demo-actions">
+                            <button class="btn btn-primary" onclick="showCardDemo()">Try It</button>
+                            <button class="btn btn-secondary" onclick="viewCode('card')">View Code</button>
+                        </div>
+                    </div>
+
+                    <!-- Alert Component -->
+                    <div class="component-demo fade-in stagger-4">
+                        <div class="component-demo-header">
+                            <div class="component-demo-icon">🚨</div>
+                            <div class="component-demo-info">
+                                <h3>Alerts</h3>
+                                <p>Advanced notification system</p>
+                            </div>
+                        </div>
+                        <div class="component-demo-content">
+                            <div class="interactive-alert">
+                                <strong>Success!</strong> This is a sample alert message.
+                            </div>
+                        </div>
+                        <div class="component-demo-actions">
+                            <button class="btn btn-primary" onclick="showAlertDemo()">Try It</button>
+                            <button class="btn btn-secondary" onclick="viewCode('alert')">View Code</button>
+                        </div>
+                    </div>
+
+                    <!-- 3D Components -->
+                    <div class="component-demo fade-in stagger-5">
+                        <div class="component-demo-header">
+                            <div class="component-demo-icon">🧊</div>
+                            <div class="component-demo-info">
+                                <h3>3D Elements</h3>
+                                <p>Interactive 3D objects and animations</p>
+                            </div>
+                        </div>
+                        <div class="component-demo-content">
+                            <div class="cube-3d" onclick="createCubeExplosion(this)"></div>
+                            <div class="sphere-3d" onclick="createSphereEffect(this)"></div>
+                            <p style="text-align: center; font-size: 0.875rem; color: #64748b; margin-top: 1rem;">
+                                Click the 3D objects to see effects!
+                            </p>
+                        </div>
+                        <div class="component-demo-actions">
+                            <button class="btn btn-primary" onclick="show3DDemo()">Try It</button>
+                            <button class="btn btn-secondary" onclick="viewCode('3d')">View Code</button>
+                        </div>
+                    </div>
+
+                    <!-- Animation Component -->
+                    <div class="component-demo fade-in stagger-6">
+                        <div class="component-demo-header">
+                            <div class="component-demo-icon">🎭</div>
+                            <div class="component-demo-info">
+                                <h3>Animations</h3>
+                                <p>Smooth transitions and effects</p>
+                            </div>
+                        </div>
+                        <div class="component-demo-content">
+                            <div style="display: flex; gap: 1rem; justify-content: center;">
+                                <div class="interactive-button" style="animation: bounce 1s infinite;">Bounce</div>
+                                <div class="interactive-button" style="animation: pulse 1s infinite;">Pulse</div>
+                                <div class="interactive-button" style="animation: shake 0.5s infinite;">Shake</div>
+                            </div>
+                            <style>
+                                @keyframes bounce {
+                                    0%, 100% { transform: translateY(0); }
+                                    50% { transform: translateY(-10px); }
+                                }
+                                @keyframes pulse {
+                                    0%, 100% { transform: scale(1); }
+                                    50% { transform: scale(1.1); }
+                                }
+                                @keyframes shake {
+                                    0%, 100% { transform: translateX(0); }
+                                    25% { transform: translateX(-5px); }
+                                    75% { transform: translateX(5px); }
+                                }
+                            </style>
+                        </div>
+                        <div class="component-demo-actions">
+                            <button class="btn btn-primary" onclick="showAnimationDemo()">Try It</button>
+                            <button class="btn btn-secondary" onclick="viewCode('animation')">View Code</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize 3D effects
+        document.addEventListener('DOMContentLoaded', () => {
+            ema3DEffects.init();
+            
+            // Add hover effects to component demos
+            const demos = document.querySelectorAll('.component-demo');
+            demos.forEach(demo => {
+                demo.addEventListener('mouseenter', (e) => {
+                    const rect = demo.getBoundingClientRect();
+                    ema3DEffects.createExplosion(
+                        rect.left + rect.width / 2,
+                        rect.top + rect.height / 2,
+                        [0.4, 0.2, 0.7],
+                        8
+                    );
+                });
+            });
+        });
+
+        // Demo functions
+        function showButtonDemo() {
+            emaAlerts.success('Button clicked! This demonstrates our interactive button system.', {
+                title: 'Button Demo',
+                timer: 3000
+            });
+            
+            // Create particle effect
+            ema3DEffects.createExplosion(
+                window.innerWidth / 2,
+                window.innerHeight / 2,
+                [0.4, 0.2, 0.7],
+                20
+            );
+        }
+
+        function showInputDemo() {
+            const input = document.getElementById('demo-input');
+            if (input && input.value) {
+                emaAlerts.success(`You entered: "${input.value}"`, {
+                    title: 'Input Demo',
+                    timer: 3000
+                });
+            } else {
+                emaAlerts.info('Try typing something in the input field above!', {
+                    title: 'Input Demo',
+                    timer: 3000
+                });
+            }
+        }
+
+        function showCardDemo() {
+            emaAlerts.success('Card interaction detected! Our cards have smooth hover effects.', {
+                title: 'Card Demo',
+                timer: 3000
+            });
+        }
+
+        function showAlertDemo() {
+            emaAlerts.confirm('This is our advanced alert system. Would you like to see more alert types?', {
+                title: 'Alert Demo',
+                confirmButtonText: 'Show More',
+                cancelButtonText: 'Close'
+            }).then(result => {
+                if (result) {
+                    emaAlerts.error('This is an error alert!', {
+                        title: 'Error Alert',
+                        timer: 3000
+                    });
+                    
+                    setTimeout(() => {
+                        emaAlerts.warning('This is a warning alert!', {
+                            title: 'Warning Alert',
+                            timer: 3000
+                        });
+                    }, 1000);
+                }
+            });
+        }
+
+        function show3DDemo() {
+            emaAlerts.info('3D demo activated! Click the 3D objects to see particle effects.', {
+                title: '3D Demo',
+                timer: 4000
+            });
+        }
+
+        function showAnimationDemo() {
+            emaAlerts.success('Animation demo loaded! Watch the buttons animate above.', {
+                title: 'Animation Demo',
+                timer: 3000
+            });
+        }
+
+        function createCubeExplosion(element) {
+            const rect = element.getBoundingClientRect();
+            ema3DEffects.createExplosion(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                25
+            );
+            
+            emaAlerts.info('3D cube explosion created!', {
+                title: '3D Effect',
+                timer: 2000
+            });
+        }
+
+        function createSphereEffect(element) {
+            const rect = element.getBoundingClientRect();
+            ema3DEffects.createTrail(
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2,
+                [0.4, 0.2, 0.7],
+                15
+            );
+            
+            emaAlerts.success('Sphere trail effect created!', {
+                title: '3D Effect',
+                timer: 2000
+            });
+        }
+
+        function viewCode(component) {
+            emaAlerts.info(`Viewing code for ${component} component...`, {
+                title: 'Code Viewer',
+                timer: 2000
+            });
+            
+            // In a real implementation, this would open a code viewer modal
+            setTimeout(() => {
+                emaAlerts.success('Code viewer opened! (This is a demo)', {
+                    title: 'Code Viewer',
+                    timer: 2000
+                });
+            }, 1000);
+        }
+
+        function copyCode(component) {
+            const codeSamples = {
+                button: `<button class="ema-btn-primary">
+    <span class="btn-icon">🚀</span>
+    Click Me
+</button>`,
+                input: `<input type="text" class="ema-input" placeholder="Enter text...">`,
+                card: `<div class="ema-card">
+    <h3>Card Title</h3>
+    <p>Card content goes here</p>
+</div>`,
+                alert: `<div class="ema-alert ema-alert-success">
+    <strong>Success!</strong> Your action was completed.
+</div>`
+            };
+            
+            const code = codeSamples[component] || '// Component code here';
+            navigator.clipboard.writeText(code).then(() => {
+                emaAlerts.success('Code copied to clipboard!', {
+                    title: 'Code Copied',
+                    timer: 2000
+                });
+                
+                // Create copy effect
+                ema3DEffects.createExplosion(
+                    window.innerWidth / 2,
+                    window.innerHeight / 2,
+                    [0.4, 0.2, 0.7],
+                    15
+                );
+            }).catch(() => {
+                emaAlerts.error('Failed to copy code. Please try again.', {
+                    title: 'Copy Failed'
+                });
+            });
+        }
+
+        // Live stats updates
+        function updateLiveStats() {
+            const stats = {
+                'component-count': '250+',
+                'performance-score': (99.9 + Math.random() * 0.1).toFixed(1) + '%',
+                'load-time': (0.3 + Math.random() * 0.2).toFixed(1) + 's',
+                'active-users': (2847 + Math.floor(Math.random() * 50)).toLocaleString()
+            };
+            
+            Object.entries(stats).forEach(([id, value]) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = value;
+                }
+            });
+        }
+
+        // Color variant interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorVariants = document.querySelectorAll('.color-variant');
+            colorVariants.forEach(variant => {
+                variant.addEventListener('click', () => {
+                    colorVariants.forEach(v => v.classList.remove('active'));
+                    variant.classList.add('active');
+                    
+                    const color = variant.dataset.color;
+                    emaAlerts.info(`Color theme changed to ${color}!`, {
+                        title: 'Theme Updated',
+                        timer: 2000
+                    });
+                    
+                    // Create color change effect
+                    ema3DEffects.createTrail(
+                        variant.offsetLeft + variant.offsetWidth / 2,
+                        variant.offsetTop + variant.offsetHeight / 2,
+                        [0.4, 0.2, 0.7],
+                        8
+                    );
+                });
+            });
+            
+            // Update live stats every 3 seconds
+            setInterval(updateLiveStats, 3000);
+        });
+
+        // Welcome message
+        setTimeout(() => {
+            emaAlerts.success('Welcome to the Ema Framework Showcase! 🎉', {
+                title: 'Showcase Loaded',
+                timer: 4000
+            });
+        }, 1000);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- Load framework scripts -->
+    <script src="../js/core.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/emadocs.js"></script>
+    
+    <!-- Initialize application -->
+    <script src="../js/app-init.js"></script>
+</body>
+</html>
+

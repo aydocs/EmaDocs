@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Ema Framework</title>
+    <meta name="description" content="Real-world examples and projects built with Ema Framework - from simple demos to complex applications">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/emadocs.css">
+    <link rel="stylesheet" href="../css/ema-colors.css">
+    
+    <style>
+        /* Revolutionary Examples Page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6f42c1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #6f42c1;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
+            border-radius: 1px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #6f42c1, #8e5fd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Revolutionary Examples Grid */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 24px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .example-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        .example-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(111, 66, 193, 0.4);
+            box-shadow: 0 25px 50px rgba(111, 66, 193, 0.2);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .example-preview {
+            height: 240px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .example-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .preview-content {
+            z-index: 2;
+            text-align: center;
+            position: relative;
+        }
+
+        .preview-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .preview-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-subtitle {
+            font-size: 1rem;
+            color: #a0a0a0;
+        }
+
+        .example-content {
+            padding: 2rem;
+        }
+
+        .example-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .example-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .example-description {
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .example-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            background: rgba(111, 66, 193, 0.1);
+            color: #6f42c1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(111, 66, 193, 0.2);
+        }
+
+        .example-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(111, 66, 193, 0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6f42c1;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #a0a0a0;
+        }
+
+        .example-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: #6f42c1;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(111, 66, 193, 0.3);
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(111, 66, 193, 0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demo-subtitle {
+            font-size: 1.125rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .demo-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .demo-item:hover::before {
+            left: 100%;
+        }
+
+        .demo-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(111, 66, 193, 0.4);
+            box-shadow: 0 16px 32px rgba(111, 66, 193, 0.2);
+        }
+
+        .demo-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .demo-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-description {
+            font-size: 0.875rem;
+            color: #a0a0a0;
+        }
+
+        /* Code Preview */
+        .code-preview {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot:nth-child(1) { background: #ff6b6b; }
+        .code-dot:nth-child(2) { background: #ffc107; }
+        .code-dot:nth-child(3) { background: #28a745; }
+
+        .code-filename {
+            color: #a0a0a0;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .code-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .code-line {
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: codeReveal 0.5s ease forwards;
+        }
+
+        .code-line:nth-child(1) { animation-delay: 0.1s; }
+        .code-line:nth-child(2) { animation-delay: 0.2s; }
+        .code-line:nth-child(3) { animation-delay: 0.3s; }
+        .code-line:nth-child(4) { animation-delay: 0.4s; }
+        .code-line:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes codeReveal {
+            to { opacity: 1; }
+        }
+
+        .code-keyword { color: #ff6b6b; }
+        .code-function { color: #4ecdc4; }
+        .code-string { color: #ffe66d; }
+        .code-comment { color: #a0a0a0; }
+        .code-number { color: #8e5fd1; }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item-large {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-number-large {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label-large {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .example-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Ema</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
+                    <li><a href="components.html" class="nav-link">Components</a></li>
+                    <li><a href="examples.html" class="nav-link active">Examples</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="playground.html" class="nav-link">Playground</a></li>
+                    <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+                    <li><a href="revolution.html" class="nav-link">Revolution</a></li>
+                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+            
+            <a href="getting-started.html" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Real-World Examples</h1>
+            <p class="hero-subtitle">
+                Discover amazing projects built with Ema Framework. From simple demos to complex applications, 
+                see how developers are creating the future of web development.
+            </p>
+        </div>
+    </section>
+
+    <!-- Examples Grid -->
+    <div class="container">
+        <div class="examples-grid">
+            <!-- E-commerce Platform -->
+            <div class="example-card" data-example="ecommerce">
+                <div class="example-preview">
+                    <div class="preview-content">
+                        <span class="preview-icon">🛒</span>
+                        <h3 class="preview-title">E-commerce Platform</h3>
+                        <p class="preview-subtitle">Full-featured online store</p>
+                    </div>
+                </div>
+                
+                <div class="example-content">
+                    <div class="example-header">
+                        <div class="example-icon">🛒</div>
+                        <h3 class="example-title">E-commerce Platform</h3>
+                    </div>
+                    
+                    <p class="example-description">
+                        A complete e-commerce solution with shopping cart, payment integration, 
+                        product management, and admin dashboard. Built with Ema's advanced components.
+                    </p>
+                    
+                    <div class="example-features">
+                        <span class="feature-tag">Shopping Cart</span>
+                        <span class="feature-tag">Payment Gateway</span>
+                        <span class="feature-tag">Admin Panel</span>
+                        <span class="feature-tag">3D Product View</span>
+                        <span class="feature-tag">Real-time Updates</span>
+                    </div>
+                    
+                    <div class="example-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15</span>
+                            <span class="stat-label">Pages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3D</span>
+                            <span class="stat-label">Effects</span>
+                        </div>
+                    </div>
+                    
+                    <div class="example-actions">
+                        <a href="#" class="action-btn btn-primary">Live Demo</a>
+                        <a href="#" class="action-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media App -->
+            <div class="example-card" data-example="social">
+                <div class="example-preview">
+                    <div class="preview-content">
+                        <span class="preview-icon">📱</span>
+                        <h3 class="preview-title">Social Media App</h3>
+                        <p class="preview-subtitle">Modern social platform</p>
+                    </div>
+                </div>
+                
+                <div class="example-content">
+                    <div class="example-header">
+                        <div class="example-icon">📱</div>
+                        <h3 class="example-title">Social Media App</h3>
+                    </div>
+                    
+                    <p class="example-description">
+                        A modern social media application with real-time messaging, 
+                        photo sharing, stories, and advanced user interactions.
+                    </p>
+                    
+                    <div class="example-features">
+                        <span class="feature-tag">Real-time Chat</span>
+                        <span class="feature-tag">Photo Sharing</span>
+                        <span class="feature-tag">Stories</span>
+                        <span class="feature-tag">Notifications</span>
+                        <span class="feature-tag">Live Updates</span>
+                    </div>
+                    
+                    <div class="example-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">75+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">25</span>
+                            <span class="stat-label">Pages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">WebSocket</span>
+                            <span class="stat-label">Real-time</span>
+                        </div>
+                    </div>
+                    
+                    <div class="example-actions">
+                        <a href="#" class="action-btn btn-primary">Live Demo</a>
+                        <a href="#" class="action-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Dashboard -->
+            <div class="example-card" data-example="dashboard">
+                <div class="example-preview">
+                    <div class="preview-content">
+                        <span class="preview-icon">📊</span>
+                        <h3 class="preview-title">Analytics Dashboard</h3>
+                        <p class="preview-subtitle">Data visualization platform</p>
+                    </div>
+                </div>
+                
+                <div class="example-content">
+                    <div class="example-header">
+                        <div class="example-icon">📊</div>
+                        <h3 class="example-title">Analytics Dashboard</h3>
+                    </div>
+                    
+                    <p class="example-description">
+                        A comprehensive analytics dashboard with interactive charts, 
+                        real-time data visualization, and advanced filtering capabilities.
+                    </p>
+                    
+                    <div class="example-features">
+                        <span class="feature-tag">Interactive Charts</span>
+                        <span class="feature-tag">Real-time Data</span>
+                        <span class="feature-tag">Advanced Filters</span>
+                        <span class="feature-tag">Export Options</span>
+                        <span class="feature-tag">Responsive Design</span>
+                    </div>
+                    
+                    <div class="example-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">40+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Charts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Canvas</span>
+                            <span class="stat-label">Rendering</span>
+                        </div>
+                    </div>
+                    
+                    <div class="example-actions">
+                        <a href="#" class="action-btn btn-primary">Live Demo</a>
+                        <a href="#" class="action-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Website -->
+            <div class="example-card" data-example="portfolio">
+                <div class="example-preview">
+                    <div class="preview-content">
+                        <span class="preview-icon">🎨</span>
+                        <h3 class="preview-title">Portfolio Website</h3>
+                        <p class="preview-subtitle">Creative showcase platform</p>
+                    </div>
+                </div>
+                
+                <div class="example-content">
+                    <div class="example-header">
+                        <div class="example-icon">🎨</div>
+                        <h3 class="example-title">Portfolio Website</h3>
+                    </div>
+                    
+                    <p class="example-description">
+                        A stunning portfolio website with 3D animations, 
+                        interactive galleries, and smooth transitions.
+                    </p>
+                    
+                    <div class="example-features">
+                        <span class="feature-tag">3D Animations</span>
+                        <span class="feature-tag">Interactive Gallery</span>
+                        <span class="feature-tag">Smooth Transitions</span>
+                        <span class="feature-tag">Responsive Design</span>
+                        <span class="feature-tag">Performance Optimized</span>
+                    </div>
+                    
+                    <div class="example-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Sections</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">WebGL</span>
+                            <span class="stat-label">3D Effects</span>
+                        </div>
+                    </div>
+                    
+                    <div class="example-actions">
+                        <a href="#" class="action-btn btn-primary">Live Demo</a>
+                        <a href="#" class="action-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Platform -->
+            <div class="example-card" data-example="learning">
+                <div class="example-preview">
+                    <div class="preview-content">
+                        <span class="preview-icon">🎓</span>
+                        <h3 class="preview-title">Learning Platform</h3>
+                        <p class="preview-subtitle">Interactive education system</p>
+                    </div>
+                </div>
+                
+                <div class="example-content">
+                    <div class="example-header">
+                        <div class="example-icon">🎓</div>
+                        <h3 class="example-title">Learning Platform</h3>
+                    </div>
+                    
+                    <p class="example-description">
+                        An interactive learning platform with video streaming, 
+                        quizzes, progress tracking, and collaborative features.
+                    </p>
+                    
+                    <div class="example-features">
+                        <span class="feature-tag">Video Streaming</span>
+                        <span class="feature-tag">Interactive Quizzes</span>
+                        <span class="feature-tag">Progress Tracking</span>
+                        <span class="feature-tag">Collaboration</span>
+                        <span class="feature-tag">Certificates</span>
+                    </div>
+                    
+                    <div class="example-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">60+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">20</span>
+                            <span class="stat-label">Pages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Video</span>
+                            <span class="stat-label">Player</span>
+                        </div>
+                    </div>
+                    
+                    <div class="example-actions">
+                        <a href="#" class="action-btn btn-primary">Live Demo</a>
+                        <a href="#" class="action-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crypto Trading App -->
+            <div class="example-card" data-example="crypto">
+                <div class="example-preview">
+                    <div class="preview-content">
+                        <span class="preview-icon">₿</span>
+                        <h3 class="preview-title">Crypto Trading App</h3>
+                        <p class="preview-subtitle">Real-time trading platform</p>
+                    </div>
+                </div>
+                
+                <div class="example-content">
+                    <div class="example-header">
+                        <div class="example-icon">₿</div>
+                        <h3 class="example-title">Crypto Trading App</h3>
+                    </div>
+                    
+                    <p class="example-description">
+                        A professional cryptocurrency trading platform with real-time price updates, 
+                        advanced charts, and secure transaction handling.
+                    </p>
+                    
+                    <div class="example-features">
+                        <span class="feature-tag">Real-time Prices</span>
+                        <span class="feature-tag">Advanced Charts</span>
+                        <span class="feature-tag">Trading Pairs</span>
+                        <span class="feature-tag">Portfolio Tracking</span>
+                        <span class="feature-tag">Secure Transactions</span>
+                    </div>
+                    
+                    <div class="example-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">45+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15</span>
+                            <span class="stat-label">Charts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">WebSocket</span>
+                            <span class="stat-label">API</span>
+                        </div>
+                    </div>
+                    
+                    <div class="example-actions">
+                        <a href="#" class="action-btn btn-primary">Live Demo</a>
+                        <a href="#" class="action-btn btn-secondary">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo Section -->
+        <div class="demo-section">
+            <h2 class="demo-title">Try It Yourself</h2>
+            <p class="demo-subtitle">
+                Explore interactive examples and see Ema Framework in action
+            </p>
+            
+            <div class="demo-grid">
+                <div class="demo-item" data-demo="button-demo">
+                    <span class="demo-icon">🔘</span>
+                    <h3 class="demo-name">Button Components</h3>
+                    <p class="demo-description">Explore all button variants and interactions</p>
+                </div>
+                
+                <div class="demo-item" data-demo="form-demo">
+                    <span class="demo-icon">📝</span>
+                    <h3 class="demo-name">Form Elements</h3>
+                    <p class="demo-description">Interactive form components with validation</p>
+                </div>
+                
+                <div class="demo-item" data-demo="chart-demo">
+                    <span class="demo-icon">📊</span>
+                    <h3 class="demo-name">Data Visualization</h3>
+                    <p class="demo-description">Interactive charts and graphs</p>
+                </div>
+                
+                <div class="demo-item" data-demo="3d-demo">
+                    <span class="demo-icon">🎮</span>
+                    <h3 class="demo-name">3D Effects</h3>
+                    <p class="demo-description">WebGL-powered 3D animations</p>
+                </div>
+                
+                <div class="demo-item" data-demo="alert-demo">
+                    <span class="demo-icon">🔔</span>
+                    <h3 class="demo-name">Smart Alerts</h3>
+                    <p class="demo-description">Advanced notification system</p>
+                </div>
+                
+                <div class="demo-item" data-demo="layout-demo">
+                    <span class="demo-icon">📐</span>
+                    <h3 class="demo-name">Layout System</h3>
+                    <p class="demo-description">Responsive grid and flexbox layouts</p>
+                </div>
+            </div>
+
+            <!-- Code Preview -->
+            <div class="code-preview">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <div class="code-dot"></div>
+                        <div class="code-dot"></div>
+                        <div class="code-dot"></div>
+                    </div>
+                    <span class="code-filename">ema-example.js</span>
+                </div>
+                
+                <div class="code-content">
+                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>();</div>
+                    <div class="code-line"><span class="code-comment">// Initialize with 3D effects</span></div>
+                    <div class="code-line"><span class="code-function">app</span>.<span class="code-function">init</span>({</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'theme'</span>: <span class="code-string">'purple'</span>,</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'3d'</span>: <span class="code-keyword">true</span></div>
+                    <div class="code-line">});</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item-large">
+                    <div class="stat-number-large">100+</div>
+                    <div class="stat-label-large">Example Projects</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-number-large">50K+</div>
+                    <div class="stat-label-large">Lines of Code</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-number-large">15+</div>
+                    <div class="stat-label-large">Categories</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-number-large">100%</div>
+                    <div class="stat-label-large">Open Source</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Example card interactions
+        document.querySelectorAll('.example-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const example = card.dataset.example;
+                
+                // Create explosion effect
+                if (typeof ema3DEffects !== 'undefined') {
+                    const rect = card.getBoundingClientRect();
+                    ema3DEffects.createExplosion(
+                        rect.left + rect.width / 2,
+                        rect.top + rect.height / 2,
+                        [0.4, 0.2, 0.7],
+                        12
+                    );
+                }
+
+                // Show alert
+                if (typeof emaAlerts !== 'undefined') {
+                    emaAlerts.info(`Loading ${example} example...`, {
+                        title: 'Example Preview',
+                        timer: 3000
+                    });
+                }
+            });
+        });
+
+        // Demo interactions
+        document.querySelectorAll('.demo-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const demo = item.dataset.demo;
+                
+                // Create trail effect
+                if (typeof ema3DEffects !== 'undefined') {
+                    const rect = item.getBoundingClientRect();
+                    ema3DEffects.createTrail(
+                        rect.left + rect.width / 2,
+                        rect.top + rect.height / 2,
+                        [0.4, 0.2, 0.7],
+                        20
+                    );
+                }
+
+                // Show success alert
+                if (typeof emaAlerts !== 'undefined') {
+                    emaAlerts.success(`${demo} demo loaded!`, {
+                        title: 'Interactive Demo',
+                        timer: 4000
+                    });
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate stats
+            const stats = document.querySelectorAll('.stat-number-large');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const isPlus = finalValue.includes('+');
+                        const isK = finalValue.includes('K');
+                        const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                        
+                        if (numericValue > 0) {
+                            let current = 0;
+                            const increment = numericValue / 50;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= numericValue) {
+                                    current = numericValue;
+                                    clearInterval(timer);
+                                }
+                                
+                                let displayValue = Math.floor(current);
+                                if (isK) displayValue += 'K';
+                                if (isPlus) displayValue += '+';
+                                if (isPercentage) displayValue += '%';
+                                
+                                target.textContent = displayValue;
+                            }, 40);
+                        }
+                    }
+                });
+            });
+
+            stats.forEach(stat => observer.observe(stat));
+
+            // Initialize 3D effects
+            if (typeof ema3DEffects !== 'undefined') {
+                ema3DEffects.init();
+            }
+
+            // Welcome message
+            setTimeout(() => {
+                if (typeof emaAlerts !== 'undefined') {
+                    emaAlerts.success('Welcome to the Examples Gallery! 🚀', {
+                        title: 'Real-World Projects',
+                        timer: 5000
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+
+    <!-- Load framework scripts -->
+    <script src="../js/core.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/store.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/emadocs.js"></script>
+    
+    <!-- Initialize application -->
+    <script src="../js/app-init.js"></script>
+</body>
+</html>
