@@ -1,0 +1,1061 @@
+/* ========================================
+   EMA FRAMEWORK - REVOLUTIONARY CSS
+   The most advanced CSS framework ever created
+   ======================================== */
+
+/* ========================================
+   CSS VARIABLES & ROOT SETTINGS
+   ======================================== */
+:root {
+    /* Color System - 8 Revolutionary Colors */
+    --ema-gray: #6c757d;
+    --ema-purple: #6f42c1;
+    --ema-green: #28a745;
+    --ema-yellow: #ffc107;
+    --ema-blue: #007bff;
+    --ema-red: #dc3545;
+    --ema-white: #ffffff;
+    --ema-orange: #fd7e14;
+    
+    /* Dark Theme Colors */
+    --ema-dark-bg: #0a0a0a;
+    --ema-dark-secondary: #1a1a2e;
+    --ema-dark-tertiary: #16213e;
+    --ema-dark-card: rgba(255, 255, 255, 0.05);
+    --ema-dark-border: rgba(111, 66, 193, 0.2);
+    --ema-dark-text: #ffffff;
+    --ema-dark-text-secondary: #a0a0a0;
+    
+    /* Gradients */
+    --ema-gradient-primary: linear-gradient(135deg, #6f42c1, #8e5fd1);
+    --ema-gradient-secondary: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    --ema-gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    --ema-gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    
+    /* Shadows */
+    --ema-shadow-sm: 0 2px 8px rgba(111, 66, 193, 0.1);
+    --ema-shadow-md: 0 8px 24px rgba(111, 66, 193, 0.15);
+    --ema-shadow-lg: 0 16px 48px rgba(111, 66, 193, 0.2);
+    --ema-shadow-xl: 0 24px 64px rgba(111, 66, 193, 0.25);
+    
+    /* Spacing */
+    --ema-space-xs: 0.25rem;
+    --ema-space-sm: 0.5rem;
+    --ema-space-md: 1rem;
+    --ema-space-lg: 1.5rem;
+    --ema-space-xl: 2rem;
+    --ema-space-2xl: 3rem;
+    --ema-space-3xl: 4rem;
+    
+    /* Border Radius */
+    --ema-radius-sm: 8px;
+    --ema-radius-md: 12px;
+    --ema-radius-lg: 16px;
+    --ema-radius-xl: 20px;
+    --ema-radius-2xl: 24px;
+    
+    /* Typography */
+    --ema-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --ema-font-mono: 'JetBrains Mono', monospace;
+    
+    /* Transitions */
+    --ema-transition-fast: 0.2s ease;
+    --ema-transition-normal: 0.3s ease;
+    --ema-transition-slow: 0.5s ease;
+}
+
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--ema-font-family);
+    background: var(--ema-gradient-dark);
+    color: var(--ema-dark-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   FANTASY GRID SYSTEM
+   Revolutionary Asymmetric Grid Layouts
+   ======================================== */
+
+/* Fantasy Grid Container */
+.fantasy-grid {
+    display: grid;
+    gap: var(--ema-space-lg);
+    padding: var(--ema-space-xl);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Fantasy Grid Layouts */
+.fantasy-grid.layout-1 {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "hero hero sidebar"
+        "main main sidebar";
+}
+
+.fantasy-grid.layout-2 {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "sidebar hero hero"
+        "sidebar main main"
+        "footer footer footer";
+}
+
+.fantasy-grid.layout-3 {
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "card1 card2 hero"
+        "card3 card4 hero";
+}
+
+.fantasy-grid.layout-4 {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "main card1 card2 card3"
+        "main card4 card5 card6";
+}
+
+.fantasy-grid.layout-5 {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "hero hero sidebar"
+        "card1 card2 sidebar"
+        "card3 card4 sidebar";
+}
+
+/* Fantasy Grid Areas */
+.fantasy-grid .area-hero { grid-area: hero; }
+.fantasy-grid .area-main { grid-area: main; }
+.fantasy-grid .area-sidebar { grid-area: sidebar; }
+.fantasy-grid .area-footer { grid-area: footer; }
+.fantasy-grid .area-card1 { grid-area: card1; }
+.fantasy-grid .area-card2 { grid-area: card2; }
+.fantasy-grid .area-card3 { grid-area: card3; }
+.fantasy-grid .area-card4 { grid-area: card4; }
+.fantasy-grid .area-card5 { grid-area: card5; }
+.fantasy-grid .area-card6 { grid-area: card6; }
+
+/* ========================================
+   REVOLUTIONARY CARDS
+   ======================================== */
+.ema-card {
+    background: var(--ema-dark-card);
+    border: 1px solid var(--ema-dark-border);
+    border-radius: var(--ema-radius-xl);
+    padding: var(--ema-space-xl);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--ema-transition-normal);
+    backdrop-filter: blur(20px);
+}
+
+.ema-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--ema-gradient-primary);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+}
+
+.ema-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(111, 66, 193, 0.4);
+    box-shadow: var(--ema-shadow-xl);
+}
+
+.ema-card.hero-card {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--ema-gradient-card);
+}
+
+.ema-card.sidebar-card {
+    min-height: 300px;
+    position: sticky;
+    top: 100px;
+}
+
+.ema-card.feature-card {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
+.ema-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--ema-dark-border);
+    z-index: 1000;
+    padding: var(--ema-space-md) 0;
+    transition: all var(--ema-transition-normal);
+}
+
+.ema-header.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: var(--ema-shadow-md);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--ema-space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ema-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--ema-space-sm);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--ema-purple);
+    text-decoration: none;
+    transition: all var(--ema-transition-normal);
+    position: relative;
+}
+
+.ema-logo:hover {
+    transform: scale(1.05);
+}
+
+.ema-logo::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: var(--ema-gradient-primary);
+    border-radius: var(--ema-radius-md);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--ema-transition-normal);
+}
+
+.ema-logo:hover::before {
+    opacity: 0.3;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--ema-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 900;
+    font-size: 1.2rem;
+    background: var(--ema-gradient-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.ema-logo:hover .logo-icon::before {
+    animation: logoShine 0.6s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--ema-space-xl);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--ema-dark-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--ema-transition-normal);
+    position: relative;
+    padding: var(--ema-space-sm) var(--ema-space-md);
+    border-radius: var(--ema-radius-sm);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--ema-purple);
+    background: rgba(111, 66, 193, 0.1);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ema-gradient-primary);
+    border-radius: 1px;
+}
+
+.cta-button {
+    background: var(--ema-gradient-primary);
+    color: white;
+    padding: var(--ema-space-sm) var(--ema-space-lg);
+    border-radius: var(--ema-radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--ema-transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ema-shadow-lg);
+}
+
+/* ========================================
+   HERO SECTIONS
+   ======================================== */
+.ema-hero {
+    padding: 8rem 0 var(--ema-space-3xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    margin-bottom: var(--ema-space-lg);
+    background: linear-gradient(135deg, #ffffff, #6f42c1, #8e5fd1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--ema-dark-text-secondary);
+    margin-bottom: var(--ema-space-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+/* ========================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ======================================== */
+.ema-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ema-space-sm);
+    padding: var(--ema-space-sm) var(--ema-space-lg);
+    border-radius: var(--ema-radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--ema-transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.ema-btn-primary {
+    background: var(--ema-gradient-primary);
+    color: white;
+}
+
+.ema-btn-secondary {
+    background: var(--ema-dark-card);
+    border: 1px solid var(--ema-dark-border);
+    color: var(--ema-purple);
+}
+
+.ema-btn-tertiary {
+    background: transparent;
+    border: 1px solid var(--ema-dark-border);
+    color: var(--ema-dark-text);
+}
+
+.ema-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ema-shadow-lg);
+}
+
+.ema-btn-primary:hover {
+    box-shadow: 0 8px 24px rgba(111, 66, 193, 0.4);
+}
+
+.ema-btn-secondary:hover {
+    background: rgba(111, 66, 193, 0.1);
+    border-color: var(--ema-purple);
+}
+
+/* ========================================
+   ANIMATIONS & EFFECTS
+   ======================================== */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes logoShine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.slide-in-left {
+    opacity: 0;
+    animation: slideInLeft 0.8s ease forwards;
+}
+
+.slide-in-right {
+    opacity: 0;
+    animation: slideInRight 0.8s ease forwards;
+}
+
+.scale-in {
+    opacity: 0;
+    animation: scaleIn 0.6s ease forwards;
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Stagger Delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
+.stagger-9 { animation-delay: 0.9s; }
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.ema-footer {
+    background: var(--ema-dark-secondary);
+    border-top: 1px solid var(--ema-dark-border);
+    padding: var(--ema-space-3xl) 0 var(--ema-space-xl);
+    margin-top: var(--ema-space-3xl);
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--ema-space-xl);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--ema-space-2xl);
+}
+
+.footer-section h4 {
+    color: var(--ema-dark-text);
+    margin-bottom: var(--ema-space-md);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.footer-section p {
+    color: var(--ema-dark-text-secondary);
+    margin-bottom: var(--ema-space-md);
+    line-height: 1.6;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: var(--ema-space-sm);
+}
+
+.footer-links a {
+    color: var(--ema-dark-text-secondary);
+    text-decoration: none;
+    transition: color var(--ema-transition-normal);
+}
+
+.footer-links a:hover {
+    color: var(--ema-purple);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--ema-dark-border);
+    margin-top: var(--ema-space-2xl);
+    padding-top: var(--ema-space-xl);
+    text-align: center;
+    color: var(--ema-dark-text-secondary);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 1200px) {
+    .fantasy-grid.layout-1,
+    .fantasy-grid.layout-2,
+    .fantasy-grid.layout-3,
+    .fantasy-grid.layout-4,
+    .fantasy-grid.layout-5 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "hero hero"
+            "main sidebar"
+            "card1 card2"
+            "card3 card4"
+            "card5 card6"
+            "footer footer";
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .nav-container {
+        padding: 0 var(--ema-space-md);
+    }
+    
+    .ema-hero {
+        padding: 6rem 0 var(--ema-space-2xl);
+    }
+    
+    .fantasy-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-areas: 
+            "hero"
+            "main"
+            "sidebar"
+            "card1"
+            "card2"
+            "card3"
+            "card4"
+            "card5"
+            "card6"
+            "footer" !important;
+        padding: var(--ema-space-md);
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--ema-space-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 var(--ema-space-sm);
+    }
+    
+    .ema-hero {
+        padding: 5rem 0 var(--ema-space-xl);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--ema-space-xl);
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--ema-space-xs); }
+.mb-2 { margin-bottom: var(--ema-space-sm); }
+.mb-3 { margin-bottom: var(--ema-space-md); }
+.mb-4 { margin-bottom: var(--ema-space-lg); }
+.mb-5 { margin-bottom: var(--ema-space-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--ema-space-xs); }
+.mt-2 { margin-top: var(--ema-space-sm); }
+.mt-3 { margin-top: var(--ema-space-md); }
+.mt-4 { margin-top: var(--ema-space-lg); }
+.mt-5 { margin-top: var(--ema-space-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--ema-space-xs); }
+.p-2 { padding: var(--ema-space-sm); }
+.p-3 { padding: var(--ema-space-md); }
+.p-4 { padding: var(--ema-space-lg); }
+.p-5 { padding: var(--ema-space-xl); }
+
+/* Color Utilities */
+.text-purple { color: var(--ema-purple); }
+.text-green { color: var(--ema-green); }
+.text-blue { color: var(--ema-blue); }
+.text-red { color: var(--ema-red); }
+.text-yellow { color: var(--ema-yellow); }
+.text-orange { color: var(--ema-orange); }
+.text-gray { color: var(--ema-gray); }
+.text-white { color: var(--ema-white); }
+
+.bg-purple { background-color: var(--ema-purple); }
+.bg-green { background-color: var(--ema-green); }
+.bg-blue { background-color: var(--ema-blue); }
+.bg-red { background-color: var(--ema-red); }
+.bg-yellow { background-color: var(--ema-yellow); }
+.bg-orange { background-color: var(--ema-orange); }
+.bg-gray { background-color: var(--ema-gray); }
+.bg-white { background-color: var(--ema-white); }
+
+/* ========================================
+   HI BYE NOTIFICATION SYSTEM
+   ======================================== */
+.hi-bye-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--ema-gradient-primary);
+    color: white;
+    padding: var(--ema-space-md) var(--ema-space-lg);
+    border-radius: var(--ema-radius-lg);
+    box-shadow: var(--ema-shadow-lg);
+    z-index: 10000;
+    transform: translateX(400px);
+    transition: transform var(--ema-transition-normal);
+    max-width: 300px;
+}
+
+.hi-bye-notification.show {
+    transform: translateX(0);
+}
+
+.hi-bye-notification .notification-content {
+    display: flex;
+    align-items: center;
+    gap: var(--ema-space-sm);
+}
+
+.hi-bye-notification .notification-icon {
+    font-size: 1.5rem;
+    animation: wave 1s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+
+/* ========================================
+   LIVE UI PREVIEW SYSTEM
+   ======================================== */
+.live-preview-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--ema-dark-bg);
+    border: 1px solid var(--ema-dark-border);
+    border-radius: var(--ema-radius-2xl);
+    padding: var(--ema-space-2xl);
+    z-index: 10000;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: none;
+}
+
+.live-preview-container.show {
+    display: block;
+    animation: scaleIn 0.3s ease;
+}
+
+.live-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--ema-space-lg);
+    padding-bottom: var(--ema-space-md);
+    border-bottom: 1px solid var(--ema-dark-border);
+}
+
+.live-preview-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ema-dark-text);
+}
+
+.live-preview-close {
+    background: none;
+    border: none;
+    color: var(--ema-dark-text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color var(--ema-transition-normal);
+}
+
+.live-preview-close:hover {
+    color: var(--ema-red);
+}
+
+.live-preview-content {
+    margin-bottom: var(--ema-space-lg);
+}
+
+.live-preview-actions {
+    display: flex;
+    gap: var(--ema-space-md);
+    justify-content: flex-end;
+}
+
+.copy-code-btn {
+    background: var(--ema-gradient-primary);
+    color: white;
+    border: none;
+    padding: var(--ema-space-sm) var(--ema-space-lg);
+    border-radius: var(--ema-radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--ema-transition-normal);
+}
+
+.copy-code-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ema-shadow-md);
+}
+
+.copy-code-btn.copied {
+    background: var(--ema-green);
+}
+
+/* ========================================
+   COMPONENT SHOWCASE GRID
+   ======================================== */
+.component-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--ema-space-lg);
+    padding: var(--ema-space-2xl) 0;
+}
+
+.component-item {
+    background: var(--ema-dark-card);
+    border: 1px solid var(--ema-dark-border);
+    border-radius: var(--ema-radius-xl);
+    padding: var(--ema-space-xl);
+    transition: all var(--ema-transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.component-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.component-item:hover::before {
+    left: 100%;
+}
+
+.component-item:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(111, 66, 193, 0.4);
+    box-shadow: var(--ema-shadow-xl);
+}
+
+.component-preview {
+    height: 200px;
+    background: var(--ema-gradient-card);
+    border-radius: var(--ema-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--ema-space-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.component-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.component-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ema-dark-text);
+    margin-bottom: var(--ema-space-sm);
+}
+
+.component-description {
+    color: var(--ema-dark-text-secondary);
+    margin-bottom: var(--ema-space-md);
+    line-height: 1.6;
+}
+
+.component-actions {
+    display: flex;
+    gap: var(--ema-space-sm);
+}
+
+.component-actions .ema-btn {
+    flex: 1;
+    justify-content: center;
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(111, 66, 193, 0.1);
+    border-left: 4px solid var(--ema-purple);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: var(--ema-space-lg) auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   SCROLL ANIMATIONS
+   ======================================== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   DARK MODE ENHANCEMENTS
+   ======================================== */
+.dark-mode-enhanced {
+    background: var(--ema-gradient-dark);
+    min-height: 100vh;
+}
+
+.dark-mode-enhanced .ema-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(111, 66, 193, 0.1);
+}
+
+.dark-mode-enhanced .ema-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(111, 66, 193, 0.3);
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+.will-change-transform {
+    will-change: transform;
+}
+
+.will-change-opacity {
+    will-change: opacity;
+}
+
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.focus-visible:focus {
+    outline: 2px solid var(--ema-purple);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+    .ema-header,
+    .ema-footer,
+    .hi-bye-notification,
+    .live-preview-container {
+        display: none !important;
+    }
+    
+    .ema-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}

@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Ema Framework</title>
+    <meta name="description" content="Latest news, tutorials, and insights about Ema Framework development">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/ema-framework.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    
+    <style>
+        /* Blog Styles */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .blog-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--ema-gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .blog-header p {
+            font-size: 1.2rem;
+            color: var(--ema-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            color: var(--ema-text-muted);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--ema-gradient-primary);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ema-purple);
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.2);
+        }
+
+        .blog-card-image {
+            height: 200px;
+            background: var(--ema-gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(111, 66, 193, 0.8), rgba(40, 167, 69, 0.8));
+            opacity: 0.9;
+        }
+
+        .blog-card-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .blog-card-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .blog-card-content {
+            padding: 2rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ema-text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-card-excerpt {
+            color: var(--ema-text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--ema-text-muted);
+        }
+
+        .blog-card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-card-author img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .blog-card-read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .featured-post {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: 3rem;
+        }
+
+        .featured-post .blog-card-image {
+            height: 300px;
+        }
+
+        .featured-post .blog-card-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-post .blog-card-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-post .blog-card-excerpt {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-section {
+            background: rgba(111, 66, 193, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--ema-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: var(--ema-text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            color: var(--ema-text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--ema-purple);
+            box-shadow: 0 0 0 4px rgba(111, 66, 193, 0.1);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--ema-text-muted);
+        }
+
+        .newsletter-btn {
+            background: var(--ema-gradient-primary);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(111, 66, 193, 0.3);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .pagination-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            color: var(--ema-text-muted);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            background: var(--ema-gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .blog-container {
+                padding: 1rem;
+            }
+            
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-post {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post .blog-card-content {
+                padding: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="ema-header">
+        <div class="nav-container">
+            <a href="../index.html" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
+            </a>
+            
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <nav>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <div class="item-title">Quick Start</div>
+                                            <div class="item-desc">Get up and running in minutes</div>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <div class="item-title">API Reference</div>
+                                            <div class="item-desc">Complete API documentation</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <div class="item-title">UI Components</div>
+                                            <div class="item-desc">250+ components</div>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <div class="item-title">Showcase</div>
+                                            <div class="item-desc">Live examples</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <div class="item-title">Playground</div>
+                                            <div class="item-desc">Interactive builder</div>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <div class="item-title">Dashboard</div>
+                                            <div class="item-desc">Analytics & stats</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <div class="item-title">Examples</div>
+                                            <div class="item-desc">Real-world projects</div>
+                                        </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <div class="item-title">Revolution</div>
+                                            <div class="item-desc">Next-gen features</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li>
+                <a href="#" class="mobile-framework-trigger">
+                    <i class="fas fa-th-large"></i>
+                    <span>Framework</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-search-trigger">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="docs.html">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="getting-started.html">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Started</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
+            <h3>Getting Started</h3>
+            <a href="getting-started.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Quick Start</span>
+            </a>
+            <a href="api.html" class="mobile-dropdown-item">
+                <i class="fas fa-cogs"></i>
+                <span>API Reference</span>
+            </a>
+            
+            <h3>Components</h3>
+            <a href="components.html" class="mobile-dropdown-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>UI Components</span>
+            </a>
+            <a href="showcase.html" class="mobile-dropdown-item">
+                <i class="fas fa-star"></i>
+                <span>Showcase</span>
+            </a>
+            
+            <h3>Tools</h3>
+            <a href="playground.html" class="mobile-dropdown-item">
+                <i class="fas fa-play"></i>
+                <span>Playground</span>
+            </a>
+            <a href="dashboard.html" class="mobile-dropdown-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <h3>Resources</h3>
+            <a href="examples.html" class="mobile-dropdown-item">
+                <i class="fas fa-code"></i>
+                <span>Examples</span>
+            </a>
+            <a href="revolution.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Revolution</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1>Ema Framework Blog</h1>
+            <p>Stay updated with the latest news, tutorials, and insights about web development with Ema Framework</p>
+        </header>
+
+        <!-- Blog Filters -->
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="all">All Posts</button>
+            <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+            <button class="filter-btn" data-filter="news">News</button>
+            <button class="filter-btn" data-filter="tips">Tips & Tricks</button>
+            <button class="filter-btn" data-filter="case-study">Case Studies</button>
+        </div>
+
+        <!-- Featured Post -->
+        <article class="blog-card featured-post" data-category="news">
+            <div class="blog-card-image">
+                <div class="blog-card-category">News</div>
+                <div class="blog-card-date">Dec 15, 2024</div>
+            </div>
+            <div class="blog-card-content">
+                <h2 class="blog-card-title">Ema Framework 2.0: The Future of Web Development is Here</h2>
+                <p class="blog-card-excerpt">
+                    We're excited to announce the release of Ema Framework 2.0, featuring revolutionary 3D effects, 
+                    enhanced performance, and 50+ new components. This major update brings unprecedented capabilities 
+                    to web development.
+                </p>
+                <div class="blog-card-meta">
+                    <div class="blog-card-author">
+                        <img src="../public/placeholder-user.jpg" alt="Author">
+                        <span>Ema Team</span>
+                    </div>
+                    <div class="blog-card-read-time">
+                        <i class="fas fa-clock"></i>
+                        <span>8 min read</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid">
+            <article class="blog-card" data-category="tutorial">
+                <div class="blog-card-image">
+                    <div class="blog-card-category">Tutorial</div>
+                    <div class="blog-card-date">Dec 12, 2024</div>
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">Building Your First 3D Web Application</h3>
+                    <p class="blog-card-excerpt">
+                        Learn how to create stunning 3D web applications using Ema Framework's WebGL engine. 
+                        From basic shapes to complex particle systems.
+                    </p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <img src="../public/placeholder-user.jpg" alt="Author">
+                            <span>Sarah Johnson</span>
+                        </div>
+                        <div class="blog-card-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>12 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tips">
+                <div class="blog-card-image">
+                    <div class="blog-card-category">Tips & Tricks</div>
+                    <div class="blog-card-date">Dec 10, 2024</div>
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">10 Performance Optimization Tips</h3>
+                    <p class="blog-card-excerpt">
+                        Boost your Ema applications with these proven performance optimization techniques. 
+                        From lazy loading to code splitting.
+                    </p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <img src="../public/placeholder-user.jpg" alt="Author">
+                            <span>Mike Chen</span>
+                        </div>
+                        <div class="blog-card-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="case-study">
+                <div class="blog-card-image">
+                    <div class="blog-card-category">Case Study</div>
+                    <div class="blog-card-date">Dec 8, 2024</div>
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">How TechCorp Built a Million-Dollar Dashboard</h3>
+                    <p class="blog-card-excerpt">
+                        Discover how TechCorp used Ema Framework to build a high-performance analytics dashboard 
+                        that handles millions of data points.
+                    </p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <img src="../public/placeholder-user.jpg" alt="Author">
+                            <span>Alex Rodriguez</span>
+                        </div>
+                        <div class="blog-card-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>10 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tutorial">
+                <div class="blog-card-image">
+                    <div class="blog-card-category">Tutorial</div>
+                    <div class="blog-card-date">Dec 5, 2024</div>
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">Creating Responsive Components</h3>
+                    <p class="blog-card-excerpt">
+                        Master the art of creating responsive components that work perfectly on all devices 
+                        using Ema's mobile-first approach.
+                    </p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <img src="../public/placeholder-user.jpg" alt="Author">
+                            <span>Emma Wilson</span>
+                        </div>
+                        <div class="blog-card-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>7 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="news">
+                <div class="blog-card-image">
+                    <div class="blog-card-category">News</div>
+                    <div class="blog-card-date">Dec 3, 2024</div>
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">Ema Framework Reaches 100K Downloads</h3>
+                    <p class="blog-card-excerpt">
+                        We're thrilled to announce that Ema Framework has reached 100,000 downloads! 
+                        Thank you to our amazing community for the incredible support.
+                    </p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <img src="../public/placeholder-user.jpg" alt="Author">
+                            <span>Ema Team</span>
+                        </div>
+                        <div class="blog-card-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>3 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tips">
+                <div class="blog-card-image">
+                    <div class="blog-card-category">Tips & Tricks</div>
+                    <div class="blog-card-date">Dec 1, 2024</div>
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">Advanced Animation Techniques</h3>
+                    <p class="blog-card-excerpt">
+                        Take your animations to the next level with these advanced techniques using 
+                        Ema's powerful animation system.
+                    </p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-author">
+                            <img src="../public/placeholder-user.jpg" alt="Author">
+                            <span>David Kim</span>
+                        </div>
+                        <div class="blog-card-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>9 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <h2>Stay Updated</h2>
+            <p>Get the latest Ema Framework news, tutorials, and updates delivered to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </section>
+
+        <!-- Pagination -->
+        <nav class="pagination">
+            <button class="pagination-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+                Previous
+            </button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">
+                Next
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ema-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ema Framework</h4>
+                    <p>
+                        The future of web development is here. Build amazing applications 
+                        with the most advanced JavaScript framework ever created.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="revolution.html">Revolution</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/ema-live-preview.js"></script>
+    <script src="../js/ema-search.js"></script>
+    <script src="../js/ema-mobile-nav.js"></script>
+
+    <script>
+        // Initialize blog page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize search trigger
+            const searchTrigger = document.querySelector('.search-trigger');
+            if (searchTrigger) {
+                searchTrigger.addEventListener('click', () => {
+                    if (window.emaSearch) {
+                        window.emaSearch.openSearch();
+                    }
+                });
+            }
+            
+            // Initialize 3D engine
+            if (window.ema3DEngine) {
+                ema3DEngine.init();
+            }
+            
+            // Blog filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active filter
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    
+                    // Filter blog cards
+                    blogCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.5s ease';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Blog card interactions
+            blogCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Create explosion effect
+                    if (typeof ema3DEffects !== 'undefined') {
+                        const rect = card.getBoundingClientRect();
+                        ema3DEffects.createExplosion(
+                            rect.left + rect.width / 2,
+                            rect.top + rect.height / 2,
+                            [0.4, 0.2, 0.7],
+                            8
+                        );
+                    }
+                    
+                    // Add ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(111, 66, 193, 0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.width = '100px';
+                    ripple.style.height = '100px';
+                    ripple.style.marginLeft = '-50px';
+                    ripple.style.marginTop = '-50px';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    card.style.position = 'relative';
+                    card.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = newsletterForm.querySelector('.newsletter-input').value;
+                
+                if (typeof emaAlerts !== 'undefined') {
+                    emaAlerts.success('Thank you for subscribing!', {
+                        title: 'Newsletter',
+                        timer: 3000
+                    });
+                }
+                
+                newsletterForm.reset();
+            });
+            
+            // Pagination
+            const paginationBtns = document.querySelectorAll('.pagination-btn');
+            paginationBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (!btn.disabled) {
+                        paginationBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        // Here you would typically load new content
+                        console.log('Loading page...');
+                    }
+                });
+            });
+            
+            // Add animations CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

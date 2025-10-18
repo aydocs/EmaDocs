@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examples - Ema Framework</title>
     <meta name="description" content="Real-world examples and projects built with Ema Framework - from simple demos to complex applications">
@@ -14,9 +12,121 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/emadocs.css">
-    <link rel="stylesheet" href="../css/ema-colors.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        /* Terminal styles for examples page */
+        .terminal-code-block {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+        }
+
+        .terminal-header {
+            background: #2d2d2d;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .terminal-button.close {
+            background: #ff5f56;
+        }
+
+        .terminal-button.close:hover {
+            background: #ff3b30;
+        }
+
+        .terminal-button.minimize {
+            background: #ffbd2e;
+        }
+
+        .terminal-button.minimize:hover {
+            background: #ff9500;
+        }
+
+        .terminal-button.maximize {
+            background: #27ca3f;
+        }
+
+        .terminal-button.maximize:hover {
+            background: #1dbd2b;
+        }
+
+        .terminal-title {
+            color: #ccc;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            margin-left: 1rem;
+            flex: 1;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+            background: #1e1e1e;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .terminal-content pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .terminal-content code {
+            color: #e6e6e6;
+            font-family: inherit;
+        }
+
+        .terminal-copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(111, 66, 193, 0.2);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: var(--ema-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-copy-btn:hover {
+            background: var(--ema-purple);
+            color: white;
+        }
+    </style>
     
     <style>
         /* Revolutionary Examples Page */
@@ -41,6 +151,7 @@
             left: 0;
             right: 0;
             background: rgba(10, 10, 10, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(111, 66, 193, 0.2);
             z-index: 1000;
@@ -183,7 +294,7 @@
             gap: 2rem;
             padding: 4rem 0;
         }
-
+        
         .example-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(111, 66, 193, 0.2);
@@ -206,7 +317,7 @@
             background-size: 200% 200%;
             animation: gradientShift 4s ease infinite;
         }
-
+        
         .example-card:hover {
             transform: translateY(-12px) scale(1.02);
             background: rgba(255, 255, 255, 0.08);
@@ -218,7 +329,7 @@
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-
+        
         .example-preview {
             height: 240px;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -269,7 +380,7 @@
             color: #ffffff;
             margin-bottom: 0.5rem;
         }
-
+        
         .preview-subtitle {
             font-size: 1rem;
             color: #a0a0a0;
@@ -315,7 +426,7 @@
             gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
-
+        
         .feature-tag {
             background: rgba(111, 66, 193, 0.1);
             color: #6f42c1;
@@ -353,12 +464,12 @@
             font-size: 0.75rem;
             color: #a0a0a0;
         }
-
+        
         .example-actions {
             display: flex;
             gap: 0.75rem;
         }
-
+        
         .action-btn {
             flex: 1;
             padding: 0.75rem 1rem;
@@ -375,13 +486,13 @@
             background: linear-gradient(135deg, #6f42c1, #8e5fd1);
             color: white;
         }
-
+        
         .btn-secondary {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(111, 66, 193, 0.3);
             color: #6f42c1;
         }
-
+        
         .action-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(111, 66, 193, 0.3);
@@ -642,27 +753,135 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="ema-header" id="header">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
-                <div class="logo-icon">E</div>
-                <span>Ema</span>
+            <a href="../" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
             </a>
             
             <nav>
-                <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
-                    <li><a href="components.html" class="nav-link">Components</a></li>
-                    <li><a href="examples.html" class="nav-link active">Examples</a></li>
-                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-                    <li><a href="playground.html" class="nav-link">Playground</a></li>
-                    <li><a href="showcase.html" class="nav-link">Showcase</a></li>
-                    <li><a href="revolution.html" class="nav-link">Revolution</a></li>
-                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <div class="item-title">Quick Start</div>
+                                            <div class="item-desc">Get up and running in minutes</div>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <div class="item-title">API Reference</div>
+                                            <div class="item-desc">Complete API documentation</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <div class="item-title">UI Components</div>
+                                            <div class="item-desc">250+ components</div>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <div class="item-title">Showcase</div>
+                                            <div class="item-desc">Live examples</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <div class="item-title">Playground</div>
+                                            <div class="item-desc">Interactive builder</div>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <div class="item-title">Dashboard</div>
+                                            <div class="item-desc">Analytics & stats</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item active">
+                    <i class="fas fa-code"></i>
+                                        <div>
+                                            <div class="item-title">Examples</div>
+                                            <div class="item-desc">Real-world projects</div>
+                                        </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <div class="item-title">Revolution</div>
+                                            <div class="item-desc">Next-gen features</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                </a>
+            </div>
+        </div>
+                    </li>
                 </ul>
-            </nav>
-            
+    </nav>
+
             <a href="getting-started.html" class="cta-button">Get Started</a>
         </div>
     </header>
@@ -677,7 +896,7 @@
             </p>
         </div>
     </section>
-
+        
     <!-- Examples Grid -->
     <div class="container">
         <div class="examples-grid">
@@ -688,8 +907,8 @@
                         <span class="preview-icon">🛒</span>
                         <h3 class="preview-title">E-commerce Platform</h3>
                         <p class="preview-subtitle">Full-featured online store</p>
-                    </div>
                 </div>
+                    </div>
                 
                 <div class="example-content">
                     <div class="example-header">
@@ -722,7 +941,7 @@
                         <div class="stat-item">
                             <span class="stat-number">3D</span>
                             <span class="stat-label">Effects</span>
-                        </div>
+                </div>
                     </div>
                     
                     <div class="example-actions">
@@ -731,7 +950,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Social Media App -->
             <div class="example-card" data-example="social">
                 <div class="example-preview">
@@ -739,8 +958,8 @@
                         <span class="preview-icon">📱</span>
                         <h3 class="preview-title">Social Media App</h3>
                         <p class="preview-subtitle">Modern social platform</p>
-                    </div>
                 </div>
+                    </div>
                 
                 <div class="example-content">
                     <div class="example-header">
@@ -773,7 +992,7 @@
                         <div class="stat-item">
                             <span class="stat-number">WebSocket</span>
                             <span class="stat-label">Real-time</span>
-                        </div>
+                </div>
                     </div>
                     
                     <div class="example-actions">
@@ -782,7 +1001,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Analytics Dashboard -->
             <div class="example-card" data-example="dashboard">
                 <div class="example-preview">
@@ -790,8 +1009,8 @@
                         <span class="preview-icon">📊</span>
                         <h3 class="preview-title">Analytics Dashboard</h3>
                         <p class="preview-subtitle">Data visualization platform</p>
-                    </div>
                 </div>
+                    </div>
                 
                 <div class="example-content">
                     <div class="example-header">
@@ -824,7 +1043,7 @@
                         <div class="stat-item">
                             <span class="stat-number">Canvas</span>
                             <span class="stat-label">Rendering</span>
-                        </div>
+                </div>
                     </div>
                     
                     <div class="example-actions">
@@ -833,7 +1052,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Portfolio Website -->
             <div class="example-card" data-example="portfolio">
                 <div class="example-preview">
@@ -841,8 +1060,8 @@
                         <span class="preview-icon">🎨</span>
                         <h3 class="preview-title">Portfolio Website</h3>
                         <p class="preview-subtitle">Creative showcase platform</p>
-                    </div>
                 </div>
+                    </div>
                 
                 <div class="example-content">
                     <div class="example-header">
@@ -875,7 +1094,7 @@
                         <div class="stat-item">
                             <span class="stat-number">WebGL</span>
                             <span class="stat-label">3D Effects</span>
-                        </div>
+                </div>
                     </div>
                     
                     <div class="example-actions">
@@ -884,7 +1103,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Learning Platform -->
             <div class="example-card" data-example="learning">
                 <div class="example-preview">
@@ -892,8 +1111,8 @@
                         <span class="preview-icon">🎓</span>
                         <h3 class="preview-title">Learning Platform</h3>
                         <p class="preview-subtitle">Interactive education system</p>
-                    </div>
                 </div>
+                    </div>
                 
                 <div class="example-content">
                     <div class="example-header">
@@ -926,7 +1145,7 @@
                         <div class="stat-item">
                             <span class="stat-number">Video</span>
                             <span class="stat-label">Player</span>
-                        </div>
+                </div>
                     </div>
                     
                     <div class="example-actions">
@@ -935,7 +1154,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Crypto Trading App -->
             <div class="example-card" data-example="crypto">
                 <div class="example-preview">
@@ -943,8 +1162,8 @@
                         <span class="preview-icon">₿</span>
                         <h3 class="preview-title">Crypto Trading App</h3>
                         <p class="preview-subtitle">Real-time trading platform</p>
-                    </div>
                 </div>
+                    </div>
                 
                 <div class="example-content">
                     <div class="example-header">
@@ -977,7 +1196,7 @@
                         <div class="stat-item">
                             <span class="stat-number">WebSocket</span>
                             <span class="stat-label">API</span>
-                        </div>
+                </div>
                     </div>
                     
                     <div class="example-actions">
@@ -1000,7 +1219,7 @@
                     <span class="demo-icon">🔘</span>
                     <h3 class="demo-name">Button Components</h3>
                     <p class="demo-description">Explore all button variants and interactions</p>
-                </div>
+    </div>
                 
                 <div class="demo-item" data-demo="form-demo">
                     <span class="demo-icon">📝</span>
@@ -1044,13 +1263,24 @@
                     <span class="code-filename">ema-example.js</span>
                 </div>
                 
-                <div class="code-content">
-                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>();</div>
-                    <div class="code-line"><span class="code-comment">// Initialize with 3D effects</span></div>
-                    <div class="code-line"><span class="code-function">app</span>.<span class="code-function">init</span>({</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'theme'</span>: <span class="code-string">'purple'</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'3d'</span>: <span class="code-keyword">true</span></div>
-                    <div class="code-line">});</div>
+                <div class="terminal-code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <button class="terminal-button close"></button>
+                            <button class="terminal-button minimize"></button>
+                            <button class="terminal-button maximize"></button>
+                        </div>
+                        <div class="terminal-title">terminal — bash — 80x24</div>
+                    </div>
+                    <div class="terminal-content">
+                        <button class="terminal-copy-btn">Copy</button>
+                        <pre><code>const app = new Ema();
+// Initialize with 3D effects
+app.init({
+    'theme': 'purple',
+    '3d': true
+});</code></pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1073,37 +1303,108 @@
                 <div class="stat-item-large">
                     <div class="stat-number-large">100%</div>
                     <div class="stat-label-large">Open Source</div>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        // Example card interactions
-        document.querySelectorAll('.example-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const example = card.dataset.example;
-                
-                // Create explosion effect
-                if (typeof ema3DEffects !== 'undefined') {
-                    const rect = card.getBoundingClientRect();
-                    ema3DEffects.createExplosion(
-                        rect.left + rect.width / 2,
-                        rect.top + rect.height / 2,
-                        [0.4, 0.2, 0.7],
-                        12
-                    );
-                }
-
-                // Show alert
-                if (typeof emaAlerts !== 'undefined') {
-                    emaAlerts.info(`Loading ${example} example...`, {
-                        title: 'Example Preview',
-                        timer: 3000
-                    });
-                }
+        // Enhanced examples page interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize 3D engine
+            if (window.ema3DEngine) {
+                ema3DEngine.init();
+            }
+            
+            // Initialize scroll animations
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe elements for scroll animations
+            document.querySelectorAll('.example-card, .demo-section, .code-example').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                scrollObserver.observe(el);
             });
+            
+            // Enhanced example card interactions
+            document.querySelectorAll('.example-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const example = card.dataset.example;
+                    
+                    // Create explosion effect
+                    if (typeof ema3DEffects !== 'undefined') {
+                        const rect = card.getBoundingClientRect();
+                        ema3DEffects.createExplosion(
+                            rect.left + rect.width / 2,
+                            rect.top + rect.height / 2,
+                            [0.4, 0.2, 0.7],
+                            12
+                        );
+                    }
+
+                    // Show alert
+                    if (typeof emaAlerts !== 'undefined') {
+                        emaAlerts.info(`Loading ${example} example...`, {
+                            title: 'Example Preview',
+                            timer: 3000
+                        });
+                    }
+                    
+                    // Add ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(111, 66, 193, 0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.width = '100px';
+                    ripple.style.height = '100px';
+                    ripple.style.marginLeft = '-50px';
+                    ripple.style.marginTop = '-50px';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    card.style.position = 'relative';
+                    card.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+                
+                // Hover effects
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                    card.style.boxShadow = '0 20px 40px rgba(111, 66, 193, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.boxShadow = '0 10px 30px rgba(111, 66, 193, 0.2)';
+                });
+            });
+            
+            // Add ripple animation CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         });
 
         // Demo interactions
@@ -1197,6 +1498,54 @@
     <script src="../js/utils.js"></script>
     <script src="../js/3d-engine.js"></script>
     <script src="../js/ema-alerts.js"></script>
+    <!-- Footer -->
+    <footer class="ema-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ema Framework</h4>
+                    <p>
+                        The future of web development is here. Build amazing applications 
+                        with the most advanced JavaScript framework ever created.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="revolution.html">Revolution</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
+        </div>
+    </div>
+    </footer>
+
     <script src="../js/ema-3d-effects.js"></script>
     <script src="../js/emadocs.js"></script>
     

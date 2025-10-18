@@ -14,9 +14,120 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/emadocs.css">
-    <link rel="stylesheet" href="../css/ema-colors.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        /* Terminal styles for getting-started page */
+        .terminal-code-block {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+        }
+
+        .terminal-header {
+            background: #2d2d2d;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .terminal-button.close {
+            background: #ff5f56;
+        }
+
+        .terminal-button.close:hover {
+            background: #ff3b30;
+        }
+
+        .terminal-button.minimize {
+            background: #ffbd2e;
+        }
+
+        .terminal-button.minimize:hover {
+            background: #ff9500;
+        }
+
+        .terminal-button.maximize {
+            background: #27ca3f;
+        }
+
+        .terminal-button.maximize:hover {
+            background: #1dbd2b;
+        }
+
+        .terminal-title {
+            color: #ccc;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            margin-left: 1rem;
+            flex: 1;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+            background: #1e1e1e;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .terminal-content pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .terminal-content code {
+            color: #e6e6e6;
+            font-family: inherit;
+        }
+
+        .terminal-copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(111, 66, 193, 0.2);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: var(--ema-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-copy-btn:hover {
+            background: var(--ema-purple);
+            color: white;
+        }
+    </style>
     
     <style>
         /* Revolutionary Getting Started Page */
@@ -41,6 +152,7 @@
             left: 0;
             right: 0;
             background: rgba(10, 10, 10, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(111, 66, 193, 0.2);
             z-index: 1000;
@@ -639,31 +751,220 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="ema-header" id="header">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
-                <div class="logo-icon">E</div>
-                <span>Ema</span>
+            <a href="../" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
             </a>
             
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
             <nav>
-                <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="getting-started.html" class="nav-link active">Documentation</a></li>
-                    <li><a href="components.html" class="nav-link">Components</a></li>
-                    <li><a href="examples.html" class="nav-link">Examples</a></li>
-                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-                    <li><a href="playground.html" class="nav-link">Playground</a></li>
-                    <li><a href="showcase.html" class="nav-link">Showcase</a></li>
-                    <li><a href="revolution.html" class="nav-link">Revolution</a></li>
-                    <li><a href="api.html" class="nav-link">API</a></li>
-                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Quick Start</span>
+                                            <span class="item-desc">Begin your journey</span>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <span class="item-title">API Reference</span>
+                                            <span class="item-desc">Complete documentation</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <span class="item-title">UI Components</span>
+                                            <span class="item-desc">250+ components</span>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <span class="item-title">Showcase</span>
+                                            <span class="item-desc">Live examples</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <span class="item-title">Playground</span>
+                                            <span class="item-desc">Interactive builder</span>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <span class="item-title">Dashboard</span>
+                                            <span class="item-desc">Analytics & stats</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <span class="item-title">Examples</span>
+                                            <span class="item-desc">Real projects</span>
+                                        </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <span class="item-title">Revolution</span>
+                                            <span class="item-desc">Next-gen features</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
-            
-            <a href="getting-started.html" class="cta-button">Get Started</a>
         </div>
     </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li>
+                <a href="#" class="mobile-framework-trigger">
+                    <i class="fas fa-th-large"></i>
+                    <span>Framework</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-search-trigger">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="docs.html">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="getting-started.html">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Started</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
+            <h3>Getting Started</h3>
+            <a href="getting-started.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Quick Start</span>
+            </a>
+            <a href="api.html" class="mobile-dropdown-item">
+                <i class="fas fa-cogs"></i>
+                <span>API Reference</span>
+            </a>
+            
+            <h3>Components</h3>
+            <a href="components.html" class="mobile-dropdown-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>UI Components</span>
+            </a>
+            <a href="showcase.html" class="mobile-dropdown-item">
+                <i class="fas fa-star"></i>
+                <span>Showcase</span>
+            </a>
+            
+            <h3>Tools</h3>
+            <a href="playground.html" class="mobile-dropdown-item">
+                <i class="fas fa-play"></i>
+                <span>Playground</span>
+            </a>
+            <a href="dashboard.html" class="mobile-dropdown-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <h3>Resources</h3>
+            <a href="examples.html" class="mobile-dropdown-item">
+                <i class="fas fa-code"></i>
+                <span>Examples</span>
+            </a>
+            <a href="revolution.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Revolution</span>
+            </a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -980,21 +1281,46 @@
 
     <!-- Scripts -->
     <script>
-        // Quick start card interactions
-        document.querySelectorAll('.quick-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const step = card.dataset.step;
-                
-                // Create explosion effect
-                if (typeof ema3DEffects !== 'undefined') {
-                    const rect = card.getBoundingClientRect();
-                    ema3DEffects.createExplosion(
-                        rect.left + rect.width / 2,
-                        rect.top + rect.height / 2,
-                        [0.4, 0.2, 0.7],
-                        10
-                    );
-                }
+        // Enhanced getting started page interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize 3D engine
+            if (window.ema3DEngine) {
+                ema3DEngine.init();
+            }
+            
+            // Initialize scroll animations
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe elements for scroll animations
+            document.querySelectorAll('.quick-card, .step-card, .demo-section').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                scrollObserver.observe(el);
+            });
+            
+            // Enhanced quick start card interactions
+            document.querySelectorAll('.quick-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const step = card.dataset.step;
+                    
+                    // Create explosion effect
+                    if (typeof ema3DEffects !== 'undefined') {
+                        const rect = card.getBoundingClientRect();
+                        ema3DEffects.createExplosion(
+                            rect.left + rect.width / 2,
+                            rect.top + rect.height / 2,
+                            [0.4, 0.2, 0.7],
+                            10
+                        );
+                    }
 
                 // Show alert based on step
                 if (typeof emaAlerts !== 'undefined') {
@@ -1088,8 +1414,59 @@
     <script src="../js/utils.js"></script>
     <script src="../js/3d-engine.js"></script>
     <script src="../js/ema-alerts.js"></script>
+    <!-- Footer -->
+    <footer class="ema-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ema Framework</h4>
+                    <p>
+                        The future of web development is here. Build amazing applications 
+                        with the most advanced JavaScript framework ever created.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="revolution.html">Revolution</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="../js/ema-3d-effects.js"></script>
     <script src="../js/emadocs.js"></script>
+    
+    <!-- Navbar Script -->
+    <script src="../js/navbar.js"></script>
     
     <!-- Initialize application -->
     <script src="../js/app-init.js"></script>

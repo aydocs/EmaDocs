@@ -3,479 +3,518 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playground - Ema Framework</title>
-    <meta name="description" content="Interactive playground to experiment with Ema Framework components, 3D features, and advanced functionality">
+    <title>Interactive Playground - Ema Framework</title>
+    <meta name="description" content="Interactive playground to experiment with Ema Framework components and features">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/emadocs.css">
-    <link rel="stylesheet" href="../css/ema-colors.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
     
     <style>
-        /* Playground Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Advanced Playground Styles */
+        .playground-container {
+            display: grid;
+            grid-template-columns: 320px 1fr 400px;
+            gap: 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.6;
+        .playground-sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .playground-main {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            position: relative;
             overflow: hidden;
         }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
+        .playground-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
-            z-index: 1000;
-            padding: 1rem 0;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
         }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #6f42c1;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 900;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: #6f42c1;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
-        }
-
-        /* Playground Layout */
-        .playground-layout {
-            display: grid;
-            grid-template-columns: 300px 1fr 300px;
-            height: 100vh;
-            padding-top: 80px;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: white;
-            border-right: 1px solid rgba(111, 66, 193, 0.1);
-            overflow-y: auto;
-            padding: 2rem 0;
-        }
-
-        .sidebar-content {
-            padding: 0 1.5rem;
-        }
-
-        .sidebar-section {
+        .component-category {
             margin-bottom: 2rem;
         }
 
-        .sidebar-title {
-            font-size: 0.875rem;
+        .category-title {
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #6f42c1;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: #ffffff;
             margin-bottom: 1rem;
-        }
-
-        .component-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-bottom: 0.25rem;
-            border: 1px solid transparent;
+            gap: 0.5rem;
         }
 
-        .component-item:hover {
-            background: rgba(111, 66, 193, 0.1);
-            border-color: rgba(111, 66, 193, 0.2);
-        }
-
-        .component-item.active {
-            background: rgba(111, 66, 193, 0.1);
-            border-color: #6f42c1;
-        }
-
-        .component-icon {
-            width: 32px;
-            height: 32px;
+        .category-icon {
+            width: 24px;
+            height: 24px;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: white;
+            font-size: 0.875rem;
             background: linear-gradient(135deg, #6f42c1, #8e5fd1);
         }
 
-        .component-info {
-            flex: 1;
+        .component-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .component-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .component-item:hover::before {
+            left: 100%;
+        }
+
+        .component-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(111, 66, 193, 0.3);
+            transform: translateX(5px);
         }
 
         .component-name {
-            font-size: 0.9rem;
+            color: #ffffff;
             font-weight: 600;
-            color: #0f172a;
+            margin-bottom: 0.25rem;
         }
 
-        .component-desc {
-            font-size: 0.75rem;
-            color: #64748b;
-        }
-
-        /* Main Playground Area */
-        .playground-main {
-            display: flex;
-            flex-direction: column;
-            background: white;
-            border-right: 1px solid rgba(111, 66, 193, 0.1);
-        }
-
-        .playground-header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .playground-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .playground-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
+        .component-description {
+            color: #a0a0a0;
             font-size: 0.875rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            box-shadow: 0 2px 8px rgba(111, 66, 193, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(111, 66, 193, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #6f42c1;
-            border: 1px solid #6f42c1;
-        }
-
-        .btn-secondary:hover {
-            background: #6f42c1;
-            color: white;
-            transform: translateY(-1px);
         }
 
         .playground-canvas {
-            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(111, 66, 193, 0.3);
+            border-radius: 16px;
+            min-height: 500px;
             padding: 2rem;
-            overflow: auto;
-            background: #f8fafc;
             position: relative;
+            overflow: hidden;
         }
 
-        .canvas-area {
-            min-height: 400px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1rem;
+        .playground-canvas.has-content {
+            border-style: solid;
+            border-color: rgba(111, 66, 193, 0.5);
         }
 
         .canvas-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            color: #64748b;
+            color: #6c757d;
+            pointer-events: none;
         }
 
-        .canvas-placeholder h3 {
-            font-size: 1.5rem;
+        .canvas-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .canvas-placeholder-text {
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #0f172a;
         }
 
-        /* Properties Panel */
-        .properties-panel {
-            background: white;
-            border-left: 1px solid rgba(111, 66, 193, 0.1);
-            overflow-y: auto;
-            padding: 2rem 0;
+        .canvas-placeholder-desc {
+            font-size: 0.875rem;
+            opacity: 0.7;
         }
 
-        .properties-content {
-            padding: 0 1.5rem;
-        }
-
-        .property-group {
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
+        .template-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .template-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(111, 66, 193, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .template-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-name {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .panel-section {
+            margin-bottom: 2rem;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+        }
+
+        .property-group {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
         .property-label {
+            color: #a0a0a0;
             font-size: 0.875rem;
             font-weight: 600;
-            color: #0f172a;
             margin-bottom: 0.5rem;
             display: block;
         }
 
         .property-input {
             width: 100%;
-            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(111, 66, 193, 0.2);
             border-radius: 8px;
+            padding: 0.75rem;
+            color: #ffffff;
             font-size: 0.875rem;
-            transition: border-color 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .property-input:focus {
             outline: none;
-            border-color: #6f42c1;
-            box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1);
+            border-color: rgba(111, 66, 193, 0.5);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .property-select {
             width: 100%;
-            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(111, 66, 193, 0.2);
             border-radius: 8px;
+            padding: 0.75rem;
+            color: #ffffff;
             font-size: 0.875rem;
-            background: white;
             cursor: pointer;
+        }
+
+        .property-select option {
+            background: #1a1a2e;
+            color: #ffffff;
         }
 
         .color-picker {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 0.5rem;
-            flex-wrap: wrap;
         }
 
         .color-option {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-
+        .color-option:hover,
         .color-option.active {
-            border-color: #6f42c1;
             transform: scale(1.1);
+            border-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Responsive Design */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .live-preview {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            color: #ffffff;
+            font-size: 0.875rem;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .preview-code {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         @media (max-width: 1200px) {
-            .playground-layout {
-                grid-template-columns: 250px 1fr 250px;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .playground-layout {
+            .playground-container {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr auto;
+                gap: 1rem;
             }
             
-            .sidebar, .properties-panel {
-                position: fixed;
-                top: 80px;
-                height: calc(100vh - 80px);
-                z-index: 100;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .sidebar {
-                left: 0;
-            }
-            
-            .properties-panel {
-                right: 0;
-                transform: translateX(100%);
-            }
-            
-            .sidebar.open, .properties-panel.open {
-                transform: translateX(0);
+            .playground-sidebar,
+            .playground-panel {
+                position: static;
+                order: 2;
             }
         }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .playground-canvas {
-                padding: 1rem;
-            }
-            
-            .canvas-area {
-                padding: 1rem;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="ema-header" id="header">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
-                <div class="logo-icon">E</div>
-                <span>Ema Playground</span>
+            <a href="../" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
             </a>
             
             <nav>
-                <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
-                    <li><a href="components.html" class="nav-link">Components</a></li>
-                    <li><a href="examples.html" class="nav-link">Examples</a></li>
-                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-                    <li><a href="playground.html" class="nav-link active">Playground</a></li>
-                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Quick Start</span>
+                                            <span class="item-desc">Begin your journey</span>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <span class="item-title">API Reference</span>
+                                            <span class="item-desc">Complete documentation</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <span class="item-title">UI Components</span>
+                                            <span class="item-desc">250+ components</span>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <span class="item-title">Showcase</span>
+                                            <span class="item-desc">Live examples</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item active">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <span class="item-title">Playground</span>
+                                            <span class="item-desc">Interactive builder</span>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <span class="item-title">Dashboard</span>
+                                            <span class="item-desc">Analytics & stats</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <span class="item-title">Examples</span>
+                                            <span class="item-desc">Real projects</span>
+                                        </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Revolution</span>
+                                            <span class="item-desc">Next-gen features</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             
@@ -483,831 +522,507 @@
         </div>
     </header>
 
-    <!-- Playground Layout -->
-    <div class="playground-layout">
-        <!-- Component Library Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">UI Components</h3>
-                    
-                    <div class="component-item" data-component="button">
-                        <div class="component-icon">🔘</div>
-                        <div class="component-info">
+    <!-- Live Preview Panel -->
+    <div class="live-preview" id="livePreview" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong>Live Preview</strong>
+            <button onclick="togglePreview()" style="background: none; border: none; color: #6f42c1; cursor: pointer;">✕</button>
+        </div>
+        <div class="preview-code" id="previewCode"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main style="padding-top: 100px;">
+        <div class="playground-container">
+            <!-- Components Sidebar -->
+            <aside class="playground-sidebar">
+                <h3 style="color: #ffffff; margin-bottom: 2rem; font-size: 1.5rem;">Components</h3>
+                
+                <!-- Templates -->
+                <div class="component-category">
+                    <h4 class="category-title">
+                        <span class="category-icon">📋</span>
+                        <span>Templates</span>
+                    </h4>
+                    <div class="template-grid">
+                        <div class="template-item" onclick="loadTemplate('landing')">
+                            <div class="template-icon">🏠</div>
+                            <div class="template-name">Landing</div>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('dashboard')">
+                            <div class="template-icon">📊</div>
+                            <div class="template-name">Dashboard</div>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('portfolio')">
+                            <div class="template-icon">💼</div>
+                            <div class="template-name">Portfolio</div>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('ecommerce')">
+                            <div class="template-icon">🛒</div>
+                            <div class="template-name">E-commerce</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI Components -->
+                <div class="component-category">
+                    <h4 class="category-title">
+                        <span class="category-icon">🧩</span>
+                        <span>UI Components</span>
+                    </h4>
+                    <div class="component-list">
+                        <div class="component-item" onclick="addComponent('button')">
                             <div class="component-name">Button</div>
-                            <div class="component-desc">Interactive buttons</div>
+                            <div class="component-description">Interactive button with variants</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="input">
-                        <div class="component-icon">📝</div>
-                        <div class="component-info">
+                        <div class="component-item" onclick="addComponent('input')">
                             <div class="component-name">Input</div>
-                            <div class="component-desc">Text inputs</div>
+                            <div class="component-description">Text input field</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="card">
-                        <div class="component-icon">🃏</div>
-                        <div class="component-info">
+                        <div class="component-item" onclick="addComponent('card')">
                             <div class="component-name">Card</div>
-                            <div class="component-desc">Content cards</div>
+                            <div class="component-description">Content container</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="modal">
-                        <div class="component-icon">🪟</div>
-                        <div class="component-info">
+                        <div class="component-item" onclick="addComponent('modal')">
                             <div class="component-name">Modal</div>
-                            <div class="component-desc">Dialog windows</div>
+                            <div class="component-description">Overlay dialog</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="alert">
-                        <div class="component-icon">🚨</div>
-                        <div class="component-info">
-                            <div class="component-name">Alert</div>
-                            <div class="component-desc">Notifications</div>
+                        <div class="component-item" onclick="addComponent('navbar')">
+                            <div class="component-name">Navbar</div>
+                            <div class="component-description">Navigation bar</div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">3D Features</h3>
-                    
-                    <div class="component-item" data-component="cube">
-                        <div class="component-icon">🧊</div>
-                        <div class="component-info">
-                            <div class="component-name">3D Cube</div>
-                            <div class="component-desc">Interactive cube</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="sphere">
-                        <div class="component-icon">🌐</div>
-                        <div class="component-info">
-                            <div class="component-name">3D Sphere</div>
-                            <div class="component-desc">Rotating sphere</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="particles">
-                        <div class="component-icon">✨</div>
-                        <div class="component-info">
-                            <div class="component-name">Particles</div>
-                            <div class="component-desc">Particle system</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="scene">
-                        <div class="component-icon">🎬</div>
-                        <div class="component-info">
-                            <div class="component-name">3D Scene</div>
-                            <div class="component-desc">Full scene</div>
+                        <div class="component-item" onclick="addComponent('footer')">
+                            <div class="component-name">Footer</div>
+                            <div class="component-description">Page footer</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Advanced</h3>
-                    
-                    <div class="component-item" data-component="chart">
-                        <div class="component-icon">📊</div>
-                        <div class="component-info">
-                            <div class="component-name">Interactive Charts</div>
-                            <div class="component-desc">Real-time data visualization</div>
+
+                <!-- Advanced Components -->
+                <div class="component-category">
+                    <h4 class="category-title">
+                        <span class="category-icon">⚡</span>
+                        <span>Advanced</span>
+                    </h4>
+                    <div class="component-list">
+                        <div class="component-item" onclick="addComponent('chart')">
+                            <div class="component-name">Chart</div>
+                            <div class="component-description">Data visualization</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="form">
-                        <div class="component-icon">📋</div>
-                        <div class="component-info">
-                            <div class="component-name">Smart Forms</div>
-                            <div class="component-desc">Validation & auto-save</div>
+                        <div class="component-item" onclick="addComponent('form')">
+                            <div class="component-name">Form</div>
+                            <div class="component-description">Form container</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="animation">
-                        <div class="component-icon">🎭</div>
-                        <div class="component-info">
-                            <div class="component-name">Advanced Animations</div>
-                            <div class="component-desc">Custom keyframe animations</div>
+                        <div class="component-item" onclick="addComponent('gallery')">
+                            <div class="component-name">Gallery</div>
+                            <div class="component-description">Image gallery</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="gallery">
-                        <div class="component-icon">🖼️</div>
-                        <div class="component-info">
-                            <div class="component-name">Image Gallery</div>
-                            <div class="component-desc">Lightbox & carousel</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="timeline">
-                        <div class="component-icon">⏰</div>
-                        <div class="component-info">
+                        <div class="component-item" onclick="addComponent('timeline')">
                             <div class="component-name">Timeline</div>
-                            <div class="component-desc">Interactive timeline</div>
+                            <div class="component-description">Event timeline</div>
                         </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="kanban">
-                        <div class="component-icon">📋</div>
-                        <div class="component-info">
-                            <div class="component-name">Kanban Board</div>
-                            <div class="component-desc">Drag & drop board</div>
+                        <div class="component-item" onclick="addComponent('kanban')">
+                            <div class="component-name">Kanban</div>
+                            <div class="component-description">Task board</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Templates</h3>
-                    
-                    <div class="component-item" data-component="landing">
-                        <div class="component-icon">🏠</div>
-                        <div class="component-info">
-                            <div class="component-name">Landing Page</div>
-                            <div class="component-desc">Complete landing template</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="dashboard">
-                        <div class="component-icon">📊</div>
-                        <div class="component-info">
-                            <div class="component-name">Dashboard</div>
-                            <div class="component-desc">Admin dashboard template</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="portfolio">
-                        <div class="component-icon">💼</div>
-                        <div class="component-info">
-                            <div class="component-name">Portfolio</div>
-                            <div class="component-desc">Creative portfolio template</div>
-                        </div>
-                    </div>
-                    
-                    <div class="component-item" data-component="ecommerce">
-                        <div class="component-icon">🛒</div>
-                        <div class="component-info">
-                            <div class="component-name">E-commerce</div>
-                            <div class="component-desc">Online store template</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+            </aside>
 
-        <!-- Main Playground Area -->
-        <main class="playground-main">
-            <div class="playground-header">
-                <h2 class="playground-title">Interactive Playground</h2>
-                <div class="playground-actions">
-                    <button class="btn btn-secondary" onclick="clearCanvas()">
-                        🗑️ Clear
-                    </button>
-                    <button class="btn btn-primary" onclick="exportCode()">
-                        📤 Export Code
-                    </button>
-                    <button class="btn btn-secondary" onclick="saveProject()">
-                        💾 Save
-                    </button>
-                </div>
-            </div>
-            
-            <div class="playground-canvas">
-                <div class="canvas-area" id="playground-canvas">
+            <!-- Main Canvas -->
+            <div class="playground-main">
+                <div class="playground-canvas" id="playgroundCanvas">
                     <div class="canvas-placeholder">
-                        <h3>🎮 Ema Framework Playground</h3>
-                        <p>Select a component from the left panel to start building</p>
-                        <p style="font-size: 0.875rem; color: #94a3b8;">
-                            Drag components here and customize them in the properties panel
-                        </p>
+                        <div class="canvas-placeholder-icon">🎨</div>
+                        <div class="canvas-placeholder-text">Interactive Playground</div>
+                        <div class="canvas-placeholder-desc">Drag components from the sidebar to start building</div>
                     </div>
                 </div>
             </div>
-        </main>
 
-        <!-- Properties Panel -->
-        <aside class="properties-panel">
-            <div class="properties-content">
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Properties</h3>
+            <!-- Properties Panel -->
+            <aside class="playground-panel">
+                <h3 style="color: #ffffff; margin-bottom: 2rem; font-size: 1.5rem;">Properties</h3>
+                
+                <div class="panel-section">
+                    <h4 class="panel-title">
+                        <span class="panel-icon">🎨</span>
+                        <span>Appearance</span>
+                    </h4>
                     
                     <div class="property-group">
-                        <label class="property-label">Component Type</label>
-                        <select class="property-select" id="component-type">
-                            <option value="button">Button</option>
-                            <option value="input">Input</option>
-                            <option value="card">Card</option>
-                            <option value="modal">Modal</option>
-                            <option value="alert">Alert</option>
+                        <label class="property-label">Variant</label>
+                        <select class="property-select" id="variantSelect" onchange="updateComponent()" title="Select component variant">
+                            <option value="primary">Primary</option>
+                            <option value="secondary">Secondary</option>
+                            <option value="success">Success</option>
+                            <option value="warning">Warning</option>
+                            <option value="danger">Danger</option>
+                            <option value="info">Info</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
                         </select>
                     </div>
-                    
-                    <div class="property-group">
-                        <label class="property-label">Color Theme</label>
-                        <div class="color-picker">
-                            <div class="color-option active" data-color="purple" style="background: #6f42c1;"></div>
-                            <div class="color-option" data-color="blue" style="background: #007bff;"></div>
-                            <div class="color-option" data-color="green" style="background: #28a745;"></div>
-                            <div class="color-option" data-color="yellow" style="background: #ffc107;"></div>
-                            <div class="color-option" data-color="red" style="background: #dc3545;"></div>
-                            <div class="color-option" data-color="orange" style="background: #fd7e14;"></div>
-                            <div class="color-option" data-color="gray" style="background: #6c757d;"></div>
-                        </div>
-                    </div>
-                    
+
                     <div class="property-group">
                         <label class="property-label">Size</label>
-                        <select class="property-select" id="component-size">
+                        <select class="property-select" id="sizeSelect" onchange="updateComponent()" title="Select component size">
                             <option value="small">Small</option>
                             <option value="medium" selected>Medium</option>
                             <option value="large">Large</option>
                         </select>
                     </div>
+
+                    <div class="property-group">
+                        <label class="property-label">Color</label>
+                        <div class="color-picker">
+                            <div class="color-option active" style="background: #6f42c1;" data-color="purple" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #28a745;" data-color="green" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #dc3545;" data-color="red" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #007bff;" data-color="blue" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #ffc107;" data-color="yellow" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #fd7e14;" data-color="orange" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #6c757d;" data-color="gray" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #ffffff;" data-color="white" onclick="selectColor(this)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h4 class="panel-title">
+                        <span class="panel-icon">📝</span>
+                        <span>Content</span>
+                    </h4>
                     
                     <div class="property-group">
                         <label class="property-label">Text</label>
-                        <input type="text" class="property-input" id="component-text" placeholder="Enter text...">
+                        <input type="text" class="property-input" id="textInput" placeholder="Enter text..." onchange="updateComponent()" title="Enter component text">
                     </div>
-                    
+
                     <div class="property-group">
                         <label class="property-label">Width</label>
-                        <input type="range" class="property-input" id="component-width" min="100" max="500" value="200">
-                        <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">
-                            <span id="width-value">200px</span>
-                        </div>
+                        <input type="range" class="property-input" id="widthInput" min="100" max="500" value="200" onchange="updateComponent()" title="Adjust component width">
                     </div>
-                    
+
                     <div class="property-group">
                         <label class="property-label">Height</label>
-                        <input type="range" class="property-input" id="component-height" min="30" max="200" value="40">
-                        <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">
-                            <span id="height-value">40px</span>
-                        </div>
-                    </div>
-                    
-                    <div class="property-group">
-                        <label class="property-label">Animation</label>
-                        <select class="property-select" id="component-animation">
-                            <option value="none">None</option>
-                            <option value="fade">Fade In</option>
-                            <option value="slide">Slide Up</option>
-                            <option value="bounce">Bounce</option>
-                            <option value="scale">Scale In</option>
-                        </select>
-                    </div>
-                    
-                    <div class="property-group">
-                        <button class="btn btn-primary" style="width: 100%;" onclick="updateComponent()">
-                            🔄 Update Component
-                        </button>
+                        <input type="range" class="property-input" id="heightInput" min="30" max="200" value="50" onchange="updateComponent()" title="Adjust component height">
                     </div>
                 </div>
+
+                <div class="panel-section">
+                    <h4 class="panel-title">
+                        <span class="panel-icon">⚙️</span>
+                        <span>Behavior</span>
+                    </h4>
+                    
+                    <div class="property-group">
+                        <label class="property-label">Disabled</label>
+                        <input type="checkbox" id="disabledInput" onchange="updateComponent()" title="Toggle disabled state">
+                    </div>
+
+                    <div class="property-group">
+                        <label class="property-label">Loading</label>
+                        <input type="checkbox" id="loadingInput" onchange="updateComponent()" title="Toggle loading state">
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="exportCode()">Export Code</button>
+                    <button class="action-btn secondary" onclick="clearCanvas()">Clear</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ema Framework</h3>
+                    <p>The world's most advanced frontend framework built with HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
             </div>
-        </aside>
-    </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/ema-live-preview.js"></script>
+    
     <script>
+        // Playground state
         let currentComponent = null;
-        let currentColor = 'purple';
-        
+        let componentCounter = 0;
+
         // Initialize playground
-        document.addEventListener('DOMContentLoaded', () => {
-            ema3DEffects.init();
-            
-            // Component selection
-            const componentItems = document.querySelectorAll('.component-item');
-            componentItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    componentItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                    
-                    const componentType = item.dataset.component;
-                    addComponentToCanvas(componentType);
-                });
-            });
-            
-            // Color selection
-            const colorOptions = document.querySelectorAll('.color-option');
-            colorOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    colorOptions.forEach(o => o.classList.remove('active'));
-                    option.classList.add('active');
-                    currentColor = option.dataset.color;
-                    updateComponent();
-                });
-            });
-            
-            // Range inputs
-            const widthSlider = document.getElementById('component-width');
-            const heightSlider = document.getElementById('component-height');
-            
-            widthSlider.addEventListener('input', (e) => {
-                document.getElementById('width-value').textContent = e.target.value + 'px';
-                updateComponent();
-            });
-            
-            heightSlider.addEventListener('input', (e) => {
-                document.getElementById('height-value').textContent = e.target.value + 'px';
-                updateComponent();
-            });
-            
-            // Text input
-            document.getElementById('component-text').addEventListener('input', updateComponent);
-            
-            // Size and animation selects
-            document.getElementById('component-size').addEventListener('change', updateComponent);
-            document.getElementById('component-animation').addEventListener('change', updateComponent);
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.Ema3D) {
+                window.Ema3D.init();
+            }
         });
 
-        function addComponentToCanvas(componentType) {
-            const canvas = document.getElementById('playground-canvas');
+        // Component templates
+        const componentTemplates = {
+            button: (props) => {
+                const variant = props.variant || 'primary';
+                const size = props.size || 'medium';
+                const text = props.text || 'Button';
+                const disabled = props.disabled ? 'disabled' : '';
+                const loading = props.loading ? 'loading' : '';
+                
+                return `<button class="btn btn-${variant} btn-${size}" ${disabled} ${loading} style="width: ${props.width || 200}px; height: ${props.height || 50}px;">
+                    ${loading ? '⏳' : ''} ${text}
+                </button>`;
+            },
             
-            // Clear placeholder
-            if (canvas.querySelector('.canvas-placeholder')) {
-                canvas.innerHTML = '';
+            input: (props) => {
+                const variant = props.variant || 'primary';
+                const placeholder = props.text || 'Enter text...';
+                const disabled = props.disabled ? 'disabled' : '';
+                
+                return `<input type="text" class="form-control form-${variant}" placeholder="${placeholder}" ${disabled} style="width: ${props.width || 200}px; height: ${props.height || 50}px;">`;
+            },
+            
+            card: (props) => {
+                const variant = props.variant || 'primary';
+                const text = props.text || 'Card Content';
+                
+                return `<div class="card card-${variant}" style="width: ${props.width || 200}px; height: ${props.height || 150}px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Card Title</h5>
+                        <p class="card-text">${text}</p>
+                    </div>
+                </div>`;
+            },
+            
+            modal: (props) => {
+                return `<div class="modal" style="display: block; position: relative;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modal Title</h5>
+                                <button type="button" class="btn-close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>${props.text || 'Modal content goes here...'}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary">Close</button>
+                                <button type="button" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            },
+            
+            chart: (props) => {
+                const width = props.width || 300;
+                const height = props.height || 200;
+                
+                return `<div class="chart-container" style="width: ${width}px; height: ${height}px;">
+                    <canvas id="chart-${componentCounter}" width="${width}" height="${height}"></canvas>
+                </div>`;
+            }
+        };
+
+        // Add component to canvas
+        function addComponent(type) {
+            const canvas = document.getElementById('playgroundCanvas');
+            const placeholder = canvas.querySelector('.canvas-placeholder');
+            
+            if (placeholder) {
+                placeholder.remove();
+                canvas.classList.add('has-content');
             }
             
-            // Create component
-            const component = createComponent(componentType);
-            canvas.appendChild(component);
-            
-            currentComponent = component;
-            updateComponent();
-            
-            // Add click effects
-            const rect = component.getBoundingClientRect();
-            ema3DEffects.createExplosion(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                [0.4, 0.2, 0.7],
-                15
-            );
-            
-            emaAlerts.success(`${componentType} component added to canvas!`, {
-                title: 'Component Added',
-                timer: 2000
-            });
-        }
-
-        function createComponent(type) {
-            const colors = {
-                purple: '#6f42c1',
-                blue: '#007bff',
-                green: '#28a745',
-                yellow: '#ffc107',
-                red: '#dc3545',
-                orange: '#fd7e14',
-                gray: '#6c757d'
+            const props = {
+                variant: document.getElementById('variantSelect').value,
+                size: document.getElementById('sizeSelect').value,
+                text: document.getElementById('textInput').value || 'Sample Text',
+                width: document.getElementById('widthInput').value,
+                height: document.getElementById('heightInput').value,
+                disabled: document.getElementById('disabledInput').checked,
+                loading: document.getElementById('loadingInput').checked
             };
             
-            const component = document.createElement('div');
-            component.className = 'playground-component';
-            component.style.cssText = `
-                margin: 1rem;
-                cursor: move;
-                transition: all 0.3s ease;
-            `;
+            const componentHtml = componentTemplates[type](props);
+            const componentElement = document.createElement('div');
+            componentElement.innerHTML = componentHtml;
+            componentElement.className = 'playground-component';
+            componentElement.style.margin = '1rem';
+            componentElement.style.display = 'inline-block';
+            componentElement.draggable = true;
             
-            switch (type) {
-                case 'button':
-                    component.innerHTML = `
-                        <button style="
-                            background: ${colors[currentColor]};
-                            color: white;
-                            border: none;
-                            border-radius: 8px;
-                            padding: 0.75rem 1.5rem;
-                            font-weight: 600;
-                            cursor: pointer;
-                            transition: all 0.2s ease;
-                        " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                            Click Me
-                        </button>
-                    `;
-                    break;
-                    
-                case 'input':
-                    component.innerHTML = `
-                        <input type="text" placeholder="Enter text..." style="
-                            padding: 0.75rem;
-                            border: 2px solid ${colors[currentColor]};
-                            border-radius: 8px;
-                            font-size: 1rem;
-                            outline: none;
-                            transition: border-color 0.2s ease;
-                        " onfocus="this.style.borderColor='${colors[currentColor]}'" onblur="this.style.borderColor='${colors[currentColor]}'">
-                    `;
-                    break;
-                    
-                case 'card':
-                    component.innerHTML = `
-                        <div style="
-                            background: white;
-                            border-radius: 12px;
-                            padding: 1.5rem;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                            border-left: 4px solid ${colors[currentColor]};
-                        ">
-                            <h3 style="margin-bottom: 1rem; color: #0f172a;">Card Title</h3>
-                            <p style="color: #64748b; margin-bottom: 1rem;">This is a sample card component with customizable styling.</p>
-                            <button style="
-                                background: ${colors[currentColor]};
-                                color: white;
-                                border: none;
-                                border-radius: 6px;
-                                padding: 0.5rem 1rem;
-                                font-weight: 600;
-                                cursor: pointer;
-                            ">Action</button>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'alert':
-                    component.innerHTML = `
-                        <div style="
-                            background: rgba(${currentColor === 'purple' ? '111, 66, 193' : currentColor === 'blue' ? '0, 123, 255' : currentColor === 'green' ? '40, 167, 69' : '220, 53, 69'}, 0.1);
-                            border-left: 4px solid ${colors[currentColor]};
-                            padding: 1rem;
-                            border-radius: 8px;
-                            color: ${colors[currentColor]};
-                        ">
-                            <strong>Alert:</strong> This is a sample alert message with customizable colors and styling.
-                        </div>
-                    `;
-                    break;
-                    
-                case 'cube':
-                    component.innerHTML = `
-                        <div style="
-                            width: 100px;
-                            height: 100px;
-                            background: linear-gradient(45deg, ${colors[currentColor]}, ${colors[currentColor]}88);
-                            border-radius: 8px;
-                            transform-style: preserve-3d;
-                            animation: rotate3d 3s linear infinite;
-                            cursor: pointer;
-                        " onclick="createCubeExplosion(this)">
-                        </div>
-                        <style>
-                            @keyframes rotate3d {
-                                0% { transform: rotateX(0deg) rotateY(0deg); }
-                                100% { transform: rotateX(360deg) rotateY(360deg); }
-                            }
-                        </style>
-                    `;
-                    break;
-                    
-                case 'particles':
-                    component.innerHTML = `
-                        <div style="
-                            width: 200px;
-                            height: 100px;
-                            background: radial-gradient(circle, ${colors[currentColor]}22, transparent);
-                            border-radius: 12px;
-                            position: relative;
-                            cursor: pointer;
-                        " onclick="createParticleExplosion(this)">
-                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: ${colors[currentColor]}; font-weight: 600;">
-                                Click for Particles!
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'chart':
-                    component.innerHTML = `
-                        <div style="
-                            width: 300px;
-                            height: 200px;
-                            background: white;
-                            border-radius: 12px;
-                            padding: 1rem;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                            position: relative;
-                        ">
-                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Sample Chart</h4>
-                            <canvas id="demo-chart" width="280" height="150" style="width: 100%; height: 150px;"></canvas>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'form':
-                    component.innerHTML = `
-                        <div style="
-                            width: 300px;
-                            background: white;
-                            border-radius: 12px;
-                            padding: 1.5rem;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                        ">
-                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Contact Form</h4>
-                            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                <input type="text" placeholder="Your Name" style="padding: 0.75rem; border: 2px solid ${colors[currentColor]}; border-radius: 8px; outline: none;">
-                                <input type="email" placeholder="Email Address" style="padding: 0.75rem; border: 2px solid ${colors[currentColor]}; border-radius: 8px; outline: none;">
-                                <textarea placeholder="Message" style="padding: 0.75rem; border: 2px solid ${colors[currentColor]}; border-radius: 8px; outline: none; min-height: 80px; resize: vertical;"></textarea>
-                                <button style="background: ${colors[currentColor]}; color: white; border: none; padding: 0.75rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                                    Send Message
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'gallery':
-                    component.innerHTML = `
-                        <div style="
-                            width: 300px;
-                            background: white;
-                            border-radius: 12px;
-                            padding: 1rem;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                        ">
-                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Image Gallery</h4>
-                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
-                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}, ${colors[currentColor]}88); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
-                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}88, ${colors[currentColor]}44); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
-                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}44, ${colors[currentColor]}22); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
-                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}22, ${colors[currentColor]}11); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
-                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}11, ${colors[currentColor]}08); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
-                                <div style="aspect-ratio: 1; background: linear-gradient(45deg, ${colors[currentColor]}08, ${colors[currentColor]}04); border-radius: 8px; cursor: pointer;" onclick="showImageModal(this)"></div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'timeline':
-                    component.innerHTML = `
-                        <div style="
-                            width: 300px;
-                            background: white;
-                            border-radius: 12px;
-                            padding: 1.5rem;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                            position: relative;
-                        ">
-                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Project Timeline</h4>
-                            <div style="position: relative; padding-left: 2rem;">
-                                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: ${colors[currentColor]};"></div>
-                                <div style="margin-bottom: 1rem; position: relative;">
-                                    <div style="position: absolute; left: -2rem; top: 0; width: 12px; height: 12px; background: ${colors[currentColor]}; border-radius: 50%;"></div>
-                                    <h5 style="margin: 0; color: #0f172a;">Project Start</h5>
-                                    <p style="margin: 0; font-size: 0.875rem; color: #64748b;">Initial planning phase</p>
-                                </div>
-                                <div style="margin-bottom: 1rem; position: relative;">
-                                    <div style="position: absolute; left: -2rem; top: 0; width: 12px; height: 12px; background: ${colors[currentColor]}; border-radius: 50%;"></div>
-                                    <h5 style="margin: 0; color: #0f172a;">Development</h5>
-                                    <p style="margin: 0; font-size: 0.875rem; color: #64748b;">Building the application</p>
-                                </div>
-                                <div style="position: relative;">
-                                    <div style="position: absolute; left: -2rem; top: 0; width: 12px; height: 12px; background: ${colors[currentColor]}; border-radius: 50%;"></div>
-                                    <h5 style="margin: 0; color: #0f172a;">Launch</h5>
-                                    <p style="margin: 0; font-size: 0.875rem; color: #64748b;">Going live</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'kanban':
-                    component.innerHTML = `
-                        <div style="
-                            width: 400px;
-                            background: white;
-                            border-radius: 12px;
-                            padding: 1rem;
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                        ">
-                            <h4 style="margin-bottom: 1rem; color: #0f172a;">Kanban Board</h4>
-                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-                                <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; min-height: 150px;">
-                                    <h5 style="margin: 0 0 0.5rem 0; color: #0f172a; font-size: 0.875rem;">To Do</h5>
-                                    <div style="background: white; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;" onclick="moveCard(this)">
-                                        <div style="font-size: 0.875rem; color: #0f172a;">Task 1</div>
-                                    </div>
-                                </div>
-                                <div style="background: #fff3cd; border-radius: 8px; padding: 1rem; min-height: 150px;">
-                                    <h5 style="margin: 0 0 0.5rem 0; color: #0f172a; font-size: 0.875rem;">In Progress</h5>
-                                    <div style="background: white; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;" onclick="moveCard(this)">
-                                        <div style="font-size: 0.875rem; color: #0f172a;">Task 2</div>
-                                    </div>
-                                </div>
-                                <div style="background: #d4edda; border-radius: 8px; padding: 1rem; min-height: 150px;">
-                                    <h5 style="margin: 0 0 0.5rem 0; color: #0f172a; font-size: 0.875rem;">Done</h5>
-                                    <div style="background: white; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;" onclick="moveCard(this)">
-                                        <div style="font-size: 0.875rem; color: #0f172a;">Task 3</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                default:
-                    component.innerHTML = `
-                        <div style="
-                            background: ${colors[currentColor]};
-                            color: white;
-                            padding: 1rem;
-                            border-radius: 8px;
-                            text-align: center;
-                            font-weight: 600;
-                        ">
-                            ${type} Component
-                        </div>
-                    `;
+            // Add component ID
+            componentElement.dataset.componentId = `component-${componentCounter++}`;
+            componentElement.dataset.componentType = type;
+            
+            canvas.appendChild(componentElement);
+            
+            // If it's a chart, render it
+            if (type === 'chart') {
+                renderChart(componentElement.querySelector('canvas'));
             }
             
-            return component;
+            // Show success message
+            if (window.EmaAlerts) {
+                window.EmaAlerts.success(`${type} component added!`, {
+                    title: 'Component Added',
+                    timer: 2000
+                });
+            }
+            
+            // Update live preview
+            updateLivePreview();
         }
 
+        // Load template
+        function loadTemplate(template) {
+            const canvas = document.getElementById('playgroundCanvas');
+            canvas.innerHTML = '';
+            canvas.classList.add('has-content');
+            
+            const templates = {
+                landing: `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h1 style="color: #ffffff; margin-bottom: 1rem;">Welcome to Our Platform</h1>
+                        <p style="color: #a0a0a0; margin-bottom: 2rem;">Build amazing applications with Ema Framework</p>
+                        <button class="btn btn-primary" style="margin-right: 1rem;">Get Started</button>
+                        <button class="btn btn-secondary">Learn More</button>
+                    </div>
+                `,
+                dashboard: `
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1rem;">
+                        <div class="card card-primary" style="padding: 1rem; text-align: center;">
+                            <h3 style="color: #ffffff;">Users</h3>
+                            <p style="font-size: 2rem; color: #6f42c1; margin: 0;">1,234</p>
+                        </div>
+                        <div class="card card-success" style="padding: 1rem; text-align: center;">
+                            <h3 style="color: #ffffff;">Revenue</h3>
+                            <p style="font-size: 2rem; color: #28a745; margin: 0;">$45,678</p>
+                        </div>
+                        <div class="card card-warning" style="padding: 1rem; text-align: center;">
+                            <h3 style="color: #ffffff;">Orders</h3>
+                            <p style="font-size: 2rem; color: #ffc107; margin: 0;">567</p>
+                        </div>
+                    </div>
+                `,
+                portfolio: `
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #6f42c1, #8e5fd1); margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">👤</div>
+                        <h1 style="color: #ffffff; margin-bottom: 0.5rem;">John Doe</h1>
+                        <p style="color: #6f42c1; margin-bottom: 2rem;">Full Stack Developer</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <button class="btn btn-primary">Contact</button>
+                            <button class="btn btn-secondary">Portfolio</button>
+                        </div>
+                    </div>
+                `,
+                ecommerce: `
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 1rem;">
+                        <div class="card" style="padding: 1rem;">
+                            <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #6f42c1, #8e5fd1); border-radius: 8px; margin-bottom: 1rem;"></div>
+                            <h3 style="color: #ffffff;">Product Name</h3>
+                            <p style="color: #a0a0a0;">Product description goes here...</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                                <span style="color: #6f42c1; font-weight: 600; font-size: 1.25rem;">$99.99</span>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="card" style="padding: 1rem;">
+                            <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 8px; margin-bottom: 1rem;"></div>
+                            <h3 style="color: #ffffff;">Another Product</h3>
+                            <p style="color: #a0a0a0;">Another product description...</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                                <span style="color: #28a745; font-weight: 600; font-size: 1.25rem;">$149.99</span>
+                                <button class="btn btn-success">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            };
+            
+            canvas.innerHTML = templates[template];
+            
+            if (window.EmaAlerts) {
+                window.EmaAlerts.success(`${template} template loaded!`, {
+                    title: 'Template Loaded',
+                    timer: 2000
+                });
+            }
+            
+            updateLivePreview();
+        }
+
+        // Update component properties
         function updateComponent() {
             if (!currentComponent) return;
             
-            const text = document.getElementById('component-text').value;
-            const size = document.getElementById('component-size').value;
-            const animation = document.getElementById('component-animation').value;
-            const width = document.getElementById('component-width').value;
-            const height = document.getElementById('component-height').value;
+            const props = {
+                variant: document.getElementById('variantSelect').value,
+                size: document.getElementById('sizeSelect').value,
+                text: document.getElementById('textInput').value,
+                width: document.getElementById('widthInput').value,
+                height: document.getElementById('heightInput').value,
+                disabled: document.getElementById('disabledInput').checked,
+                loading: document.getElementById('loadingInput').checked
+            };
             
-            // Update component based on current type
-            const componentType = document.querySelector('.component-item.active').dataset.component;
+            const type = currentComponent.dataset.componentType;
+            const newHtml = componentTemplates[type](props);
+            currentComponent.innerHTML = newHtml;
             
-            // Remove old component and create new one
-            const canvas = document.getElementById('playground-canvas');
-            const newComponent = createComponent(componentType);
-            
-            // Apply custom properties
-            newComponent.style.width = width + 'px';
-            newComponent.style.height = height + 'px';
-            
-            // Apply animation
-            if (animation !== 'none') {
-                newComponent.style.animation = animation + ' 0.6s ease';
-            }
-            
-            // Apply size
-            const scale = size === 'small' ? 0.8 : size === 'large' ? 1.2 : 1;
-            newComponent.style.transform = `scale(${scale})`;
-            
-            // Replace component
-            canvas.replaceChild(newComponent, currentComponent);
-            currentComponent = newComponent;
-            
-            // Add update effect
-            ema3DEffects.createTrail(
-                currentComponent.offsetLeft + currentComponent.offsetWidth / 2,
-                currentComponent.offsetTop + currentComponent.offsetHeight / 2,
-                [0.4, 0.2, 0.7],
-                8
-            );
+            updateLivePreview();
         }
 
-        function createCubeExplosion(element) {
-            const rect = element.getBoundingClientRect();
-            ema3DEffects.createExplosion(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                [0.4, 0.2, 0.7],
-                20
-            );
+        // Select color
+        function selectColor(element) {
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
             
-            emaAlerts.info('3D cube explosion created!', {
-                title: '3D Effect',
-                timer: 2000
-            });
+            // Update variant based on color
+            const color = element.dataset.color;
+            const variantMap = {
+                purple: 'primary',
+                green: 'success',
+                red: 'danger',
+                blue: 'info',
+                yellow: 'warning',
+                orange: 'warning',
+                gray: 'secondary',
+                white: 'light'
+            };
+            
+            document.getElementById('variantSelect').value = variantMap[color] || 'primary';
+            updateComponent();
         }
 
-        function createParticleExplosion(element) {
-            const rect = element.getBoundingClientRect();
-            ema3DEffects.createTrail(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                [0.4, 0.2, 0.7],
-                15
-            );
-            
-            emaAlerts.success('Particle trail created!', {
-                title: 'Particle Effect',
-                timer: 2000
-            });
-        }
-
-        function clearCanvas() {
-            const canvas = document.getElementById('playground-canvas');
-            canvas.innerHTML = `
-                <div class="canvas-placeholder">
-                    <h3>🎮 Ema Framework Playground</h3>
-                    <p>Select a component from the left panel to start building</p>
-                    <p style="font-size: 0.875rem; color: #94a3b8;">
-                        Drag components here and customize them in the properties panel
-                    </p>
-                </div>
-            `;
-            
-            currentComponent = null;
-            
-            emaAlerts.success('Canvas cleared!', {
-                title: 'Canvas Cleared',
-                timer: 2000
-            });
-        }
-
-        function exportCode() {
-            if (!currentComponent) {
-                emaAlerts.warning('No component to export. Add a component first.', {
-                    title: 'Nothing to Export'
-                });
-                return;
-            }
-            
-            const code = currentComponent.outerHTML;
-            
-            emaAlerts.prompt('Enter a filename for your component:', {
-                title: 'Export Component',
-                placeholder: 'my-component.html'
-            }).then(filename => {
-                if (filename) {
-                    const blob = new Blob([code], { type: 'text/html' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = filename.endsWith('.html') ? filename : filename + '.html';
-                    a.click();
-                    URL.revokeObjectURL(url);
-                    
-                    emaAlerts.success('Component exported successfully!', {
-                        title: 'Export Complete'
-                    });
-                }
-            });
-        }
-
-        function saveProject() {
-            emaAlerts.success('Project saved successfully!', {
-                title: 'Project Saved',
-                timer: 2000
-            });
-            
-            // Create save effect
-            ema3DEffects.createExplosion(
-                window.innerWidth / 2,
-                window.innerHeight / 2,
-                [0.4, 0.2, 0.7],
-                25
-            );
-        }
-
-        // New interactive functions
-        function showImageModal(element) {
-            emaAlerts.info('Image modal opened! In a real implementation, this would show a lightbox.', {
-                title: 'Image Gallery',
-                timer: 3000
-            });
-            
-            // Create image effect
-            const rect = element.getBoundingClientRect();
-            ema3DEffects.createExplosion(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                [0.4, 0.2, 0.7],
-                15
-            );
-        }
-
-        function moveCard(element) {
-            // Simulate card movement
-            element.style.transform = 'translateX(10px)';
-            element.style.transition = 'transform 0.3s ease';
-            
-            setTimeout(() => {
-                element.style.transform = 'translateX(0)';
-            }, 300);
-            
-            emaAlerts.success('Card moved! Drag & drop functionality would be implemented here.', {
-                title: 'Kanban Board',
-                timer: 2000
-            });
-            
-            // Create movement effect
-            const rect = element.getBoundingClientRect();
-            ema3DEffects.createTrail(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                [0.4, 0.2, 0.7],
-                8
-            );
-        }
-
-        // Chart rendering for demo
-        function renderDemoChart() {
-            const canvas = document.getElementById('demo-chart');
-            if (!canvas) return;
-            
+        // Render chart
+        function renderChart(canvas) {
             const ctx = canvas.getContext('2d');
             const width = canvas.width;
             const height = canvas.height;
@@ -1315,142 +1030,346 @@
             // Clear canvas
             ctx.clearRect(0, 0, width, height);
             
-            // Sample data
-            const data = [65, 59, 80, 81, 56, 55, 40];
-            const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-            
-            // Draw chart
-            const barWidth = width / data.length * 0.8;
-            const barSpacing = width / data.length * 0.2;
+            // Draw sample chart
+            const data = [65, 78, 85, 92, 88, 95, 102];
             const maxValue = Math.max(...data);
             
+            ctx.strokeStyle = '#6f42c1';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
             data.forEach((value, index) => {
-                const barHeight = (value / maxValue) * (height - 40);
-                const x = index * (barWidth + barSpacing) + barSpacing / 2;
-                const y = height - barHeight - 20;
+                const x = (width / (data.length - 1)) * index;
+                const y = height - (value / maxValue) * height;
                 
-                // Draw bar
-                ctx.fillStyle = `hsl(${200 + index * 30}, 70%, 60%)`;
-                ctx.fillRect(x, y, barWidth, barHeight);
-                
-                // Draw label
-                ctx.fillStyle = '#666';
-                ctx.font = '12px Inter, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText(labels[index], x + barWidth / 2, height - 5);
-            });
-        }
-
-        // Enhanced component creation with chart support
-        const originalAddComponentToCanvas = addComponentToCanvas;
-        addComponentToCanvas = function(componentType) {
-            originalAddComponentToCanvas(componentType);
-            
-            // Render chart if it's a chart component
-            if (componentType === 'chart') {
-                setTimeout(() => {
-                    renderDemoChart();
-                }, 100);
-            }
-        };
-
-        // Template functions
-        function createTemplate(templateType) {
-            const templates = {
-                landing: {
-                    name: 'Landing Page',
-                    components: ['hero', 'features', 'testimonials', 'contact'],
-                    description: 'Complete landing page with hero section, features, testimonials and contact form'
-                },
-                dashboard: {
-                    name: 'Admin Dashboard',
-                    components: ['sidebar', 'charts', 'tables', 'stats'],
-                    description: 'Professional admin dashboard with analytics and data visualization'
-                },
-                portfolio: {
-                    name: 'Creative Portfolio',
-                    components: ['gallery', 'timeline', 'skills', 'contact'],
-                    description: 'Modern portfolio with image gallery, project timeline and skills showcase'
-                },
-                ecommerce: {
-                    name: 'E-commerce Store',
-                    components: ['product-grid', 'cart', 'checkout', 'reviews'],
-                    description: 'Complete online store with product catalog, shopping cart and checkout'
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
                 }
-            };
+            });
             
-            const template = templates[templateType];
-            if (template) {
-                emaAlerts.success(`Template "${template.name}" loaded!`, {
-                    title: 'Template Loaded',
-                    timer: 3000
-                });
+            ctx.stroke();
+            
+            // Draw points
+            ctx.fillStyle = '#6f42c1';
+            data.forEach((value, index) => {
+                const x = (width / (data.length - 1)) * index;
+                const y = height - (value / maxValue) * height;
                 
-                // Create template effect
-                ema3DEffects.createExplosion(
-                    window.innerWidth / 2,
-                    window.innerHeight / 2,
-                    [0.4, 0.2, 0.7],
-                    40
-                );
-            }
-        }
-
-        // Enhanced component creation for templates
-        function addComponentToCanvas(componentType) {
-            const canvas = document.getElementById('playground-canvas');
-            
-            // Clear placeholder
-            if (canvas.querySelector('.canvas-placeholder')) {
-                canvas.innerHTML = '';
-            }
-            
-            // Create component
-            const component = createComponent(componentType);
-            canvas.appendChild(component);
-            
-            currentComponent = component;
-            updateComponent();
-            
-            // Add click effects
-            const rect = component.getBoundingClientRect();
-            ema3DEffects.createExplosion(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                [0.4, 0.2, 0.7],
-                15
-            );
-            
-            emaAlerts.success(`${componentType} component added to canvas!`, {
-                title: 'Component Added',
-                timer: 2000
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fill();
             });
         }
 
-        // Welcome message
-        setTimeout(() => {
-            emaAlerts.success('Welcome to the Ema Framework Playground! 🎮', {
-                title: 'Playground Loaded',
-                timer: 4000
+        // Update live preview
+        function updateLivePreview() {
+            const canvas = document.getElementById('playgroundCanvas');
+            const code = canvas.innerHTML;
+            document.getElementById('previewCode').textContent = code;
+        }
+
+        // Toggle preview
+        function togglePreview() {
+            const preview = document.getElementById('livePreview');
+            preview.style.display = preview.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Export code
+        function exportCode() {
+            const canvas = document.getElementById('playgroundCanvas');
+            const code = canvas.innerHTML;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                if (window.EmaAlerts) {
+                    window.EmaAlerts.success('Code copied to clipboard!', {
+                        title: 'Export Complete',
+                        timer: 2000
+                    });
+                }
             });
-        }, 1000);
+        }
+
+        // Clear canvas
+        function clearCanvas() {
+            const canvas = document.getElementById('playgroundCanvas');
+            canvas.innerHTML = `
+                <div class="canvas-placeholder">
+                    <div class="canvas-placeholder-icon">🎨</div>
+                    <div class="canvas-placeholder-text">Interactive Playground</div>
+                    <div class="canvas-placeholder-desc">Drag components from the sidebar to start building</div>
+                </div>
+            `;
+            canvas.classList.remove('has-content');
+            
+            if (window.EmaAlerts) {
+                window.EmaAlerts.info('Canvas cleared!', {
+                    title: 'Canvas Cleared',
+                    timer: 2000
+                });
+            }
+        }
+
+        // Enhanced component click handler
+        document.addEventListener('click', (e) => {
+            const component = e.target.closest('.playground-component');
+            if (component) {
+                // Remove previous selection
+                document.querySelectorAll('.playground-component').forEach(c => c.classList.remove('selected'));
+                
+                // Add selection to clicked component
+                component.classList.add('selected');
+                currentComponent = component;
+                
+                // Add selection animation
+                component.style.transform = 'scale(1.05)';
+                component.style.boxShadow = '0 0 20px rgba(111, 66, 193, 0.5)';
+                setTimeout(() => {
+                    component.style.transform = '';
+                    component.style.boxShadow = '';
+                }, 200);
+                
+                // Update properties panel
+                const type = component.dataset.componentType;
+                const variant = component.querySelector('[class*="btn-"], [class*="card-"], [class*="form-"]');
+                if (variant) {
+                    const classes = variant.className;
+                    if (classes.includes('primary')) document.getElementById('variantSelect').value = 'primary';
+                    else if (classes.includes('secondary')) document.getElementById('variantSelect').value = 'secondary';
+                    else if (classes.includes('success')) document.getElementById('variantSelect').value = 'success';
+                    else if (classes.includes('warning')) document.getElementById('variantSelect').value = 'warning';
+                    else if (classes.includes('danger')) document.getElementById('variantSelect').value = 'danger';
+                    else if (classes.includes('info')) document.getElementById('variantSelect').value = 'info';
+                }
+                
+                // Show component info
+                showComponentInfo(component);
+            }
+        });
+        
+        // Show component information
+        function showComponentInfo(component) {
+            const type = component.dataset.componentType;
+            const info = document.createElement('div');
+            info.className = 'component-info';
+            info.innerHTML = `
+                <div class="info-content">
+                    <h4>${type.charAt(0).toUpperCase() + type.slice(1)} Component</h4>
+                    <p>Click and drag to move, use properties panel to customize</p>
+                    <div class="info-actions">
+                        <button onclick="duplicateComponent('${type}')" class="info-btn">
+                            <i class="fas fa-copy"></i> Duplicate
+                        </button>
+                        <button onclick="deleteComponent()" class="info-btn danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add info styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .component-info {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--ema-bg-primary);
+                    border: 1px solid rgba(111, 66, 193, 0.3);
+                    border-radius: 15px;
+                    padding: 1.5rem;
+                    z-index: 1000;
+                    animation: slideInRight 0.3s ease;
+                    box-shadow: 0 10px 30px rgba(111, 66, 193, 0.3);
+                }
+                
+                .info-content h4 {
+                    margin: 0 0 0.5rem 0;
+                    color: var(--ema-text-primary);
+                }
+                
+                .info-content p {
+                    margin: 0 0 1rem 0;
+                    color: var(--ema-text-muted);
+                    font-size: 0.9rem;
+                }
+                
+                .info-actions {
+                    display: flex;
+                    gap: 0.5rem;
+                }
+                
+                .info-btn {
+                    background: var(--ema-gradient-primary);
+                    color: white;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 0.8rem;
+                    transition: all 0.3s ease;
+                }
+                
+                .info-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(111, 66, 193, 0.3);
+                }
+                
+                .info-btn.danger {
+                    background: var(--ema-red);
+                }
+                
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remove existing info
+            const existingInfo = document.querySelector('.component-info');
+            if (existingInfo) existingInfo.remove();
+            
+            document.body.appendChild(info);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (info.parentNode) {
+                    info.remove();
+                    style.remove();
+                }
+            }, 5000);
+        }
+        
+        // Duplicate component
+        function duplicateComponent(type) {
+            if (currentComponent) {
+                const newComponent = currentComponent.cloneNode(true);
+                newComponent.style.position = 'absolute';
+                newComponent.style.left = (currentComponent.offsetLeft + 20) + 'px';
+                newComponent.style.top = (currentComponent.offsetTop + 20) + 'px';
+                newComponent.classList.remove('selected');
+                
+                document.getElementById('playground-canvas').appendChild(newComponent);
+                
+                // Add to component list
+                addComponentToList(type);
+                
+                showToast('Component duplicated!', 'success');
+            }
+        }
+        
+        // Delete component
+        function deleteComponent() {
+            if (currentComponent) {
+                currentComponent.remove();
+                currentComponent = null;
+                
+                // Remove info panel
+                const info = document.querySelector('.component-info');
+                if (info) info.remove();
+                
+                showToast('Component deleted!', 'success');
+            }
+        }
+        
+        // Toast notification system
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Add toast styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .toast {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background: var(--ema-bg-primary);
+                    border: 1px solid rgba(111, 66, 193, 0.3);
+                    border-radius: 15px;
+                    padding: 1rem 1.5rem;
+                    color: var(--ema-text-primary);
+                    z-index: 1001;
+                    animation: slideInUp 0.3s ease;
+                    box-shadow: 0 10px 30px rgba(111, 66, 193, 0.3);
+                }
+                
+                .toast-success {
+                    border-left: 4px solid var(--ema-green);
+                }
+                
+                .toast-error {
+                    border-left: 4px solid var(--ema-red);
+                }
+                
+                .toast-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+                
+                @keyframes slideInUp {
+                    from { transform: translateY(100%); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+                style.remove();
+            }, 3000);
+        }
+        
+        // Enhanced drag and drop
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+        
+        document.addEventListener('mousedown', (e) => {
+            const component = e.target.closest('.playground-component');
+            if (component) {
+                isDragging = true;
+                const rect = component.getBoundingClientRect();
+                dragOffset.x = e.clientX - rect.left;
+                dragOffset.y = e.clientY - rect.top;
+                
+                component.style.cursor = 'grabbing';
+                component.style.zIndex = '1000';
+                
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging && currentComponent) {
+                const canvas = document.getElementById('playground-canvas');
+                const canvasRect = canvas.getBoundingClientRect();
+                
+                const x = e.clientX - canvasRect.left - dragOffset.x;
+                const y = e.clientY - canvasRect.top - dragOffset.y;
+                
+                currentComponent.style.left = Math.max(0, Math.min(x, canvasRect.width - currentComponent.offsetWidth)) + 'px';
+                currentComponent.style.top = Math.max(0, Math.min(y, canvasRect.height - currentComponent.offsetHeight)) + 'px';
+            }
+        });
+        
+        document.addEventListener('mouseup', () => {
+            if (isDragging && currentComponent) {
+                currentComponent.style.cursor = 'grab';
+                currentComponent.style.zIndex = '';
+                isDragging = false;
+            }
+        });
     </script>
-
-    <!-- Load framework scripts -->
-    <script src="../js/core.js"></script>
-    <script src="../js/router.js"></script>
-    <script src="../js/store.js"></script>
-    <script src="../js/ui.js"></script>
-    <script src="../js/animations.js"></script>
-    <script src="../js/theme.js"></script>
-    <script src="../js/utils.js"></script>
-    <script src="../js/3d-engine.js"></script>
-    <script src="../js/ema-alerts.js"></script>
-    <script src="../js/ema-3d-effects.js"></script>
-    <script src="../js/emadocs.js"></script>
-    
-    <!-- Initialize application -->
-    <script src="../js/app-init.js"></script>
 </body>
 </html>
-

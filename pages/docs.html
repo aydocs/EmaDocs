@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Ema Framework</title>
+    <meta name="description" content="Comprehensive documentation for Ema Framework - Learn how to build amazing web applications">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/ema-framework.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    
+    <style>
+        /* Documentation Styles */
+        .docs-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+        }
+
+        .docs-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .docs-main {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .docs-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .docs-nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .docs-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--ema-text-muted);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .docs-nav-link:hover,
+        .docs-nav-link.active {
+            color: var(--ema-text-primary);
+            background: rgba(111, 66, 193, 0.1);
+            transform: translateX(5px);
+        }
+
+        .docs-nav-link i {
+            width: 20px;
+            color: var(--ema-purple);
+        }
+
+        .docs-section {
+            margin-bottom: 3rem;
+        }
+
+        .docs-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--ema-gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .docs-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ema-text-primary);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(111, 66, 193, 0.2);
+        }
+
+        .docs-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--ema-text-primary);
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .docs-section p {
+            color: var(--ema-text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .docs-section ul,
+        .docs-section ol {
+            color: var(--ema-text-muted);
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .docs-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: #e6e6e6;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(111, 66, 193, 0.2);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: var(--ema-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--ema-purple);
+            color: white;
+        }
+
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: rgba(0, 123, 255, 0.1);
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .alert-warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-color: #ffc107;
+            color: #ffc107;
+        }
+
+        .alert-success {
+            background: rgba(40, 167, 69, 0.1);
+            border-color: #28a745;
+            color: #28a745;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--ema-purple);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.2);
+        }
+
+        .feature-card h4 {
+            color: var(--ema-text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-card h4 i {
+            color: var(--ema-purple);
+        }
+
+        .feature-card p {
+            color: var(--ema-text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .docs-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .docs-main {
+                order: 1;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="ema-header">
+        <div class="nav-container">
+            <a href="../index.html" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
+            </a>
+            
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <nav>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <div class="item-title">Quick Start</div>
+                                            <div class="item-desc">Get up and running in minutes</div>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <div class="item-title">API Reference</div>
+                                            <div class="item-desc">Complete API documentation</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <div class="item-title">UI Components</div>
+                                            <div class="item-desc">250+ components</div>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <div class="item-title">Showcase</div>
+                                            <div class="item-desc">Live examples</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <div class="item-title">Playground</div>
+                                            <div class="item-desc">Interactive builder</div>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <div class="item-title">Dashboard</div>
+                                            <div class="item-desc">Analytics & stats</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <div class="item-title">Examples</div>
+                                            <div class="item-desc">Real-world projects</div>
+                                        </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <div class="item-title">Revolution</div>
+                                            <div class="item-desc">Next-gen features</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li>
+                <a href="#" class="mobile-framework-trigger">
+                    <i class="fas fa-th-large"></i>
+                    <span>Framework</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-search-trigger">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="docs.html">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="getting-started.html">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Started</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
+            <h3>Getting Started</h3>
+            <a href="getting-started.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Quick Start</span>
+            </a>
+            <a href="api.html" class="mobile-dropdown-item">
+                <i class="fas fa-cogs"></i>
+                <span>API Reference</span>
+            </a>
+            
+            <h3>Components</h3>
+            <a href="components.html" class="mobile-dropdown-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>UI Components</span>
+            </a>
+            <a href="showcase.html" class="mobile-dropdown-item">
+                <i class="fas fa-star"></i>
+                <span>Showcase</span>
+            </a>
+            
+            <h3>Tools</h3>
+            <a href="playground.html" class="mobile-dropdown-item">
+                <i class="fas fa-play"></i>
+                <span>Playground</span>
+            </a>
+            <a href="dashboard.html" class="mobile-dropdown-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <h3>Resources</h3>
+            <a href="examples.html" class="mobile-dropdown-item">
+                <i class="fas fa-code"></i>
+                <span>Examples</span>
+            </a>
+            <a href="revolution.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Revolution</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Documentation Content -->
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <nav>
+                <ul class="docs-nav">
+                    <li class="docs-nav-item">
+                        <a href="#introduction" class="docs-nav-link active">
+                            <i class="fas fa-home"></i>
+                            <span>Introduction</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#installation" class="docs-nav-link">
+                            <i class="fas fa-download"></i>
+                            <span>Installation</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#quick-start" class="docs-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Quick Start</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#components" class="docs-nav-link">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <span>Components</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#styling" class="docs-nav-link">
+                            <i class="fas fa-palette"></i>
+                            <span>Styling</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#javascript" class="docs-nav-link">
+                            <i class="fas fa-code"></i>
+                            <span>JavaScript</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#3d-effects" class="docs-nav-link">
+                            <i class="fas fa-cube"></i>
+                            <span>3D Effects</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#theming" class="docs-nav-link">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>Theming</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#performance" class="docs-nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Performance</span>
+                        </a>
+                    </li>
+                    <li class="docs-nav-item">
+                        <a href="#deployment" class="docs-nav-link">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Deployment</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="docs-main">
+            <section class="docs-section" id="introduction">
+                <h1>Ema Framework Documentation</h1>
+                <p>Welcome to the comprehensive documentation for Ema Framework - the most advanced frontend framework for building modern web applications. This guide will help you get started and master all the powerful features Ema has to offer.</p>
+                
+                <div class="alert alert-info">
+                    <strong>New to Ema?</strong> Start with our <a href="getting-started.html" style="color: inherit;">Getting Started guide</a> to set up your first project in minutes.
+                </div>
+
+                <h2>What is Ema Framework?</h2>
+                <p>Ema Framework is a revolutionary frontend development framework that combines the best of modern web technologies with cutting-edge features. Built with vanilla HTML, CSS, and JavaScript, Ema provides:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-puzzle-piece"></i> 250+ Components</h4>
+                        <p>Comprehensive library of pre-built UI components with 8 color variants each, ready to use in your projects.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-cogs"></i> 100+ Modules</h4>
+                        <p>Powerful JavaScript modules for animations, 3D effects, state management, routing, and much more.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-magic"></i> 500+ Features</h4>
+                        <p>Advanced features including WebGL 3D effects, PWA support, accessibility compliance, and performance optimization.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-mobile-alt"></i> Responsive Design</h4>
+                        <p>Mobile-first responsive design system that works perfectly on all devices and screen sizes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="docs-section" id="installation">
+                <h2>Installation</h2>
+                <p>Getting started with Ema Framework is simple. You can include it in your project using CDN or download the files locally.</p>
+
+                <h3>CDN Installation</h3>
+                <p>The easiest way to get started is using our CDN:</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://cdn.ema-framework.com/css/ema-framework.css"&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script src="https://cdn.ema-framework.com/js/ema-framework.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+
+                <h3>Local Installation</h3>
+                <p>Download the framework files and include them in your project:</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;!-- Include in your HTML --&gt;
+&lt;link rel="stylesheet" href="css/ema-framework.css"&gt;
+&lt;script src="js/ema-framework.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+
+                <div class="alert alert-success">
+                    <strong>Pro Tip:</strong> For production applications, consider using the minified versions for better performance.
+                </div>
+            </section>
+
+            <section class="docs-section" id="quick-start">
+                <h2>Quick Start</h2>
+                <p>Let's create your first Ema application in just a few steps:</p>
+
+                <h3>1. Basic HTML Structure</h3>
+            <div class="terminal-code-block">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <button class="terminal-button close" title="Close"></button>
+                        <button class="terminal-button minimize" title="Minimize"></button>
+                        <button class="terminal-button maximize" title="Maximize"></button>
+                    </div>
+                    <div class="terminal-title">terminal — bash — 80x24</div>
+                </div>
+                <div class="terminal-content">
+                    <button class="terminal-copy-btn" onclick="copyCode(this)">Copy</button>
+                    <div class="terminal-line-numbers">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</div>
+                    <div class="terminal-code">
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Ema App&lt;/title&gt;
+    &lt;link rel="stylesheet" href="css/ema-framework.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Hello Ema Framework!&lt;/h1&gt;
+        &lt;button class="ema-btn ema-btn-primary"&gt;Click me&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;script src="js/ema-framework.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+                <h3>2. Initialize the Framework</h3>
+                <div class="terminal-code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <button class="terminal-button close" title="Close"></button>
+                            <button class="terminal-button minimize" title="Minimize"></button>
+                            <button class="terminal-button maximize" title="Maximize"></button>
+                        </div>
+                        <div class="terminal-title">terminal — bash — 80x24</div>
+                    </div>
+                    <div class="terminal-content">
+                        <button class="terminal-copy-btn" onclick="copyCode(this)">Copy</button>
+                        <div class="terminal-line-numbers">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</div>
+                        <div class="terminal-code">
+                            <pre><code>&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Ema Framework
+    if (window.emaFramework) {
+        emaFramework.init();
+    }
+    
+    // Your custom code here
+    console.log('Ema Framework is ready!');
+});
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="docs-section" id="components">
+                <h2>Components</h2>
+                <p>Ema Framework comes with 250+ pre-built components, each with 8 color variants. Here are some of the most commonly used ones:</p>
+
+                <h3>Buttons</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;!-- Primary Button --&gt;
+&lt;button class="ema-btn ema-btn-primary"&gt;Primary&lt;/button&gt;
+
+&lt;!-- Secondary Button --&gt;
+&lt;button class="ema-btn ema-btn-secondary"&gt;Secondary&lt;/button&gt;
+
+&lt;!-- Success Button --&gt;
+&lt;button class="ema-btn ema-btn-success"&gt;Success&lt;/button&gt;</code></pre>
+                </div>
+
+                <h3>Cards</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>&lt;div class="ema-card"&gt;
+    &lt;div class="ema-card-header"&gt;
+        &lt;h3&gt;Card Title&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="ema-card-body"&gt;
+        &lt;p&gt;Card content goes here.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="ema-card-footer"&gt;
+        &lt;button class="ema-btn ema-btn-primary"&gt;Action&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="docs-section" id="styling">
+                <h2>Styling</h2>
+                <p>Ema Framework uses a comprehensive design system with 8 color variants and consistent spacing.</p>
+
+                <h3>Color System</h3>
+                <p>Each component supports 8 color variants:</p>
+                <ul>
+                    <li><strong>Primary (Purple):</strong> #6f42c1 - Main brand color</li>
+                    <li><strong>Secondary (Gray):</strong> #6c757d - Neutral elements</li>
+                    <li><strong>Success (Green):</strong> #28a745 - Success states</li>
+                    <li><strong>Warning (Yellow):</strong> #ffc107 - Warning states</li>
+                    <li><strong>Danger (Red):</strong> #dc3545 - Error states</li>
+                    <li><strong>Info (Blue):</strong> #007bff - Information</li>
+                    <li><strong>Light (White):</strong> #ffffff - Light backgrounds</li>
+                    <li><strong>Dark (Orange):</strong> #fd7e14 - Dark accents</li>
+                </ul>
+
+                <h3>Custom CSS Variables</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>:root {
+    --ema-primary: #6f42c1;
+    --ema-secondary: #6c757d;
+    --ema-success: #28a745;
+    --ema-warning: #ffc107;
+    --ema-danger: #dc3545;
+    --ema-info: #007bff;
+    --ema-light: #ffffff;
+    --ema-dark: #fd7e14;
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="docs-section" id="javascript">
+                <h2>JavaScript</h2>
+                <p>Ema Framework includes 100+ JavaScript modules for enhanced functionality.</p>
+
+                <h3>Core Modules</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-cube"></i> 3D Engine</h4>
+                        <p>WebGL-based 3D rendering and particle effects system.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-bell"></i> Alert System</h4>
+                        <p>Advanced notification system with multiple alert types.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-route"></i> Router</h4>
+                        <p>Client-side routing for single-page applications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-database"></i> Store</h4>
+                        <p>State management and data persistence.</p>
+                    </div>
+                </div>
+
+                <h3>Using JavaScript Modules</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>// Initialize 3D effects
+if (window.ema3DEngine) {
+    ema3DEngine.init();
+}
+
+// Show alert
+if (window.emaAlerts) {
+    emaAlerts.success('Operation completed successfully!');
+}
+
+// Use router
+if (window.emaRouter) {
+    emaRouter.navigate('/dashboard');
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="docs-section" id="3d-effects">
+                <h2>3D Effects</h2>
+                <p>Ema Framework includes a powerful WebGL-based 3D engine for creating stunning visual effects.</p>
+
+                <h3>Particle Effects</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>// Create explosion effect
+ema3DEffects.createExplosion(x, y, color, particleCount);
+
+// Create trail effect
+ema3DEffects.createTrail(element, color, duration);
+
+// Create spiral effect
+ema3DEffects.createSpiral(centerX, centerY, radius, color);</code></pre>
+                </div>
+
+                <h3>Interactive 3D Objects</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>// Add 3D hover effect to element
+element.addEventListener('mouseenter', () => {
+    ema3DEffects.addHoverEffect(element, 'float');
+});
+
+// Add 3D click effect
+element.addEventListener('click', () => {
+    ema3DEffects.addClickEffect(element, 'explosion');
+});</code></pre>
+                </div>
+            </section>
+
+            <section class="docs-section" id="theming">
+                <h2>Theming</h2>
+                <p>Ema Framework supports both light and dark themes with easy customization options.</p>
+
+                <h3>Theme Switching</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>// Switch to dark theme
+emaTheme.setTheme('dark');
+
+// Switch to light theme
+emaTheme.setTheme('light');
+
+// Toggle theme
+emaTheme.toggleTheme();</code></pre>
+                </div>
+
+                <h3>Custom Themes</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>// Create custom theme
+const customTheme = {
+    primary: '#ff6b6b',
+    secondary: '#4ecdc4',
+    background: '#2c3e50',
+    text: '#ecf0f1'
+};
+
+emaTheme.createTheme('custom', customTheme);
+emaTheme.setTheme('custom');</code></pre>
+                </div>
+            </section>
+
+            <section class="docs-section" id="performance">
+                <h2>Performance</h2>
+                <p>Ema Framework is optimized for maximum performance and minimal bundle size.</p>
+
+                <h3>Optimization Features</h3>
+                <ul>
+                    <li><strong>Lazy Loading:</strong> Components load only when needed</li>
+                    <li><strong>Tree Shaking:</strong> Unused code is automatically removed</li>
+                    <li><strong>Code Splitting:</strong> JavaScript is split into smaller chunks</li>
+                    <li><strong>CSS Optimization:</strong> Unused styles are purged</li>
+                    <li><strong>Image Optimization:</strong> Automatic image compression and WebP support</li>
+                </ul>
+
+                <h3>Performance Monitoring</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>// Monitor performance
+emaPerformance.startMonitoring();
+
+// Get performance metrics
+const metrics = emaPerformance.getMetrics();
+console.log('Load time:', metrics.loadTime);
+console.log('Render time:', metrics.renderTime);</code></pre>
+                </div>
+            </section>
+
+            <section class="docs-section" id="deployment">
+                <h2>Deployment</h2>
+                <p>Deploy your Ema applications to any hosting platform with ease.</p>
+
+                <h3>Static Hosting</h3>
+                <p>Ema applications are static and can be deployed to any static hosting service:</p>
+                <ul>
+                    <li>Netlify</li>
+                    <li>Vercel</li>
+                    <li>GitHub Pages</li>
+                    <li>Firebase Hosting</li>
+                    <li>AWS S3</li>
+                </ul>
+
+                <h3>Build Process</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Install dependencies
+npm install
+
+# Build for production
+npm run build
+
+# Deploy to Netlify
+netlify deploy --prod --dir=dist</code></pre>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>Remember:</strong> Always test your application thoroughly before deploying to production.
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ema-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ema Framework</h4>
+                    <p>
+                        The future of web development is here. Build amazing applications 
+                        with the most advanced JavaScript framework ever created.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="revolution.html">Revolution</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/ema-live-preview.js"></script>
+    <script src="../js/ema-search.js"></script>
+    <script src="../js/ema-mobile-nav.js"></script>
+
+    <script>
+        // Initialize documentation page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize search trigger
+            const searchTrigger = document.querySelector('.search-trigger');
+            if (searchTrigger) {
+                searchTrigger.addEventListener('click', () => {
+                    if (window.emaSearch) {
+                        window.emaSearch.openSearch();
+                    }
+                });
+            }
+            
+            // Initialize 3D engine
+            if (window.ema3DEngine) {
+                ema3DEngine.init();
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.docs-nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active link
+                        document.querySelectorAll('.docs-nav-link').forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Copy code functionality
+            window.copyCode = function(button) {
+                const codeBlock = button.nextElementSibling.querySelector('code');
+                const text = codeBlock.textContent;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                });
+            };
+            
+            // Intersection Observer for active navigation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        const navLink = document.querySelector(`.docs-nav-link[href="#${id}"]`);
+                        
+                        if (navLink) {
+                            document.querySelectorAll('.docs-nav-link').forEach(l => l.classList.remove('active'));
+                            navLink.classList.add('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            // Observe all sections
+            document.querySelectorAll('.docs-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

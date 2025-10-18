@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ema - The Future of Web Development</title>
-    <meta name="description" content="Ema Framework - Revolutionary JavaScript framework with 250+ components, 100+ modules, and 500+ features. The most advanced web development platform ever created.">
+    <title>Ema Framework - The Future of Web Development</title>
+    <meta name="description" content="Revolutionary JavaScript framework with 250+ components, 100+ modules, and 500+ features. Build amazing web applications with cutting-edge design and 3D effects.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
@@ -14,1045 +14,453 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/emadocs.css">
-    <link rel="stylesheet" href="css/ema-colors.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <style>
-        /* Modern Ema Framework Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fafafa;
-            color: #0f172a;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #6f42c1;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 900;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: #6f42c1;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(135deg, #fafafa 0%, #f1f5f9 100%);
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%236f42c1" stop-opacity="0.1"/><stop offset="100%" stop-color="%236f42c1" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="800" r="400" fill="url(%23a)"/></svg>');
-            opacity: 0.6;
-        }
-
-        .hero-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            max-width: 600px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(111, 66, 193, 0.1);
-            color: #6f42c1;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(111, 66, 193, 0.2);
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #0f172a 0%, #6f42c1 50%, #8e5fd1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: #64748b;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #6f42c1;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #6f42c1;
-            border: 2px solid #6f42c1;
-        }
-        
-        .btn-secondary:hover {
-            background: #6f42c1;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* 3D Hero Visual */
-        .hero-visual {
-            position: relative;
-            perspective: 1000px;
-        }
-
-        .floating-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.15);
-            transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
-            border: 1px solid rgba(111, 66, 193, 0.1);
-        }
-
-        .floating-card:nth-child(2) {
-            animation-delay: -2s;
-            transform: translateZ(20px) rotateY(5deg);
-        }
-
-        .floating-card:nth-child(3) {
-            animation-delay: -4s;
-            transform: translateZ(40px) rotateY(-5deg);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateX(0deg); }
-            50% { transform: translateY(-20px) rotateX(5deg); }
-        }
-
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-        }
-
-        .code-line {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .code-keyword { color: #f472b6; }
-        .code-string { color: #34d399; }
-        .code-comment { color: #64748b; }
-        .code-function { color: #60a5fa; }
-
-        /* Features Section */
-        .features {
-            padding: 8rem 0;
-            background: white;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 900;
-            margin-bottom: 1rem;
-            color: #0f172a;
-        }
-
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(111, 66, 193, 0.15);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #0f172a;
-        }
-        
-        .feature-description {
-            color: #64748b;
-            line-height: 1.6;
-        }
-        
-        /* Performance Section */
-        .performance {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            position: relative;
-        }
-
-        .performance-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .performance-metrics {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .metric {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-        }
-
-        .metric-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .metric-label {
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        .metric-value {
-            font-weight: 900;
-            color: #6f42c1;
-            font-size: 1.25rem;
-        }
-
-        .metric-bar {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .metric-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-            border-radius: 4px;
-            transition: width 2s ease;
-        }
-
-        .performance-visual {
-            position: relative;
-            perspective: 1000px;
-        }
-
-        .performance-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.15);
-            transform: rotateY(-10deg) rotateX(5deg);
-            transition: all 0.3s ease;
-        }
-
-        .performance-card:hover {
-            transform: rotateY(0deg) rotateX(0deg);
-        }
-
-        /* Footer */
-        .footer {
-            background: #0f172a;
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-section h4 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #8e5fd1;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            color: #64748b;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-stats {
-            justify-content: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .performance-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .performance-card {
-                transform: none;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-        .stagger-5 { animation-delay: 0.5s; }
-        .stagger-6 { animation-delay: 0.6s; }
-        .stagger-7 { animation-delay: 0.7s; }
-        .stagger-8 { animation-delay: 0.8s; }
-        .stagger-9 { animation-delay: 0.9s; }
-
-        /* Feature Stats */
-        .feature-stats {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: rgba(111, 66, 193, 0.1);
-            color: #6f42c1;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        /* Enhanced Feature Cards */
-        .feature-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.15);
-        }
-
-        /* Statistics Section */
-        .statistics {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(111, 66, 193, 0.15);
-        }
-
-        .stat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #6f42c1;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .stat-description {
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-
-        /* Technology Stack */
-        .tech-stack {
-            background: white;
-            padding: 4rem 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .tech-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(111, 66, 193, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(111, 66, 193, 0.15);
-            background: linear-gradient(135deg, #6f42c1 0%, #8e5fd1 100%);
-            color: white;
-        }
-
-        .tech-item:hover .tech-name,
-        .tech-item:hover .tech-desc {
-            color: white;
-        }
-
-        .tech-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .tech-name {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .tech-desc {
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
+<body class="dark-mode-enhanced">
+    <!-- Beautiful 3D Background Elements -->
+    <div class="background-3d-elements">
+        <div class="floating-geometry geometry-1"></div>
+        <div class="floating-geometry geometry-2"></div>
+        <div class="floating-geometry geometry-3"></div>
+        <div class="floating-geometry geometry-4"></div>
+        
+        <div class="particle-field">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="gradient-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </div>
     <!-- Header -->
-    <header class="header" id="header">
+    <header class="ema-header" id="header">
         <div class="nav-container">
-            <a href="/" class="logo">
-                <div class="logo-icon">E</div>
-                <span>Ema</span>
+            <a href="/" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
             </a>
             
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="pages/getting-started.html" class="nav-link">Documentation</a></li>
-                    <li><a href="pages/components.html" class="nav-link">Components</a></li>
-                    <li><a href="pages/examples.html" class="nav-link">Examples</a></li>
-                    <li><a href="pages/api.html" class="nav-link">API</a></li>
-                    <li><a href="pages/dashboard.html" class="nav-link">Dashboard</a></li>
-                    <li><a href="pages/playground.html" class="nav-link">Playground</a></li>
-                    <li><a href="pages/showcase.html" class="nav-link">Showcase</a></li>
-                    <li><a href="pages/revolution.html" class="nav-link">Revolution</a></li>
-                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
-                </ul>
-            </nav>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             
-            <a href="pages/getting-started.html" class="cta-button">Get Started</a>
+            <nav>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="pages/docs.html" class="ema-nav-link">
+                <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="pages/getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Quick Start</span>
+                                            <span class="item-desc">Begin your journey</span>
+                                        </div>
+                                    </a>
+                                    <a href="pages/api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <span class="item-title">API Reference</span>
+                                            <span class="item-desc">Complete documentation</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="pages/components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <span class="item-title">UI Components</span>
+                                            <span class="item-desc">250+ components</span>
+                                        </div>
+                                    </a>
+                                    <a href="pages/showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <span class="item-title">Showcase</span>
+                                            <span class="item-desc">Live examples</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="pages/playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <span class="item-title">Playground</span>
+                                            <span class="item-desc">Interactive builder</span>
+                                        </div>
+                                    </a>
+                                    <a href="pages/dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <span class="item-title">Dashboard</span>
+                                            <span class="item-desc">Analytics & stats</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="pages/examples.html" class="dropdown-item">
+                    <i class="fas fa-code"></i>
+                                        <div>
+                                            <span class="item-title">Examples</span>
+                                            <span class="item-desc">Real projects</span>
+                                        </div>
+                                    </a>
+                                    <a href="pages/revolution.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Revolution</span>
+                                            <span class="item-desc">Next-gen features</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Documentation</h3>
+                                    <a href="pages/docs.html" class="dropdown-item">
+                                        <i class="fas fa-book"></i>
+                                        <div>
+                                            <span class="item-title">Documentation</span>
+                                            <span class="item-desc">Complete guides</span>
+                                        </div>
+                                    </a>
+                                    <a href="pages/blog.html" class="dropdown-item">
+                                        <i class="fas fa-blog"></i>
+                                        <div>
+                                            <span class="item-title">Blog</span>
+                                            <span class="item-desc">News & tutorials</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Community</h3>
+                                    <a href="https://github.com/aydocs/emadocs" class="dropdown-item" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                        <div>
+                                            <span class="item-title">GitHub</span>
+                                            <span class="item-desc">Source code & issues</span>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-users"></i>
+                                        <div>
+                                            <span class="item-title">Discord</span>
+                                            <span class="item-desc">Join our community</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="pages/getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                </a>
+            </div>
+        </div>
+                    </li>
+                </ul>
+    </nav>
         </div>
     </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li>
+                <a href="#" class="mobile-framework-trigger">
+                    <i class="fas fa-th-large"></i>
+                    <span>Framework</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-search-trigger">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/docs.html">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/blog.html">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/getting-started.html">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Started</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
+            <h3>Getting Started</h3>
+            <a href="pages/getting-started.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Quick Start</span>
+            </a>
+            <a href="pages/api.html" class="mobile-dropdown-item">
+                <i class="fas fa-cogs"></i>
+                <span>API Reference</span>
+            </a>
+            
+            <h3>Components</h3>
+            <a href="pages/components.html" class="mobile-dropdown-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>UI Components</span>
+            </a>
+            <a href="pages/showcase.html" class="mobile-dropdown-item">
+                <i class="fas fa-star"></i>
+                <span>Showcase</span>
+            </a>
+            
+            <h3>Tools</h3>
+            <a href="pages/playground.html" class="mobile-dropdown-item">
+                <i class="fas fa-play"></i>
+                <span>Playground</span>
+            </a>
+            <a href="pages/dashboard.html" class="mobile-dropdown-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <h3>Resources</h3>
+            <a href="pages/examples.html" class="mobile-dropdown-item">
+                <i class="fas fa-code"></i>
+                <span>Examples</span>
+            </a>
+            <a href="pages/revolution.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Revolution</span>
+            </a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text fade-in">
-                <div class="hero-badge">
-                    <span>v4.1</span>
-                    <span>•</span>
-                    <span>Now Available</span>
-                </div>
-                
-                <h1 class="hero-title">
-                    Build the future of web development
-                </h1>
-                
-                <p class="hero-subtitle">
-                    Ema Framework is the most advanced JavaScript platform ever created. 
-                    With 250+ components, 100+ modules, and 500+ features, it's time to 
-                    revolutionize how we build web applications.
-                </p>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">250+</span>
-                        <span class="stat-label">Components</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Modules</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Features</span>
-                    </div>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="pages/getting-started.html" class="btn btn-primary">
-                        Start Building
-                    </a>
-                    <a href="pages/examples.html" class="btn btn-secondary">
-                        View Examples
-                    </a>
-                    <a href="pages/dashboard.html" class="btn btn-secondary">
-                        🎯 Dashboard
-                    </a>
-                    <a href="pages/playground.html" class="btn btn-secondary">
-                        🎮 Playground
-                    </a>
-                    <a href="pages/showcase.html" class="btn btn-secondary">
-                        🎨 Showcase
-                    </a>
-                </div>
-            </div>
+    <section class="ema-hero">
+        <div class="container">
+            <h1 class="hero-title fade-in">
+                The Future of 
+                <span class="gradient-text">Web Development</span>
+                is Here
+            </h1>
+            <p class="hero-subtitle fade-in stagger-1">
+                Build stunning, high-performance web applications with Ema Framework. 
+                250+ components, 100+ modules, and 500+ features in a single revolutionary package.
+            </p>
             
-            <div class="hero-visual">
-                <div class="floating-card fade-in stagger-1">
-                    <div class="code-block">
-                        <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>();</div>
-                        <div class="code-line"><span class="code-comment">// Initialize with 3D engine</span></div>
-                        <div class="code-line"><span class="code-function">app</span>.<span class="code-function">init</span>({</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="code-string">'3d'</span>: <span class="code-keyword">true</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="code-string">'theme'</span>: <span class="code-string">'purple'</span></div>
-                        <div class="code-line">});</div>
-                    </div>
-                </div>
+            <div class="hero-buttons fade-in stagger-2">
+                 <a href="pages/getting-started.html" class="ema-btn ema-btn-primary">
+                     <i class="fas fa-rocket"></i>
+                     Start Building
+                 </a>
+                 <a href="pages/examples.html" class="ema-btn ema-btn-secondary">
+                     <i class="fas fa-lightbulb"></i>
+                    View Examples
+                </a>
+                 <a href="pages/dashboard.html" class="ema-btn ema-btn-secondary">
+                     <i class="fas fa-chart-line"></i>
+                     Dashboard
+                 </a>
+                 <a href="pages/playground.html" class="ema-btn ema-btn-secondary">
+                     <i class="fas fa-play"></i>
+                     Playground
+                 </a>
+                 <a href="pages/showcase.html" class="ema-btn ema-btn-secondary">
+                     <i class="fas fa-palette"></i>
+                     Showcase
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Fantasy Grid Features Section -->
     <section class="features">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">Why developers choose Ema</h2>
+                <h2 class="section-title">Revolutionary Features</h2>
                 <p class="section-subtitle">
-                    Built from the ground up with performance, accessibility, and developer experience in mind
+                    Discover the most advanced web development framework ever created
                 </p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card fade-in stagger-1">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Lightning Fast</h3>
+            <div class="fantasy-grid layout-1">
+                 <div class="ema-card hero-card area-hero fade-in stagger-1">
+                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                     <h3 class="feature-title">Lightning Fast</h3>
                     <p class="feature-description">
                         No virtual DOM overhead. Direct DOM manipulation with smart caching 
                         delivers unmatched performance for modern web applications.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">⚡ 0.3s Load Time</span>
-                        <span class="stat">📦 50KB Bundle</span>
+                        <span class="stat"><i class="fas fa-bolt"></i> 0.3s Load Time</span>
+                        <span class="stat"><i class="fas fa-box"></i> 50KB Bundle</span>
                     </div>
                 </div>
                 
-                <div class="feature-card fade-in stagger-2">
-                    <div class="feature-icon">🎨</div>
+                <div class="ema-card feature-card area-main fade-in stagger-2">
+                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
                     <h3 class="feature-title">Beautiful Design System</h3>
                     <p class="feature-description">
                         8-color system with 250+ components. Every component comes with 
                         multiple variants and accessibility features built-in.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">🎨 250+ Components</span>
-                        <span class="stat">🌈 8 Color Themes</span>
+                        <span class="stat"><i class="fas fa-puzzle-piece"></i> 250+ Components</span>
+                        <span class="stat"><i class="fas fa-palette"></i> 8 Color Themes</span>
                     </div>
                 </div>
                 
-                <div class="feature-card fade-in stagger-3">
-                    <div class="feature-icon">🚀</div>
+                <div class="ema-card feature-card area-sidebar fade-in stagger-3">
+                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
                     <h3 class="feature-title">3D Graphics Engine</h3>
                     <p class="feature-description">
                         Built-in WebGL engine with physics simulation, particle systems, 
                         and advanced rendering capabilities for immersive experiences.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">🎮 WebGL Powered</span>
-                        <span class="stat">✨ Particle Systems</span>
+                        <span class="stat"><i class="fas fa-cube"></i> WebGL Powered</span>
+                        <span class="stat"><i class="fas fa-sparkles"></i> Particle Systems</span>
                     </div>
                 </div>
-                
-                <div class="feature-card fade-in stagger-4">
-                    <div class="feature-icon">📱</div>
+            </div>
+            
+            <div class="fantasy-grid layout-2">
+                <div class="ema-card feature-card area-card1 fade-in stagger-4">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3 class="feature-title">Mobile First</h3>
                     <p class="feature-description">
                         Responsive by default with mobile-first design principles. 
                         Your applications look perfect on every device.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">📱 100% Mobile</span>
-                        <span class="stat">🖥️ All Screen Sizes</span>
+                        <span class="stat"><i class="fas fa-mobile-alt"></i> 100% Mobile</span>
+                        <span class="stat"><i class="fas fa-desktop"></i> All Screen Sizes</span>
                     </div>
                 </div>
                 
-                <div class="feature-card fade-in stagger-5">
-                    <div class="feature-icon">🔧</div>
+                <div class="ema-card feature-card area-card2 fade-in stagger-5">
+                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
                     <h3 class="feature-title">Zero Configuration</h3>
                     <p class="feature-description">
                         No build tools, no dependencies, no configuration. Just include 
                         and start building amazing applications instantly.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">📚 Full Docs</span>
-                        <span class="stat">💡 Live Examples</span>
+                        <span class="stat"><i class="fas fa-book"></i> Full Docs</span>
+                        <span class="stat"><i class="fas fa-lightbulb"></i> Live Examples</span>
                     </div>
                 </div>
                 
-                <div class="feature-card fade-in stagger-6">
-                    <div class="feature-icon">♿</div>
+                <div class="ema-card feature-card area-card3 fade-in stagger-6">
+                    <div class="feature-icon"><i class="fas fa-universal-access"></i></div>
                     <h3 class="feature-title">Accessibility First</h3>
                     <p class="feature-description">
                         WCAG 2.1 AA compliant with built-in ARIA support, keyboard 
                         navigation, and screen reader optimization.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">🔮 Future-Proof</span>
-                        <span class="stat">✅ Best Practices</span>
+                        <span class="stat"><i class="fas fa-crystal-ball"></i> Future-Proof</span>
+                        <span class="stat"><i class="fas fa-check-circle"></i> Best Practices</span>
                     </div>
-                </div>
-                
-                <div class="feature-card fade-in stagger-7">
-                    <div class="feature-icon">🔔</div>
+            </div>
+            
+                <div class="ema-card feature-card area-card4 fade-in stagger-7">
+                    <div class="feature-icon"><i class="fas fa-bell"></i></div>
                     <h3 class="feature-title">Smart Alerts</h3>
                     <p class="feature-description">
                         Advanced notification system with beautiful animations and customizable themes. Better than Sweet Alert.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">🎭 Animated</span>
-                        <span class="stat">🎨 Customizable</span>
+                        <span class="stat"><i class="fas fa-magic"></i> Animated</span>
+                        <span class="stat"><i class="fas fa-palette"></i> Customizable</span>
                     </div>
                 </div>
                 
-                <div class="feature-card fade-in stagger-8">
-                    <div class="feature-icon">📊</div>
+                <div class="ema-card feature-card area-card5 fade-in stagger-8">
+                    <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
                     <h3 class="feature-title">Data Visualization</h3>
                     <p class="feature-description">
                         Powerful charting library with real-time updates and interactive features. Perfect for dashboards.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">📈 10+ Chart Types</span>
-                        <span class="stat">🔄 Real-time</span>
+                        <span class="stat"><i class="fas fa-chart-line"></i> 10+ Chart Types</span>
+                        <span class="stat"><i class="fas fa-sync-alt"></i> Real-time</span>
                     </div>
-                </div>
-                
-                <div class="feature-card fade-in stagger-9">
-                    <div class="feature-icon">🎮</div>
+            </div>
+            
+                <div class="ema-card feature-card area-card6 fade-in stagger-9">
+                    <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
                     <h3 class="feature-title">Interactive Playground</h3>
                     <p class="feature-description">
                         Live code editor with real-time preview and component testing. Experiment without limits.
                     </p>
                     <div class="feature-stats">
-                        <span class="stat">⚡ Live Preview</span>
-                        <span class="stat">🧪 Component Testing</span>
+                        <span class="stat"><i class="fas fa-bolt"></i> Live Preview</span>
+                        <span class="stat"><i class="fas fa-flask"></i> Component Testing</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Performance Section -->
-    <section class="performance">
-        <div class="container">
-            <div class="performance-content">
-                <div class="performance-metrics fade-in">
-                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">
-                        Performance that matters
-                    </h2>
-                    <p style="color: #64748b; margin-bottom: 3rem; font-size: 1.125rem;">
-                        Benchmarked against the best frameworks. Ema consistently delivers 
-                        superior performance across all metrics.
-                    </p>
-                    
-                    <div class="metric">
-                        <div class="metric-header">
-                            <span class="metric-label">Bundle Size</span>
-                            <span class="metric-value">2.3kb</span>
-                        </div>
-                        <div class="metric-bar">
-                            <div class="metric-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric">
-                        <div class="metric-header">
-                            <span class="metric-label">Load Time</span>
-                            <span class="metric-value">0.8s</span>
-                        </div>
-                        <div class="metric-bar">
-                            <div class="metric-progress" style="width: 88%"></div>
-                        </div>
-            </div>
-            
-                    <div class="metric">
-                        <div class="metric-header">
-                            <span class="metric-label">Runtime Performance</span>
-                            <span class="metric-value">99.9%</span>
-                        </div>
-                        <div class="metric-bar">
-                            <div class="metric-progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="performance-visual fade-in stagger-2">
-                    <div class="performance-card">
-                        <h3 style="margin-bottom: 1rem; color: #0f172a;">Real-time Performance</h3>
-                        <div class="code-block" style="margin: 0;">
-                            <div class="code-line"><span class="code-comment">// 60 FPS guaranteed</span></div>
-                            <div class="code-line"><span class="code-function">render</span>() {</div>
-                            <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">'60fps'</span>;</div>
-                            <div class="code-line">}</div>
-                        </div>
-            </div>
                 </div>
             </div>
         </div>
@@ -1062,47 +470,47 @@
     <section class="statistics">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item fade-in stagger-1">
-                    <div class="stat-icon">🎨</div>
-                    <div class="stat-number" id="components-count">250+</div>
-                    <div class="stat-label">UI Components</div>
-                    <div class="stat-description">Beautiful, customizable components</div>
-                </div>
-                
-                <div class="stat-item fade-in stagger-2">
-                    <div class="stat-icon">⚙️</div>
-                    <div class="stat-number" id="modules-count">100+</div>
-                    <div class="stat-label">JavaScript Modules</div>
-                    <div class="stat-description">Powerful utility modules</div>
-                </div>
-                
-                <div class="stat-item fade-in stagger-3">
-                    <div class="stat-icon">✨</div>
-                    <div class="stat-number" id="features-count">500+</div>
-                    <div class="stat-label">Total Features</div>
-                    <div class="stat-description">Everything you need</div>
-                </div>
-                
-                <div class="stat-item fade-in stagger-4">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-number" id="users-count">10K+</div>
-                    <div class="stat-label">Happy Developers</div>
-                    <div class="stat-description">Growing community</div>
-                </div>
-                
-                <div class="stat-item fade-in stagger-5">
-                    <div class="stat-icon">📱</div>
-                    <div class="stat-number" id="projects-count">5K+</div>
-                    <div class="stat-label">Projects Built</div>
-                    <div class="stat-description">Success stories</div>
-                </div>
-                
-                <div class="stat-item fade-in stagger-6">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-number" id="rating-count">4.9</div>
-                    <div class="stat-label">User Rating</div>
-                    <div class="stat-description">Outstanding reviews</div>
-                </div>
+                 <div class="stat-item fade-in stagger-1">
+                     <div class="stat-icon"><i class="fas fa-puzzle-piece"></i></div>
+                     <div class="stat-number" id="components-count">250+</div>
+                     <div class="stat-label">UI Components</div>
+                     <div class="stat-description">Beautiful, customizable components</div>
+                 </div>
+                 
+                 <div class="stat-item fade-in stagger-2">
+                     <div class="stat-icon"><i class="fas fa-cogs"></i></div>
+                     <div class="stat-number" id="modules-count">100+</div>
+                     <div class="stat-label">JavaScript Modules</div>
+                     <div class="stat-description">Powerful utility modules</div>
+                 </div>
+                 
+                 <div class="stat-item fade-in stagger-3">
+                     <div class="stat-icon"><i class="fas fa-star"></i></div>
+                     <div class="stat-number" id="features-count">500+</div>
+                     <div class="stat-label">Total Features</div>
+                     <div class="stat-description">Everything you need</div>
+                 </div>
+                 
+                 <div class="stat-item fade-in stagger-4">
+                     <div class="stat-icon"><i class="fas fa-users"></i></div>
+                     <div class="stat-number" id="users-count">10K+</div>
+                     <div class="stat-label">Happy Developers</div>
+                     <div class="stat-description">Growing community</div>
+                 </div>
+                 
+                 <div class="stat-item fade-in stagger-5">
+                     <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+                     <div class="stat-number" id="projects-count">5K+</div>
+                     <div class="stat-label">Projects Built</div>
+                     <div class="stat-description">Success stories</div>
+                 </div>
+                 
+                 <div class="stat-item fade-in stagger-6">
+                     <div class="stat-icon"><i class="fas fa-star"></i></div>
+                     <div class="stat-number" id="rating-count">4.9</div>
+                     <div class="stat-label">User Rating</div>
+                     <div class="stat-description">Outstanding reviews</div>
+                 </div>
             </div>
         </div>
     </section>
@@ -1118,59 +526,165 @@
             </div>
             
             <div class="tech-grid">
-                <div class="tech-item fade-in stagger-1">
-                    <div class="tech-icon">🌐</div>
-                    <h3 class="tech-name">HTML5</h3>
-                    <p class="tech-desc">Semantic markup and modern standards</p>
+                 <div class="tech-item fade-in stagger-1">
+                     <div class="tech-icon"><i class="fab fa-html5"></i></div>
+                     <h3 class="tech-name">HTML5</h3>
+                     <p class="tech-desc">Semantic markup and modern standards</p>
+                 </div>
+                 
+                 <div class="tech-item fade-in stagger-2">
+                     <div class="tech-icon"><i class="fab fa-css3-alt"></i></div>
+                     <h3 class="tech-name">CSS3</h3>
+                     <p class="tech-desc">Advanced styling and animations</p>
+                 </div>
+                 
+                 <div class="tech-item fade-in stagger-3">
+                     <div class="tech-icon"><i class="fab fa-js-square"></i></div>
+                     <h3 class="tech-name">ES6+</h3>
+                     <p class="tech-desc">Modern JavaScript features</p>
+                 </div>
+                 
+                 <div class="tech-item fade-in stagger-4">
+                     <div class="tech-icon"><i class="fas fa-cube"></i></div>
+                     <h3 class="tech-name">WebGL</h3>
+                     <p class="tech-desc">Hardware-accelerated 3D graphics</p>
+                 </div>
+                 
+                 <div class="tech-item fade-in stagger-5">
+                     <div class="tech-icon"><i class="fas fa-chart-bar"></i></div>
+                     <h3 class="tech-name">Canvas API</h3>
+                     <p class="tech-desc">Dynamic graphics and charts</p>
+                 </div>
+                 
+                 <div class="tech-item fade-in stagger-6">
+                     <div class="tech-icon"><i class="fas fa-tools"></i></div>
+                     <h3 class="tech-name">Web APIs</h3>
+                     <p class="tech-desc">Modern browser capabilities</p>
+                 </div>
+            </div>
+                </div>
+    </section>
+
+    <!-- Component Showcase -->
+    <section class="component-showcase-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Live Component Preview</h2>
+                <p class="section-subtitle">
+                    Click on any component to see it in action and copy the code
+                </p>
+            </div>
+            
+            <div class="component-showcase">
+                <div class="component-item fade-in stagger-1" onclick="showComponentPreview('button')">
+                    <div class="component-preview">
+                        <button class="ema-btn ema-btn-primary">Button</button>
+                    </div>
+                    <h3 class="component-name">Button Components</h3>
+                    <p class="component-description">Beautiful buttons with hover effects and multiple variants</p>
+                    <div class="component-actions">
+                        <button class="ema-btn ema-btn-primary">Preview</button>
+                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
+                    </div>
                 </div>
                 
-                <div class="tech-item fade-in stagger-2">
-                    <div class="tech-icon">🎨</div>
-                    <h3 class="tech-name">CSS3</h3>
-                    <p class="tech-desc">Advanced styling and animations</p>
+                <div class="component-item fade-in stagger-2" onclick="showComponentPreview('card')">
+                    <div class="component-preview">
+                        <div class="ema-card" style="max-width: 200px; padding: 1rem;">
+                            <h4>Card</h4>
+                            <p>Beautiful card</p>
+                        </div>
+                    </div>
+                    <h3 class="component-name">Card Components</h3>
+                    <p class="component-description">Modern cards with glassmorphism effects</p>
+                    <div class="component-actions">
+                        <button class="ema-btn ema-btn-primary">Preview</button>
+                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
+                    </div>
                 </div>
                 
-                <div class="tech-item fade-in stagger-3">
-                    <div class="tech-icon">⚡</div>
-                    <h3 class="tech-name">ES6+</h3>
-                    <p class="tech-desc">Modern JavaScript features</p>
+                <div class="component-item fade-in stagger-3" onclick="showComponentPreview('input')">
+                    <div class="component-preview">
+                        <input type="text" placeholder="Input field" style="padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(111, 66, 193, 0.3); background: rgba(255, 255, 255, 0.05); color: white;">
+                    </div>
+                    <h3 class="component-name">Input Components</h3>
+                    <p class="component-description">Form inputs with validation and animations</p>
+                    <div class="component-actions">
+                        <button class="ema-btn ema-btn-primary">Preview</button>
+                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
+                    </div>
+                    <div class="component-preview-3d">
+                        <div class="floating-elements">
+                            <div class="floating-dot" style="--delay: 0s; background: var(--ema-blue);"></div>
+                            <div class="floating-dot" style="--delay: 1s; background: var(--ema-green);"></div>
+                            <div class="floating-dot" style="--delay: 2s; background: var(--ema-purple);"></div>
+                        </div>
+                    </div>
+            </div>
+            
+                <div class="component-item fade-in stagger-4" onclick="showComponentPreview('navbar')">
+                    <div class="component-preview">
+                        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <div style="width: 20px; height: 20px; background: #6f42c1; border-radius: 4px;"></div>
+                            <span style="color: white; font-size: 0.875rem;">Navbar</span>
+                        </div>
+                    </div>
+                    <h3 class="component-name">Navigation</h3>
+                    <p class="component-description">Responsive navigation bars with animations</p>
+                    <div class="component-actions">
+                        <button class="ema-btn ema-btn-primary">Preview</button>
+                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
+                    </div>
                 </div>
                 
-                <div class="tech-item fade-in stagger-4">
-                    <div class="tech-icon">🎮</div>
-                    <h3 class="tech-name">WebGL</h3>
-                    <p class="tech-desc">Hardware-accelerated 3D graphics</p>
-                </div>
-                
-                <div class="tech-item fade-in stagger-5">
-                    <div class="tech-icon">📊</div>
-                    <h3 class="tech-name">Canvas API</h3>
-                    <p class="tech-desc">Dynamic graphics and charts</p>
-                </div>
-                
-                <div class="tech-item fade-in stagger-6">
-                    <div class="tech-icon">🔧</div>
-                    <h3 class="tech-name">Web APIs</h3>
-                    <p class="tech-desc">Modern browser capabilities</p>
+                <div class="component-item fade-in stagger-5" onclick="showComponentPreview('alert')">
+                    <div class="component-preview">
+                         <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: rgba(40, 167, 69, 0.1); border: 1px solid rgba(40, 167, 69, 0.3); border-radius: 8px;">
+                             <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                             <span style="color: white; font-size: 0.875rem;">Alert</span>
+                         </div>
+                    </div>
+                    <h3 class="component-name">Alert Components</h3>
+                    <p class="component-description">Beautiful alerts with different types</p>
+                    <div class="component-actions">
+                        <button class="ema-btn ema-btn-primary">Preview</button>
+                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
+                    </div>
+            </div>
+            
+                <div class="component-item fade-in stagger-6" onclick="showComponentPreview('button')">
+                    <div class="component-preview">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <div style="width: 20px; height: 20px; background: #6f42c1; border-radius: 50%;"></div>
+                            <div style="width: 20px; height: 20px; background: #28a745; border-radius: 50%;"></div>
+                            <div style="width: 20px; height: 20px; background: #dc3545; border-radius: 50%;"></div>
+                        </div>
+                    </div>
+                    <h3 class="component-name">More Components</h3>
+                    <p class="component-description">Explore 250+ components in our library</p>
+                    <div class="component-actions">
+                        <button class="ema-btn ema-btn-primary">Explore All</button>
+                        <button class="ema-btn ema-btn-secondary">View Docs</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="ema-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Ema Framework</h4>
-                    <p style="color: #94a3b8; margin-bottom: 1rem;">
+                    <p>
                         The future of web development is here. Build amazing applications 
                         with the most advanced JavaScript framework ever created.
                     </p>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Documentation</h4>
+                    <h4>Resources</h4>
                     <ul class="footer-links">
                         <li><a href="pages/getting-started.html">Getting Started</a></li>
                         <li><a href="pages/components.html">Components</a></li>
@@ -1182,172 +696,383 @@
                 <div class="footer-section">
                     <h4>Community</h4>
                     <ul class="footer-links">
-                        <li><a href="https://github.com/aydocs/emadocs">GitHub</a></li>
-                        <li><a href="https://github.com/aydocs/emadocs/discussions">Discussions</a></li>
-                        <li><a href="https://twitter.com/emaframework">Twitter</a></li>
-                        <li><a href="https://discord.gg/emaframework">Discord</a></li>
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="pages/dashboard.html">Dashboard</a></li>
+                        <li><a href="pages/playground.html">Playground</a></li>
+                        <li><a href="pages/showcase.html">Showcase</a></li>
                 </ul>
             </div>
             
                 <div class="footer-section">
-                    <h4>Resources</h4>
+                    <h4>Support</h4>
                     <ul class="footer-links">
-                        <li><a href="pages/3d-showcase.html">3D Showcase</a></li>
-                        <li><a href="pages/examples.html">Live Examples</a></li>
-                        <li><a href="https://blog.emaframework.com">Blog</a></li>
-                        <li><a href="https://status.emaframework.com">Status</a></li>
+                        <li><a href="pages/revolution.html">Revolution</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
                 </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Ema Framework. Built with passion for the future of web development.</p>
+                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Performance metrics animation
-        setTimeout(() => {
-            document.querySelectorAll('.metric-progress').forEach((bar, index) => {
-                setTimeout(() => {
-                    bar.style.width = bar.style.width;
-                }, index * 200);
-            });
-        }, 1000);
-    </script>
-
-    <!-- Load framework scripts -->
-    <script src="js/core.js"></script>
-    <script src="js/router.js"></script>
-    <script src="js/store.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/utils.js"></script>
+     <!-- Scripts -->
     <script src="js/3d-engine.js"></script>
     <script src="js/ema-alerts.js"></script>
     <script src="js/ema-3d-effects.js"></script>
-    <script src="js/emadocs.js"></script>
-    
-    <!-- Initialize application -->
+    <script src="js/ema-live-preview.js"></script>
+    <script src="js/ema-search.js"></script>
+    <!-- Navbar Script -->
+    <script src="js/navbar.js"></script>
+
     <script>
-        // Initialize 3D effects
+        // Initialize animations and effects
         document.addEventListener('DOMContentLoaded', () => {
-            ema3DEffects.init();
-            
-            // Add interactive effects on hover
-            const cards = document.querySelectorAll('.feature-card, .metric');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    ema3DEffects.createExplosion(
-                        rect.left + rect.width / 2,
-                        rect.top + rect.height / 2,
-                        [0.4, 0.2, 0.7],
-                        15
-                    );
+            // Initialize search trigger
+            const searchTrigger = document.querySelector('.search-trigger');
+            if (searchTrigger) {
+                searchTrigger.addEventListener('click', () => {
+                    if (window.emaSearch) {
+                        window.emaSearch.openSearch();
+                    }
                 });
-            });
+            }
             
-            // Add click effects to buttons
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const rect = button.getBoundingClientRect();
-                    ema3DEffects.createTrail(
-                        rect.left + rect.width / 2,
-                        rect.top + rect.height / 2,
-                        [0.4, 0.2, 0.7],
-                        10
-                    );
-                });
-            });
-        });
-        
-        // Demo alerts
-        setTimeout(() => {
-            emaAlerts.success('Welcome to Ema Framework! 🚀', {
-                title: 'Framework Loaded',
-                timer: 3000
-            });
-        }, 1000);
-        
-        // Interactive demo button
-        function showDemo() {
-            emaAlerts.confirm('Would you like to see a demo of our advanced features?', {
-                title: 'Interactive Demo',
-                confirmButtonText: 'Yes, Show Me!',
-                cancelButtonText: 'Not Now'
-            }).then(result => {
-                if (result) {
-                    emaAlerts.loading('Loading demo...', {
-                        title: 'Preparing Demo'
-                    });
-                    
-                    setTimeout(() => {
-                        emaAlerts.closeAll();
-                        emaAlerts.success('Demo loaded successfully! Check out our 3D effects and advanced components.', {
-                            title: 'Demo Ready',
-                            timer: 4000
-                        });
+            // Animate stats
+            const stats = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const isPlus = finalValue.includes('+');
+                        const isK = finalValue.includes('K');
+                        const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
                         
-                        // Create more particle effects
-                        ema3DEffects.createExplosion(
-                            window.innerWidth / 2,
-                            window.innerHeight / 2,
-                            [0.4, 0.2, 0.7],
-                            50
-                        );
-                    }, 2000);
+                        if (numericValue > 0) {
+                            let current = 0;
+                            const increment = numericValue / 50;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= numericValue) {
+                                    current = numericValue;
+                                    clearInterval(timer);
+                                }
+                                
+                                let displayValue = Math.floor(current);
+                                if (isK) displayValue += 'K';
+                                if (isPlus) displayValue += '+';
+                                if (isPercentage) displayValue += '%';
+                                
+                                target.textContent = displayValue;
+                            }, 40);
+                        }
+                    }
+                });
+            });
+
+            stats.forEach(stat => observer.observe(stat));
+
+             // Initialize 3D engine
+             if (typeof ema3DEngine !== 'undefined') {
+                 console.log('3D Engine initialized');
+             }
+             
+             // Hamburger Menu Toggle
+             const hamburgerMenu = document.querySelector('.hamburger-menu');
+             const mobileNav = document.getElementById('mobileNav');
+             const mobileFrameworkTrigger = document.querySelector('.mobile-framework-trigger');
+             const mobileMegaDropdown = document.getElementById('mobileMegaDropdown');
+             
+             if (hamburgerMenu && mobileNav) {
+                 hamburgerMenu.addEventListener('click', () => {
+                     hamburgerMenu.classList.toggle('active');
+                     mobileNav.classList.toggle('active');
+                 });
+             }
+             
+             if (mobileFrameworkTrigger && mobileMegaDropdown) {
+                 mobileFrameworkTrigger.addEventListener('click', (e) => {
+                     e.preventDefault();
+                     mobileMegaDropdown.style.display = mobileMegaDropdown.style.display === 'block' ? 'none' : 'block';
+                 });
+             }
+
+             // Initialize 3D effects
+             if (typeof ema3DEffects !== 'undefined') {
+                 ema3DEffects.init();
+             }
+
+            // Initialize live preview
+            if (typeof emaLivePreview !== 'undefined') {
+                console.log('Live preview system ready');
+            }
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
             });
-        }
-        
-        // Add demo button to hero section
-        document.addEventListener('DOMContentLoaded', () => {
-            const heroButtons = document.querySelector('.hero-buttons');
-            if (heroButtons) {
-                const demoBtn = document.createElement('button');
-                demoBtn.className = 'btn btn-secondary';
-                demoBtn.innerHTML = '🎯 Interactive Demo';
-                demoBtn.onclick = showDemo;
-                heroButtons.appendChild(demoBtn);
-            }
+
+             // Component showcase interactions
+             document.querySelectorAll('.component-item').forEach(item => {
+                 item.addEventListener('click', () => {
+                     if (typeof ema3DEngine !== 'undefined') {
+                         const rect = item.getBoundingClientRect();
+                         ema3DEngine.createExplosion(
+                             rect.left + rect.width / 2,
+                             rect.top + rect.height / 2,
+                             [0.4, 0.2, 0.7],
+                             25
+                         );
+                     }
+                 });
+                 
+                 item.addEventListener('mouseenter', () => {
+                     if (typeof ema3DEngine !== 'undefined') {
+                         const rect = item.getBoundingClientRect();
+                         ema3DEngine.createTrail(
+                             rect.left + rect.width / 2,
+                             rect.top + rect.height / 2,
+                             [0.2, 0.8, 1],
+                             10
+                         );
+                     }
+                 });
+             });
+             
+             // Feature cards interactions
+             document.querySelectorAll('.ema-card').forEach(card => {
+                 card.addEventListener('click', () => {
+                     if (typeof ema3DEngine !== 'undefined') {
+                         const rect = card.getBoundingClientRect();
+                         ema3DEngine.createSpiral(
+                             rect.left + rect.width / 2,
+                             rect.top + rect.height / 2,
+                             [0.8, 0.4, 1],
+                             20
+                         );
+                     }
+                 });
+             });
+             
+             // Hero section special effects
+             const heroSection = document.querySelector('.ema-hero');
+             if (heroSection) {
+                 heroSection.addEventListener('mouseenter', () => {
+                     if (typeof ema3DEngine !== 'undefined') {
+                         const rect = heroSection.getBoundingClientRect();
+                         ema3DEngine.createTrail(
+                             rect.left + rect.width / 2,
+                             rect.top + rect.height / 2,
+                             [0.4, 0.2, 0.7],
+                             15
+                         );
+                     }
+                 });
+             }
+             
+             // Enhanced scroll animations
+             const observerOptions = {
+                 threshold: 0.1,
+                 rootMargin: '0px 0px -50px 0px'
+             };
+             
+             const scrollObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         entry.target.classList.add('revealed');
+                     }
+                 });
+             }, observerOptions);
+             
+             // Observe all scroll-reveal elements
+             document.querySelectorAll('.scroll-reveal').forEach(el => {
+                 scrollObserver.observe(el);
+             });
+             
+             // Enhanced card interactions
+             document.querySelectorAll('.ema-card').forEach(card => {
+                 card.addEventListener('mouseenter', () => {
+                     card.style.transform = 'translateY(-12px) translateZ(20px) rotateX(8deg) rotateY(3deg) scale(1.03)';
+                 });
+                 
+                 card.addEventListener('mouseleave', () => {
+                     card.style.transform = '';
+                 });
+                 
+                 card.addEventListener('click', () => {
+                     // Add click animation
+                     card.style.transform = 'translateY(-8px) translateZ(15px) rotateX(5deg) rotateY(2deg) scale(1.01)';
+                     setTimeout(() => {
+                         card.style.transform = '';
+                     }, 150);
+                     
+                     // Create explosion effect
+                     if (typeof ema3DEngine !== 'undefined') {
+                         const rect = card.getBoundingClientRect();
+                         ema3DEngine.createExplosion(
+                             rect.left + rect.width / 2,
+                             rect.top + rect.height / 2,
+                             [0.4, 0.2, 0.7],
+                             20
+                         );
+                     }
+                 });
+             });
+             
+             // Enhanced button interactions
+             document.querySelectorAll('.ema-btn').forEach(btn => {
+                 btn.addEventListener('click', (e) => {
+                     // Ripple effect
+                     const ripple = document.createElement('span');
+                     const rect = btn.getBoundingClientRect();
+                     const size = Math.max(rect.width, rect.height);
+                     const x = e.clientX - rect.left - size / 2;
+                     const y = e.clientY - rect.top - size / 2;
+                     
+                     ripple.style.width = ripple.style.height = size + 'px';
+                     ripple.style.left = x + 'px';
+                     ripple.style.top = y + 'px';
+                     ripple.classList.add('ripple');
+                     
+                     btn.appendChild(ripple);
+                     
+                     setTimeout(() => {
+                         ripple.remove();
+                     }, 600);
+                 });
+             });
+             
+             // Enhanced statistics counter animation
+             function animateCounter(element, target, duration = 2000) {
+                 let start = 0;
+                 const increment = target / (duration / 16);
+                 
+                 const timer = setInterval(() => {
+                     start += increment;
+                     if (start >= target) {
+                         element.textContent = target + (target >= 1000 ? '+' : '');
+                         clearInterval(timer);
+                     } else {
+                         element.textContent = Math.floor(start) + (target >= 1000 ? '+' : '');
+                     }
+                 }, 16);
+             }
+             
+             // Animate counters when they come into view
+             const counterObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         const counter = entry.target;
+                         const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                         animateCounter(counter, target);
+                         counterObserver.unobserve(counter);
+                     }
+                 });
+             }, { threshold: 0.5 });
+             
+             document.querySelectorAll('.stat-number').forEach(counter => {
+                 counterObserver.observe(counter);
+             });
+             
+             // Enhanced feature icon interactions
+             document.querySelectorAll('.feature-icon').forEach(icon => {
+                 icon.addEventListener('mouseenter', () => {
+                     icon.style.transform = 'translateZ(20px) scale(1.2) rotateY(15deg)';
+                     icon.style.filter = 'drop-shadow(0 10px 20px rgba(111, 66, 193, 0.5))';
+                 });
+                 
+                 icon.addEventListener('mouseleave', () => {
+                     icon.style.transform = '';
+                     icon.style.filter = '';
+                 });
+             });
+             
+             // Enhanced navigation interactions
+             document.querySelectorAll('.ema-nav-link').forEach(link => {
+                 link.addEventListener('mouseenter', () => {
+                     link.style.transform = 'translateY(-2px)';
+                     link.style.color = 'var(--ema-purple)';
+                     link.style.textShadow = '0 0 10px rgba(111, 66, 193, 0.5)';
+                 });
+                 
+                 link.addEventListener('mouseleave', () => {
+                     link.style.transform = '';
+                     link.style.color = '';
+                     link.style.textShadow = '';
+                 });
+             });
+             
+             // Enhanced logo interaction
+             const logo = document.querySelector('.ema-logo');
+             if (logo) {
+                 logo.addEventListener('mouseenter', () => {
+                     logo.style.transform = 'scale(1.1) rotateY(10deg)';
+                     logo.style.filter = 'drop-shadow(0 5px 15px rgba(111, 66, 193, 0.4))';
+                 });
+                 
+                 logo.addEventListener('mouseleave', () => {
+                     logo.style.transform = '';
+                     logo.style.filter = '';
+                 });
+             }
+             
+             // Add ripple effect CSS
+             const style = document.createElement('style');
+             style.textContent = `
+                 .ripple {
+                     position: absolute;
+                     border-radius: 50%;
+                     background: rgba(255, 255, 255, 0.3);
+                     transform: scale(0);
+                     animation: ripple-animation 0.6s linear;
+                     pointer-events: none;
+                 }
+                 
+                 @keyframes ripple-animation {
+                     to {
+                         transform: scale(4);
+                         opacity: 0;
+                     }
+                 }
+             `;
+             document.head.appendChild(style);
+             
+             // Mega dropdown functionality
+             const dropdownTrigger = document.querySelector('.dropdown-trigger');
+             const megaDropdown = document.querySelector('.mega-dropdown');
+             
+             if (dropdownTrigger && megaDropdown) {
+                 dropdownTrigger.addEventListener('click', (e) => {
+                     e.preventDefault();
+                     megaDropdown.classList.toggle('active');
+                 });
+                 
+                 // Close dropdown when clicking outside
+                 document.addEventListener('click', (e) => {
+                     if (!dropdownTrigger.contains(e.target) && !megaDropdown.contains(e.target)) {
+                         megaDropdown.classList.remove('active');
+                     }
+                 });
+                 
+                 // Close dropdown on escape key
+                 document.addEventListener('keydown', (e) => {
+                     if (e.key === 'Escape') {
+                         megaDropdown.classList.remove('active');
+                     }
+                 });
+             }
         });
     </script>
-    
-    <script src="js/app-init.js"></script>
 </body>
 </html>

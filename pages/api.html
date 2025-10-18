@@ -4,187 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Documentation - Ema Framework</title>
-    <meta name="description" content="Comprehensive API documentation for Ema Framework - 100+ modules, 500+ features, and complete developer reference">
+    <meta name="description" content="Comprehensive API documentation for Ema Framework - The world's most advanced frontend framework">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/emadocs.css">
-    <link rel="stylesheet" href="../css/ema-colors.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        /* Terminal styles for API page */
+        .terminal-code-block {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+        }
+
+        .terminal-header {
+            background: #2d2d2d;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+.terminal-button.minimize {
+            background: #ffbd2e;
+        }
+
+        .terminal-button.minimize:hover {
+            background: #ff9500;
+        }
+
+        .terminal-button.maximize {
+            background: #27ca3f;
+        }
+
+        .terminal-button.maximize:hover {
+            background: #1dbd2b;
+        }
+
+        .terminal-title {
+            color: #ccc;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            margin-left: 1rem;
+            flex: 1;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+            background: #1e1e1e;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .terminal-content pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .terminal-content code {
+            color: #e6e6e6;
+            font-family: inherit;
+        }
+
+        .terminal-copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(111, 66, 193, 0.2);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            color: var(--ema-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-copy-btn:hover {
+            background: var(--ema-purple);
+            color: white;
+        }
+    </style>
     
     <style>
-        /* Revolutionary API Documentation */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #6f42c1;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 900;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: #6f42c1;
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-            border-radius: 1px;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0 4rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(111, 66, 193, 0.1) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff, #6f42c1, #8e5fd1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: #a0a0a0;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* API Documentation Layout */
-        .api-layout {
+        /* Advanced API Documentation Styles */
+        .api-container {
             display: grid;
             grid-template-columns: 300px 1fr;
             gap: 2rem;
-            padding: 2rem 0;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
         }
 
-        /* Sidebar */
         .api-sidebar {
             position: sticky;
             top: 100px;
@@ -193,38 +131,30 @@
             border: 1px solid rgba(111, 66, 193, 0.2);
             border-radius: 20px;
             padding: 2rem;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
         }
 
-        .sidebar-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .api-main {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
         }
 
-        .sidebar-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-        }
-
-        .sidebar-nav {
+        .api-nav {
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .sidebar-nav li {
+        .api-nav-item {
             margin-bottom: 0.5rem;
         }
 
-        .sidebar-link {
+        .api-nav-link {
             display: block;
             padding: 0.75rem 1rem;
             color: #a0a0a0;
@@ -232,228 +162,137 @@
             border-radius: 12px;
             transition: all 0.3s ease;
             font-weight: 500;
-        }
-
-        .sidebar-link:hover,
-        .sidebar-link.active {
-            background: rgba(111, 66, 193, 0.1);
-            color: #6f42c1;
-            border-left: 3px solid #6f42c1;
-        }
-
-        /* Main Content */
-        .api-content {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-            border-radius: 24px;
-            padding: 3rem;
             position: relative;
-            overflow: hidden;
         }
 
-        .api-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1, #ff6b6b, #4ecdc4);
-            background-size: 200% 200%;
-            animation: gradientShift 4s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
+        .api-nav-link:hover,
+        .api-nav-link.active {
+            background: linear-gradient(135deg, rgba(111, 66, 193, 0.2), rgba(142, 95, 209, 0.2));
             color: #ffffff;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            transform: translateX(5px);
         }
 
-        .section-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-        }
-
-        .section-description {
-            color: #a0a0a0;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        /* API Methods */
-        .api-methods {
-            margin-bottom: 3rem;
-        }
-
-        .method-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(111, 66, 193, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .method-card::before {
+        .api-nav-link.active::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(111, 66, 193, 0.05), transparent);
-            transition: left 0.6s ease;
+            left: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            border-radius: 2px;
         }
 
-        .method-card:hover::before {
-            left: 100%;
+        .api-section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
         }
 
-        .method-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(111, 66, 193, 0.4);
-            box-shadow: 0 12px 32px rgba(111, 66, 193, 0.15);
+        .api-section:last-child {
+            border-bottom: none;
         }
 
-        .method-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .api-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, #6f42c1, #8e5fd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
         }
+        
+        .api-subtitle {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
 
-        .method-type {
+        .method-badge {
+            display: inline-block;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
+            margin-right: 1rem;
         }
 
-        .method-type.get { background: rgba(40, 167, 69, 0.2); color: #28a745; }
-        .method-type.post { background: rgba(111, 66, 193, 0.2); color: #6f42c1; }
-        .method-type.put { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
-        .method-type.delete { background: rgba(220, 53, 69, 0.2); color: #dc3545; }
+        .method-get { background: linear-gradient(135deg, #28a745, #20c997); color: white; }
+        .method-post { background: linear-gradient(135deg, #007bff, #0056b3); color: white; }
+        .method-put { background: linear-gradient(135deg, #ffc107, #e0a800); color: #000; }
+        .method-delete { background: linear-gradient(135deg, #dc3545, #c82333); color: white; }
 
-        .method-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
+        .endpoint {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .endpoint::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .endpoint-url {
             font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #ffffff;
+            background: rgba(111, 66, 193, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(111, 66, 193, 0.2);
         }
 
-        .method-description {
+        .endpoint-description {
             color: #a0a0a0;
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
-        /* Code Blocks */
-        .code-block {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(111, 66, 193, 0.3);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .code-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
-        }
-
-        .code-title {
-            color: #a0a0a0;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .copy-btn {
-            background: rgba(111, 66, 193, 0.2);
-            color: #6f42c1;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: rgba(111, 66, 193, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .code-content {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            color: #ffffff;
-        }
-
-        .code-line {
-            margin-bottom: 0.5rem;
-        }
-
-        .code-keyword { color: #ff6b6b; }
-        .code-function { color: #4ecdc4; }
-        .code-string { color: #ffe66d; }
-        .code-comment { color: #a0a0a0; }
-        .code-number { color: #8e5fd1; }
-        .code-variable { color: #ff6b6b; }
-
-        /* Parameters */
-        .parameters {
-            margin: 1.5rem 0;
-        }
-
-        .param-table {
+        .params-table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.03);
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 12px;
             overflow: hidden;
         }
 
-        .param-table th,
-        .param-table td {
+        .params-table th,
+        .params-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid rgba(111, 66, 193, 0.1);
         }
 
-        .param-table th {
+        .params-table th {
             background: rgba(111, 66, 193, 0.1);
             color: #ffffff;
             font-weight: 600;
         }
 
-        .param-table td {
+        .params-table td {
             color: #a0a0a0;
         }
 
@@ -464,140 +303,169 @@
         }
 
         .param-type {
-            color: #4ecdc4;
-            font-style: italic;
+            background: rgba(111, 66, 193, 0.1);
+            color: #6f42c1;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        /* Examples */
-        .examples {
-            margin: 2rem 0;
+        .code-example {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
         }
-
-        .example-tabs {
+        
+        .code-header {
             display: flex;
-            gap: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
         }
 
-        .example-tab {
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: none;
-            color: #a0a0a0;
-            font-weight: 500;
+        .code-language {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6f42c1;
+        }
+
+        .copy-btn {
+            background: rgba(111, 66, 193, 0.1);
+            color: #6f42c1;
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
         }
 
-        .example-tab.active {
-            color: #6f42c1;
-            border-bottom-color: #6f42c1;
+        .copy-btn:hover {
+            background: rgba(111, 66, 193, 0.2);
+            transform: scale(1.05);
         }
 
-        .example-tab:hover {
-            color: #6f42c1;
+        .code-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            overflow-x: auto;
         }
 
-        .example-content {
-            display: none;
+        .response-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .response-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .example-content.active {
-            display: block;
+        .response-status {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
 
-        /* Interactive Console */
         .interactive-console {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(111, 66, 193, 0.3);
-            border-radius: 16px;
-            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
             margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
         }
 
         .console-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(111, 66, 193, 0.2);
-        }
-
-        .console-dots {
-            display: flex;
             gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .console-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
+            background: #dc3545;
         }
 
-        .console-dot:nth-child(1) { background: #ff6b6b; }
         .console-dot:nth-child(2) { background: #ffc107; }
         .console-dot:nth-child(3) { background: #28a745; }
 
-        .console-title {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .console-output {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            color: #a0a0a0;
-            min-height: 200px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow-y: auto;
-        }
-
         .console-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(111, 66, 193, 0.3);
-            border-radius: 8px;
-            padding: 0.75rem;
+            background: transparent;
+            border: none;
             color: #ffffff;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.875rem;
-        }
-
-        .console-input:focus {
+            width: 100%;
             outline: none;
-            border-color: #6f42c1;
-            box-shadow: 0 0 0 2px rgba(111, 66, 193, 0.2);
+            padding: 0.5rem 0;
         }
 
-        /* Stats Grid */
-        .stats-grid {
+        .console-input::before {
+            content: '> ';
+            color: #6f42c1;
+        }
+
+        .api-search {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #6c757d;
+        }
+
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .stat-card {
+        .feature-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(111, 66, 193, 0.2);
             border-radius: 16px;
             padding: 2rem;
-            text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .stat-card::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -607,420 +475,679 @@
             background: linear-gradient(90deg, #6f42c1, #8e5fd1);
         }
 
-        .stat-card:hover {
-            transform: translateY(-4px);
+        .feature-card:hover {
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(111, 66, 193, 0.4);
-            box-shadow: 0 12px 32px rgba(111, 66, 193, 0.15);
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.15);
         }
 
-        .stat-icon {
-            font-size: 2.5rem;
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
             margin-bottom: 1rem;
-            display: block;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #6f42c1;
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
             margin-bottom: 0.5rem;
-            display: block;
         }
 
-        .stat-label {
-            font-size: 1rem;
+        .feature-description {
             color: #a0a0a0;
-            font-weight: 500;
+            line-height: 1.6;
         }
 
-        /* Responsive Design */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         @media (max-width: 1024px) {
-            .api-layout {
+            .api-container {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-
+            
             .api-sidebar {
                 position: static;
                 order: 2;
-            }
-
-            .api-content {
-                order: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero {
-                padding: 6rem 0 3rem;
-            }
-
-            .api-content {
-                padding: 2rem 1.5rem;
-            }
-
-            .method-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .example-tabs {
-                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="ema-header" id="header">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
-                <div class="logo-icon">E</div>
-                <span>Ema</span>
+            <a href="../" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
             </a>
             
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
-                    <li><a href="components.html" class="nav-link">Components</a></li>
-                    <li><a href="examples.html" class="nav-link">Examples</a></li>
-                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-                    <li><a href="playground.html" class="nav-link">Playground</a></li>
-                    <li><a href="showcase.html" class="nav-link">Showcase</a></li>
-                    <li><a href="revolution.html" class="nav-link">Revolution</a></li>
-                    <li><a href="api.html" class="nav-link active">API</a></li>
-                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
-                </ul>
-            </nav>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             
-            <a href="getting-started.html" class="cta-button">Get Started</a>
+            <nav>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Quick Start</span>
+                                            <span class="item-desc">Begin your journey</span>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item active">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <div class="item-title">API Reference</div>
+                                            <div class="item-desc">Complete API documentation</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <div class="item-title">UI Components</div>
+                                            <div class="item-desc">250+ components</div>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <div class="item-title">Showcase</div>
+                                            <div class="item-desc">Live examples</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <div class="item-title">Playground</div>
+                                            <div class="item-desc">Interactive builder</div>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <div class="item-title">Dashboard</div>
+                                            <div class="item-desc">Analytics & stats</div>
+                                        </div>
+                                    </a>
+        </div>
+        
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <div class="item-title">Examples</div>
+                                            <div class="item-desc">Real-world projects</div>
+                </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-magic"></i>
+                                        <div>
+                                            <div class="item-title">Revolution</div>
+                                            <div class="item-desc">Next-gen features</div>
+                    </div>
+                                    </a>
+                </div>
+            </div>
+            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                                </a>
+                </div>
+                    </div>
+                    </li>
+                    </ul>
+            </nav>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">API Documentation</h1>
-            <p class="hero-subtitle">
-                Complete reference for Ema Framework's powerful API. Explore 100+ modules, 
-                500+ features, and comprehensive developer tools.
-            </p>
-        </div>
-    </section>
-
-    <!-- API Documentation -->
-    <div class="container">
-        <div class="api-layout">
-            <!-- Sidebar -->
-            <nav class="api-sidebar">
-                <h2 class="sidebar-title">
-                    <span class="sidebar-icon">📚</span>
-                    API Reference
-                </h2>
-                
-                <ul class="sidebar-nav">
-                    <li><a href="#core" class="sidebar-link active">Core Framework</a></li>
-                    <li><a href="#components" class="sidebar-link">Components</a></li>
-                    <li><a href="#3d" class="sidebar-link">3D Engine</a></li>
-                    <li><a href="#animations" class="sidebar-link">Animations</a></li>
-                    <li><a href="#storage" class="sidebar-link">Storage</a></li>
-                    <li><a href="#http" class="sidebar-link">HTTP Client</a></li>
-                    <li><a href="#websocket" class="sidebar-link">WebSocket</a></li>
-                    <li><a href="#charts" class="sidebar-link">Charts</a></li>
-                    <li><a href="#forms" class="sidebar-link">Forms</a></li>
-                    <li><a href="#router" class="sidebar-link">Router</a></li>
-                    <li><a href="#store" class="sidebar-link">Store</a></li>
-                    <li><a href="#utils" class="sidebar-link">Utils</a></li>
-                </ul>
-            </nav>
-
-            <!-- Main Content -->
-            <main class="api-content">
-                <!-- Core Framework Section -->
-                <section id="core">
-                    <h2 class="section-title">
-                        <span class="section-icon">⚡</span>
-                        Core Framework
-                    </h2>
-                    
-                    <p class="section-description">
-                        The foundation of Ema Framework. Core initialization, configuration, 
-                        and essential functionality for building modern web applications.
-                    </p>
-
-                    <div class="api-methods">
-                        <div class="method-card">
-                            <div class="method-header">
-                                <span class="method-type get">Constructor</span>
-                                <h3 class="method-name">new Ema(options)</h3>
-                            </div>
-                            
-                            <p class="method-description">
-                                Creates a new Ema Framework instance with the specified configuration options.
-                            </p>
-
-                            <div class="parameters">
-                                <h4>Parameters</h4>
-                                <table class="param-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Required</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="param-name">options</td>
-                                            <td class="param-type">Object</td>
-                                            <td>No</td>
-                                            <td>Configuration options for the framework</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="param-name">options.theme</td>
-                                            <td class="param-type">String</td>
-                                            <td>No</td>
-                                            <td>Theme name (purple, blue, green, etc.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="param-name">options.3d</td>
-                                            <td class="param-type">Boolean</td>
-                                            <td>No</td>
-                                            <td>Enable 3D engine features</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="examples">
-                                <div class="example-tabs">
-                                    <button class="example-tab active" data-tab="basic">Basic Usage</button>
-                                    <button class="example-tab" data-tab="advanced">Advanced Config</button>
-                                </div>
-
-                                <div class="example-content active" data-content="basic">
-                                    <div class="code-block">
-                                        <div class="code-header">
-                                            <span class="code-title">Basic Ema Initialization</span>
-                                            <button class="copy-btn">Copy</button>
-                                        </div>
-                                        <div class="code-content">
-                                            <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>();</div>
-                                            <div class="code-line"><span class="code-comment">// Initialize with default settings</span></div>
-                                            <div class="code-line"><span class="code-variable">app</span>.<span class="code-function">init</span>();</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="example-content" data-content="advanced">
-                                    <div class="code-block">
-                                        <div class="code-header">
-                                            <span class="code-title">Advanced Configuration</span>
-                                            <button class="copy-btn">Copy</button>
-                                        </div>
-                                        <div class="code-content">
-                                            <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>({</div>
-                                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">'theme'</span>: <span class="code-string">'purple'</span>,</div>
-                                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">'3d'</span>: <span class="code-keyword">true</span>,</div>
-                                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">'animations'</span>: <span class="code-keyword">true</span>,</div>
-                                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">'debug'</span>: <span class="code-keyword">false</span></div>
-                                            <div class="code-line">});</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="method-card">
-                            <div class="method-header">
-                                <span class="method-type post">Method</span>
-                                <h3 class="method-name">init()</h3>
-                            </div>
-                            
-                            <p class="method-description">
-                                Initializes the Ema Framework with all configured options and sets up the application.
-                            </p>
-
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-title">Usage</span>
-                                    <button class="copy-btn">Copy</button>
-                                </div>
-                                <div class="code-content">
-                                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">app</span> = <span class="code-keyword">new</span> <span class="code-function">Ema</span>();</div>
-                                    <div class="code-line"><span class="code-variable">app</span>.<span class="code-function">init</span>();</div>
-                                    <div class="code-line"><span class="code-comment">// Framework is now ready to use</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Components Section -->
-                <section id="components">
-                    <h2 class="section-title">
-                        <span class="section-icon">🎨</span>
-                        Components API
-                    </h2>
-                    
-                    <p class="section-description">
-                        Create and manage UI components with Ema's powerful component system. 
-                        250+ pre-built components with 8 color variants each.
-                    </p>
-
-                    <div class="api-methods">
-                        <div class="method-card">
-                            <div class="method-header">
-                                <span class="method-type post">Method</span>
-                                <h3 class="method-name">createComponent(type, options)</h3>
-                            </div>
-                            
-                            <p class="method-description">
-                                Creates a new component instance with the specified type and options.
-                            </p>
-
-                            <div class="parameters">
-                                <h4>Parameters</h4>
-                                <table class="param-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Required</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="param-name">type</td>
-                                            <td class="param-type">String</td>
-                                            <td>Yes</td>
-                                            <td>Component type (button, card, input, etc.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="param-name">options</td>
-                                            <td class="param-type">Object</td>
-                                            <td>No</td>
-                                            <td>Component configuration options</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-title">Example</span>
-                                    <button class="copy-btn">Copy</button>
-                                </div>
-                                <div class="code-content">
-                                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">button</span> = <span class="code-variable">app</span>.<span class="code-function">createComponent</span>(<span class="code-string">'button'</span>, {</div>
-                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'text'</span>: <span class="code-string">'Click Me'</span>,</div>
-                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'variant'</span>: <span class="code-string">'purple'</span>,</div>
-                                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">'size'</span>: <span class="code-string">'large'</span></div>
-                                    <div class="code-line">});</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Interactive Console -->
-                <div class="interactive-console">
-                    <div class="console-header">
-                        <div class="console-dots">
-                            <div class="console-dot"></div>
-                            <div class="console-dot"></div>
-                            <div class="console-dot"></div>
-                        </div>
-                        <span class="console-title">Interactive API Console</span>
-                    </div>
-                    
-                    <div class="console-output" id="console-output">
-                        <div>Ema Framework Interactive Console v4.1</div>
-                        <div>Type 'help' for available commands</div>
-                        <div>> Ready to execute Ema API commands</div>
-                    </div>
-                    
-                    <input type="text" class="console-input" id="console-input" placeholder="Try: new Ema().init()" autocomplete="off">
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-icon">📚</span>
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">API Methods</span>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <span class="stat-icon">🎨</span>
-                        <span class="stat-number">250+</span>
-                        <span class="stat-label">Components</span>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <span class="stat-icon">⚙️</span>
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Features</span>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <span class="stat-icon">📖</span>
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Examples</span>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <span class="stat-icon">🔧</span>
-                        <span class="stat-number">Zero</span>
-                        <span class="stat-label">Dependencies</span>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <span class="stat-icon">⚡</span>
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Performance</span>
-                    </div>
-                </div>
-            </main>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li>
+                <a href="#" class="mobile-framework-trigger">
+                    <i class="fas fa-th-large"></i>
+                    <span>Framework</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-search-trigger">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="docs.html">
+                    <i class="fas fa-book"></i>
+                    <span>Docs</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="getting-started.html">
+                    <i class="fas fa-rocket"></i>
+                    <span>Get Started</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
+            <h3>Getting Started</h3>
+            <a href="getting-started.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Quick Start</span>
+            </a>
+            <a href="api.html" class="mobile-dropdown-item">
+                <i class="fas fa-cogs"></i>
+                <span>API Reference</span>
+            </a>
+            
+            <h3>Components</h3>
+            <a href="components.html" class="mobile-dropdown-item">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>UI Components</span>
+            </a>
+            <a href="showcase.html" class="mobile-dropdown-item">
+                <i class="fas fa-star"></i>
+                <span>Showcase</span>
+            </a>
+            
+            <h3>Tools</h3>
+            <a href="playground.html" class="mobile-dropdown-item">
+                <i class="fas fa-play"></i>
+                <span>Playground</span>
+            </a>
+            <a href="dashboard.html" class="mobile-dropdown-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <h3>Resources</h3>
+            <a href="examples.html" class="mobile-dropdown-item">
+                <i class="fas fa-code"></i>
+                <span>Examples</span>
+            </a>
+            <a href="revolution.html" class="mobile-dropdown-item">
+                <i class="fas fa-rocket"></i>
+                <span>Revolution</span>
+            </a>
         </div>
     </div>
 
+    <!-- Main Content -->
+    <main style="padding-top: 100px;">
+        <div class="api-container">
+            <!-- Sidebar -->
+            <aside class="api-sidebar">
+                <div class="api-search">
+                    <input type="text" class="search-input" placeholder="Search API..." id="apiSearch">
+            </div>
+            
+                <nav>
+                    <ul class="api-nav">
+                        <li class="api-nav-item">
+                            <a href="#introduction" class="api-nav-link active">Introduction</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#core-api" class="api-nav-link">Core API</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#components" class="api-nav-link">Components</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#animations" class="api-nav-link">Animations</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#3d-effects" class="api-nav-link">3D Effects</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#alerts" class="api-nav-link">Alerts</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#charts" class="api-nav-link">Charts</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#utilities" class="api-nav-link">Utilities</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#themes" class="api-nav-link">Themes</a>
+                        </li>
+                        <li class="api-nav-item">
+                            <a href="#events" class="api-nav-link">Events</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="api-main">
+                <!-- Introduction -->
+                <section id="introduction" class="api-section">
+                    <h1 class="api-title">API Documentation</h1>
+                    <p class="api-subtitle">
+                        Comprehensive reference for Ema Framework's powerful API. Build amazing applications 
+                        with our extensive collection of methods, components, and utilities.
+                    </p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3 class="feature-title">Lightning Fast</h3>
+                            <p class="feature-description">
+                                Optimized for performance with minimal overhead and maximum efficiency.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3 class="feature-title">Highly Customizable</h3>
+                            <p class="feature-description">
+                                Extensive theming and customization options for every component.
+                            </p>
+                </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3 class="feature-title">Responsive Design</h3>
+                            <p class="feature-description">
+                                Built-in responsive utilities and mobile-first approach.
+                            </p>
+                    </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔧</div>
+                            <h3 class="feature-title">Developer Friendly</h3>
+                            <p class="feature-description">
+                                Intuitive API design with comprehensive documentation and examples.
+            </p>
+                </div>
+            </div>
+                </section>
+
+                <!-- Core API -->
+                <section id="core-api" class="api-section">
+                    <h2 class="api-title">Core API</h2>
+                    <p class="api-subtitle">
+                        Essential methods and utilities for initializing and managing your Ema Framework application.
+                    </p>
+
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-get">Constructor</span>
+                            <span class="endpoint-url">new EmaApp(options)</span>
+                </div>
+                        <p class="endpoint-description">
+                            Initialize a new Ema Framework application with configuration options.
+                        </p>
+                        
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="param-name">theme</span></td>
+                                    <td><span class="param-type">string</span></td>
+                                    <td>No</td>
+                                    <td>Theme name ('dark', 'light', 'auto')</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="param-name">animations</span></td>
+                                    <td><span class="param-type">boolean</span></td>
+                                    <td>No</td>
+                                    <td>Enable/disable animations</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="param-name">components</span></td>
+                                    <td><span class="param-type">array</span></td>
+                                    <td>No</td>
+                                    <td>Array of component names to preload</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="terminal-code-block">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons">
+                                    <button class="terminal-button close"></button>
+                                    <button class="terminal-button minimize"></button>
+                                    <button class="terminal-button maximize"></button>
+                                </div>
+                                <div class="terminal-title">terminal — bash — 80x24</div>
+                </div>
+                            <div class="terminal-content">
+                                <button class="terminal-copy-btn" onclick="copyCode('core-example')">Copy</button>
+                                <pre id="core-example">// Initialize Ema Framework
+const app = new EmaApp({
+    theme: 'dark',
+    animations: true,
+    components: ['button', 'form', 'chart', 'modal']
+});
+
+// Access global instance
+console.log(app.version); // "2.0.0"
+console.log(app.theme);   // "dark"</pre>
+                    </div>
+                </div>
+            </div>
+            
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-post">Method</span>
+                            <span class="endpoint-url">app.createComponent(type, options)</span>
+                </div>
+                        <p class="endpoint-description">
+                            Create a new component instance with specified options.
+                        </p>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">JavaScript</span>
+                                <button class="copy-btn" onclick="copyCode('component-example')">Copy</button>
+                    </div>
+                            <div class="terminal-code-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-buttons">
+                                        <button class="terminal-button close"></button>
+                                        <button class="terminal-button minimize"></button>
+                                        <button class="terminal-button maximize"></button>
+                </div>
+                                    <div class="terminal-title">terminal — bash — 80x24</div>
+                    </div>
+                                <div class="terminal-content">
+                                    <button class="terminal-copy-btn" onclick="copyCode('component-example')">Copy</button>
+                                    <pre id="component-example">// Create a button component
+const button = app.createComponent('button', {
+    text: 'Click Me',
+    variant: 'primary',
+    size: 'large',
+    onClick: () => {
+        console.log('Button clicked!');
+    }
+});
+
+// Add to DOM
+document.body.appendChild(button.element);
+
+// Update component
+button.update({ text: 'Updated!' });</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+                </section>
+
+                <!-- Components -->
+                <section id="components" class="api-section">
+                    <h2 class="api-title">Components API</h2>
+                    <p class="api-subtitle">
+                        Detailed documentation for all available UI components and their methods.
+                    </p>
+
+                    <div class="endpoint">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-get">Component</span>
+                            <span class="endpoint-url">Button Component</span>
+                </div>
+                        <p class="endpoint-description">
+                            Interactive button component with multiple variants and states.
+                        </p>
+
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="param-name">text</span></td>
+                                    <td><span class="param-type">string</span></td>
+                                    <td>''</td>
+                                    <td>Button text content</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="param-name">variant</span></td>
+                                    <td><span class="param-type">string</span></td>
+                                    <td>'primary'</td>
+                                    <td>Color variant (primary, secondary, success, etc.)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="param-name">size</span></td>
+                                    <td><span class="param-type">string</span></td>
+                                    <td>'medium'</td>
+                                    <td>Button size (small, medium, large)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="param-name">disabled</span></td>
+                                    <td><span class="param-type">boolean</span></td>
+                                    <td>false</td>
+                                    <td>Disable button interaction</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="param-name">onClick</span></td>
+                                    <td><span class="param-type">function</span></td>
+                                    <td>null</td>
+                                    <td>Click event handler</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-language">JavaScript</span>
+                                <button class="copy-btn" onclick="copyCode('button-example')">Copy</button>
+                    </div>
+                            <pre class="code-content" id="button-example">// Create different button variants
+const primaryBtn = app.createComponent('button', {
+    text: 'Primary',
+    variant: 'primary',
+    onClick: () => alert('Primary clicked!')
+});
+
+const successBtn = app.createComponent('button', {
+    text: 'Success',
+    variant: 'success',
+    size: 'large',
+    onClick: () => alert('Success clicked!')
+});
+
+const dangerBtn = app.createComponent('button', {
+    text: 'Danger',
+    variant: 'danger',
+    disabled: true
+});</pre>
+                </div>
+            </div>
+                </section>
+
+                <!-- Interactive Console -->
+                <section class="api-section">
+                    <h2 class="api-title">Interactive Console</h2>
+                    <p class="api-subtitle">
+                        Try out the API methods in real-time using our interactive console.
+                    </p>
+
+                    <div class="interactive-console">
+                        <div class="console-header">
+                            <div class="console-dot"></div>
+                            <div class="console-dot"></div>
+                            <div class="console-dot"></div>
+                            <span style="margin-left: 1rem; color: #a0a0a0; font-size: 0.875rem;">Ema Framework Console</span>
+                        </div>
+                        <div class="console-input" contenteditable="true" id="consoleInput">
+                            // Try: new EmaApp({theme: 'dark'})
+                </div>
+                        <div id="consoleOutput" style="margin-top: 1rem; color: #a0a0a0; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem;"></div>
+                    </div>
+                </section>
+                </div>
+            </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ema Framework</h3>
+                    <p>The world's most advanced frontend framework built with HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                    </ul>
+                    </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved.</p>
+        </div>
+    </div>
+    </footer>
+    
     <!-- Scripts -->
+    <script src="../js/3d-engine.js"></script>
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/ema-live-preview.js"></script>
+    
     <script>
-        // Sidebar navigation
-        document.querySelectorAll('.sidebar-link').forEach(link => {
+        // Initialize 3D effects and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize 3D engine
+            if (window.ema3DEngine) {
+                ema3DEngine.init();
+            }
+            
+            // Initialize scroll animations
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe elements for scroll animations
+            document.querySelectorAll('.api-section, .code-block, .parameter-table').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                scrollObserver.observe(el);
+            });
+            
+            // Initialize code copy functionality
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const codeBlock = this.parentElement.querySelector('code');
+                    if (codeBlock) {
+                        navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                            this.textContent = 'Copied!';
+                            setTimeout(() => {
+                                this.textContent = 'Copy';
+                            }, 2000);
+                        });
+                    }
+                });
+            });
+        });
+
+        // API Navigation
+        const navLinks = document.querySelectorAll('.api-nav-link');
+        const sections = document.querySelectorAll('.api-section');
+
+        navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 
                 // Remove active class from all links
-                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                navLinks.forEach(l => l.classList.remove('active'));
                 
                 // Add active class to clicked link
                 link.classList.add('active');
@@ -1034,152 +1161,74 @@
             });
         });
 
-        // Example tabs
-        document.querySelectorAll('.example-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabContent = tab.dataset.tab;
-                const container = tab.closest('.examples');
-                
-                // Remove active class from all tabs and contents
-                container.querySelectorAll('.example-tab').forEach(t => t.classList.remove('active'));
-                container.querySelectorAll('.example-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                container.querySelector(`[data-content="${tabContent}"]`).classList.add('active');
-            });
-        });
-
-        // Copy buttons
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const codeBlock = btn.closest('.code-block').querySelector('.code-content');
-                const text = codeBlock.textContent;
-                
-                navigator.clipboard.writeText(text).then(() => {
-                    btn.textContent = 'Copied!';
-                    setTimeout(() => {
-                        btn.textContent = 'Copy';
-                    }, 2000);
-                });
-            });
-        });
-
-        // Interactive console
-        const consoleOutput = document.getElementById('console-output');
-        const consoleInput = document.getElementById('console-input');
-
-        function addConsoleLine(text, type = 'normal') {
-            const line = document.createElement('div');
-            line.textContent = text;
-            if (type === 'error') line.style.color = '#ff6b6b';
-            if (type === 'success') line.style.color = '#28a745';
-            if (type === 'info') line.style.color = '#6f42c1';
-            consoleOutput.appendChild(line);
-            consoleOutput.scrollTop = consoleOutput.scrollHeight;
-        }
-
-        consoleInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const command = consoleInput.value.trim();
-                consoleInput.value = '';
-                
-                addConsoleLine(`> ${command}`);
-                
-                try {
-                    // Simple command processing
-                    if (command === 'help') {
-                        addConsoleLine('Available commands:', 'info');
-                        addConsoleLine('- new Ema().init() - Initialize framework');
-                        addConsoleLine('- app.createComponent("button") - Create component');
-                        addConsoleLine('- app.version - Show version');
-                        addConsoleLine('- clear - Clear console');
-                    } else if (command === 'clear') {
-                        consoleOutput.innerHTML = '';
-                        addConsoleLine('Console cleared');
-                    } else if (command.includes('new Ema')) {
-                        addConsoleLine('Ema Framework initialized successfully!', 'success');
-                    } else if (command.includes('createComponent')) {
-                        addConsoleLine('Component created successfully!', 'success');
-                    } else if (command.includes('version')) {
-                        addConsoleLine('Ema Framework v4.1.0', 'info');
-                    } else {
-                        addConsoleLine('Command not recognized. Type "help" for available commands.', 'error');
-                    }
-                } catch (error) {
-                    addConsoleLine(`Error: ${error.message}`, 'error');
-                }
-            }
-        });
-
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            // Animate stats
-            const stats = document.querySelectorAll('.stat-number');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const finalValue = target.textContent;
-                        const isPercentage = finalValue.includes('%');
-                        const isPlus = finalValue.includes('+');
-                        const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
-                        
-                        if (numericValue > 0) {
-                            let current = 0;
-                            const increment = numericValue / 50;
-                            const timer = setInterval(() => {
-                                current += increment;
-                                if (current >= numericValue) {
-                                    current = numericValue;
-                                    clearInterval(timer);
-                                }
-                                
-                                let displayValue = Math.floor(current);
-                                if (isPercentage) displayValue += '%';
-                                if (isPlus) displayValue += '+';
-                                if (finalValue === 'Zero') displayValue = 'Zero';
-                                
-                                target.textContent = displayValue;
-                            }, 40);
-                        }
-                    }
-                });
-            });
-
-            stats.forEach(stat => observer.observe(stat));
-
-            // Initialize 3D effects
-            if (typeof ema3DEffects !== 'undefined') {
-                ema3DEffects.init();
-            }
-
-            // Welcome message
-            setTimeout(() => {
-                if (typeof emaAlerts !== 'undefined') {
-                    emaAlerts.success('Welcome to the API Documentation! 📚', {
-                        title: 'Developer Reference',
-                        timer: 5000
+        // Copy code functionality
+        function copyCode(id) {
+            const codeElement = document.getElementById(id);
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                if (window.EmaAlerts) {
+                    window.EmaAlerts.success('Code copied to clipboard!', {
+                        title: 'Success',
+                        timer: 2000
                     });
                 }
-            }, 1000);
+            }).catch(() => {
+                if (window.EmaAlerts) {
+                    window.EmaAlerts.error('Failed to copy code', {
+                        title: 'Error',
+                        timer: 2000
+                    });
+                }
+            });
+        }
+
+        // Interactive console
+        const consoleInput = document.getElementById('consoleInput');
+        const consoleOutput = document.getElementById('consoleOutput');
+
+        consoleInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const command = consoleInput.textContent.trim();
+                
+                if (command) {
+                    try {
+                        // Simple command evaluation (in real app, use proper sandboxing)
+                        if (command.includes('new EmaApp')) {
+                            consoleOutput.innerHTML += `<div style="color: #28a745;">✓ ${command}</div>`;
+                            consoleOutput.innerHTML += `<div style="color: #a0a0a0; margin-left: 1rem;">→ EmaApp initialized successfully</div>`;
+                        } else {
+                            consoleOutput.innerHTML += `<div style="color: #dc3545;">✗ Unknown command: ${command}</div>`;
+                        }
+                    } catch (error) {
+                        consoleOutput.innerHTML += `<div style="color: #dc3545;">✗ Error: ${error.message}</div>`;
+                    }
+                    
+                    consoleInput.textContent = '';
+                    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+                }
+            }
+        });
+
+        // API Search
+        const apiSearch = document.getElementById('apiSearch');
+        apiSearch.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            
+            navLinks.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    link.style.display = 'block';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
         });
     </script>
-
-    <!-- Load framework scripts -->
-    <script src="../js/core.js"></script>
-    <script src="../js/router.js"></script>
-    <script src="../js/store.js"></script>
-    <script src="../js/ui.js"></script>
-    <script src="../js/animations.js"></script>
-    <script src="../js/theme.js"></script>
-    <script src="../js/utils.js"></script>
-    <script src="../js/3d-engine.js"></script>
-    <script src="../js/ema-alerts.js"></script>
-    <script src="../js/ema-3d-effects.js"></script>
-    <script src="../js/emadocs.js"></script>
     
-    <!-- Initialize application -->
-    <script src="../js/app-init.js"></script>
+    <!-- Mobile Navigation Script -->
+    <!-- Navbar Script -->
+    <script src="../js/navbar.js"></script>
 </body>
 </html>

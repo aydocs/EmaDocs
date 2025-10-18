@@ -4,245 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Ema Framework</title>
-    <meta name="description" content="Interactive dashboard showcasing Ema Framework's advanced capabilities and real-time features">
+    <meta name="description" content="Advanced analytics dashboard powered by Ema Framework">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/emadocs.css">
-    <link rel="stylesheet" href="../css/ema-colors.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
     
     <style>
-        /* Dashboard Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Advanced Dashboard Styles */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.6;
-            overflow-x: hidden;
+        .dashboard-sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
         }
 
-        /* Header */
-        .header {
-            position: fixed;
+        .dashboard-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .dashboard-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .dashboard-widgets {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .widget::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            height: 3px;
+            background: linear-gradient(90deg, #6f42c1, #8e5fd1, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
         }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .widget-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #6f42c1;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
         }
 
-        .logo:hover {
+        .widget-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .widget-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .widget-btn {
+            background: rgba(111, 66, 193, 0.1);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            color: #6f42c1;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .widget-btn:hover {
+            background: rgba(111, 66, 193, 0.2);
             transform: scale(1.05);
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 900;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: #6f42c1;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6f42c1, #8e5fd1);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
-        }
-
-        /* Layout */
-        .dashboard-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: white;
-            border-right: 1px solid rgba(111, 66, 193, 0.1);
-            padding: 2rem 0;
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
-            overflow-y: auto;
-        }
-
-        .sidebar-content {
-            padding: 0 2rem;
-        }
-
-        .sidebar-section {
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-title {
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: #6f42c1;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        .sidebar-links {
-            list-style: none;
-        }
-
-        .sidebar-link {
-            display: block;
-            color: #64748b;
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            margin-bottom: 0.25rem;
-            position: relative;
-        }
-
-        .sidebar-link:hover, .sidebar-link.active {
-            color: #6f42c1;
-            background: rgba(111, 66, 193, 0.1);
-        }
-
-        .sidebar-link.active::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 20px;
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            border-radius: 0 2px 2px 0;
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 2rem;
-            max-width: 1200px;
-        }
-
-        .dashboard-header {
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .dashboard-subtitle {
-            font-size: 1.125rem;
-            color: #64748b;
-        }
-
-        /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
             border-radius: 16px;
             padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
+            text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -254,20 +139,15 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, #6f42c1, #8e5fd1);
         }
 
         .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(111, 66, 193, 0.15);
-        }
-
-        .stat-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(111, 66, 193, 0.4);
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.15);
         }
 
         .stat-icon {
@@ -278,466 +158,334 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: white;
             background: linear-gradient(135deg, #6f42c1, #8e5fd1);
+            margin: 0 auto 1rem;
         }
 
-        .stat-trend {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #28a745;
-        }
-
-        .stat-value {
-            font-size: 2rem;
+        .stat-number {
+            font-size: 2.5rem;
             font-weight: 900;
-            color: #0f172a;
-            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #ffffff, #6f42c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-
-        /* Charts Section */
-        .charts-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .chart-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-        }
-
-        .chart-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .chart-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .chart-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(111, 66, 193, 0.2);
-            border-radius: 8px;
-            background: white;
-            color: #64748b;
-            font-size: 0.875rem;
+            color: #a0a0a0;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .chart-btn:hover, .chart-btn.active {
-            background: #6f42c1;
-            color: white;
-            border-color: #6f42c1;
+        .stat-change {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .stat-change.positive {
+            color: #28a745;
+        }
+
+        .stat-change.negative {
+            color: #dc3545;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1rem 0;
         }
 
         .chart-canvas {
             width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 0.875rem;
+            height: 100%;
+            border-radius: 12px;
         }
 
-        /* Activity Feed */
-        .activity-feed {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.08);
-            border: 1px solid rgba(111, 66, 193, 0.1);
+        .activity-list {
+            max-height: 400px;
+            overflow-y: auto;
         }
 
         .activity-item {
             display: flex;
+            align-items: center;
             gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(111, 66, 193, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
         }
 
-        .activity-item:last-child {
-            border-bottom: none;
+        .activity-item:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .activity-icon {
             width: 40px;
             height: 40px;
-            border-radius: 50%;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: white;
+            font-size: 1.2rem;
             background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            flex-shrink: 0;
         }
 
         .activity-content {
             flex: 1;
         }
 
-        .activity-text {
-            font-size: 0.95rem;
-            color: #0f172a;
+        .activity-title {
+            color: #ffffff;
+            font-weight: 600;
             margin-bottom: 0.25rem;
         }
 
-        .activity-time {
+        .activity-description {
+            color: #a0a0a0;
             font-size: 0.875rem;
-            color: #64748b;
         }
 
-        /* Interactive Elements */
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
+        .activity-time {
+            color: #6c757d;
+            font-size: 0.75rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #6f42c1, #8e5fd1);
-            color: white;
-            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #6f42c1;
-            border: 2px solid #6f42c1;
-        }
-
-        .btn-secondary:hover {
-            background: #6f42c1;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .dashboard-layout {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                display: none;
-            }
-            
-            .charts-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .main-content {
-                padding: 1rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .dashboard-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-        .stagger-5 { animation-delay: 0.5s; }
-        .stagger-6 { animation-delay: 0.6s; }
-
-        /* Enhanced Analytics */
-        #analytics-chart {
-            position: relative;
-            height: 300px;
-        }
-
-        #analytics-canvas {
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-        }
-
-        /* Component Usage Stats */
-        .component-usage-stats {
-            display: flex;
-            flex-direction: column;
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1rem;
         }
 
-        .usage-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .action-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #ffffff;
         }
 
-        .usage-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .action-btn:hover {
+            background: rgba(111, 66, 193, 0.1);
+            border-color: rgba(111, 66, 193, 0.4);
+            transform: translateY(-3px);
         }
 
-        .usage-name {
-            font-weight: 600;
-            color: #0f172a;
+        .action-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .usage-count {
+        .action-label {
             font-size: 0.875rem;
-            color: #64748b;
+            font-weight: 600;
         }
 
-        .usage-bar {
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: #a0a0a0;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .sidebar-nav-link:hover,
+        .sidebar-nav-link.active {
+            background: linear-gradient(135deg, rgba(111, 66, 193, 0.2), rgba(142, 95, 209, 0.2));
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .sidebar-nav-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
             height: 8px;
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             overflow: hidden;
+            margin: 0.5rem 0;
         }
 
-        .usage-fill {
+        .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #6f42c1, #8e5fd1);
             border-radius: 4px;
             transition: width 0.3s ease;
-            animation: usageGlow 2s ease-in-out infinite alternate;
         }
 
-        @keyframes usageGlow {
-            from { box-shadow: 0 0 5px rgba(111, 66, 193, 0.3); }
-            to { box-shadow: 0 0 15px rgba(111, 66, 193, 0.6); }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        /* Enhanced Action Buttons */
-        .action-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .action-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .action-text {
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(111, 66, 193, 0.3);
-        }
-
-        /* System Status */
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .status-dot.online {
-            background: #28a745;
-        }
-
-        .status-text {
-            font-size: 0.875rem;
-            color: #28a745;
-            font-weight: 600;
-        }
-
-        .system-status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(40, 167, 69, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(40, 167, 69, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .status-item:hover {
-            background: rgba(40, 167, 69, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .status-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            background: rgba(40, 167, 69, 0.1);
-            color: #28a745;
-        }
-
-        .status-info {
-            flex: 1;
-        }
-
-        .status-name {
-            display: block;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 0.25rem;
-        }
-
-        .status-value {
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .status-value.online {
-            color: #28a745;
-        }
-
-        /* Chart Actions */
-        .chart-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .chart-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(111, 66, 193, 0.2);
-            border-radius: 8px;
-            background: white;
-            color: #64748b;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .chart-btn:hover, .chart-btn.active {
-            background: #6f42c1;
-            color: white;
-            border-color: #6f42c1;
-        }
-
-        /* Live Data Updates */
-        .live-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #28a745;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #28a745;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-sidebar {
+                position: static;
+                order: 2;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="ema-header" id="header">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
-                <div class="logo-icon">E</div>
-                <span>Ema Dashboard</span>
+            <a href="../" class="ema-logo">
+                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
+                <span>Ema Framework</span>
             </a>
             
             <nav>
-                <ul class="nav-links">
-                    <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="getting-started.html" class="nav-link">Documentation</a></li>
-                    <li><a href="components.html" class="nav-link">Components</a></li>
-                    <li><a href="examples.html" class="nav-link">Examples</a></li>
-                    <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
-                    <li><a href="https://github.com/aydocs/emadocs" class="nav-link" target="_blank">GitHub</a></li>
+                <ul class="ema-nav-links">
+                    <li class="nav-dropdown">
+                        <a href="#" class="ema-nav-link dropdown-trigger">
+                            <i class="fas fa-th-large"></i> 
+                            <span>Framework</span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="search-trigger" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="docs.html" class="ema-nav-link">
+                            <i class="fas fa-book"></i>
+                            <span>Docs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="ema-nav-link">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="getting-started.html" class="ema-nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>Get Started</span>
+                        </a>
+                    </li>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-section">
+                                    <h3>Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Quick Start</span>
+                                            <span class="item-desc">Begin your journey</span>
+                                        </div>
+                                    </a>
+                                    <a href="api.html" class="dropdown-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <div>
+                                            <span class="item-title">API Reference</span>
+                                            <span class="item-desc">Complete documentation</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Components</h3>
+                                    <a href="components.html" class="dropdown-item">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                        <div>
+                                            <span class="item-title">UI Components</span>
+                                            <span class="item-desc">250+ components</span>
+                                        </div>
+                                    </a>
+                                    <a href="showcase.html" class="dropdown-item">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <span class="item-title">Showcase</span>
+                                            <span class="item-desc">Live examples</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Tools</h3>
+                                    <a href="playground.html" class="dropdown-item">
+                                        <i class="fas fa-play"></i>
+                                        <div>
+                                            <span class="item-title">Playground</span>
+                                            <span class="item-desc">Interactive builder</span>
+                                        </div>
+                                    </a>
+                                    <a href="dashboard.html" class="dropdown-item active">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <span class="item-title">Dashboard</span>
+                                            <span class="item-desc">Analytics & stats</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3>Resources</h3>
+                                    <a href="examples.html" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div>
+                                            <span class="item-title">Examples</span>
+                                            <span class="item-desc">Real projects</span>
+                                        </div>
+                                    </a>
+                                    <a href="revolution.html" class="dropdown-item">
+                                        <i class="fas fa-rocket"></i>
+                                        <div>
+                                            <span class="item-title">Revolution</span>
+                                            <span class="item-desc">Next-gen features</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>View on GitHub</span>
+                                </a>
+                                <a href="getting-started.html" class="cta-link">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Get Started</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             
@@ -745,692 +493,835 @@
         </div>
     </header>
 
-    <!-- Dashboard Layout -->
-    <div class="dashboard-layout">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-content">
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Overview</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="#overview" class="sidebar-link active">Dashboard</a></li>
-                        <li><a href="#analytics" class="sidebar-link">Analytics</a></li>
-                        <li><a href="#performance" class="sidebar-link">Performance</a></li>
-                        <li><a href="#users" class="sidebar-link">Users</a></li>
+    <!-- Main Content -->
+    <main style="padding-top: 100px;">
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <aside class="dashboard-sidebar">
+                <h3 style="color: #ffffff; margin-bottom: 2rem; font-size: 1.5rem;">Dashboard</h3>
+                
+                <nav>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav-item">
+                            <a href="#overview" class="sidebar-nav-link active">
+                                <span class="sidebar-nav-icon">📊</span>
+                                <span>Overview</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#analytics" class="sidebar-nav-link">
+                                <span class="sidebar-nav-icon">📈</span>
+                                <span>Analytics</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#components" class="sidebar-nav-link">
+                                <span class="sidebar-nav-icon">🧩</span>
+                                <span>Components</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#performance" class="sidebar-nav-link">
+                                <span class="sidebar-nav-icon">⚡</span>
+                                <span>Performance</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#users" class="sidebar-nav-link">
+                                <span class="sidebar-nav-icon">👥</span>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a href="#settings" class="sidebar-nav-link">
+                                <span class="sidebar-nav-icon">⚙️</span>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Dashboard -->
+            <div class="dashboard-main">
+                <div class="dashboard-content">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🚀</div>
+                            <div class="stat-number" id="totalUsers">12,547</div>
+                            <div class="stat-label">Total Users</div>
+                            <div class="stat-change positive">+12.5%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📱</div>
+                            <div class="stat-number" id="activeUsers">8,234</div>
+                            <div class="stat-label">Active Users</div>
+                            <div class="stat-change positive">+8.3%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💎</div>
+                            <div class="stat-number" id="revenue">$45,678</div>
+                            <div class="stat-label">Revenue</div>
+                            <div class="stat-change positive">+15.2%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-number" id="conversion">3.2%</div>
+                            <div class="stat-label">Conversion</div>
+                            <div class="stat-change negative">-2.1%</div>
+                        </div>
+                    </div>
+
+                    <!-- Main Chart -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Analytics Overview</h3>
+                            <div class="widget-actions">
+                                <button class="widget-btn" onclick="exportChart()">Export</button>
+                                <button class="widget-btn" onclick="refreshChart()">Refresh</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="mainChart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Performance Metrics</h3>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="color: #a0a0a0;">Page Load Time</span>
+                                    <span style="color: #ffffff; font-weight: 600;">1.2s</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="color: #a0a0a0;">API Response</span>
+                                    <span style="color: #ffffff; font-weight: 600;">245ms</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="color: #a0a0a0;">Uptime</span>
+                                    <span style="color: #ffffff; font-weight: 600;">99.9%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 99%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widgets Sidebar -->
+                <div class="dashboard-widgets">
+                    <!-- Quick Actions -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="#" class="action-btn" onclick="createProject()">
+                                <div class="action-icon">➕</div>
+                                <div class="action-label">New Project</div>
+                            </a>
+                            <a href="#" class="action-btn" onclick="addUser()">
+                                <div class="action-icon">👤</div>
+                                <div class="action-label">Add User</div>
+                            </a>
+                            <a href="#" class="action-btn" onclick="generateReport()">
+                                <div class="action-icon">📊</div>
+                                <div class="action-label">Report</div>
+                            </a>
+                            <a href="#" class="action-btn" onclick="openSettings()">
+                                <div class="action-icon">⚙️</div>
+                                <div class="action-label">Settings</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Recent Activity</h3>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">👤</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New user registered</div>
+                                    <div class="activity-description">john.doe@example.com</div>
+                                </div>
+                                <div class="activity-time">2m ago</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">📊</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Report generated</div>
+                                    <div class="activity-description">Monthly analytics report</div>
+                                </div>
+                                <div class="activity-time">15m ago</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🔧</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">System updated</div>
+                                    <div class="activity-description">Framework v2.1.0 deployed</div>
+                                </div>
+                                <div class="activity-time">1h ago</div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">💳</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Payment received</div>
+                                    <div class="activity-description">$299.00 from Premium Plan</div>
+                                </div>
+                                <div class="activity-time">2h ago</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Status -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">System Status</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #a0a0a0;">API Server</span>
+                                <span style="color: #28a745; font-weight: 600;">● Online</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #a0a0a0;">Database</span>
+                                <span style="color: #28a745; font-weight: 600;">● Online</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #a0a0a0;">CDN</span>
+                                <span style="color: #28a745; font-weight: 600;">● Online</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #a0a0a0;">Monitoring</span>
+                                <span style="color: #ffc107; font-weight: 600;">● Warning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ema Framework</h3>
+                    <p>The world's most advanced frontend framework built with HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="api.html">API Reference</a></li>
                     </ul>
                 </div>
-                
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Components</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="#buttons" class="sidebar-link">Buttons</a></li>
-                        <li><a href="#forms" class="sidebar-link">Forms</a></li>
-                        <li><a href="#modals" class="sidebar-link">Modals</a></li>
-                        <li><a href="#charts" class="sidebar-link">Charts</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">3D Features</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="#scenes" class="sidebar-link">3D Scenes</a></li>
-                        <li><a href="#particles" class="sidebar-link">Particles</a></li>
-                        <li><a href="#animations" class="sidebar-link">Animations</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Settings</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="#theme" class="sidebar-link">Theme</a></li>
-                        <li><a href="#notifications" class="sidebar-link">Notifications</a></li>
-                        <li><a href="#account" class="sidebar-link">Account</a></li>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Documentation</a></li>
                     </ul>
                 </div>
             </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard Header -->
-            <div class="dashboard-header fade-in">
-                <h1 class="dashboard-title">Dashboard</h1>
-                <p class="dashboard-subtitle">
-                    Real-time monitoring and control of your Ema Framework applications
-                    <span class="live-indicator">
-                        <span class="live-dot"></span>
-                        Live Data
-                    </span>
-                </p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ema Framework. All rights reserved.</p>
             </div>
-
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <div class="stat-card fade-in stagger-1">
-                    <div class="stat-header">
-                        <div class="stat-icon">🚀</div>
-                        <div class="stat-trend">
-                            <span>↗</span>
-                            <span>+12.5%</span>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="performance-value">99.9%</div>
-                    <div class="stat-label">Performance Score</div>
-                </div>
-                
-                <div class="stat-card fade-in stagger-2">
-                    <div class="stat-header">
-                        <div class="stat-icon">👥</div>
-                        <div class="stat-trend">
-                            <span>↗</span>
-                            <span>+8.2%</span>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="users-value">2,847</div>
-                    <div class="stat-label">Active Users</div>
-                </div>
-                
-                <div class="stat-card fade-in stagger-3">
-                    <div class="stat-header">
-                        <div class="stat-icon">⚡</div>
-                        <div class="stat-trend">
-                            <span>↗</span>
-                            <span>+15.3%</span>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="speed-value">2.3ms</div>
-                    <div class="stat-label">Avg Response Time</div>
-                </div>
-                
-                <div class="stat-card fade-in stagger-4">
-                    <div class="stat-header">
-                        <div class="stat-icon">📊</div>
-                        <div class="stat-trend">
-                            <span>↗</span>
-                            <span>+22.1%</span>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="requests-value">1.2M</div>
-                    <div class="stat-label">Requests Today</div>
-                </div>
-            </div>
-
-            <!-- Charts Section -->
-            <div class="charts-section">
-                <div class="chart-card fade-in stagger-1">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Performance Metrics</h3>
-                        <div class="chart-actions">
-                            <button class="chart-btn active">1D</button>
-                            <button class="chart-btn">7D</button>
-                            <button class="chart-btn">30D</button>
-                        </div>
-                    </div>
-                    <div class="chart-canvas" id="performance-chart">
-                        <div style="text-align: center;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
-                            <div>Interactive Performance Chart</div>
-                            <div style="font-size: 0.75rem; margin-top: 0.5rem; color: #94a3b8;">
-                                Click to interact with 3D visualization
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="activity-feed fade-in stagger-2">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Recent Activity</h3>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">🚀</div>
-                        <div class="activity-content">
-                            <div class="activity-text">Framework performance optimized</div>
-                            <div class="activity-time">2 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">👤</div>
-                        <div class="activity-content">
-                            <div class="activity-text">New user registered</div>
-                            <div class="activity-time">5 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">⚡</div>
-                        <div class="activity-content">
-                            <div class="activity-text">3D scene rendered successfully</div>
-                            <div class="activity-time">8 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">🎨</div>
-                        <div class="activity-content">
-                            <div class="activity-text">Theme updated to purple variant</div>
-                            <div class="activity-time">12 minutes ago</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Advanced Analytics -->
-            <div class="charts-section">
-                <div class="chart-card fade-in stagger-3">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Real-time Analytics</h3>
-                        <div class="chart-actions">
-                            <button class="chart-btn active" onclick="switchChart('performance')">Performance</button>
-                            <button class="chart-btn" onclick="switchChart('users')">Users</button>
-                            <button class="chart-btn" onclick="switchChart('errors')">Errors</button>
-                        </div>
-                    </div>
-                    <div class="chart-canvas" id="analytics-chart">
-                        <canvas id="analytics-canvas" width="400" height="200"></canvas>
-                    </div>
-                </div>
-                
-                <div class="chart-card fade-in stagger-4">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Component Usage</h3>
-                    </div>
-                    <div class="component-usage-stats">
-                        <div class="usage-item">
-                            <div class="usage-info">
-                                <span class="usage-name">Buttons</span>
-                                <span class="usage-count">1,247 uses</span>
-                            </div>
-                            <div class="usage-bar">
-                                <div class="usage-fill" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="usage-item">
-                            <div class="usage-info">
-                                <span class="usage-name">Cards</span>
-                                <span class="usage-count">892 uses</span>
-                            </div>
-                            <div class="usage-bar">
-                                <div class="usage-fill" style="width: 78%"></div>
-                            </div>
-                        </div>
-                        <div class="usage-item">
-                            <div class="usage-info">
-                                <span class="usage-name">Modals</span>
-                                <span class="usage-count">634 uses</span>
-                            </div>
-                            <div class="usage-bar">
-                                <div class="usage-fill" style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <div class="usage-item">
-                            <div class="usage-info">
-                                <span class="usage-name">Forms</span>
-                                <span class="usage-count">456 uses</span>
-                            </div>
-                            <div class="usage-bar">
-                                <div class="usage-fill" style="width: 52%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="charts-section">
-                <div class="chart-card fade-in stagger-5">
-                    <div class="chart-header">
-                        <h3 class="chart-title">Quick Actions</h3>
-                    </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                        <button class="btn btn-primary action-btn" onclick="showComponentDemo()">
-                            <span class="action-icon">🎨</span>
-                            <span class="action-text">Component Demo</span>
-                        </button>
-                        <button class="btn btn-secondary action-btn" onclick="show3DDemo()">
-                            <span class="action-icon">🎮</span>
-                            <span class="action-text">3D Experience</span>
-                        </button>
-                        <button class="btn btn-primary action-btn" onclick="showAlertDemo()">
-                            <span class="action-icon">🔔</span>
-                            <span class="action-text">Alert Demo</span>
-                        </button>
-                        <button class="btn btn-secondary action-btn" onclick="showPerformanceTest()">
-                            <span class="action-icon">⚡</span>
-                            <span class="action-text">Performance Test</span>
-                        </button>
-                        <button class="btn btn-primary action-btn" onclick="showThemeCustomizer()">
-                            <span class="action-icon">🎨</span>
-                            <span class="action-text">Theme Customizer</span>
-                        </button>
-                        <button class="btn btn-secondary action-btn" onclick="showCodeGenerator()">
-                            <span class="action-icon">⚙️</span>
-                            <span class="action-text">Code Generator</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="chart-card fade-in stagger-6">
-                    <div class="chart-header">
-                        <h3 class="chart-title">System Status</h3>
-                        <div class="status-indicator">
-                            <span class="status-dot online"></span>
-                            <span class="status-text">All Systems Operational</span>
-                        </div>
-                    </div>
-                    <div class="system-status-grid">
-                        <div class="status-item">
-                            <div class="status-icon webgl">🎮</div>
-                            <div class="status-info">
-                                <span class="status-name">WebGL Engine</span>
-                                <span class="status-value online">✓ Online</span>
-                            </div>
-                        </div>
-                        <div class="status-item">
-                            <div class="status-icon alert">🔔</div>
-                            <div class="status-info">
-                                <span class="status-name">Alert System</span>
-                                <span class="status-value online">✓ Online</span>
-                            </div>
-                        </div>
-                        <div class="status-item">
-                            <div class="status-icon component">🧩</div>
-                            <div class="status-info">
-                                <span class="status-name">Component Library</span>
-                                <span class="status-value online">✓ Online</span>
-                            </div>
-                        </div>
-                        <div class="status-item">
-                            <div class="status-icon api">🔌</div>
-                            <div class="status-info">
-                                <span class="status-name">API Services</span>
-                                <span class="status-value online">✓ Online</span>
-                            </div>
-                        </div>
-                        <div class="status-item">
-                            <div class="status-icon database">🗄️</div>
-                            <div class="status-info">
-                                <span class="status-name">Database</span>
-                                <span class="status-value online">✓ Online</span>
-                            </div>
-                        </div>
-                        <div class="status-item">
-                            <div class="status-icon cdn">🌐</div>
-                            <div class="status-info">
-                                <span class="status-name">CDN</span>
-                                <span class="status-value online">✓ Online</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
+    <script src="../js/ema-alerts.js"></script>
+    <script src="../js/ema-3d-effects.js"></script>
+    <script src="../js/ema-live-preview.js"></script>
+    
     <script>
         // Initialize 3D effects
-        document.addEventListener('DOMContentLoaded', () => {
-            ema3DEffects.init();
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.Ema3D) {
+                window.Ema3D.init();
+            }
             
-            // Add hover effects to stat cards
-            const statCards = document.querySelectorAll('.stat-card');
-            statCards.forEach(card => {
-                card.addEventListener('mouseenter', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    ema3DEffects.createExplosion(
-                        rect.left + rect.width / 2,
-                        rect.top + rect.height / 2,
-                        [0.4, 0.2, 0.7],
-                        8
-                    );
-                });
-            });
+            // Initialize dashboard charts
+            initDashboardCharts();
             
-            // Add click effects to buttons
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const rect = button.getBoundingClientRect();
-                    ema3DEffects.createTrail(
-                        rect.left + rect.width / 2,
-                        rect.top + rect.height / 2,
-                        [0.4, 0.2, 0.7],
-                        5
-                    );
-                });
-            });
+            // Start real-time updates
+            startRealTimeUpdates();
         });
 
-        // Live data updates
-        function updateLiveData() {
-            // Simulate real-time data updates
-            const performanceValue = document.getElementById('performance-value');
-            const usersValue = document.getElementById('users-value');
-            const speedValue = document.getElementById('speed-value');
-            const requestsValue = document.getElementById('requests-value');
+        // Dashboard Charts
+        function initDashboardCharts() {
+            const canvas = document.getElementById('mainChart');
+            if (!canvas) return;
             
-            if (performanceValue) {
-                const currentValue = parseFloat(performanceValue.textContent);
-                const newValue = (currentValue + (Math.random() - 0.5) * 0.1).toFixed(1);
-                performanceValue.textContent = newValue + '%';
-            }
-            
-            if (usersValue) {
-                const currentValue = parseInt(usersValue.textContent.replace(',', ''));
-                const newValue = currentValue + Math.floor((Math.random() - 0.5) * 20);
-                usersValue.textContent = newValue.toLocaleString();
-            }
-            
-            if (speedValue) {
-                const currentValue = parseFloat(speedValue.textContent);
-                const newValue = (currentValue + (Math.random() - 0.5) * 0.5).toFixed(1);
-                speedValue.textContent = newValue + 'ms';
-            }
-            
-            if (requestsValue) {
-                const currentValue = parseFloat(requestsValue.textContent.replace('M', ''));
-                const newValue = (currentValue + (Math.random() - 0.5) * 0.1).toFixed(1);
-                requestsValue.textContent = newValue + 'M';
-            }
-        }
-
-        // Update data every 3 seconds
-        setInterval(updateLiveData, 3000);
-
-        // Demo functions
-        function showComponentDemo() {
-            emaAlerts.success('Component demo loaded! Explore our 250+ UI components.', {
-                title: 'Component Demo',
-                timer: 3000
-            });
-            
-            // Create particle effect
-            ema3DEffects.createExplosion(
-                window.innerWidth / 2,
-                window.innerHeight / 2,
-                [0.4, 0.2, 0.7],
-                30
-            );
-        }
-
-        function show3DDemo() {
-            emaAlerts.info('3D experience activated! Move your mouse to interact.', {
-                title: '3D Demo',
-                timer: 4000
-            });
-            
-            // Create trail effect
-            ema3DEffects.createTrail(
-                window.innerWidth / 2,
-                window.innerHeight / 2,
-                [0.4, 0.2, 0.7],
-                20
-            );
-        }
-
-        function showAlertDemo() {
-            emaAlerts.confirm('This is our advanced alert system. Would you like to see more?', {
-                title: 'Alert Demo',
-                confirmButtonText: 'Show More',
-                cancelButtonText: 'Close'
-            }).then(result => {
-                if (result) {
-                    emaAlerts.loading('Loading advanced features...', {
-                        title: 'Please Wait'
-                    });
-                    
-                    setTimeout(() => {
-                        emaAlerts.closeAll();
-                        emaAlerts.success('Advanced features loaded successfully!', {
-                            title: 'Complete',
-                            timer: 3000
-                        });
-                    }, 2000);
-                }
-            });
-        }
-
-        function showPerformanceTest() {
-            emaAlerts.loading('Running performance test...', {
-                title: 'Performance Test'
-            });
-            
-            setTimeout(() => {
-                emaAlerts.closeAll();
-                emaAlerts.success('Performance test completed! Score: 99.9%', {
-                    title: 'Test Complete',
-                    timer: 3000
-                });
-                
-                // Update performance value
-                const performanceValue = document.getElementById('performance-value');
-                if (performanceValue) {
-                    performanceValue.textContent = '99.9%';
-                }
-            }, 3000);
-        }
-
-        function showThemeCustomizer() {
-            emaAlerts.info('Theme customizer opened! Customize your Ema Framework theme.', {
-                title: 'Theme Customizer',
-                timer: 3000
-            });
-            
-            // Create theme change effect
-            ema3DEffects.createExplosion(
-                window.innerWidth / 2,
-                window.innerHeight / 2,
-                [0.4, 0.2, 0.7],
-                30
-            );
-        }
-
-        function showCodeGenerator() {
-            emaAlerts.confirm('Would you like to generate code for your components?', {
-                title: 'Code Generator',
-                confirmButtonText: 'Generate Code',
-                cancelButtonText: 'Cancel'
-            }).then(result => {
-                if (result) {
-                    emaAlerts.loading('Generating optimized code...', {
-                        title: 'Code Generation'
-                    });
-                    
-                    setTimeout(() => {
-                        emaAlerts.closeAll();
-                        emaAlerts.success('Code generated successfully! Download your custom Ema Framework.', {
-                            title: 'Code Ready',
-                            timer: 4000
-                        });
-                        
-                        // Create generation effect
-                        ema3DEffects.createTrail(
-                            window.innerWidth / 2,
-                            window.innerHeight / 2,
-                            [0.4, 0.2, 0.7],
-                            25
-                        );
-                    }, 2500);
-                }
-            });
-        }
-
-        // Chart switching functionality
-        function switchChart(type) {
-            // Update active button
-            document.querySelectorAll('.chart-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Update chart data based on type
-            const canvas = document.getElementById('analytics-canvas');
             const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth;
+            const height = canvas.height = canvas.offsetHeight;
             
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Draw gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, 'rgba(111, 66, 193, 0.1)');
+            gradient.addColorStop(1, 'rgba(111, 66, 193, 0.05)');
             
-            // Draw different chart based on type
-            switch(type) {
-                case 'performance':
-                    drawPerformanceChart(ctx, canvas);
-                    break;
-                case 'users':
-                    drawUsersChart(ctx, canvas);
-                    break;
-                case 'errors':
-                    drawErrorsChart(ctx, canvas);
-                    break;
-            }
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
             
-            emaAlerts.info(`Switched to ${type} analytics`, {
-                title: 'Chart Updated',
-                timer: 2000
-            });
+            // Draw chart
+            drawChart(ctx, width, height);
         }
 
-        function drawPerformanceChart(ctx, canvas) {
-            const data = [85, 92, 88, 95, 91, 96, 94, 98, 97, 99];
-            drawLineChart(ctx, canvas, data, '#6f42c1', 'Performance Score');
-        }
-
-        function drawUsersChart(ctx, canvas) {
-            const data = [1200, 1350, 1280, 1420, 1380, 1500, 1450, 1600, 1580, 1650];
-            drawLineChart(ctx, canvas, data, '#28a745', 'Active Users');
-        }
-
-        function drawErrorsChart(ctx, canvas) {
-            const data = [15, 12, 8, 6, 5, 4, 3, 2, 1, 0];
-            drawLineChart(ctx, canvas, data, '#dc3545', 'Error Count');
-        }
-
-        function drawLineChart(ctx, canvas, data, color, label) {
-            const width = canvas.width;
-            const height = canvas.height;
-            const padding = 40;
-            const chartWidth = width - (padding * 2);
-            const chartHeight = height - (padding * 2);
-            
+        function drawChart(ctx, width, height) {
+            const data = [65, 78, 85, 92, 88, 95, 102, 98, 105, 110, 108, 115];
             const maxValue = Math.max(...data);
             const minValue = Math.min(...data);
-            const valueRange = maxValue - minValue;
+            const range = maxValue - minValue;
             
-            // Draw grid
-            ctx.strokeStyle = '#f0f0f0';
+            const padding = 40;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+            
+            // Draw grid lines
+            ctx.strokeStyle = 'rgba(111, 66, 193, 0.1)';
             ctx.lineWidth = 1;
             
-            for (let i = 0; i <= 10; i++) {
-                const x = padding + (chartWidth / 10) * i;
-                const y = padding + (chartHeight / 10) * i;
-                
-                ctx.beginPath();
-                ctx.moveTo(x, padding);
-                ctx.lineTo(x, padding + chartHeight);
-                ctx.stroke();
-                
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
                 ctx.beginPath();
                 ctx.moveTo(padding, y);
-                ctx.lineTo(padding + chartWidth, y);
+                ctx.lineTo(width - padding, y);
                 ctx.stroke();
             }
             
-            // Draw line
-            ctx.strokeStyle = color;
+            // Draw data line
+            ctx.strokeStyle = '#6f42c1';
             ctx.lineWidth = 3;
             ctx.beginPath();
             
             data.forEach((value, index) => {
                 const x = padding + (chartWidth / (data.length - 1)) * index;
-                const y = padding + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+                const y = padding + chartHeight - ((value - minValue) / range) * chartHeight;
                 
                 if (index === 0) {
                     ctx.moveTo(x, y);
                 } else {
                     ctx.lineTo(x, y);
                 }
-                
-                // Draw points
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, Math.PI * 2);
-                ctx.fill();
             });
             
             ctx.stroke();
             
-            // Draw label
-            ctx.fillStyle = color;
-            ctx.font = 'bold 14px Inter, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(label, width / 2, padding - 10);
+            // Draw data points
+            ctx.fillStyle = '#6f42c1';
+            data.forEach((value, index) => {
+                const x = padding + (chartWidth / (data.length - 1)) * index;
+                const y = padding + chartHeight - ((value - minValue) / range) * chartHeight;
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
         }
 
-        // Initialize analytics chart
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const canvas = document.getElementById('analytics-canvas');
-                if (canvas) {
-                    drawPerformanceChart(canvas.getContext('2d'), canvas);
-                }
-            }, 1000);
-        });
+        // Real-time updates
+        function startRealTimeUpdates() {
+            setInterval(() => {
+                updateStats();
+                updateActivity();
+            }, 5000);
+        }
 
-        // Chart interaction
-        document.getElementById('performance-chart').addEventListener('click', () => {
-            emaAlerts.info('Chart interaction detected! This would show detailed 3D visualization.', {
-                title: 'Chart Interaction',
-                timer: 3000
+        function updateStats() {
+            const stats = ['totalUsers', 'activeUsers', 'revenue', 'conversion'];
+            stats.forEach(statId => {
+                const element = document.getElementById(statId);
+                if (element) {
+                    // Add subtle animation
+                    element.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        element.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            });
+        }
+
+        function updateActivity() {
+            const activities = [
+                { icon: '👤', title: 'User login', desc: 'New session started', time: 'now' },
+                { icon: '📊', title: 'Data updated', desc: 'Analytics refreshed', time: 'now' },
+                { icon: '🔔', title: 'Notification sent', desc: 'System alert', time: 'now' }
+            ];
+            
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+            // In a real app, you would add this to the activity list
+        }
+
+        // Action functions
+        function createProject() {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.success('Creating new project...', {
+                    title: 'Project Creation',
+                    timer: 2000
+                });
+            }
+        }
+
+        function addUser() {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.info('Opening user creation form...', {
+                    title: 'Add User',
+                    timer: 2000
+                });
+            }
+        }
+
+        function generateReport() {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.success('Generating report...', {
+                    title: 'Report Generation',
+                    timer: 2000
+                });
+            }
+        }
+
+        function openSettings() {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.info('Opening settings panel...', {
+                    title: 'Settings',
+                    timer: 2000
+                });
+            }
+        }
+
+        function exportChart() {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.success('Chart exported successfully!', {
+                    title: 'Export Complete',
+                    timer: 2000
+                });
+            }
+        }
+
+        function refreshChart() {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.info('Refreshing chart data...', {
+                    title: 'Chart Refresh',
+                    timer: 2000
+                });
+            }
+            
+            // Refresh the chart
+            setTimeout(() => {
+                initDashboardCharts();
+            }, 1000);
+        }
+
+        // Enhanced sidebar navigation
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Add click animation
+                link.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    link.style.transform = '';
+                }, 150);
+                
+                // Show notification
+                if (window.EmaAlerts) {
+                    const sectionName = link.querySelector('span:last-child').textContent;
+                    window.EmaAlerts.info(`Switching to ${sectionName}...`, {
+                        title: 'Navigation',
+                        timer: 1500
+                    });
+                }
             });
             
-            // Create explosion effect
-            ema3DEffects.createExplosion(
-                window.innerWidth / 2,
-                window.innerHeight / 2,
-                [0.4, 0.2, 0.7],
-                25
-            );
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            // Add hover effects
+            link.addEventListener('mouseenter', () => {
+                link.style.transform = 'translateX(5px)';
+                link.style.background = 'rgba(111, 66, 193, 0.1)';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                if (!link.classList.contains('active')) {
+                    link.style.transform = '';
+                    link.style.background = '';
                 }
             });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
         });
-
-        // Welcome message
-        setTimeout(() => {
-            emaAlerts.success('Welcome to the Ema Framework Dashboard! 🎉', {
-                title: 'Dashboard Loaded',
-                timer: 4000
+        
+        // Enhanced chart interactions
+        function addChartInteractions() {
+            const charts = document.querySelectorAll('canvas');
+            charts.forEach(chart => {
+                chart.addEventListener('click', (e) => {
+                    // Add click effect
+                    chart.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        chart.style.transform = '';
+                    }, 150);
+                    
+                    // Show chart info
+                    showChartInfo(chart);
+                });
+                
+                chart.addEventListener('mouseenter', () => {
+                    chart.style.cursor = 'pointer';
+                    chart.style.boxShadow = '0 10px 30px rgba(111, 66, 193, 0.2)';
+                });
+                
+                chart.addEventListener('mouseleave', () => {
+                    chart.style.boxShadow = '';
+                });
             });
-        }, 1000);
+        }
+        
+        // Show chart information
+        function showChartInfo(chart) {
+            const info = document.createElement('div');
+            info.className = 'chart-info';
+            info.innerHTML = `
+                <div class="info-content">
+                    <h4>Chart Information</h4>
+                    <p>Click to interact with data points</p>
+                    <div class="info-actions">
+                        <button onclick="exportChart()" class="info-btn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button onclick="refreshChart()" class="info-btn">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add info styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .chart-info {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--ema-bg-primary);
+                    border: 1px solid rgba(111, 66, 193, 0.3);
+                    border-radius: 15px;
+                    padding: 2rem;
+                    z-index: 1000;
+                    animation: fadeInScale 0.3s ease;
+                    box-shadow: 0 20px 40px rgba(111, 66, 193, 0.3);
+                    max-width: 400px;
+                    width: 90%;
+                }
+                
+                .info-content h4 {
+                    margin: 0 0 1rem 0;
+                    color: var(--ema-text-primary);
+                    text-align: center;
+                }
+                
+                .info-content p {
+                    margin: 0 0 1.5rem 0;
+                    color: var(--ema-text-muted);
+                    text-align: center;
+                }
+                
+                .info-actions {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: center;
+                }
+                
+                .info-btn {
+                    background: var(--ema-gradient-primary);
+                    color: white;
+                    border: none;
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+                
+                .info-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 20px rgba(111, 66, 193, 0.3);
+                }
+                
+                @keyframes fadeInScale {
+                    from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+                    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remove existing info
+            const existingInfo = document.querySelector('.chart-info');
+            if (existingInfo) existingInfo.remove();
+            
+            document.body.appendChild(info);
+            
+            // Close on click outside
+            document.addEventListener('click', function closeInfo(e) {
+                if (!info.contains(e.target) && !chart.contains(e.target)) {
+                    info.remove();
+                    style.remove();
+                    document.removeEventListener('click', closeInfo);
+                }
+            });
+        }
+        
+        // Enhanced statistics cards
+        function addStatsInteractions() {
+            const statsCards = document.querySelectorAll('.stats-card');
+            statsCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Add click animation
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                    
+                    // Show detailed stats
+                    showDetailedStats(card);
+                });
+                
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px) scale(1.02)';
+                    card.style.boxShadow = '0 15px 30px rgba(111, 66, 193, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+        }
+        
+        // Show detailed statistics
+        function showDetailedStats(card) {
+            const title = card.querySelector('.stats-title').textContent;
+            const value = card.querySelector('.stats-value').textContent;
+            
+            const modal = document.createElement('div');
+            modal.className = 'stats-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${title} Details</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="stats-detail">
+                            <div class="detail-item">
+                                <span class="detail-label">Current Value:</span>
+                                <span class="detail-value">${value}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Growth Rate:</span>
+                                <span class="detail-value positive">+12.5%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Last Updated:</span>
+                                <span class="detail-value">${new Date().toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button onclick="exportStats('${title}')" class="modal-btn">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                            <button onclick="refreshStats('${title}')" class="modal-btn">
+                                <i class="fas fa-sync"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .stats-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 1000;
+                    animation: fadeIn 0.3s ease;
+                }
+                
+                .modal-content {
+                    background: var(--ema-bg-primary);
+                    border-radius: 20px;
+                    padding: 2rem;
+                    max-width: 500px;
+                    width: 90%;
+                    border: 1px solid rgba(111, 66, 193, 0.3);
+                    box-shadow: 0 25px 50px rgba(111, 66, 193, 0.3);
+                }
+                
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1.5rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 1px solid rgba(111, 66, 193, 0.2);
+                }
+                
+                .close-modal {
+                    background: none;
+                    border: none;
+                    color: var(--ema-text-primary);
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    padding: 0.5rem;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                }
+                
+                .close-modal:hover {
+                    background: rgba(111, 66, 193, 0.2);
+                    transform: scale(1.1);
+                }
+                
+                .stats-detail {
+                    margin-bottom: 2rem;
+                }
+                
+                .detail-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0.75rem 0;
+                    border-bottom: 1px solid rgba(111, 66, 193, 0.1);
+                }
+                
+                .detail-label {
+                    color: var(--ema-text-muted);
+                }
+                
+                .detail-value {
+                    color: var(--ema-text-primary);
+                    font-weight: 600;
+                }
+                
+                .detail-value.positive {
+                    color: var(--ema-green);
+                }
+                
+                .modal-actions {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: center;
+                }
+                
+                .modal-btn {
+                    background: var(--ema-gradient-primary);
+                    color: white;
+                    border: none;
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+                
+                .modal-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 20px rgba(111, 66, 193, 0.3);
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(modal);
+            
+            // Close modal functionality
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                modal.remove();
+                style.remove();
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                    style.remove();
+                }
+            });
+        }
+        
+        // Export stats function
+        function exportStats(title) {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.success(`${title} data exported successfully!`, {
+                    title: 'Export Complete',
+                    timer: 2000
+                });
+            }
+        }
+        
+        // Refresh stats function
+        function refreshStats(title) {
+            if (window.EmaAlerts) {
+                window.EmaAlerts.info(`Refreshing ${title} data...`, {
+                    title: 'Refresh',
+                    timer: 1500
+                });
+            }
+        }
+        
+        // Initialize enhanced interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                addChartInteractions();
+                addStatsInteractions();
+            }, 1000);
+        });
     </script>
-
-    <!-- Load framework scripts -->
-    <script src="../js/core.js"></script>
-    <script src="../js/router.js"></script>
-    <script src="../js/store.js"></script>
-    <script src="../js/ui.js"></script>
-    <script src="../js/animations.js"></script>
-    <script src="../js/theme.js"></script>
-    <script src="../js/utils.js"></script>
-    <script src="../js/3d-engine.js"></script>
-    <script src="../js/ema-alerts.js"></script>
-    <script src="../js/ema-3d-effects.js"></script>
-    <script src="../js/emadocs.js"></script>
-    
-    <!-- Initialize application -->
-    <script src="../js/app-init.js"></script>
 </body>
 </html>
-
