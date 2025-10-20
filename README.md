@@ -662,4 +662,5 @@ describe('Todo App', () => {
 - [EmadocsLang Language](docs/emadocs-lang.md)
 - [Components](docs/components.md)
 - [Themes](docs/themes.md)
-- [3D Effects](d
+- [3D Effects](d#   E m a D o c s  
+ 
