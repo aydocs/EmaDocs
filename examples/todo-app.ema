@@ -1,0 +1,855 @@
+<page title="Todo App - EmadocsLang" theme="purple">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A modern todo app built with EmadocsLang">
+  </head>
+  
+  <body>
+    <div class="todo-app">
+      <header class="app-header">
+        <h1 class="app-title">Todo App</h1>
+        <p class="app-subtitle">Built with EmadocsLang - The Future of Web Development</p>
+      </header>
+      
+      <main class="app-main">
+        <todo-form />
+        <todo-list />
+        <todo-stats />
+      </main>
+      
+      <footer class="app-footer">
+        <p>&copy; 2024 Emadocs Framework. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+</page>
+
+component TodoForm {
+  state newTodo: string = "";
+  state loading: boolean = false;
+  
+  event onSubmit: () => void;
+  
+  render() {
+    <form class="todo-form" onSubmit={handleSubmit}>
+      <div class="form-group">
+        <input 
+          type="text" 
+          class="todo-input"
+          placeholder="What needs to be done?"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          disabled={loading}
+        />
+        <button 
+          type="submit" 
+          class="add-button"
+          variant="primary"
+          size="lg"
+          disabled={loading || !newTodo.trim()}
+        >
+          {loading ? <spinner size="sm" /> : "Add Todo"}
+        </button>
+      </div>
+    </form>
+  }
+  
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (newTodo.trim()) {
+      setLoading(true);
+      addTodo(newTodo.trim());
+      setNewTodo("");
+      setLoading(false);
+    }
+  }
+}
+
+component TodoList {
+  state todos: Todo[] = [];
+  state filter: "all" | "active" | "completed" = "all";
+  state loading: boolean = false;
+  
+  event onTodoToggle: (id: number) => void;
+  event onTodoDelete: (id: number) => void;
+  event onTodoEdit: (id: number, text: string) => void;
+  event onFilterChange: (filter: string) => void;
+  
+  render() {
+    <div class="todo-list">
+      <div class="list-header">
+        <h2>Tasks</h2>
+        <filter-buttons 
+          currentFilter={filter}
+          onFilterChange={onFilterChange}
+        />
+      </div>
+      
+      <div class="list-content">
+        {loading ? (
+          <div class="loading-state">
+            <spinner size="md" />
+            <p>Loading todos...</p>
+          </div>
+        ) : filteredTodos.length === 0 ? (
+          <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3>No todos yet</h3>
+            <p>Add your first todo to get started!</p>
+          </div>
+        ) : (
+          <div class="todo-items">
+            {filteredTodos.map(todo => (
+              <todo-item 
+                key={todo.id}
+                todo={todo}
+                onToggle={onTodoToggle}
+                onDelete={onTodoDelete}
+                onEdit={onTodoEdit}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  }
+  
+  computed filteredTodos() {
+    switch (filter) {
+      case "active":
+        return todos.filter(todo => !todo.completed);
+      case "completed":
+        return todos.filter(todo => todo.completed);
+      default:
+        return todos;
+    }
+  }
+}
+
+component TodoItem {
+  prop todo: Todo;
+  prop onToggle: (id: number) => void;
+  prop onDelete: (id: number) => void;
+  prop onEdit: (id: number, text: string) => void;
+  
+  state editing: boolean = false;
+  state editText: string = "";
+  
+  render() {
+    <div class="todo-item" completed={todo.completed}>
+      <div class="item-content">
+        <checkbox 
+          checked={todo.completed}
+          onChange={() => onToggle(todo.id)}
+        />
+        
+        {editing ? (
+          <input 
+            type="text"
+            class="edit-input"
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+            onBlur={handleSave}
+            onKeyDown={handleKeyDown}
+            autoFocus
+          />
+        ) : (
+          <span 
+            class="todo-text"
+            onDoubleClick={handleEdit}
+          >
+            {todo.text}
+          </span>
+        )}
+      </div>
+      
+      <div class="item-actions">
+        <button 
+          class="edit-button"
+          variant="ghost"
+          size="sm"
+          onClick={handleEdit}
+        >
+          ✏️
+        </button>
+        <button 
+          class="delete-button"
+          variant="danger"
+          size="sm"
+          onClick={() => onDelete(todo.id)}
+        >
+          🗑️
+        </button>
+      </div>
+    </div>
+  }
+  
+  function handleEdit() {
+    setEditing(true);
+    setEditText(todo.text);
+  }
+  
+  function handleSave() {
+    if (editText.trim() && editText !== todo.text) {
+      onEdit(todo.id, editText.trim());
+    }
+    setEditing(false);
+  }
+  
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      handleSave();
+    } else if (event.key === "Escape") {
+      setEditing(false);
+      setEditText(todo.text);
+    }
+  }
+}
+
+component FilterButtons {
+  prop currentFilter: string;
+  prop onFilterChange: (filter: string) => void;
+  
+  render() {
+    <div class="filter-buttons">
+      {["all", "active", "completed"].map(filter => (
+        <button 
+          key={filter}
+          class="filter-button"
+          variant={currentFilter === filter ? "primary" : "ghost"}
+          size="sm"
+          onClick={() => onFilterChange(filter)}
+        >
+          {filter.charAt(0).toUpperCase() + filter.slice(1)}
+        </button>
+      ))}
+    </div>
+  }
+}
+
+component TodoStats {
+  state todos: Todo[] = [];
+  
+  render() {
+    <div class="todo-stats">
+      <div class="stats-grid">
+        <stat-card 
+          title="Total"
+          value={todos.length}
+          icon="📊"
+        />
+        <stat-card 
+          title="Active"
+          value={activeTodos.length}
+          icon="⏳"
+        />
+        <stat-card 
+          title="Completed"
+          value={completedTodos.length}
+          icon="✅"
+        />
+        <stat-card 
+          title="Progress"
+          value={`${completionPercentage}%`}
+          icon="📈"
+        />
+      </div>
+    </div>
+  }
+  
+  computed activeTodos() {
+    return todos.filter(todo => !todo.completed);
+  }
+  
+  computed completedTodos() {
+    return todos.filter(todo => todo.completed);
+  }
+  
+  computed completionPercentage() {
+    if (todos.length === 0) return 0;
+    return Math.round((completedTodos.length / todos.length) * 100);
+  }
+}
+
+component StatCard {
+  prop title: string;
+  prop value: string | number;
+  prop icon: string;
+  
+  render() {
+    <div class="stat-card">
+      <div class="stat-icon">{icon}</div>
+      <div class="stat-content">
+        <div class="stat-value">{value}</div>
+        <div class="stat-title">{title}</div>
+      </div>
+    </div>
+  }
+}
+
+component Checkbox {
+  prop checked: boolean = false;
+  prop onChange: (checked: boolean) => void;
+  prop disabled: boolean = false;
+  
+  render() {
+    <label class="checkbox-wrapper">
+      <input 
+        type="checkbox"
+        class="checkbox-input"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        disabled={disabled}
+      />
+      <span class="checkbox-custom"></span>
+    </label>
+  }
+}
+
+component Spinner {
+  prop size: "sm" | "md" | "lg" = "md";
+  
+  render() {
+    <div class="spinner spinner--{size}">
+      <div class="spinner-inner"></div>
+    </div>
+  }
+}
+
+type Todo = {
+  id: number;
+  text: string;
+  completed: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+state TodoState {
+  todos: Todo[] = [];
+  loading: boolean = false;
+  error: string | null = null;
+}
+
+// Global state management
+const { todos, loading, error, setTodos, setLoading, setError } = useState(TodoState);
+
+// API functions
+api TodoAPI {
+  baseUrl: "https://api.todoapp.com";
+  
+  async getTodos(): Promise<Todo[]> {
+    const response = await fetch(`${baseUrl}/todos`);
+    if (!response.ok) throw new Error('Failed to fetch todos');
+    return response.json();
+  }
+  
+  async createTodo(text: string): Promise<Todo> {
+    const response = await fetch(`${baseUrl}/todos`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, completed: false })
+    });
+    if (!response.ok) throw new Error('Failed to create todo');
+    return response.json();
+  }
+  
+  async updateTodo(id: number, updates: Partial<Todo>): Promise<Todo> {
+    const response = await fetch(`${baseUrl}/todos/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates)
+    });
+    if (!response.ok) throw new Error('Failed to update todo');
+    return response.json();
+  }
+  
+  async deleteTodo(id: number): Promise<void> {
+    const response = await fetch(`${baseUrl}/todos/${id}`, {
+      method: "DELETE"
+    });
+    if (!response.ok) throw new Error('Failed to delete todo');
+  }
+}
+
+// Event handlers
+event onAddTodo(text: string) {
+  try {
+    setLoading(true);
+    const newTodo = await TodoAPI.createTodo(text);
+    setTodos([...todos, newTodo]);
+  } catch (error) {
+    setError(error.message);
+  } finally {
+    setLoading(false);
+  }
+}
+
+event onToggleTodo(id: number) {
+  const todo = todos.find(t => t.id === id);
+  if (todo) {
+    try {
+      const updatedTodo = await TodoAPI.updateTodo(id, { 
+        completed: !todo.completed,
+        updatedAt: new Date()
+      });
+      setTodos(todos.map(t => t.id === id ? updatedTodo : t));
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+}
+
+event onDeleteTodo(id: number) {
+  try {
+    await TodoAPI.deleteTodo(id);
+    setTodos(todos.filter(t => t.id !== id));
+  } catch (error) {
+    setError(error.message);
+  }
+}
+
+event onEditTodo(id: number, text: string) {
+  try {
+    const updatedTodo = await TodoAPI.updateTodo(id, { 
+      text,
+      updatedAt: new Date()
+    });
+    setTodos(todos.map(t => t.id === id ? updatedTodo : t));
+  } catch (error) {
+    setError(error.message);
+  }
+}
+
+// Styles
+style TodoApp {
+  .todo-app {
+    min-height: 100vh;
+    background: var(--active-theme-bg);
+    color: var(--active-theme-text-primary);
+    font-family: var(--font-family-sans);
+  }
+  
+  .app-header {
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+    background: var(--active-theme-bg-card);
+    border-bottom: 1px solid var(--active-theme-border);
+  }
+  
+  .app-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2);
+    background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .app-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--active-theme-text-secondary);
+    margin: 0;
+  }
+  
+  .app-main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+  }
+  
+  .app-footer {
+    text-align: center;
+    padding: var(--space-6) var(--space-4);
+    background: var(--active-theme-bg-card);
+    border-top: 1px solid var(--active-theme-border);
+    color: var(--active-theme-text-muted);
+  }
+}
+
+style TodoForm {
+  .todo-form {
+    margin-bottom: var(--space-8);
+  }
+  
+  .form-group {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+  }
+  
+  .todo-input {
+    flex: 1;
+    padding: var(--space-4);
+    border: 2px solid var(--active-theme-border);
+    border-radius: var(--radius-lg);
+    background: var(--active-theme-bg-card);
+    color: var(--active-theme-text-primary);
+    font-size: var(--font-size-lg);
+    transition: all var(--duration-200) var(--ease-in-out);
+  }
+  
+  .todo-input:focus {
+    outline: none;
+    border-color: var(--active-theme);
+    box-shadow: 0 0 0 3px var(--active-theme-border-light);
+  }
+  
+  .todo-input::placeholder {
+    color: var(--active-theme-text-muted);
+  }
+}
+
+style TodoList {
+  .todo-list {
+    background: var(--active-theme-bg-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--active-theme-border);
+    overflow: hidden;
+  }
+  
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--active-theme-border);
+  }
+  
+  .list-header h2 {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  .list-content {
+    min-height: 200px;
+  }
+  
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    color: var(--active-theme-text-muted);
+  }
+  
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    text-align: center;
+  }
+  
+  .empty-icon {
+    font-size: var(--font-size-6xl);
+    margin-bottom: var(--space-4);
+  }
+  
+  .empty-state h3 {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-size-xl);
+    color: var(--active-theme-text-primary);
+  }
+  
+  .empty-state p {
+    margin: 0;
+    color: var(--active-theme-text-muted);
+  }
+  
+  .todo-items {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+style TodoItem {
+  .todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--active-theme-border);
+    transition: all var(--duration-200) var(--ease-in-out);
+  }
+  
+  .todo-item:last-child {
+    border-bottom: none;
+  }
+  
+  .todo-item:hover {
+    background: var(--active-theme-bg-light);
+  }
+  
+  .todo-item[completed="true"] {
+    opacity: 0.6;
+  }
+  
+  .item-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1;
+  }
+  
+  .todo-text {
+    font-size: var(--font-size-base);
+    color: var(--active-theme-text-primary);
+    transition: all var(--duration-200) var(--ease-in-out);
+  }
+  
+  .todo-item[completed="true"] .todo-text {
+    text-decoration: line-through;
+    color: var(--active-theme-text-muted);
+  }
+  
+  .edit-input {
+    flex: 1;
+    padding: var(--space-2);
+    border: 2px solid var(--active-theme);
+    border-radius: var(--radius-md);
+    background: var(--active-theme-bg);
+    color: var(--active-theme-text-primary);
+    font-size: var(--font-size-base);
+  }
+  
+  .item-actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+}
+
+style FilterButtons {
+  .filter-buttons {
+    display: flex;
+    gap: var(--space-2);
+  }
+  
+  .filter-button {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--duration-200) var(--ease-in-out);
+  }
+}
+
+style TodoStats {
+  .todo-stats {
+    margin-top: var(--space-8);
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+  }
+}
+
+style StatCard {
+  .stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--duration-200) var(--ease-in-out);
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .stat-icon {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .stat-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--active-theme);
+  }
+  
+  .stat-title {
+    font-size: var(--font-size-sm);
+    color: var(--active-theme-text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+}
+
+style Checkbox {
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .checkbox-input {
+    display: none;
+  }
+  
+  .checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--active-theme-border);
+    border-radius: var(--radius-sm);
+    background: var(--active-theme-bg-card);
+    position: relative;
+    transition: all var(--duration-200) var(--ease-in-out);
+  }
+  
+  .checkbox-custom::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity var(--duration-200) var(--ease-in-out);
+  }
+  
+  .checkbox-input:checked + .checkbox-custom {
+    background: var(--active-theme);
+    border-color: var(--active-theme);
+  }
+  
+  .checkbox-input:checked + .checkbox-custom::after {
+    opacity: 1;
+  }
+}
+
+style Spinner {
+  .spinner {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .spinner--sm {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .spinner--md {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .spinner--lg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .spinner-inner {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--active-theme-border);
+    border-top-color: var(--active-theme);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// Animations
+animation fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+animation slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+animation bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .app-main {
+    padding: var(--space-4);
+  }
+  
+  .form-group {
+    flex-direction: column;
+  }
+  
+  .list-header {
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+  
+  .filter-buttons {
+    justify-content: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .app-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .todo-item {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .item-actions {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,325 @@
+/* ===================================
+   EMA FRAMEWORK - THEME SYSTEM
+   Component Design Tokens & Variables
+   =================================== */
+
+:root {
+  /* ==========================================
+     DESIGN TOKENS - COMPONENT SYSTEM
+     ========================================== */
+  
+  /* Spacing Scale - 8pt Grid System */
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  --space-32: 8rem;    /* 128px */
+  --space-40: 10rem;   /* 160px */
+  --space-48: 12rem;   /* 192px */
+  --space-56: 14rem;   /* 224px */
+  --space-64: 16rem;   /* 256px */
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  --font-size-7xl: 4.5rem;    /* 72px */
+  --font-size-8xl: 6rem;      /* 96px */
+  --font-size-9xl: 8rem;      /* 128px */
+
+  /* Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Line Heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* Border Radius Scale */
+  --radius-none: 0;
+  --radius-sm: 0.125rem;   /* 2px */
+  --radius-base: 0.25rem;  /* 4px */
+  --radius-md: 0.375rem;   /* 6px */
+  --radius-lg: 0.5rem;     /* 8px */
+  --radius-xl: 0.75rem;    /* 12px */
+  --radius-2xl: 1rem;      /* 16px */
+  --radius-3xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;
+
+  /* Shadow Scale */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-none: 0 0 #0000;
+
+  /* Glow Effects */
+  --glow-sm: 0 0 10px rgba(168, 85, 247, 0.3);
+  --glow-md: 0 0 20px rgba(168, 85, 247, 0.4);
+  --glow-lg: 0 0 30px rgba(168, 85, 247, 0.5);
+  --glow-xl: 0 0 40px rgba(168, 85, 247, 0.6);
+
+  /* Z-Index Scale */
+  --z-index-0: 0;
+  --z-index-10: 10;
+  --z-index-20: 20;
+  --z-index-30: 30;
+  --z-index-40: 40;
+  --z-index-50: 50;
+  --z-index-auto: auto;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  --z-index-toast: 1080;
+
+  /* Animation Durations */
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+
+  /* Animation Easing */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Breakpoints (for reference) */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Component Sizes */
+  --size-xs: 1.5rem;    /* 24px */
+  --size-sm: 2rem;      /* 32px */
+  --size-md: 2.5rem;    /* 40px */
+  --size-lg: 3rem;      /* 48px */
+  --size-xl: 3.5rem;    /* 56px */
+  --size-2xl: 4rem;     /* 64px */
+  --size-3xl: 5rem;     /* 80px */
+  --size-4xl: 6rem;     /* 96px */
+
+  /* Component States */
+  --state-hover: 0.9;
+  --state-active: 0.8;
+  --state-disabled: 0.5;
+  --state-focus: 1;
+
+  /* Focus Ring */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--active-theme);
+  --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+
+  /* Component Base Styles */
+  --component-bg: var(--active-theme-bg-card);
+  --component-border: var(--active-theme-border);
+  --component-text: var(--active-theme-text-primary);
+  --component-text-secondary: var(--active-theme-text-secondary);
+  --component-text-muted: var(--active-theme-text-muted);
+  --component-shadow: var(--shadow-md);
+  --component-radius: var(--radius-lg);
+  --component-padding: var(--space-4);
+  --component-gap: var(--space-3);
+
+  /* Interactive States */
+  --interactive-hover-bg: var(--active-theme-bg-light);
+  --interactive-hover-border: var(--active-theme-border);
+  --interactive-active-bg: var(--active-theme);
+  --interactive-active-text: var(--active-theme-text-primary);
+  --interactive-disabled-bg: var(--neutral-200);
+  --interactive-disabled-text: var(--neutral-500);
+  --interactive-disabled-border: var(--neutral-300);
+
+  /* Status Colors */
+  --status-success: var(--success-500);
+  --status-success-bg: var(--success-50);
+  --status-success-text: var(--success-700);
+  --status-warning: var(--warning-500);
+  --status-warning-bg: var(--warning-50);
+  --status-warning-text: var(--warning-700);
+  --status-error: var(--error-500);
+  --status-error-bg: var(--error-50);
+  --status-error-text: var(--error-700);
+  --status-info: var(--info-500);
+  --status-info-bg: var(--info-50);
+  --status-info-text: var(--info-700);
+}
+
+/* ==========================================
+   COMPONENT MIXINS & UTILITIES
+   ========================================== */
+
+/* Base Component Reset */
+.ema-component {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* Focus Management */
+.ema-component:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Accessibility Helpers */
+.ema-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ema-not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Responsive Utilities */
+@media (max-width: 480px) {
+  .ema-component {
+    --component-padding: var(--space-3);
+    --component-gap: var(--space-2);
+  }
+}
+
+@media (min-width: 768px) {
+  .ema-component {
+    --component-padding: var(--space-5);
+    --component-gap: var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ema-component {
+    --component-padding: var(--space-6);
+    --component-gap: var(--space-5);
+  }
+}
+
+/* Animation Utilities */
+.ema-transition {
+  transition: all var(--duration-200) var(--ease-in-out);
+}
+
+.ema-transition-fast {
+  transition: all var(--duration-100) var(--ease-out);
+}
+
+.ema-transition-slow {
+  transition: all var(--duration-500) var(--ease-in-out);
+}
+
+/* Transform Utilities */
+.ema-transform {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.ema-scale-hover:hover {
+  transform: scale(1.05);
+}
+
+.ema-scale-active:active {
+  transform: scale(0.95);
+}
+
+/* Glow Effects */
+.ema-glow {
+  box-shadow: var(--glow-md);
+}
+
+.ema-glow-hover:hover {
+  box-shadow: var(--glow-lg);
+}
+
+/* Glass Effect */
+.ema-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient Backgrounds */
+.ema-gradient-primary {
+  background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+}
+
+.ema-gradient-secondary {
+  background: linear-gradient(135deg, var(--active-theme-bg-light), var(--active-theme-bg-card));
+}
+
+/* Text Gradients */
+.ema-text-gradient {
+  background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
