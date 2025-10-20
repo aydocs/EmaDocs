@@ -1,0 +1,84 @@
+
+/* Role Component - glass Variant */
+.ema-role {
+    /* Base styles */
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ema-role--glass {
+    /* glass variant styles */
+    
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color-primary);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-md) var(--spacing-lg);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-lg);
+    
+}
+
+.ema-role:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ema-role:active {
+    transform: translateY(0);
+}
+
+.ema-role:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .ema-role {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+/* Demo container styles */
+.demo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    font-family: var(--font-family-primary);
+}
+
+.component-demo {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    background: var(--card-background-color);
+}
+
+.demo-controls {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.demo-controls button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    background: var(--background-color-primary);
+    color: var(--text-color-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-controls button:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}

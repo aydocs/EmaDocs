@@ -1,0 +1,614 @@
+<page title="Emadocs Framework - Development Server">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[[page.title]]</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/emadocs.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="app">
+      <navbar fixed>
+        <logo src="/assets/logo.svg" alt="Emadocs Logo" />
+        <navlink to="/home">Home</navlink>
+        <navlink to="/components">Components</navlink>
+        <navlink to="/docs">Docs</navlink>
+        <navlink to="/examples">Examples</navlink>
+      </navbar>
+
+      <main>
+        <section id="hero">
+          <div class="hero-content">
+            <text type="h1" align="center" color="primary">Welcome to Emadocs!</text>
+            <text type="p" align="center" color="secondary">The world's most advanced UI framework and programming language</text>
+            <div class="hero-buttons">
+              <button variant="premium" size="lg" onclick="handleGetStarted()">Get Started</button>
+              <button variant="neo" size="lg" onclick="handleViewDocs()">View Docs</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="features">
+          <div class="container">
+            <text type="h2" align="center">Why Choose Emadocs?</text>
+            <div class="features-grid">
+              <Card 
+                title="🚀 Ultra Fast" 
+                content="10x faster than React, 5x faster than Vue. Built for performance."
+                variant="neo"
+              />
+              <Card 
+                title="🎨 250+ Components" 
+                content="1250 variants of beautiful, accessible components ready to use."
+                variant="soft"
+              />
+              <Card 
+                title="💎 EmadocsLang" 
+                content="Revolutionary programming language that combines HTML, CSS, and JS."
+                variant="glass"
+              />
+              <Card 
+                title="🔧 Zero Config" 
+                content="Works out of the box. No complex setup, just start coding."
+                variant="premium"
+              />
+              <Card 
+                title="📱 Mobile First" 
+                content="Perfect on every device with responsive design built-in."
+                variant="minimal"
+              />
+              <Card 
+                title="♿ Accessible" 
+                content="WCAG 2.1 AA compliant components for everyone."
+                variant="neo"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="demo">
+          <div class="container">
+            <text type="h2" align="center">Interactive Demo</text>
+            <div class="demo-container">
+              <div class="demo-input">
+                <Input 
+                  type="text" 
+                  placeholder="Enter your name" 
+                  value={userName} 
+                  onchange={userName = event.target.value}
+                  variant="neo"
+                />
+                <Button variant="premium" onclick={greetUser()}>Greet Me</Button>
+              </div>
+              <div class="demo-output" v-if={userName}>
+                <Text type="h3" color="success">Hello, [[userName]]! 👋</Text>
+                <Text color="muted">Welcome to the future of web development!</Text>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="components-preview">
+          <div class="container">
+            <text type="h2" align="center">Component Showcase</text>
+            <div class="components-grid">
+              <div class="component-group">
+                <text type="h3">Buttons</text>
+                <div class="button-group">
+                  <Button variant="minimal">Minimal</Button>
+                  <Button variant="neo">Neo</Button>
+                  <Button variant="soft">Soft</Button>
+                  <Button variant="glass">Glass</Button>
+                  <Button variant="premium">Premium</Button>
+                </div>
+              </div>
+              
+              <div class="component-group">
+                <text type="h3">Cards</text>
+                <div class="card-group">
+                  <Card title="Minimal Card" content="Clean and simple design" variant="minimal" />
+                  <Card title="Neo Card" content="Modern and futuristic" variant="neo" />
+                  <Card title="Soft Card" content="Gentle and friendly" variant="soft" />
+                </div>
+              </div>
+
+              <div class="component-group">
+                <text type="h3">Inputs</text>
+                <div class="input-group">
+                  <Input type="text" placeholder="Text input" variant="minimal" />
+                  <Input type="email" placeholder="Email input" variant="neo" />
+                  <Input type="password" placeholder="Password input" variant="soft" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-section">
+              <text type="h4">Emadocs Framework</text>
+              <text color="muted">The future of web development is here.</text>
+            </div>
+            <div class="footer-section">
+              <text type="h5">Quick Links</text>
+              <nav class="footer-nav">
+                <a href="/docs">Documentation</a>
+                <a href="/components">Components</a>
+                <a href="/examples">Examples</a>
+                <a href="/github">GitHub</a>
+              </nav>
+            </div>
+            <div class="footer-section">
+              <text type="h5">Community</text>
+              <nav class="footer-nav">
+                <a href="/discord">Discord</a>
+                <a href="/twitter">Twitter</a>
+                <a href="/blog">Blog</a>
+                <a href="/support">Support</a>
+              </nav>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <text align="center" color="muted">© 2025 Emadocs Framework. All rights reserved.</text>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/emadocs.js"></script>
+    <script>
+      // Initialize Emadocs Framework
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.EmadocsFramework) {
+          window.EmadocsFramework.init();
+        }
+        
+        // Initialize components
+        if (window.EmadocsComponents) {
+          window.EmadocsComponents.initAll();
+        }
+        
+        console.log('🚀 Emadocs Framework initialized successfully!');
+      });
+    </script>
+  </body>
+</page>
+
+style section#hero {
+  background: linear-gradient(135deg, var(--primary), var(--dark));
+  padding: 120px 40px;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+style section#hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+style .hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+style .hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+style section#features {
+  padding: 80px 40px;
+  background: var(--surface);
+}
+
+style section#demo {
+  padding: 80px 40px;
+  background: var(--surface-light);
+}
+
+style section#components-preview {
+  padding: 80px 40px;
+  background: var(--surface);
+}
+
+style .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+style .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+style .demo-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+style .demo-input {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+style .demo-output {
+  padding: 2rem;
+  background: var(--success-light);
+  border-radius: 12px;
+  border: 1px solid var(--success);
+}
+
+style .components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+style .component-group {
+  text-align: center;
+}
+
+style .button-group, .card-group, .input-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+style .card-group {
+  flex-direction: column;
+  align-items: center;
+}
+
+style .input-group {
+  flex-direction: column;
+  align-items: center;
+}
+
+style text[type="h1"] {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+style text[type="h2"] {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+style text[type="h3"] {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+style text[type="h4"] {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+style text[type="h5"] {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+style text[align="center"] {
+  text-align: center;
+}
+
+style text[color="primary"] {
+  color: var(--primary);
+}
+
+style text[color="secondary"] {
+  color: var(--text-secondary);
+}
+
+style text[color="muted"] {
+  color: var(--text-muted);
+}
+
+style text[color="success"] {
+  color: var(--success);
+}
+
+style footer {
+  background: var(--dark);
+  color: var(--text-primary);
+  padding: 60px 40px 20px;
+}
+
+style .footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+style .footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+style .footer-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+style .footer-nav a:hover {
+  color: var(--primary);
+}
+
+style .footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+style @media (max-width: 768px) {
+  text[type="h1"] {
+    font-size: 2.5rem;
+  }
+  
+  text[type="h2"] {
+    font-size: 2rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .demo-input {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-group, .card-group, .input-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+component Navbar {
+  prop fixed: boolean = false;
+  render {
+    <nav class="ema-navbar [[fixed ? 'ema-navbar--fixed' : '']]">
+      <div class="ema-navbar__container">
+        <div class="ema-navbar__brand">
+          <slot name="brand" />
+        </div>
+        <div class="ema-navbar__nav">
+          <slot />
+        </div>
+      </div>
+    </nav>
+  }
+}
+
+component Logo {
+  prop src: string;
+  prop alt: string = "Logo";
+  render {
+    <img src="[[src]]" alt="[[alt]]" class="ema-logo" />
+  }
+}
+
+component Navlink {
+  prop to: string;
+  prop active: boolean = false;
+  render {
+    <a href="[[to]]" class="ema-navlink [[active ? 'ema-navlink--active' : '']]" onclick="Emadocs.navigate('[[to]]')">
+      <slot />
+    </a>
+  }
+}
+
+component Section {
+  prop id: string;
+  prop class: string = "";
+  render {
+    <section id="[[id]]" class="ema-section [[class]]">
+      <slot />
+    </section>
+  }
+}
+
+component Text {
+  prop type: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" = "p";
+  prop align: "left" | "center" | "right" = "left";
+  prop color: "primary" | "secondary" | "muted" | "success" | "warning" | "error" = "primary";
+  prop v-if: boolean = true;
+  render {
+    <[[type]] v-if={v-if} class="ema-text ema-text--[[align]] ema-text--[[color]]">
+      <slot />
+    </[[type]]>
+  }
+}
+
+component Button {
+  prop variant: "minimal" | "neo" | "soft" | "glass" | "premium" = "minimal";
+  prop size: "sm" | "md" | "lg" = "md";
+  prop onclick: Function;
+  prop disabled: boolean = false;
+  render {
+    <button 
+      class="ema-button ema-button--[[variant]] ema-button--[[size]] [[disabled ? 'ema-button--disabled' : '']]" 
+      onclick={onclick}
+      disabled={disabled}
+    >
+      <slot />
+    </button>
+  }
+}
+
+component Card {
+  prop title: string;
+  prop content: string;
+  prop variant: "minimal" | "neo" | "soft" | "glass" | "premium" = "minimal";
+  render {
+    <div class="ema-card ema-card--[[variant]]">
+      <div class="ema-card__header">
+        <h3 class="ema-card__title">[[title]]</h3>
+      </div>
+      <div class="ema-card__body">
+        <p class="ema-card__content">[[content]]</p>
+      </div>
+    </div>
+  }
+}
+
+component Input {
+  prop type: "text" | "email" | "password" | "number" | "tel" | "url" = "text";
+  prop placeholder: string = "";
+  prop value: string = "";
+  prop onchange: Function;
+  prop variant: "minimal" | "neo" | "soft" | "glass" | "premium" = "minimal";
+  prop disabled: boolean = false;
+  render {
+    <input 
+      type="[[type]]" 
+      placeholder="[[placeholder]]" 
+      value="[[value]]" 
+      onchange={onchange}
+      disabled={disabled}
+      class="ema-input ema-input--[[variant]]" 
+    />
+  }
+}
+
+event click on button {
+  log("Button clicked!");
+  addRippleEffect(event.target);
+}
+
+event change on input {
+  log("Input changed:", event.target.value);
+}
+
+event load on page {
+  log("🚀 Emadocs Framework loaded successfully!");
+  console.log("Welcome to the future of web development!");
+}
+
+state userName: string = "";
+state isLoggedIn: boolean = false;
+state theme: "light" | "dark" = "light";
+state language: string = "en";
+
+// Global functions
+function handleGetStarted() {
+  log("Get Started button clicked!");
+  notify("Welcome to Emadocs Framework!");
+  // Scroll to features section
+  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleViewDocs() {
+  log("View Docs button clicked!");
+  notify("Opening documentation...");
+  // In a real app, this would navigate to docs
+  window.open('/docs', '_blank');
+}
+
+function greetUser() {
+  if (userName) {
+    notify(`Hello, ${userName}! Welcome to Emadocs!`);
+    // Add some animation
+    const output = document.querySelector('.demo-output');
+    if (output) {
+      output.style.animation = 'bounce 0.6s ease';
+      setTimeout(() => {
+        output.style.animation = '';
+      }, 600);
+    }
+  } else {
+    alert("Please enter your name first!");
+  }
+}
+
+function addRippleEffect(element) {
+  const ripple = document.createElement('span');
+  ripple.classList.add('ripple');
+  ripple.style.cssText = `
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  `;
+  
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
+  
+  element.style.position = 'relative';
+  element.style.overflow = 'hidden';
+  element.appendChild(ripple);
+  
+  setTimeout(() => {
+    ripple.remove();
+  }, 600);
+}
+
+// Add ripple animation CSS
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+`;
+document.head.appendChild(style);

@@ -1,0 +1,86 @@
+
+/* Annotation Component - premium Variant */
+.ema-annotation {
+    /* Base styles */
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ema-annotation--premium {
+    /* premium variant styles */
+    
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        border: none;
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-lg) var(--spacing-xl);
+        box-shadow: var(--shadow-xl);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    
+}
+
+.ema-annotation:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ema-annotation:active {
+    transform: translateY(0);
+}
+
+.ema-annotation:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .ema-annotation {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+/* Demo container styles */
+.demo-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    font-family: var(--font-family-primary);
+}
+
+.component-demo {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    background: var(--card-background-color);
+}
+
+.demo-controls {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.demo-controls button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    background: var(--background-color-primary);
+    color: var(--text-color-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-controls button:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}

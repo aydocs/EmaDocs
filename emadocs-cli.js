@@ -470,8 +470,20 @@ Examples:
   async startDevServer() {
     const app = express();
     
+    // Serve static files from root
+    app.use(express.static(process.cwd()));
+    
     // Serve static files
     app.use(express.static(path.join(process.cwd(), 'public')));
+    
+    // Serve CSS files
+    app.use('/css', express.static(path.join(process.cwd(), 'css')));
+    
+    // Serve JS files
+    app.use('/js', express.static(path.join(process.cwd(), 'js')));
+    
+    // Serve assets
+    app.use('/assets', express.static(path.join(process.cwd(), 'assets')));
     
     // Serve compiled files
     app.use(express.static(path.join(process.cwd(), 'dist')));
@@ -490,11 +502,29 @@ Examples:
     
     // Handle all other routes
     app.get('*', async (req, res) => {
-      const indexPath = path.join(process.cwd(), 'src', 'index.ema');
+      // Try multiple possible index locations
+      const possibleIndexes = [
+        path.join(process.cwd(), 'index.ema'),
+        path.join(process.cwd(), 'src', 'index.ema'),
+        path.join(process.cwd(), 'src', 'index.html'),
+        path.join(process.cwd(), 'index.html')
+      ];
       
-      if (fs.existsSync(indexPath)) {
-        const result = await this.compileFile(indexPath);
-        res.send(result.html);
+      let indexPath = null;
+      for (const path of possibleIndexes) {
+        if (fs.existsSync(path)) {
+          indexPath = path;
+          break;
+        }
+      }
+      
+      if (indexPath) {
+        if (indexPath.endsWith('.ema')) {
+          const result = await this.compileFile(indexPath);
+          res.send(result.html);
+        } else {
+          res.sendFile(indexPath);
+        }
       } else {
         res.status(404).send('Index file not found');
       }
@@ -527,15 +557,20 @@ Examples:
 
   // Handle file change
   async handleFileChange(filePath) {
-    if (this.wss) {
-      this.wss.clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-          client.send(JSON.stringify({
-            type: 'reload',
-            file: filePath
-          }));
-        }
-      });
+    // Only reload for .ema files
+    if (filePath.endsWith('.ema')) {
+      console.log(`Compiling ${path.basename(filePath)}...`);
+      
+      if (this.wss) {
+        this.wss.clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({
+              type: 'reload',
+              file: filePath
+            }));
+          }
+        });
+      }
     }
   }
 

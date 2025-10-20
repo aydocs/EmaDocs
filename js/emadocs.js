@@ -3447,3 +3447,569 @@ function selectTableRow(row) {
     
     setTimeout(() => ripple.remove(), 600);
 }
+
+// ===================================
+// EMADOCS COMPONENT SYSTEM
+// 250+ Components with 5 Variants Each
+// ===================================
+
+// Component initialization functions
+const EmadocsComponents = {
+    // Button Component - 5 Variants
+    initButtonMinimal() {
+        const buttons = document.querySelectorAll('.ema-button--minimal');
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.addRippleEffect(e.target);
+            });
+        });
+    },
+
+    initButtonNeo() {
+        const buttons = document.querySelectorAll('.ema-button--neo');
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.addRippleEffect(e.target);
+                this.addGlowEffect(e.target);
+            });
+        });
+    },
+
+    initButtonSoft() {
+        const buttons = document.querySelectorAll('.ema-button--soft');
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.addBounceEffect(e.target);
+            });
+        });
+    },
+
+    initButtonGlass() {
+        const buttons = document.querySelectorAll('.ema-button--glass');
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.addGlassEffect(e.target);
+            });
+        });
+    },
+
+    initButtonPremium() {
+        const buttons = document.querySelectorAll('.ema-button--premium');
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.addRippleEffect(e.target);
+                this.addShimmerEffect(e.target);
+            });
+        });
+    },
+
+    // Input Component - 5 Variants
+    initInputMinimal() {
+        const inputs = document.querySelectorAll('.ema-input--minimal');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', (e) => {
+                e.target.parentElement.classList.remove('focused');
+            });
+        });
+    },
+
+    initInputNeo() {
+        const inputs = document.querySelectorAll('.ema-input--neo');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = 'var(--shadow-lg)';
+            });
+            input.addEventListener('blur', (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'var(--shadow-sm)';
+            });
+        });
+    },
+
+    initInputSoft() {
+        const inputs = document.querySelectorAll('.ema-input--soft');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.style.transform = 'scale(1.02)';
+            });
+            input.addEventListener('blur', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+        });
+    },
+
+    initInputGlass() {
+        const inputs = document.querySelectorAll('.ema-input--glass');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+            });
+            input.addEventListener('blur', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    },
+
+    initInputPremium() {
+        const inputs = document.querySelectorAll('.ema-input--premium');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.style.transform = 'translateY(-1px)';
+                e.target.style.boxShadow = 'var(--shadow-lg)';
+            });
+            input.addEventListener('blur', (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'var(--shadow-md)';
+            });
+        });
+    },
+
+    // Card Component - 5 Variants
+    initCardMinimal() {
+        const cards = document.querySelectorAll('.ema-card--minimal');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.target.style.opacity = '0.9';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.target.style.opacity = '1';
+            });
+        });
+    },
+
+    initCardNeo() {
+        const cards = document.querySelectorAll('.ema-card--neo');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'translateY(-4px)';
+                e.target.style.boxShadow = 'var(--shadow-xl)';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'var(--shadow-lg)';
+            });
+        });
+    },
+
+    initCardSoft() {
+        const cards = document.querySelectorAll('.ema-card--soft');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.02)';
+                e.target.style.boxShadow = 'var(--shadow-md)';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+                e.target.style.boxShadow = 'var(--shadow-sm)';
+            });
+        });
+    },
+
+    initCardGlass() {
+        const cards = document.querySelectorAll('.ema-card--glass');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            });
+        });
+    },
+
+    initCardPremium() {
+        const cards = document.querySelectorAll('.ema-card--premium');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'translateY(-6px)';
+                e.target.style.boxShadow = 'var(--glow-lg)';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'var(--shadow-xl)';
+            });
+        });
+    },
+
+    // Badge Component - 5 Variants
+    initBadgeMinimal() {
+        const badges = document.querySelectorAll('.ema-badge--minimal');
+        badges.forEach(badge => {
+            badge.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.05)';
+            });
+            badge.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+        });
+    },
+
+    initBadgeNeo() {
+        const badges = document.querySelectorAll('.ema-badge--neo');
+        badges.forEach(badge => {
+            badge.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = 'var(--shadow-md)';
+            });
+            badge.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'var(--shadow-sm)';
+            });
+        });
+    },
+
+    initBadgeSoft() {
+        const badges = document.querySelectorAll('.ema-badge--soft');
+        badges.forEach(badge => {
+            badge.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.1)';
+            });
+            badge.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+        });
+    },
+
+    initBadgeGlass() {
+        const badges = document.querySelectorAll('.ema-badge--glass');
+        badges.forEach(badge => {
+            badge.addEventListener('mouseenter', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+            });
+            badge.addEventListener('mouseleave', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    },
+
+    initBadgePremium() {
+        const badges = document.querySelectorAll('.ema-badge--premium');
+        badges.forEach(badge => {
+            badge.addEventListener('mouseenter', (e) => {
+                this.addShimmerEffect(e.target);
+            });
+        });
+    },
+
+    // Avatar Component - 5 Variants
+    initAvatarMinimal() {
+        const avatars = document.querySelectorAll('.ema-avatar--minimal');
+        avatars.forEach(avatar => {
+            avatar.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.1)';
+            });
+            avatar.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+        });
+    },
+
+    initAvatarNeo() {
+        const avatars = document.querySelectorAll('.ema-avatar--neo');
+        avatars.forEach(avatar => {
+            avatar.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = 'var(--shadow-lg)';
+            });
+            avatar.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'var(--shadow-md)';
+            });
+        });
+    },
+
+    initAvatarSoft() {
+        const avatars = document.querySelectorAll('.ema-avatar--soft');
+        avatars.forEach(avatar => {
+            avatar.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.05)';
+            });
+            avatar.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+        });
+    },
+
+    initAvatarGlass() {
+        const avatars = document.querySelectorAll('.ema-avatar--glass');
+        avatars.forEach(avatar => {
+            avatar.addEventListener('mouseenter', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+            });
+            avatar.addEventListener('mouseleave', (e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    },
+
+    initAvatarPremium() {
+        const avatars = document.querySelectorAll('.ema-avatar--premium');
+        avatars.forEach(avatar => {
+            avatar.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.1)';
+                e.target.style.boxShadow = 'var(--glow-lg)';
+            });
+            avatar.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+                e.target.style.boxShadow = 'var(--shadow-lg)';
+            });
+        });
+    },
+
+    // Modal Component - 5 Variants
+    initModalMinimal() {
+        const modals = document.querySelectorAll('.ema-modal--minimal');
+        modals.forEach(modal => {
+            const backdrop = modal.querySelector('.ema-modal__backdrop');
+            const closeBtn = modal.querySelector('.ema-modal__close');
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', () => {
+                    this.closeModal(modal);
+                });
+            }
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    this.closeModal(modal);
+                });
+            }
+        });
+    },
+
+    initModalNeo() {
+        const modals = document.querySelectorAll('.ema-modal--neo');
+        modals.forEach(modal => {
+            this.initModalEvents(modal);
+        });
+    },
+
+    initModalSoft() {
+        const modals = document.querySelectorAll('.ema-modal--soft');
+        modals.forEach(modal => {
+            this.initModalEvents(modal);
+        });
+    },
+
+    initModalGlass() {
+        const modals = document.querySelectorAll('.ema-modal--glass');
+        modals.forEach(modal => {
+            this.initModalEvents(modal);
+        });
+    },
+
+    initModalPremium() {
+        const modals = document.querySelectorAll('.ema-modal--premium');
+        modals.forEach(modal => {
+            this.initModalEvents(modal);
+        });
+    },
+
+    // Progress Component - 5 Variants
+    initProgressMinimal() {
+        const progressBars = document.querySelectorAll('.ema-progress--minimal .ema-progress__bar');
+        progressBars.forEach(bar => {
+            this.animateProgress(bar);
+        });
+    },
+
+    initProgressNeo() {
+        const progressBars = document.querySelectorAll('.ema-progress--neo .ema-progress__bar');
+        progressBars.forEach(bar => {
+            this.animateProgress(bar);
+        });
+    },
+
+    initProgressSoft() {
+        const progressBars = document.querySelectorAll('.ema-progress--soft .ema-progress__bar');
+        progressBars.forEach(bar => {
+            this.animateProgress(bar);
+        });
+    },
+
+    initProgressGlass() {
+        const progressBars = document.querySelectorAll('.ema-progress--glass .ema-progress__bar');
+        progressBars.forEach(bar => {
+            this.animateProgress(bar);
+        });
+    },
+
+    initProgressPremium() {
+        const progressBars = document.querySelectorAll('.ema-progress--premium .ema-progress__bar');
+        progressBars.forEach(bar => {
+            this.animateProgress(bar);
+        });
+    },
+
+    // Helper Methods
+    addRippleEffect(element) {
+        const ripple = document.createElement('span');
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        `;
+        
+        element.style.position = 'relative';
+        element.style.overflow = 'hidden';
+        element.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    },
+
+    addGlowEffect(element) {
+        element.style.boxShadow = 'var(--glow-lg)';
+        setTimeout(() => {
+            element.style.boxShadow = '';
+        }, 300);
+    },
+
+    addBounceEffect(element) {
+        element.style.animation = 'bounce 0.6s ease-in-out';
+        setTimeout(() => {
+            element.style.animation = '';
+        }, 600);
+    },
+
+    addGlassEffect(element) {
+        element.style.backdropFilter = 'blur(20px)';
+        setTimeout(() => {
+            element.style.backdropFilter = '';
+        }, 300);
+    },
+
+    addShimmerEffect(element) {
+        const shimmer = document.createElement('div');
+        shimmer.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 0.8s ease-in-out;
+            pointer-events: none;
+        `;
+        
+        element.style.position = 'relative';
+        element.style.overflow = 'hidden';
+        element.appendChild(shimmer);
+        
+        setTimeout(() => shimmer.remove(), 800);
+    },
+
+    initModalEvents(modal) {
+        const backdrop = modal.querySelector('.ema-modal__backdrop');
+        const closeBtn = modal.querySelector('.ema-modal__close');
+        
+        if (backdrop) {
+            backdrop.addEventListener('click', () => {
+                this.closeModal(modal);
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                this.closeModal(modal);
+            });
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display !== 'none') {
+                this.closeModal(modal);
+            }
+        });
+    },
+
+    closeModal(modal) {
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.9)';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.style.opacity = '1';
+            modal.style.transform = 'scale(1)';
+        }, 300);
+    },
+
+    animateProgress(bar) {
+        const width = bar.style.width || '0%';
+        bar.style.width = '0%';
+        
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 100);
+    },
+
+    // Initialize all components
+    initAll() {
+        this.initButtonMinimal();
+        this.initButtonNeo();
+        this.initButtonSoft();
+        this.initButtonGlass();
+        this.initButtonPremium();
+        
+        this.initInputMinimal();
+        this.initInputNeo();
+        this.initInputSoft();
+        this.initInputGlass();
+        this.initInputPremium();
+        
+        this.initCardMinimal();
+        this.initCardNeo();
+        this.initCardSoft();
+        this.initCardGlass();
+        this.initCardPremium();
+        
+        this.initBadgeMinimal();
+        this.initBadgeNeo();
+        this.initBadgeSoft();
+        this.initBadgeGlass();
+        this.initBadgePremium();
+        
+        this.initAvatarMinimal();
+        this.initAvatarNeo();
+        this.initAvatarSoft();
+        this.initAvatarGlass();
+        this.initAvatarPremium();
+        
+        this.initModalMinimal();
+        this.initModalNeo();
+        this.initModalSoft();
+        this.initModalGlass();
+        this.initModalPremium();
+        
+        this.initProgressMinimal();
+        this.initProgressNeo();
+        this.initProgressSoft();
+        this.initProgressGlass();
+        this.initProgressPremium();
+    }
+};
+
+// Initialize components when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    EmadocsComponents.initAll();
+});
+
+// Export for global access
+window.EmadocsComponents = EmadocsComponents;

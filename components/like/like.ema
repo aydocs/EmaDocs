@@ -1,0 +1,91 @@
+<component Like>
+  prop variant: "minimal" | "neo" | "soft" | "glass" | "premium" = "minimal";
+  prop size: "small" | "medium" | "large" = "medium";
+  prop disabled: boolean = false;
+  prop children: any;
+  
+  event onClick: () => void;
+  event onHover: () => void;
+  event onFocus: () => void;
+  
+  render {
+    <div class="ema-like ema-like--[[variant]]" 
+         data-size="[[size]]" 
+         data-disabled="[[disabled]]"
+         onclick={onClick}
+         onmouseenter={onHover}
+         onfocus={onFocus}>
+      [[children]]
+    </div>
+  }
+}
+
+style Like {
+  .ema-like {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .ema-like--minimal {
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+  }
+  
+  .ema-like--neo {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ema-like--soft {
+    background: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .ema-like--glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .ema-like--premium {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ema-like:hover:not([data-disabled="true"]) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .ema-like[data-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

@@ -1,0 +1,827 @@
+#!/usr/bin/env node
+
+/**
+ * EMADOCS COMPONENT GENERATOR
+ * Generates 250 components with 5 variants each (1250 total)
+ */
+
+const fs = require('fs');
+const path = require('path');
+const components = require('./component-list');
+
+class ComponentGenerator {
+  constructor() {
+    this.componentsDir = path.join(process.cwd(), 'components');
+    this.variants = ['minimal', 'neo', 'soft', 'glass', 'premium'];
+    this.generatedCount = 0;
+  }
+
+  async generateAll() {
+    console.log('🚀 Starting component generation...');
+    console.log(`📊 Generating ${components.length} components with ${this.variants.length} variants each`);
+    console.log(`🎯 Total components: ${components.length * this.variants.length}`);
+    
+    // Create components directory
+    if (!fs.existsSync(this.componentsDir)) {
+      fs.mkdirSync(this.componentsDir, { recursive: true });
+    }
+
+    for (const componentName of components) {
+      await this.generateComponent(componentName);
+      this.generatedCount++;
+      
+      if (this.generatedCount % 10 === 0) {
+        console.log(`✅ Generated ${this.generatedCount}/${components.length} components`);
+      }
+    }
+
+    console.log(`🎉 Component generation completed!`);
+    console.log(`📁 Generated ${this.generatedCount} components`);
+    console.log(`📊 Total variants: ${this.generatedCount * this.variants.length}`);
+  }
+
+  async generateComponent(componentName) {
+    const componentDir = path.join(this.componentsDir, componentName.toLowerCase());
+    
+    // Create component directory
+    if (!fs.existsSync(componentDir)) {
+      fs.mkdirSync(componentDir, { recursive: true });
+    }
+
+    // Generate each variant
+    for (let i = 0; i < this.variants.length; i++) {
+      const variant = this.variants[i];
+      const variantNumber = i + 1;
+      await this.generateVariant(componentName, variant, variantNumber, componentDir);
+    }
+
+    // Generate main component files
+    await this.generateMainFiles(componentName, componentDir);
+  }
+
+  async generateVariant(componentName, variant, variantNumber, componentDir) {
+    const variantDir = path.join(componentDir, `variant-${variantNumber}`);
+    
+    // Create variant directory
+    if (!fs.existsSync(variantDir)) {
+      fs.mkdirSync(variantDir, { recursive: true });
+    }
+
+    // Generate HTML
+    const htmlContent = this.generateHTML(componentName, variant, variantNumber);
+    fs.writeFileSync(path.join(variantDir, 'index.html'), htmlContent);
+
+    // Generate CSS
+    const cssContent = this.generateCSS(componentName, variant, variantNumber);
+    fs.writeFileSync(path.join(variantDir, 'style.css'), cssContent);
+
+    // Generate JavaScript
+    const jsContent = this.generateJS(componentName, variant, variantNumber);
+    fs.writeFileSync(path.join(variantDir, 'script.js'), jsContent);
+
+    // Generate README
+    const readmeContent = this.generateREADME(componentName, variant, variantNumber);
+    fs.writeFileSync(path.join(variantDir, 'README.md'), readmeContent);
+  }
+
+  generateHTML(componentName, variant, variantNumber) {
+    const className = `ema-${componentName.toLowerCase()}`;
+    const variantClass = `${className}--${variant}`;
+    
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${componentName} - ${variant} Variant</title>
+    <link rel="stylesheet" href="../../../css/theme.css">
+    <link rel="stylesheet" href="../../../css/emadocs.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>${componentName} Component</h1>
+            <p class="demo-subtitle">${variant} Variant - ${variantNumber}/5</p>
+        </div>
+        
+        <div class="demo-content">
+            <div class="demo-section">
+                <h3>Basic Usage</h3>
+                <div class="component-demo">
+                    <div class="${className} ${variantClass}">
+                        ${this.getComponentContent(componentName, variant)}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-section">
+                <h3>With Props</h3>
+                <div class="component-demo">
+                    <div class="${className} ${variantClass}" data-size="large" data-disabled="false">
+                        ${this.getComponentContent(componentName, variant, true)}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="demo-section">
+                <h3>Interactive</h3>
+                <div class="component-demo">
+                    <div class="${className} ${variantClass}" onclick="handleClick()">
+                        Click me!
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-footer">
+            <p>Generated by Emadocs Framework</p>
+        </div>
+    </div>
+    
+    <script src="../../../js/emadocs.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>`;
+  }
+
+  generateCSS(componentName, variant, variantNumber) {
+    const className = `ema-${componentName.toLowerCase()}`;
+    const variantClass = `${className}--${variant}`;
+    
+    return `/* ${componentName} Component - ${variant} Variant */
+
+/* Demo Styles */
+.demo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.demo-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.demo-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.demo-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+.demo-content {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.demo-section {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.demo-section h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.component-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.demo-footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.demo-footer p {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Component Styles */
+.${className} {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.${variantClass} {
+    ${this.getVariantStyles(componentName, variant)}
+}
+
+/* Hover Effects */
+.${className}:hover:not([data-disabled="true"]) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Active State */
+.${className}:active:not([data-disabled="true"]) {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Disabled State */
+.${className}[data-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Size Variants */
+.${className}[data-size="small"] {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.${className}[data-size="medium"] {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.${className}[data-size="large"] {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .demo-container {
+        padding: 1rem;
+    }
+    
+    .demo-header h1 {
+        font-size: 2rem;
+    }
+    
+    .demo-section {
+        padding: 1.5rem;
+    }
+    
+    .component-demo {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .demo-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .demo-section {
+        padding: 1rem;
+    }
+}`;
+  }
+
+  generateJS(componentName, variant, variantNumber) {
+    const className = `ema-${componentName.toLowerCase()}`;
+    const variantClass = `${className}--${variant}`;
+    
+    return `/**
+ * ${componentName} Component - ${variant} Variant
+ * Generated by Emadocs Framework
+ */
+
+(function() {
+    'use strict';
+    
+    // Component initialization
+    function init${componentName}${variant.charAt(0).toUpperCase() + variant.slice(1)}() {
+        const components = document.querySelectorAll('.${className}--${variant}');
+        
+        components.forEach(component => {
+            setupEventListeners(component);
+            setupAccessibility(component);
+            setupAnimations(component);
+        });
+        
+        console.log(\`${componentName} ${variant} variant initialized: \${components.length} components\`);
+    }
+    
+    // Event listeners setup
+    function setupEventListeners(component) {
+        component.addEventListener('click', handleClick);
+        component.addEventListener('keydown', handleKeydown);
+        component.addEventListener('mouseenter', handleMouseEnter);
+        component.addEventListener('mouseleave', handleMouseLeave);
+        component.addEventListener('focus', handleFocus);
+        component.addEventListener('blur', handleBlur);
+    }
+    
+    // Accessibility setup
+    function setupAccessibility(component) {
+        if (!component.getAttribute('role')) {
+            component.setAttribute('role', 'button');
+        }
+        
+        if (!component.getAttribute('tabindex')) {
+            component.setAttribute('tabindex', '0');
+        }
+        
+        if (!component.getAttribute('aria-label')) {
+            component.setAttribute('aria-label', \`${componentName} component\`);
+        }
+    }
+    
+    // Animation setup
+    function setupAnimations(component) {
+        component.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    }
+    
+    // Event handlers
+    function handleClick(event) {
+        if (event.target.getAttribute('data-disabled') === 'true') {
+            event.preventDefault();
+            return;
+        }
+        
+        console.log(\`${componentName} ${variant} clicked\`);
+        
+        // Add ripple effect
+        addRippleEffect(event.target, event);
+        
+        // Emit custom event
+        event.target.dispatchEvent(new CustomEvent('${componentName.toLowerCase()}:click', {
+            detail: { variant: '${variant}', component: event.target },
+            bubbles: true
+        }));
+    }
+    
+    function handleKeydown(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            event.target.click();
+        }
+    }
+    
+    function handleMouseEnter(event) {
+        event.target.classList.add('hover');
+    }
+    
+    function handleMouseLeave(event) {
+        event.target.classList.remove('hover');
+    }
+    
+    function handleFocus(event) {
+        event.target.classList.add('focused');
+    }
+    
+    function handleBlur(event) {
+        event.target.classList.remove('focused');
+    }
+    
+    // Ripple effect
+    function addRippleEffect(element, event) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = \`
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+            width: \${size}px;
+            height: \${size}px;
+            left: \${x}px;
+            top: \${y}px;
+        \`;
+        
+        element.style.position = 'relative';
+        element.style.overflow = 'hidden';
+        element.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+    
+    // Global click handler
+    window.handleClick = function() {
+        console.log('${componentName} ${variant} clicked via global handler');
+    };
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init${componentName}${variant.charAt(0).toUpperCase() + variant.slice(1)});
+    } else {
+        init${componentName}${variant.charAt(0).toUpperCase() + variant.slice(1)}();
+    }
+    
+    // Add ripple animation CSS
+    if (!document.querySelector('#ripple-animation')) {
+        const style = document.createElement('style');
+        style.id = 'ripple-animation';
+        style.textContent = \`
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        \`;
+        document.head.appendChild(style);
+    }
+})();`;
+  }
+
+  generateREADME(componentName, variant, variantNumber) {
+    return `# ${componentName} Component - ${variant} Variant
+
+## Description
+This is the **${variant}** variant of the ${componentName} component, designed to integrate seamlessly with the Emadocs Framework's ultra-premium design system. It adheres to the global theme, accessibility standards, and responsive breakpoints.
+
+## Variant Information
+- **Variant**: ${variant}
+- **Number**: ${variantNumber}/5
+- **Style**: ${this.getVariantDescription(variant)}
+- **Use Case**: ${this.getVariantUseCase(variant)}
+
+## Usage
+
+### HTML Structure
+\`\`\`html
+<div class="ema-${componentName.toLowerCase()} ema-${componentName.toLowerCase()}--${variant}">
+    ${this.getComponentContent(componentName, variant)}
+</div>
+\`\`\`
+
+### With Props
+\`\`\`html
+<div class="ema-${componentName.toLowerCase()} ema-${componentName.toLowerCase()}--${variant}" 
+     data-size="large" 
+     data-disabled="false">
+    ${this.getComponentContent(componentName, variant, true)}
+</div>
+\`\`\`
+
+### Interactive
+\`\`\`html
+<div class="ema-${componentName.toLowerCase()} ema-${componentName.toLowerCase()}--${variant}" 
+     onclick="handleClick()">
+    Click me!
+</div>
+\`\`\`
+
+## CSS Integration
+The component's specific styles are located in \`components/${componentName.toLowerCase()}/variant-${variantNumber}/style.css\`. These styles are designed to be imported or appended to the main \`emadocs.css\` file.
+
+## JavaScript Integration
+The component's JavaScript logic is in \`components/${componentName.toLowerCase()}/variant-${variantNumber}/script.js\`. An initialization function, \`init${componentName}${variant.charAt(0).toUpperCase() + variant.slice(1)}()\`, is automatically called when the DOM is ready.
+
+## Props / Attributes
+- \`.ema-${componentName.toLowerCase()}\`: The main container class
+- \`.ema-${componentName.toLowerCase()}--${variant}\`: The variant-specific class
+- \`data-size\`: Size variant (small, medium, large)
+- \`data-disabled\`: Disabled state (true/false)
+- \`onclick\`: Click event handler
+
+## Events
+- \`click\`: Fired when component is clicked
+- \`${componentName.toLowerCase()}:click\`: Custom event with component details
+- \`keydown\`: Keyboard interaction (Enter/Space)
+- \`mouseenter\`: Mouse hover enter
+- \`mouseleave\`: Mouse hover leave
+- \`focus\`: Focus gained
+- \`blur\`: Focus lost
+
+## Accessibility
+- ARIA role: \`button\`
+- Keyboard navigation: Enter and Space keys
+- Focus management: Visual focus indicators
+- Screen reader support: Proper labeling
+
+## Responsive Behavior
+- Adapts to various screen sizes using standard breakpoints (480px, 768px, 1024px, 1280px)
+- Mobile-first design approach
+- Touch-friendly interactions
+
+## Browser Support
+- Chrome 60+
+- Firefox 60+
+- Safari 12+
+- Edge 79+
+
+## Generated by
+Emadocs Framework - The World's Most Advanced UI Framework
+`;
+  }
+
+  async generateMainFiles(componentName, componentDir) {
+    // Generate main component.ema file
+    const emaContent = this.generateEMA(componentName);
+    fs.writeFileSync(path.join(componentDir, `${componentName.toLowerCase()}.ema`), emaContent);
+
+    // Generate main README.md
+    const mainReadme = this.generateMainREADME(componentName);
+    fs.writeFileSync(path.join(componentDir, 'README.md'), mainReadme);
+
+    // Generate index.js
+    const indexJS = this.generateIndexJS(componentName);
+    fs.writeFileSync(path.join(componentDir, 'index.js'), indexJS);
+  }
+
+  generateEMA(componentName) {
+    return `<component ${componentName}>
+  prop variant: "minimal" | "neo" | "soft" | "glass" | "premium" = "minimal";
+  prop size: "small" | "medium" | "large" = "medium";
+  prop disabled: boolean = false;
+  prop children: any;
+  
+  event onClick: () => void;
+  event onHover: () => void;
+  event onFocus: () => void;
+  
+  render {
+    <div class="ema-${componentName.toLowerCase()} ema-${componentName.toLowerCase()}--[[variant]]" 
+         data-size="[[size]]" 
+         data-disabled="[[disabled]]"
+         onclick={onClick}
+         onmouseenter={onHover}
+         onfocus={onFocus}>
+      [[children]]
+    </div>
+  }
+}
+
+style ${componentName} {
+  .ema-${componentName.toLowerCase()} {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .ema-${componentName.toLowerCase()}--minimal {
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+  }
+  
+  .ema-${componentName.toLowerCase()}--neo {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ema-${componentName.toLowerCase()}--soft {
+    background: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .ema-${componentName.toLowerCase()}--glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .ema-${componentName.toLowerCase()}--premium {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ema-${componentName.toLowerCase()}:hover:not([data-disabled="true"]) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .ema-${componentName.toLowerCase()}[data-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}`;
+  }
+
+  generateMainREADME(componentName) {
+    return `# ${componentName} Component
+
+A comprehensive ${componentName} component for Emadocs Framework with 5 beautiful variants.
+
+## Variants
+
+| Variant | Description | Use Case |
+|---------|-------------|----------|
+| Minimal | Clean, simple design | Basic interfaces |
+| Neo | Modern, futuristic look | Tech applications |
+| Soft | Gentle, friendly appearance | User-friendly apps |
+| Glass | Translucent, modern effect | Premium interfaces |
+| Premium | Luxurious, high-end design | Enterprise applications |
+
+## Quick Start
+
+\`\`\`ema
+<${componentName} variant="minimal">
+  Basic ${componentName}
+</${componentName}>
+\`\`\`
+
+## All Variants
+
+\`\`\`ema
+<${componentName} variant="minimal">Minimal</${componentName}>
+<${componentName} variant="neo">Neo</${componentName}>
+<${componentName} variant="soft">Soft</${componentName}>
+<${componentName} variant="glass">Glass</${componentName}>
+<${componentName} variant="premium">Premium</${componentName}>
+\`\`\`
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | string | "minimal" | Component variant |
+| size | string | "medium" | Component size |
+| disabled | boolean | false | Disabled state |
+| children | any | - | Component content |
+
+## Events
+
+| Event | Description |
+|-------|-------------|
+| onClick | Click event |
+| onHover | Hover event |
+| onFocus | Focus event |
+
+## Files
+
+- \`${componentName.toLowerCase()}.ema\` - Main component definition
+- \`variant-1/\` - Minimal variant
+- \`variant-2/\` - Neo variant
+- \`variant-3/\` - Soft variant
+- \`variant-4/\` - Glass variant
+- \`variant-5/\` - Premium variant
+
+## Generated by
+Emadocs Framework - The World's Most Advanced UI Framework
+`;
+  }
+
+  generateIndexJS(componentName) {
+    return `/**
+ * ${componentName} Component - Main Entry Point
+ * Generated by Emadocs Framework
+ */
+
+// Import all variants
+import './variant-1/script.js';
+import './variant-2/script.js';
+import './variant-3/script.js';
+import './variant-4/script.js';
+import './variant-5/script.js';
+
+// Export component
+export { default as ${componentName} } from './${componentName.toLowerCase()}.ema';
+
+// Component registry
+if (typeof window !== 'undefined' && window.EmadocsComponents) {
+  window.EmadocsComponents.register('${componentName}', {
+    name: '${componentName}',
+    variants: ['minimal', 'neo', 'soft', 'glass', 'premium'],
+    defaultVariant: 'minimal'
+  });
+}
+
+console.log('${componentName} component loaded with 5 variants');
+`;
+  }
+
+  getComponentContent(componentName, variant, withProps = false) {
+    const baseContent = `${componentName} ${variant}`;
+    return withProps ? `${baseContent} (Enhanced)` : baseContent;
+  }
+
+  getVariantStyles(componentName, variant) {
+    const styles = {
+      minimal: `
+        background: var(--surface);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);`,
+      
+      neo: `
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);`,
+      
+      soft: `
+        background: var(--primary-light);
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);`,
+      
+      glass: `
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-primary);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);`,
+      
+      premium: `
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        position: relative;
+        overflow: hidden;`
+    };
+    
+    return styles[variant] || styles.minimal;
+  }
+
+  getVariantDescription(variant) {
+    const descriptions = {
+      minimal: 'Clean, simple design with subtle shadows',
+      neo: 'Modern, futuristic look with gradients',
+      soft: 'Gentle, friendly appearance with rounded corners',
+      glass: 'Translucent, modern effect with backdrop blur',
+      premium: 'Luxurious, high-end design with premium styling'
+    };
+    
+    return descriptions[variant] || descriptions.minimal;
+  }
+
+  getVariantUseCase(variant) {
+    const useCases = {
+      minimal: 'Basic interfaces, forms, simple layouts',
+      neo: 'Tech applications, dashboards, modern UIs',
+      soft: 'User-friendly apps, educational platforms',
+      glass: 'Premium interfaces, landing pages, hero sections',
+      premium: 'Enterprise applications, luxury brands, high-end products'
+    };
+    
+    return useCases[variant] || useCases.minimal;
+  }
+}
+
+// Run generator
+if (require.main === module) {
+  const generator = new ComponentGenerator();
+  generator.generateAll().catch(console.error);
+}
+
+module.exports = ComponentGenerator;

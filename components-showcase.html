@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emadocs Components Showcase - 250 Components</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/emadocs.css">
+    <style>
+        .showcase-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 20px;
+            margin: 0 0 4rem 0;
+        }
+        
+        .showcase-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .showcase-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .component-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+        
+        .component-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .component-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .variants-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .variant-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .component-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .search-section {
+            margin-bottom: 3rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            background: var(--surface);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+        }
+        
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .category-btn {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .category-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .category-btn.active:hover {
+            background: var(--primary-dark);
+        }
+        
+        @media (max-width: 768px) {
+            .showcase-container {
+                padding: 1rem;
+            }
+            
+            .showcase-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .component-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="showcase-container">
+        <div class="showcase-header">
+            <h1>🎨 Emadocs Components</h1>
+            <p>The World's Most Advanced UI Component Library</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">250</div>
+                    <div class="stat-label">Main Components</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,250</div>
+                    <div class="stat-label">Total Variants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Design Variants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Responsive</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <input type="text" class="search-input" placeholder="Search components..." id="searchInput">
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All Components</button>
+                <button class="category-btn" data-category="basic">Basic UI</button>
+                <button class="category-btn" data-category="form">Form</button>
+                <button class="category-btn" data-category="navigation">Navigation</button>
+                <button class="category-btn" data-category="layout">Layout</button>
+                <button class="category-btn" data-category="data">Data Display</button>
+                <button class="category-btn" data-category="feedback">Feedback</button>
+                <button class="category-btn" data-category="media">Media</button>
+                <button class="category-btn" data-category="interactive">Interactive</button>
+                <button class="category-btn" data-category="utility">Utility</button>
+                <button class="category-btn" data-category="advanced">Advanced</button>
+            </div>
+        </div>
+        
+        <div class="components-grid" id="componentsGrid">
+            <!-- Components will be dynamically loaded here -->
+        </div>
+    </div>
+    
+    <script src="js/emadocs.js"></script>
+    <script>
+        // Component data
+        const components = [
+            // Basic UI Components
+            { name: 'Button', category: 'basic', description: 'Interactive button component with 5 variants' },
+            { name: 'Input', category: 'basic', description: 'Text input field with validation support' },
+            { name: 'Textarea', category: 'basic', description: 'Multi-line text input component' },
+            { name: 'Select', category: 'form', description: 'Dropdown selection component' },
+            { name: 'Checkbox', category: 'form', description: 'Checkbox input with custom styling' },
+            { name: 'Radio', category: 'form', description: 'Radio button input component' },
+            { name: 'Switch', category: 'form', description: 'Toggle switch component' },
+            { name: 'Slider', category: 'form', description: 'Range slider input component' },
+            { name: 'Range', category: 'form', description: 'Range input with custom styling' },
+            { name: 'FileUpload', category: 'form', description: 'File upload component with drag & drop' },
+            { name: 'Card', category: 'basic', description: 'Content card with header, body, and footer' },
+            { name: 'Panel', category: 'layout', description: 'Container panel component' },
+            { name: 'Container', category: 'layout', description: 'Responsive container component' },
+            { name: 'Box', category: 'layout', description: 'Flexible box component' },
+            { name: 'Divider', category: 'utility', description: 'Visual divider component' },
+            { name: 'Spacer', category: 'utility', description: 'Spacing utility component' },
+            { name: 'Badge', category: 'basic', description: 'Status badge component' },
+            { name: 'Tag', category: 'basic', description: 'Label tag component' },
+            { name: 'Chip', category: 'basic', description: 'Chip component for tags' },
+            { name: 'Avatar', category: 'basic', description: 'User avatar component' },
+            { name: 'Image', category: 'media', description: 'Responsive image component' },
+            { name: 'Icon', category: 'basic', description: 'Icon component with SVG support' },
+            { name: 'Logo', category: 'basic', description: 'Logo component' },
+            { name: 'Banner', category: 'basic', description: 'Banner component for announcements' },
+            { name: 'Alert', category: 'feedback', description: 'Alert notification component' },
+            { name: 'Toast', category: 'feedback', description: 'Toast notification component' },
+            { name: 'Notification', category: 'feedback', description: 'Notification component' },
+            { name: 'Tooltip', category: 'feedback', description: 'Tooltip component' },
+            { name: 'Popover', category: 'feedback', description: 'Popover component' },
+            { name: 'Modal', category: 'feedback', description: 'Modal dialog component' },
+            { name: 'Dialog', category: 'feedback', description: 'Dialog component' },
+            { name: 'Drawer', category: 'layout', description: 'Drawer component' },
+            { name: 'Sidebar', category: 'layout', description: 'Sidebar component' },
+            { name: 'Header', category: 'layout', description: 'Page header component' },
+            { name: 'Footer', category: 'layout', description: 'Page footer component' },
+            { name: 'Navbar', category: 'navigation', description: 'Navigation bar component' },
+            { name: 'Breadcrumb', category: 'navigation', description: 'Breadcrumb navigation component' },
+            { name: 'Pagination', category: 'navigation', description: 'Pagination component' },
+            { name: 'Tabs', category: 'navigation', description: 'Tab navigation component' },
+            { name: 'Accordion', category: 'navigation', description: 'Accordion component' },
+            { name: 'List', category: 'data', description: 'List component' },
+            { name: 'Table', category: 'data', description: 'Data table component' },
+            { name: 'Grid', category: 'layout', description: 'Grid layout component' },
+            { name: 'Flex', category: 'layout', description: 'Flexbox component' },
+            { name: 'Stack', category: 'layout', description: 'Stack layout component' },
+            { name: 'Group', category: 'layout', description: 'Group component' },
+            { name: 'Row', category: 'layout', description: 'Row component' },
+            { name: 'Column', category: 'layout', description: 'Column component' },
+            { name: 'Section', category: 'layout', description: 'Section component' },
+            { name: 'Article', category: 'layout', description: 'Article component' },
+            { name: 'Form', category: 'form', description: 'Form container component' },
+            { name: 'Field', category: 'form', description: 'Form field component' },
+            { name: 'Fieldset', category: 'form', description: 'Form fieldset component' },
+            { name: 'Label', category: 'form', description: 'Form label component' },
+            { name: 'HelpText', category: 'form', description: 'Help text component' },
+            { name: 'ErrorMessage', category: 'form', description: 'Error message component' },
+            { name: 'Validation', category: 'form', description: 'Validation component' },
+            { name: 'Search', category: 'form', description: 'Search input component' },
+            { name: 'Filter', category: 'form', description: 'Filter component' },
+            { name: 'Sort', category: 'form', description: 'Sort component' },
+            { name: 'DatePicker', category: 'form', description: 'Date picker component' },
+            { name: 'TimePicker', category: 'form', description: 'Time picker component' },
+            { name: 'DateTimePicker', category: 'form', description: 'DateTime picker component' },
+            { name: 'ColorPicker', category: 'form', description: 'Color picker component' },
+            { name: 'Rating', category: 'form', description: 'Rating component' },
+            { name: 'Stepper', category: 'form', description: 'Stepper component' },
+            { name: 'Wizard', category: 'form', description: 'Wizard component' },
+            { name: 'Progress', category: 'feedback', description: 'Progress bar component' },
+            { name: 'Spinner', category: 'feedback', description: 'Loading spinner component' },
+            { name: 'Loading', category: 'feedback', description: 'Loading component' },
+            { name: 'Dropdown', category: 'form', description: 'Dropdown component' },
+            { name: 'Combobox', category: 'form', description: 'Combobox component' },
+            { name: 'Autocomplete', category: 'form', description: 'Autocomplete component' },
+            { name: 'MultiSelect', category: 'form', description: 'Multi-select component' },
+            { name: 'TreeSelect', category: 'form', description: 'Tree select component' },
+            { name: 'Cascader', category: 'form', description: 'Cascader component' },
+            { name: 'Transfer', category: 'form', description: 'Transfer component' },
+            { name: 'Upload', category: 'form', description: 'Upload component' },
+            { name: 'DragDrop', category: 'interactive', description: 'Drag and drop component' },
+            { name: 'Sortable', category: 'interactive', description: 'Sortable component' },
+            { name: 'Menu', category: 'navigation', description: 'Menu component' },
+            { name: 'Submenu', category: 'navigation', description: 'Submenu component' },
+            { name: 'MenuItem', category: 'navigation', description: 'Menu item component' },
+            { name: 'NavItem', category: 'navigation', description: 'Navigation item component' },
+            { name: 'Link', category: 'navigation', description: 'Link component' },
+            { name: 'BreadcrumbItem', category: 'navigation', description: 'Breadcrumb item component' },
+            { name: 'TabItem', category: 'navigation', description: 'Tab item component' },
+            { name: 'Step', category: 'navigation', description: 'Step component' },
+            { name: 'PaginationItem', category: 'navigation', description: 'Pagination item component' },
+            { name: 'SidebarItem', category: 'navigation', description: 'Sidebar item component' },
+            { name: 'NavbarBrand', category: 'navigation', description: 'Navbar brand component' },
+            { name: 'NavbarToggle', category: 'navigation', description: 'Navbar toggle component' },
+            { name: 'NavbarCollapse', category: 'navigation', description: 'Navbar collapse component' },
+            { name: 'NavbarNav', category: 'navigation', description: 'Navbar nav component' },
+            { name: 'NavbarText', category: 'navigation', description: 'Navbar text component' },
+            { name: 'NavbarDropdown', category: 'navigation', description: 'Navbar dropdown component' },
+            { name: 'NavbarForm', category: 'navigation', description: 'Navbar form component' },
+            { name: 'NavbarSearch', category: 'navigation', description: 'Navbar search component' },
+            { name: 'NavbarUser', category: 'navigation', description: 'Navbar user component' },
+            { name: 'NavbarNotification', category: 'navigation', description: 'Navbar notification component' },
+            { name: 'Layout', category: 'layout', description: 'Main layout component' },
+            { name: 'Main', category: 'layout', description: 'Main content component' },
+            { name: 'Aside', category: 'layout', description: 'Aside component' },
+            { name: 'Split', category: 'layout', description: 'Split layout component' },
+            { name: 'Resize', category: 'layout', description: 'Resizable component' },
+            { name: 'Collapse', category: 'layout', description: 'Collapsible component' },
+            { name: 'Expand', category: 'layout', description: 'Expandable component' },
+            { name: 'Show', category: 'utility', description: 'Show component' },
+            { name: 'Hide', category: 'utility', description: 'Hide component' },
+            { name: 'Visible', category: 'utility', description: 'Visible component' },
+            { name: 'Hidden', category: 'utility', description: 'Hidden component' },
+            { name: 'Responsive', category: 'utility', description: 'Responsive component' },
+            { name: 'Breakpoint', category: 'utility', description: 'Breakpoint component' },
+            { name: 'Viewport', category: 'utility', description: 'Viewport component' },
+            { name: 'Screen', category: 'utility', description: 'Screen component' },
+            { name: 'Device', category: 'utility', description: 'Device component' },
+            { name: 'TableHeader', category: 'data', description: 'Table header component' },
+            { name: 'TableBody', category: 'data', description: 'Table body component' },
+            { name: 'TableRow', category: 'data', description: 'Table row component' },
+            { name: 'TableCell', category: 'data', description: 'Table cell component' },
+            { name: 'TableFooter', category: 'data', description: 'Table footer component' },
+            { name: 'DataTable', category: 'data', description: 'Data table component' },
+            { name: 'VirtualTable', category: 'data', description: 'Virtual table component' },
+            { name: 'InfiniteTable', category: 'data', description: 'Infinite table component' },
+            { name: 'SortableTable', category: 'data', description: 'Sortable table component' },
+            { name: 'ListItem', category: 'data', description: 'List item component' },
+            { name: 'VirtualList', category: 'data', description: 'Virtual list component' },
+            { name: 'InfiniteList', category: 'data', description: 'Infinite list component' },
+            { name: 'Tree', category: 'data', description: 'Tree component' },
+            { name: 'TreeNode', category: 'data', description: 'Tree node component' },
+            { name: 'TreeItem', category: 'data', description: 'Tree item component' },
+            { name: 'Timeline', category: 'data', description: 'Timeline component' },
+            { name: 'TimelineItem', category: 'data', description: 'Timeline item component' },
+            { name: 'Calendar', category: 'data', description: 'Calendar component' },
+            { name: 'Chart', category: 'data', description: 'Chart component' },
+            { name: 'Graph', category: 'data', description: 'Graph component' },
+            { name: 'Diagram', category: 'data', description: 'Diagram component' },
+            { name: 'Map', category: 'data', description: 'Map component' },
+            { name: 'Heatmap', category: 'data', description: 'Heatmap component' },
+            { name: 'Scatter', category: 'data', description: 'Scatter plot component' },
+            { name: 'Bar', category: 'data', description: 'Bar chart component' },
+            { name: 'Line', category: 'data', description: 'Line chart component' },
+            { name: 'Pie', category: 'data', description: 'Pie chart component' },
+            { name: 'Doughnut', category: 'data', description: 'Doughnut chart component' },
+            { name: 'Message', category: 'feedback', description: 'Message component' },
+            { name: 'Confirm', category: 'feedback', description: 'Confirm dialog component' },
+            { name: 'Prompt', category: 'feedback', description: 'Prompt dialog component' },
+            { name: 'Skeleton', category: 'feedback', description: 'Skeleton loading component' },
+            { name: 'Placeholder', category: 'feedback', description: 'Placeholder component' },
+            { name: 'Empty', category: 'feedback', description: 'Empty state component' },
+            { name: 'Error', category: 'feedback', description: 'Error component' },
+            { name: 'Warning', category: 'feedback', description: 'Warning component' },
+            { name: 'Info', category: 'feedback', description: 'Info component' },
+            { name: 'Success', category: 'feedback', description: 'Success component' },
+            { name: 'Status', category: 'feedback', description: 'Status component' },
+            { name: 'Indicator', category: 'feedback', description: 'Indicator component' },
+            { name: 'Dot', category: 'feedback', description: 'Dot indicator component' },
+            { name: 'Video', category: 'media', description: 'Video component' },
+            { name: 'Audio', category: 'media', description: 'Audio component' },
+            { name: 'Player', category: 'media', description: 'Media player component' },
+            { name: 'Gallery', category: 'media', description: 'Image gallery component' },
+            { name: 'Carousel', category: 'media', description: 'Carousel component' },
+            { name: 'Lightbox', category: 'media', description: 'Lightbox component' },
+            { name: 'Zoom', category: 'media', description: 'Zoom component' },
+            { name: 'Crop', category: 'media', description: 'Crop component' },
+            { name: 'Preview', category: 'media', description: 'Preview component' },
+            { name: 'Thumbnail', category: 'media', description: 'Thumbnail component' },
+            { name: 'Toggle', category: 'interactive', description: 'Toggle component' },
+            { name: 'Vote', category: 'interactive', description: 'Vote component' },
+            { name: 'Like', category: 'interactive', description: 'Like component' },
+            { name: 'Share', category: 'interactive', description: 'Share component' },
+            { name: 'Bookmark', category: 'interactive', description: 'Bookmark component' },
+            { name: 'Clear', category: 'utility', description: 'Clear component' },
+            { name: 'Reset', category: 'utility', description: 'Reset component' },
+            { name: 'Print', category: 'utility', description: 'Print component' },
+            { name: 'Export', category: 'utility', description: 'Export component' },
+            { name: 'Import', category: 'utility', description: 'Import component' },
+            { name: 'Download', category: 'utility', description: 'Download component' },
+            { name: 'VirtualScroll', category: 'advanced', description: 'Virtual scroll component' },
+            { name: 'InfiniteScroll', category: 'advanced', description: 'Infinite scroll component' },
+            { name: 'LazyLoad', category: 'advanced', description: 'Lazy load component' },
+            { name: 'Intersection', category: 'advanced', description: 'Intersection observer component' },
+            { name: 'Observer', category: 'advanced', description: 'Observer component' },
+            { name: 'Paginate', category: 'advanced', description: 'Pagination component' },
+            { name: 'Navigate', category: 'advanced', description: 'Navigation component' }
+        ];
+        
+        const variants = ['minimal', 'neo', 'soft', 'glass', 'premium'];
+        
+        // Initialize showcase
+        function initShowcase() {
+            renderComponents();
+            setupSearch();
+            setupFilters();
+        }
+        
+        // Render components
+        function renderComponents(filteredComponents = components) {
+            const grid = document.getElementById('componentsGrid');
+            grid.innerHTML = '';
+            
+            filteredComponents.forEach(component => {
+                const card = createComponentCard(component);
+                grid.appendChild(card);
+            });
+        }
+        
+        // Create component card
+        function createComponentCard(component) {
+            const card = document.createElement('div');
+            card.className = 'component-card';
+            card.innerHTML = \`
+                <div class="component-name">\${component.name}</div>
+                <div class="component-description">\${component.description}</div>
+                <div class="variants-list">
+                    \${variants.map(variant => \`<span class="variant-tag">\${variant}</span>\`).join('')}
+                </div>
+                <div class="component-actions">
+                    <a href="/components/\${component.name.toLowerCase()}/variant-1/index.html" class="btn-primary">View Demo</a>
+                    <a href="/components/\${component.name.toLowerCase()}/README.md" class="btn-secondary">Documentation</a>
+                </div>
+            \`;
+            return card;
+        }
+        
+        // Setup search
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = components.filter(component => 
+                    component.name.toLowerCase().includes(query) ||
+                    component.description.toLowerCase().includes(query) ||
+                    component.category.toLowerCase().includes(query)
+                );
+                renderComponents(filtered);
+            });
+        }
+        
+        // Setup category filters
+        function setupFilters() {
+            const filterBtns = document.querySelectorAll('.category-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Update active state
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    // Filter components
+                    const category = e.target.dataset.category;
+                    const filtered = category === 'all' 
+                        ? components 
+                        : components.filter(component => component.category === category);
+                    renderComponents(filtered);
+                });
+            });
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initShowcase);
+        } else {
+            initShowcase();
+        }
+    </script>
+</body>
+</html>

@@ -11018,3 +11018,1053 @@ a:focus-visible {
         justify-content: center;
     }
 }
+
+/* ===================================
+   EMADOCS COMPONENT SYSTEM
+   250+ Components with 5 Variants Each
+   =================================== */
+
+/* ===================================
+   BUTTON COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-200) var(--ease-in-out);
+    white-space: nowrap;
+    user-select: none;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-button:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+}
+
+.ema-button:disabled {
+    opacity: var(--state-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Button Variants */
+.ema-button--minimal {
+    background: transparent;
+    color: var(--active-theme);
+    border: 1px solid var(--active-theme-border);
+}
+
+.ema-button--minimal:hover:not(:disabled) {
+    background: var(--active-theme-bg-light);
+    border-color: var(--active-theme);
+}
+
+.ema-button--neo {
+    background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+    color: var(--active-theme-text-primary);
+    border: none;
+    box-shadow: var(--shadow-md);
+}
+
+.ema-button--neo:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.ema-button--soft {
+    background: var(--active-theme);
+    color: var(--active-theme-text-primary);
+    border: none;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+}
+
+.ema-button--soft:hover:not(:disabled) {
+    background: var(--active-theme-dark);
+    transform: scale(1.05);
+}
+
+.ema-button--glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--active-theme-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.ema-button--glass:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.ema-button--premium {
+    background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+    color: var(--active-theme-text-primary);
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-button--premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--duration-500) var(--ease-in-out);
+}
+
+.ema-button--premium:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.ema-button--premium:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: var(--glow-lg);
+}
+
+/* Button Sizes */
+.ema-button--sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+}
+
+.ema-button--md {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-base);
+}
+
+.ema-button--lg {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--font-size-lg);
+}
+
+.ema-button--xl {
+    padding: var(--space-5) var(--space-10);
+    font-size: var(--font-size-xl);
+}
+
+/* ===================================
+   INPUT COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-input {
+    display: block;
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--active-theme-text-primary);
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-200) var(--ease-in-out);
+}
+
+.ema-input:focus {
+    outline: none;
+    border-color: var(--active-theme);
+    box-shadow: 0 0 0 3px var(--active-theme-border-light);
+}
+
+.ema-input::placeholder {
+    color: var(--active-theme-text-muted);
+}
+
+.ema-input:disabled {
+    opacity: var(--state-disabled);
+    cursor: not-allowed;
+    background: var(--active-theme-bg-light);
+}
+
+/* Input Variants */
+.ema-input--minimal {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--active-theme-border);
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ema-input--minimal:focus {
+    border-bottom-color: var(--active-theme);
+    box-shadow: none;
+}
+
+.ema-input--neo {
+    background: var(--active-theme-bg-light);
+    border: 2px solid var(--active-theme-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.ema-input--neo:focus {
+    border-color: var(--active-theme);
+    box-shadow: var(--shadow-md);
+}
+
+.ema-input--soft {
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-full);
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+.ema-input--soft:focus {
+    border-color: var(--active-theme);
+    box-shadow: 0 0 0 3px var(--active-theme-border-light);
+}
+
+.ema-input--glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: var(--active-theme-text-primary);
+}
+
+.ema-input--glass:focus {
+    border-color: var(--active-theme);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ema-input--premium {
+    background: var(--active-theme-bg-card);
+    border: 2px solid var(--active-theme-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.ema-input--premium:focus {
+    border-color: var(--active-theme);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+}
+
+/* ===================================
+   CARD COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-card {
+    display: block;
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-200) var(--ease-in-out);
+}
+
+.ema-card__header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--active-theme-border);
+}
+
+.ema-card__body {
+    padding: var(--space-6);
+}
+
+.ema-card__footer {
+    padding: var(--space-6);
+    border-top: 1px solid var(--active-theme-border);
+    background: var(--active-theme-bg-light);
+}
+
+.ema-card__title {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--active-theme-text-primary);
+}
+
+.ema-card__subtitle {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--active-theme-text-muted);
+}
+
+/* Card Variants */
+.ema-card--minimal {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.ema-card--minimal .ema-card__header,
+.ema-card--minimal .ema-card__footer {
+    border: none;
+    background: transparent;
+}
+
+.ema-card--neo {
+    background: var(--active-theme-bg-card);
+    border: 2px solid var(--active-theme-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.ema-card--neo:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.ema-card--soft {
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.ema-card--soft:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+.ema-card--glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+}
+
+.ema-card--glass .ema-card__header,
+.ema-card--glass .ema-card__footer {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.ema-card--premium {
+    background: linear-gradient(135deg, var(--active-theme-bg-card), var(--active-theme-bg-light));
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-card--premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--active-theme), var(--active-theme-light));
+}
+
+.ema-card--premium:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--glow-lg);
+}
+
+/* ===================================
+   BADGE COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    transition: all var(--duration-200) var(--ease-in-out);
+}
+
+/* Badge Variants */
+.ema-badge--minimal {
+    background: var(--active-theme-bg-light);
+    color: var(--active-theme-text-primary);
+    border: 1px solid var(--active-theme-border);
+}
+
+.ema-badge--neo {
+    background: var(--active-theme);
+    color: var(--active-theme-text-primary);
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.ema-badge--soft {
+    background: var(--active-theme-bg-light);
+    color: var(--active-theme);
+    border: none;
+    border-radius: var(--radius-md);
+}
+
+.ema-badge--glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--active-theme-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.ema-badge--premium {
+    background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+    color: var(--active-theme-text-primary);
+    border: none;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-badge--premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--duration-500) var(--ease-in-out);
+}
+
+.ema-badge--premium:hover::before {
+    left: 100%;
+}
+
+/* ===================================
+   AVATAR COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-md);
+    height: var(--size-md);
+    border-radius: var(--radius-full);
+    background: var(--active-theme-bg-light);
+    color: var(--active-theme-text-primary);
+    font-weight: var(--font-weight-semibold);
+    overflow: hidden;
+    position: relative;
+}
+
+.ema-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Avatar Variants */
+.ema-avatar--minimal {
+    background: transparent;
+    border: 2px solid var(--active-theme-border);
+}
+
+.ema-avatar--neo {
+    background: var(--active-theme);
+    color: var(--active-theme-text-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.ema-avatar--soft {
+    background: var(--active-theme-bg-light);
+    border-radius: var(--radius-lg);
+}
+
+.ema-avatar--glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.ema-avatar--premium {
+    background: linear-gradient(135deg, var(--active-theme), var(--active-theme-light));
+    color: var(--active-theme-text-primary);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+}
+
+.ema-avatar--premium::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--active-theme), var(--active-theme-light), var(--active-theme));
+    border-radius: var(--radius-full);
+    z-index: -1;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Avatar Sizes */
+.ema-avatar--sm {
+    width: var(--size-sm);
+    height: var(--size-sm);
+    font-size: var(--font-size-xs);
+}
+
+.ema-avatar--md {
+    width: var(--size-md);
+    height: var(--size-md);
+    font-size: var(--font-size-sm);
+}
+
+.ema-avatar--lg {
+    width: var(--size-lg);
+    height: var(--size-lg);
+    font-size: var(--font-size-base);
+}
+
+.ema-avatar--xl {
+    width: var(--size-xl);
+    height: var(--size-xl);
+    font-size: var(--font-size-lg);
+}
+
+/* ===================================
+   MODAL COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-index-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+}
+
+.ema-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.ema-modal__content {
+    position: relative;
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-lg);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: var(--shadow-xl);
+}
+
+.ema-modal__header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--active-theme-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ema-modal__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--active-theme-text-primary);
+}
+
+.ema-modal__close {
+    background: none;
+    border: none;
+    color: var(--active-theme-text-muted);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-200) var(--ease-in-out);
+}
+
+.ema-modal__close:hover {
+    background: var(--active-theme-bg-light);
+    color: var(--active-theme-text-primary);
+}
+
+.ema-modal__body {
+    padding: var(--space-6);
+}
+
+.ema-modal__footer {
+    padding: var(--space-6);
+    border-top: 1px solid var(--active-theme-border);
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+}
+
+/* Modal Variants */
+.ema-modal--minimal .ema-modal__content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.ema-modal--minimal .ema-modal__backdrop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: none;
+}
+
+.ema-modal--neo .ema-modal__content {
+    background: var(--active-theme-bg-card);
+    border: 2px solid var(--active-theme-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl);
+}
+
+.ema-modal--soft .ema-modal__content {
+    background: var(--active-theme-bg-card);
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.ema-modal--glass .ema-modal__content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+}
+
+.ema-modal--premium .ema-modal__content {
+    background: linear-gradient(135deg, var(--active-theme-bg-card), var(--active-theme-bg-light));
+    border: 1px solid var(--active-theme-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-modal--premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--active-theme), var(--active-theme-light));
+}
+
+/* ===================================
+   PROGRESS COMPONENT - 5 VARIANTS
+   =================================== */
+
+.ema-progress {
+    display: block;
+    width: 100%;
+    height: var(--space-2);
+    background: var(--active-theme-bg-light);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+}
+
+.ema-progress__bar {
+    height: 100%;
+    background: var(--active-theme);
+    border-radius: var(--radius-full);
+    transition: width var(--duration-300) var(--ease-in-out);
+    position: relative;
+}
+
+.ema-progress__label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--active-theme-text-primary);
+}
+
+/* Progress Variants */
+.ema-progress--minimal {
+    background: transparent;
+    border: 1px solid var(--active-theme-border);
+    height: var(--space-1);
+}
+
+.ema-progress--minimal .ema-progress__bar {
+    background: var(--active-theme);
+}
+
+.ema-progress--neo {
+    background: var(--active-theme-bg-light);
+    border: 2px solid var(--active-theme-border);
+    height: var(--space-3);
+    box-shadow: var(--shadow-sm);
+}
+
+.ema-progress--neo .ema-progress__bar {
+    background: linear-gradient(90deg, var(--active-theme), var(--active-theme-light));
+    box-shadow: var(--shadow-sm);
+}
+
+.ema-progress--soft {
+    background: var(--active-theme-bg-light);
+    border-radius: var(--radius-2xl);
+    height: var(--space-3);
+}
+
+.ema-progress--soft .ema-progress__bar {
+    background: var(--active-theme);
+    border-radius: var(--radius-2xl);
+}
+
+.ema-progress--glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.ema-progress--glass .ema-progress__bar {
+    background: var(--active-theme);
+}
+
+.ema-progress--premium {
+    background: var(--active-theme-bg-light);
+    border: 1px solid var(--active-theme-border);
+    height: var(--space-4);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-progress--premium .ema-progress__bar {
+    background: linear-gradient(90deg, var(--active-theme), var(--active-theme-light));
+    position: relative;
+    overflow: hidden;
+}
+
+.ema-progress--premium .ema-progress__bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 480px) {
+    .ema-button {
+        padding: var(--space-2) var(--space-4);
+        font-size: var(--font-size-sm);
+    }
+    
+    .ema-input {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--font-size-sm);
+    }
+    
+    .ema-card__header,
+    .ema-card__body,
+    .ema-card__footer {
+        padding: var(--space-4);
+    }
+    
+    .ema-modal__header,
+    .ema-modal__body,
+    .ema-modal__footer {
+        padding: var(--space-4);
+    }
+    
+    .ema-modal__footer {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 768px) {
+    .ema-button {
+        padding: var(--space-3) var(--space-6);
+        font-size: var(--font-size-base);
+    }
+    
+    .ema-input {
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--font-size-base);
+    }
+    
+    .ema-card__header,
+    .ema-card__body,
+    .ema-card__footer {
+        padding: var(--space-6);
+    }
+    
+    .ema-modal__header,
+    .ema-modal__body,
+    .ema-modal__footer {
+        padding: var(--space-6);
+    }
+}
+
+@media (min-width: 1024px) {
+    .ema-button {
+        padding: var(--space-4) var(--space-8);
+        font-size: var(--font-size-lg);
+    }
+    
+    .ema-input {
+        padding: var(--space-4) var(--space-5);
+        font-size: var(--font-size-lg);
+    }
+    
+    .ema-card__header,
+    .ema-card__body,
+    .ema-card__footer {
+        padding: var(--space-8);
+    }
+    
+    .ema-modal__header,
+    .ema-modal__body,
+    .ema-modal__footer {
+        padding: var(--space-8);
+    }
+}
+
+/* ===================================
+   ACCESSIBILITY
+   =================================== */
+
+.ema-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.ema-not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Focus management */
+.ema-focus-trap {
+    outline: none;
+}
+
+.ema-focus-trap:focus {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .ema-button,
+    .ema-input,
+    .ema-card,
+    .ema-badge,
+    .ema-avatar {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .ema-button,
+    .ema-card,
+    .ema-badge,
+    .ema-avatar,
+    .ema-progress__bar {
+        transition: none;
+    }
+    
+    .ema-button--premium::before,
+    .ema-badge--premium::before,
+    .ema-avatar--premium::before,
+    .ema-progress--premium .ema-progress__bar::before {
+        animation: none;
+    }
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animation utility classes */
+.ema-animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.ema-animate-slideIn {
+    animation: slideIn 0.5s ease-out;
+}
+
+.ema-animate-bounce {
+    animation: bounce 1s ease-in-out;
+}
+
+.ema-animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.ema-animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+
+.ema-hidden {
+    display: none !important;
+}
+
+.ema-visible {
+    display: block !important;
+}
+
+.ema-invisible {
+    visibility: hidden !important;
+}
+
+.ema-opacity-0 {
+    opacity: 0 !important;
+}
+
+.ema-opacity-50 {
+    opacity: 0.5 !important;
+}
+
+.ema-opacity-100 {
+    opacity: 1 !important;
+}
+
+.ema-pointer-events-none {
+    pointer-events: none !important;
+}
+
+.ema-pointer-events-auto {
+    pointer-events: auto !important;
+}
+
+.ema-select-none {
+    user-select: none !important;
+}
+
+.ema-select-text {
+    user-select: text !important;
+}
+
+.ema-select-all {
+    user-select: all !important;
+}
+
+.ema-cursor-pointer {
+    cursor: pointer !important;
+}
+
+.ema-cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+.ema-cursor-default {
+    cursor: default !important;
+}
+
+/* ===================================
+   COMPONENT SYSTEM COMPLETE
+   =================================== */
