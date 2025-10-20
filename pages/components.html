@@ -4,980 +4,1495 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components - Ema Framework</title>
-    <meta name="description" content="250+ revolutionary UI components with 8 color variants and cutting-edge design">
+    <meta name="description" content="Explore 250+ UI components with Ema Framework - buttons, forms, cards, modals, and more with 8 color variants each.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/emadocs.css">
 </head>
-<body>
+<body class="">
     <!-- Header -->
-    <header class="ema-header" id="header">
-        <div class="nav-container">
-            <a href="../" class="ema-logo">
-                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
-                <span>Ema Framework</span>
-            </a>
-            
-            <button class="hamburger-menu" aria-label="Toggle navigation">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            
-            <nav>
-                <ul class="ema-nav-links">
-                    <li class="nav-dropdown">
-                        <a href="#" class="ema-nav-link dropdown-trigger">
-                            <i class="fas fa-th-large"></i> 
-                            <span>Framework</span>
-                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+    <header class="header" id="header" role="banner">
+        <!-- Random Header Blobs -->
+        <div class="header-blobs" aria-hidden="true">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+            <div class="blob blob-5"></div>
+            <div class="blob blob-6"></div>
+            <div class="blob blob-7"></div>
+            <div class="blob blob-8"></div>
+        </div>
+        
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <a href="../index.html" class="logo" aria-label="Ema Framework - Home">
+                    <div class="logo-icon" aria-hidden="true">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <span>Ema Framework</span>
+                </a>
+                
+                <ul class="nav-links" role="navigation">
+                    <li role="none">
+                        <a href="../index.html" class="nav-link" role="menuitem">Home</a>
+                    </li>
+                    <li role="none" class="nav-dropdown">
+                        <a href="#" class="nav-link dropdown-trigger" role="menuitem" aria-expanded="false" aria-haspopup="true">
+                            Framework
+                            <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
                         </a>
-                    </li>
-                    <li>
-                        <button class="search-trigger" aria-label="Search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <a href="docs.html" class="ema-nav-link">
-                            <i class="fas fa-book"></i>
-                            <span>Docs</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="blog.html" class="ema-nav-link">
-                            <i class="fas fa-blog"></i>
-                            <span>Blog</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="getting-started.html" class="ema-nav-link">
-                            <i class="fas fa-rocket"></i>
-                            <span>Get Started</span>
-                        </a>
-                    </li>
-                        <div class="mega-dropdown">
-                            <div class="dropdown-content">
+                        <div class="mega-dropdown" role="group">
+                            <div class="mega-dropdown-content">
                                 <div class="dropdown-section">
-                                    <h3>Getting Started</h3>
-                                    <a href="getting-started.html" class="dropdown-item">
-                                        <i class="fas fa-rocket"></i>
-                                        <div>
-                                            <span class="item-title">Quick Start</span>
-                                            <span class="item-desc">Begin your journey</span>
+                                    <h3 class="dropdown-section-title">Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-rocket"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Quick Start</div>
+                                            <div class="dropdown-item-desc">Begin your journey with Ema</div>
                                         </div>
                                     </a>
-                                    <a href="api.html" class="dropdown-item">
-                                        <i class="fas fa-cogs"></i>
-                                        <div>
-                                            <span class="item-title">API Reference</span>
-                                            <span class="item-desc">Complete documentation</span>
+                                    <a href="docs.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                <i class="fas fa-book"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Documentation</div>
+                                            <div class="dropdown-item-desc">Complete guides & API</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Components</h3>
-                                    <a href="components.html" class="dropdown-item active">
-                                        <i class="fas fa-puzzle-piece"></i>
-                                        <div>
-                                            <span class="item-title">UI Components</span>
-                                            <span class="item-desc">250+ components</span>
+                                    <h3 class="dropdown-section-title">Components</h3>
+                                    <a href="components.html" class="dropdown-item active" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-puzzle-piece"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">UI Components</div>
+                                            <div class="dropdown-item-desc">250+ premium components</div>
                                         </div>
                                     </a>
-                                    <a href="showcase.html" class="dropdown-item">
-                                        <i class="fas fa-star"></i>
-                                        <div>
-                                            <span class="item-title">Showcase</span>
-                                            <span class="item-desc">Live examples</span>
+                                    <a href="showcase.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-eye"></i>
                                         </div>
-                                    </a>
-                                </div>
-                                
-                                <div class="dropdown-section">
-                                    <h3>Tools</h3>
-                                    <a href="playground.html" class="dropdown-item">
-                                        <i class="fas fa-play"></i>
-                                        <div>
-                                            <span class="item-title">Playground</span>
-                                            <span class="item-desc">Interactive builder</span>
-                                        </div>
-                                    </a>
-                                    <a href="dashboard.html" class="dropdown-item">
-                                        <i class="fas fa-chart-line"></i>
-                                        <div>
-                                            <span class="item-title">Dashboard</span>
-                                            <span class="item-desc">Analytics & stats</span>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Showcase</div>
+                                            <div class="dropdown-item-desc">Live examples & demos</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Resources</h3>
-                                    <a href="examples.html" class="dropdown-item">
+                                    <h3 class="dropdown-section-title">Resources</h3>
+                                    <a href="examples.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
                     <i class="fas fa-code"></i>
-                                        <div>
-                                            <span class="item-title">Examples</span>
-                                            <span class="item-desc">Real projects</span>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Examples</div>
+                                            <div class="dropdown-item-desc">Real-world projects</div>
                                         </div>
                                     </a>
-                                    <a href="revolution.html" class="dropdown-item">
-                                        <i class="fas fa-rocket"></i>
-                                        <div>
-                                            <span class="item-title">Revolution</span>
-                                            <span class="item-desc">Next-gen features</span>
+                                    <a href="blog.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-blog"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Blog</div>
+                                            <div class="dropdown-item-desc">News & tutorials</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3 class="dropdown-section-title">Community</h3>
+                                    <a href="https://github.com/aydocs/emadocs" class="dropdown-item" role="menuitem" target="_blank" rel="noopener noreferrer">
+                                        <div class="dropdown-item-icon">
+                    <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">GitHub</div>
+                                            <div class="dropdown-item-desc">Source code & issues</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fab fa-discord"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Discord</div>
+                                            <div class="dropdown-item-desc">Join our community</div>
                                         </div>
                                     </a>
                                 </div>
                             </div>
                             
-                            <div class="dropdown-footer">
-                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                                    <span>View on GitHub</span>
+                            <div class="mega-dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="dropdown-footer-link secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    View on GitHub
                                 </a>
-                                <a href="getting-started.html" class="cta-link">
-                                    <i class="fas fa-rocket"></i>
-                                    <span>Get Started</span>
+                                <a href="getting-started.html" class="dropdown-footer-link primary">
+                                    <i class="fas fa-rocket" aria-hidden="true"></i>
+                                    Get Started Free
                 </a>
             </div>
         </div>
                     </li>
+                    <li role="none">
+                        <a href="../index.html#features" class="nav-link" role="menuitem">Features</a>
+                    </li>
+                    <li role="none">
+                        <a href="../index.html#components" class="nav-link" role="menuitem">Components</a>
+                    </li>
+                    <li role="none">
+                        <a href="getting-started.html" class="btn btn-primary" role="menuitem">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            Get Started
+                        </a>
+                    </li>
                 </ul>
+                
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
     </nav>
         </div>
     </header>
-    
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li>
-                <a href="#" class="mobile-framework-trigger">
-                    <i class="fas fa-th-large"></i>
-                    <span>Framework</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="mobile-search-trigger">
-                    <i class="fas fa-search"></i>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="docs.html">
-                    <i class="fas fa-book"></i>
-                    <span>Docs</span>
-                </a>
-            </li>
-            <li>
-                <a href="blog.html">
-                    <i class="fas fa-blog"></i>
-                    <span>Blog</span>
-                </a>
-            </li>
-            <li>
-                <a href="getting-started.html">
-                    <i class="fas fa-rocket"></i>
-                    <span>Get Started</span>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
-            <h3>Getting Started</h3>
-            <a href="getting-started.html" class="mobile-dropdown-item">
-                <i class="fas fa-rocket"></i>
-                <span>Quick Start</span>
-            </a>
-            <a href="api.html" class="mobile-dropdown-item">
-                <i class="fas fa-cogs"></i>
-                <span>API Reference</span>
-            </a>
-            
-            <h3>Components</h3>
-            <a href="components.html" class="mobile-dropdown-item">
-                <i class="fas fa-puzzle-piece"></i>
-                <span>UI Components</span>
-            </a>
-            <a href="showcase.html" class="mobile-dropdown-item">
-                <i class="fas fa-star"></i>
-                <span>Showcase</span>
-            </a>
-            
-            <h3>Tools</h3>
-            <a href="playground.html" class="mobile-dropdown-item">
-                <i class="fas fa-play"></i>
-                <span>Playground</span>
-            </a>
-            <a href="dashboard.html" class="mobile-dropdown-item">
-                <i class="fas fa-chart-line"></i>
-                <span>Dashboard</span>
-            </a>
-            
-            <h3>Resources</h3>
-            <a href="examples.html" class="mobile-dropdown-item">
-                    <i class="fas fa-code"></i>
-                <span>Examples</span>
-            </a>
-            <a href="revolution.html" class="mobile-dropdown-item">
-                <i class="fas fa-rocket"></i>
-                <span>Revolution</span>
-                </a>
-            </div>
-        </div>
 
-    <!-- Hero Section -->
-    <section class="ema-hero">
+    <!-- Main Content -->
+    <main class="main components-main">
         <div class="container">
-            <h1 class="hero-title fade-in">
-                Revolutionary 
-                <span class="gradient-text">UI Components</span>
-            </h1>
-            <p class="hero-subtitle fade-in stagger-1">
-                Discover 250+ cutting-edge components with 8 color variants, 
-                built for modern web applications with unmatched performance.
-            </p>
-        </div>
-    </section>
-
-    <!-- Components Section -->
-    <section class="components-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Component Library</h2>
-                <p class="section-subtitle">
-                    Every component is designed with accessibility, performance, and beauty in mind
-                </p>
-            </div>
-            
-            <div class="components-grid">
-                <!-- Buttons -->
-                <div class="component-card fade-in stagger-1" onclick="showComponentPreview('buttons')">
-                    <div class="component-icon"><i class="fas fa-mouse-pointer"></i></div>
-                    <h3 class="component-title">Buttons</h3>
-                    <p class="component-description">
-                        Beautiful, interactive buttons with hover effects, loading states, 
-                        and multiple variants for every use case.
+            <!-- Hero Section -->
+            <section class="components-hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="hero-icon">🧩</span>
+                        1200+ Premium Components
+                    </h1>
+                    <p class="hero-description">
+                        Explore our comprehensive library of 1200+ premium UI components. Each component comes with 
+                        8 color variants, multiple sizes, and extensive customization options. Built for modern web applications.
                     </p>
-                    <div class="component-stats">
-                        <span class="stat"><i class="fas fa-palette"></i> 8 Variants</span>
-                        <span class="stat"><i class="fas fa-magic"></i> Animated</span>
-                        <span class="stat"><i class="fas fa-universal-access"></i> Accessible</span>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1200+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Color Variants</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">25+</span>
+                            <span class="stat-label">Categories</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Responsive</span>
+                        </div>
                     </div>
-                    <div class="component-actions">
-                        <button class="btn btn-primary"><i class="fas fa-eye"></i> Preview</button>
-                        <button class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Code</button>
-            </div>
+                </div>
+            </section>
+
+            <!-- Component Categories -->
+            <section class="component-categories-section">
+                <div class="section-header">
+                    <h2 class="section-title">Component Categories</h2>
+                    <p class="section-description">
+                        Browse components by category. Each category contains multiple variants and examples.
+                    </p>
+                </div>
+
+                <div class="categories-grid">
+                    <!-- Buttons & Actions -->
+                    <div class="category-card" data-category="buttons">
+                        <div class="category-icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <h3>Buttons & Actions</h3>
+                        <p>25+ button styles with 8 color variants each</p>
+                        <div class="category-stats">
+                            <span class="stat">25 Components</span>
+                            <span class="stat">8 Colors</span>
+                            <span class="stat">3 Sizes</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('buttons')">
+                            Explore Buttons
+                        </button>
         </div>
         
-                <!-- Cards -->
-                <div class="component-card fade-in stagger-2" onclick="showComponentPreview('cards')">
-                    <div class="component-icon"><i class="fas fa-id-card"></i></div>
-                    <h3 class="component-title">Cards</h3>
-                    <p class="component-description">
-                        Modern card components with glassmorphism effects, 
-                        hover animations, and flexible layouts.
-                    </p>
-                    <div class="component-stats">
-                        <span class="stat"><i class="fas fa-layer-group"></i> 12 Types</span>
-                        <span class="stat"><i class="fas fa-sparkles"></i> Glassmorphism</span>
-                        <span class="stat"><i class="fas fa-mobile-alt"></i> Responsive</span>
-                    </div>
-                    <div class="component-actions">
-                        <button class="btn btn-primary"><i class="fas fa-eye"></i> Preview</button>
-                        <button class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Code</button>
+                    <!-- Forms & Inputs -->
+                    <div class="category-card" data-category="forms">
+                        <div class="category-icon">
+                    <i class="fas fa-edit"></i>
                 </div>
+                        <h3>Forms & Inputs</h3>
+                        <p>15+ form components with validation and styling</p>
+                        <div class="category-stats">
+                            <span class="stat">15 Components</span>
+                            <span class="stat">Smart Validation</span>
+                            <span class="stat">Auto Complete</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('forms')">
+                            Explore Forms
+                        </button>
             </div>
             
-                <!-- Forms -->
-                <div class="component-card fade-in stagger-3" onclick="showComponentPreview('forms')">
-                    <div class="component-icon"><i class="fas fa-edit"></i></div>
-                    <h3 class="component-title">Form Elements</h3>
-                    <p class="component-description">
-                        Advanced form components with validation, animations, 
-                        and real-time feedback for better UX.
-                    </p>
-                    <div class="component-stats">
-                        <span class="stat"><i class="fas fa-check-circle"></i> Validation</span>
-                        <span class="stat"><i class="fas fa-bolt"></i> Real-time</span>
-                        <span class="stat"><i class="fas fa-shield-alt"></i> Secure</span>
-                    </div>
-                    <div class="component-actions">
-                        <button class="btn btn-primary"><i class="fas fa-eye"></i> Preview</button>
-                        <button class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Code</button>
+                    <!-- Navigation -->
+                    <div class="category-card" data-category="navigation">
+                        <div class="category-icon">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                        <h3>Navigation</h3>
+                        <p>12+ navigation components including mega dropdowns</p>
+                        <div class="category-stats">
+                            <span class="stat">12 Components</span>
+                            <span class="stat">Mega Dropdowns</span>
+                            <span class="stat">Breadcrumbs</span>
                 </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('navigation')">
+                            Explore Navigation
+                        </button>
             </div>
             
-                <!-- Navigation -->
-                <div class="component-card fade-in stagger-4" onclick="showComponentPreview('navigation')">
-                    <div class="component-icon"><i class="fas fa-bars"></i></div>
-                    <h3 class="component-title">Navigation</h3>
-                    <p class="component-description">
-                        Responsive navigation components with smooth animations, 
-                        mobile-first design, and accessibility features.
-                    </p>
-                    <div class="component-stats">
-                        <span class="stat"><i class="fas fa-mobile-alt"></i> Mobile First</span>
-                        <span class="stat"><i class="fas fa-smooth"></i> Smooth</span>
-                        <span class="stat"><i class="fas fa-keyboard"></i> Keyboard Nav</span>
-                    </div>
-                    <div class="component-actions">
-                        <button class="btn btn-primary"><i class="fas fa-eye"></i> Preview</button>
-                        <button class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Code</button>
+                    <!-- Cards & Panels -->
+                    <div class="category-card" data-category="cards">
+                        <div class="category-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3>Cards & Panels</h3>
+                        <p>20+ card layouts with interactive features</p>
+                        <div class="category-stats">
+                            <span class="stat">20 Components</span>
+                            <span class="stat">Interactive</span>
+                            <span class="stat">Responsive</span>
                 </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('cards')">
+                            Explore Cards
+                        </button>
             </div>
             
-                <!-- Modals -->
-                <div class="component-card fade-in stagger-5" onclick="showComponentPreview('modals')">
-                    <div class="component-icon"><i class="fas fa-window-maximize"></i></div>
-                    <h3 class="component-title">Modals & Overlays</h3>
-                    <p class="component-description">
-                        Beautiful modal dialogs with backdrop blur, 
-                        smooth animations, and focus management.
-                    </p>
-                    <div class="component-stats">
-                        <span class="stat"><i class="fas fa-blur"></i> Backdrop Blur</span>
-                        <span class="stat"><i class="fas fa-focus"></i> Focus Trap</span>
-                        <span class="stat"><i class="fas fa-escape"></i> ESC Close</span>
-                    </div>
-                    <div class="component-actions">
-                        <button class="btn btn-primary"><i class="fas fa-eye"></i> Preview</button>
-                        <button class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Code</button>
+                    <!-- Modals & Overlays -->
+                    <div class="category-card" data-category="modals">
+                        <div class="category-icon">
+                            <i class="fas fa-window-maximize"></i>
+                        </div>
+                        <h3>Modals & Overlays</h3>
+                        <p>10+ modal types with advanced features</p>
+                        <div class="category-stats">
+                            <span class="stat">10 Components</span>
+                            <span class="stat">Advanced</span>
+                            <span class="stat">Accessible</span>
                 </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('modals')">
+                            Explore Modals
+                        </button>
             </div>
             
             <!-- Data Display -->
-                <div class="component-card fade-in stagger-6" onclick="showComponentPreview('data')">
-                    <div class="component-icon"><i class="fas fa-table"></i></div>
-                    <h3 class="component-title">Data Display</h3>
-                    <p class="component-description">
-                        Advanced tables, lists, and data visualization components 
-                        with sorting, filtering, and pagination.
+                    <div class="category-card" data-category="data-display">
+                        <div class="category-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                        <h3>Data Display</h3>
+                        <p>25+ data visualization and table components</p>
+                        <div class="category-stats">
+                            <span class="stat">25 Components</span>
+                            <span class="stat">Sortable</span>
+                            <span class="stat">Filterable</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('data-display')">
+                            Explore Data Display
+                        </button>
+                    </div>
+
+                    <!-- Feedback & Notifications -->
+                    <div class="category-card" data-category="feedback">
+                        <div class="category-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Feedback</h3>
+                        <p>8+ feedback and notification components</p>
+                        <div class="category-stats">
+                            <span class="stat">8 Components</span>
+                            <span class="stat">Toast</span>
+                            <span class="stat">Alerts</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('feedback')">
+                            Explore Feedback
+                        </button>
+                    </div>
+
+                    <!-- Layout & Grid -->
+                    <div class="category-card" data-category="layout">
+                        <div class="category-icon">
+                            <i class="fas fa-th"></i>
+                        </div>
+                        <h3>Layout</h3>
+                        <p>15+ layout and grid systems</p>
+                        <div class="category-stats">
+                            <span class="stat">15 Components</span>
+                            <span class="stat">Grid System</span>
+                            <span class="stat">Flexbox</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('layout')">
+                            Explore Layout
+                        </button>
+            </div>
+            
+                    <!-- Media & Icons -->
+                    <div class="category-card" data-category="media">
+                        <div class="category-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                        <h3>Media & Icons</h3>
+                        <p>20+ media and icon components</p>
+                        <div class="category-stats">
+                            <span class="stat">20 Components</span>
+                            <span class="stat">Icons</span>
+                            <span class="stat">Images</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('media')">
+                            Explore Media
+                        </button>
+                    </div>
+
+                    <!-- Advanced Components -->
+                    <div class="category-card" data-category="advanced">
+                        <div class="category-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Advanced</h3>
+                        <p>30+ advanced interactive components</p>
+                        <div class="category-stats">
+                            <span class="stat">30 Components</span>
+                            <span class="stat">Interactive</span>
+                            <span class="stat">3D Effects</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('advanced')">
+                            Explore Advanced
+                        </button>
+                    </div>
+
+                    <!-- Business Components -->
+                    <div class="category-card" data-category="business">
+                        <div class="category-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Business</h3>
+                        <p>45+ business and analytics components</p>
+                        <div class="category-stats">
+                            <span class="stat">45 Components</span>
+                            <span class="stat">Charts</span>
+                            <span class="stat">Analytics</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('business')">
+                            Explore Business
+                        </button>
+                    </div>
+
+                    <!-- E-commerce -->
+                    <div class="category-card" data-category="ecommerce">
+                        <div class="category-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>E-commerce</h3>
+                        <p>50+ shopping and product components</p>
+                        <div class="category-stats">
+                            <span class="stat">50 Components</span>
+                            <span class="stat">Products</span>
+                            <span class="stat">Cart</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('ecommerce')">
+                            Explore E-commerce
+                        </button>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="category-card" data-category="social">
+                        <div class="category-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3>Social Media</h3>
+                        <p>40+ social networking components</p>
+                        <div class="category-stats">
+                            <span class="stat">40 Components</span>
+                            <span class="stat">Posts</span>
+                            <span class="stat">Feeds</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('social')">
+                            Explore Social
+                        </button>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="category-card" data-category="education">
+                        <div class="category-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Education</h3>
+                        <p>45+ learning and course components</p>
+                        <div class="category-stats">
+                            <span class="stat">45 Components</span>
+                            <span class="stat">Courses</span>
+                            <span class="stat">Quizzes</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('education')">
+                            Explore Education
+                        </button>
+                    </div>
+
+                    <!-- Healthcare -->
+                    <div class="category-card" data-category="healthcare">
+                        <div class="category-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Healthcare</h3>
+                        <p>40+ medical and health components</p>
+                        <div class="category-stats">
+                            <span class="stat">40 Components</span>
+                            <span class="stat">Medical</span>
+                            <span class="stat">Appointments</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('healthcare')">
+                            Explore Healthcare
+                        </button>
+                    </div>
+
+                    <!-- Finance -->
+                    <div class="category-card" data-category="finance">
+                        <div class="category-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>Finance</h3>
+                        <p>50+ banking and payment components</p>
+                        <div class="category-stats">
+                            <span class="stat">50 Components</span>
+                            <span class="stat">Banking</span>
+                            <span class="stat">Payments</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('finance')">
+                            Explore Finance
+                        </button>
+                    </div>
+
+                    <!-- Travel -->
+                    <div class="category-card" data-category="travel">
+                        <div class="category-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h3>Travel & Booking</h3>
+                        <p>35+ travel and hotel components</p>
+                        <div class="category-stats">
+                            <span class="stat">35 Components</span>
+                            <span class="stat">Bookings</span>
+                            <span class="stat">Hotels</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('travel')">
+                            Explore Travel
+                        </button>
+                    </div>
+
+                    <!-- Food & Restaurant -->
+                    <div class="category-card" data-category="food">
+                        <div class="category-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Food & Restaurant</h3>
+                        <p>30+ food ordering components</p>
+                        <div class="category-stats">
+                            <span class="stat">30 Components</span>
+                            <span class="stat">Menus</span>
+                            <span class="stat">Orders</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('food')">
+                            Explore Food
+                        </button>
+                    </div>
+
+                    <!-- Real Estate -->
+                    <div class="category-card" data-category="realestate">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Real Estate</h3>
+                        <p>35+ property listing components</p>
+                        <div class="category-stats">
+                            <span class="stat">35 Components</span>
+                            <span class="stat">Properties</span>
+                            <span class="stat">Listings</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('realestate')">
+                            Explore Real Estate
+                        </button>
+                    </div>
+
+                    <!-- Entertainment -->
+                    <div class="category-card" data-category="entertainment">
+                        <div class="category-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3>Entertainment</h3>
+                        <p>40+ media and streaming components</p>
+                        <div class="category-stats">
+                            <span class="stat">40 Components</span>
+                            <span class="stat">Video</span>
+                            <span class="stat">Streaming</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('entertainment')">
+                            Explore Entertainment
+                        </button>
+                    </div>
+
+                    <!-- Gaming -->
+                    <div class="category-card" data-category="gaming">
+                        <div class="category-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Gaming</h3>
+                        <p>45+ game UI components</p>
+                        <div class="category-stats">
+                            <span class="stat">45 Components</span>
+                            <span class="stat">Leaderboards</span>
+                            <span class="stat">Stats</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('gaming')">
+                            Explore Gaming
+                        </button>
+                    </div>
+
+                    <!-- Sports -->
+                    <div class="category-card" data-category="sports">
+                        <div class="category-icon">
+                            <i class="fas fa-football-ball"></i>
+                        </div>
+                        <h3>Sports</h3>
+                        <p>30+ sports and fitness components</p>
+                        <div class="category-stats">
+                            <span class="stat">30 Components</span>
+                            <span class="stat">Scores</span>
+                            <span class="stat">Teams</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('sports')">
+                            Explore Sports
+                        </button>
+                    </div>
+
+                    <!-- Music -->
+                    <div class="category-card" data-category="music">
+                        <div class="category-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Music & Audio</h3>
+                        <p>35+ music player components</p>
+                        <div class="category-stats">
+                            <span class="stat">35 Components</span>
+                            <span class="stat">Players</span>
+                            <span class="stat">Playlists</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('music')">
+                            Explore Music
+                        </button>
+                    </div>
+
+                    <!-- Photography -->
+                    <div class="category-card" data-category="photography">
+                        <div class="category-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Photography</h3>
+                        <p>40+ photo gallery components</p>
+                        <div class="category-stats">
+                            <span class="stat">40 Components</span>
+                            <span class="stat">Galleries</span>
+                            <span class="stat">Portfolios</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('photography')">
+                            Explore Photography
+                        </button>
+                    </div>
+
+                    <!-- Weather -->
+                    <div class="category-card" data-category="weather">
+                        <div class="category-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <h3>Weather</h3>
+                        <p>25+ weather forecast components</p>
+                        <div class="category-stats">
+                            <span class="stat">25 Components</span>
+                            <span class="stat">Forecasts</span>
+                            <span class="stat">Widgets</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('weather')">
+                            Explore Weather
+                        </button>
+                    </div>
+
+                    <!-- News -->
+                    <div class="category-card" data-category="news">
+                        <div class="category-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3>News & Blog</h3>
+                        <p>35+ news article components</p>
+                        <div class="category-stats">
+                            <span class="stat">35 Components</span>
+                            <span class="stat">Articles</span>
+                            <span class="stat">Posts</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('news')">
+                            Explore News
+                        </button>
+                    </div>
+
+                    <!-- Productivity -->
+                    <div class="category-card" data-category="productivity">
+                        <div class="category-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>Productivity</h3>
+                        <p>50+ task management components</p>
+                        <div class="category-stats">
+                            <span class="stat">50 Components</span>
+                            <span class="stat">Tasks</span>
+                            <span class="stat">Projects</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('productivity')">
+                            Explore Productivity
+                        </button>
+                    </div>
+
+                    <!-- Communication -->
+                    <div class="category-card" data-category="communication">
+                        <div class="category-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Communication</h3>
+                        <p>40+ chat and messaging components</p>
+                        <div class="category-stats">
+                            <span class="stat">40 Components</span>
+                            <span class="stat">Chat</span>
+                            <span class="stat">Messages</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('communication')">
+                            Explore Communication
+                        </button>
+                    </div>
+
+                    <!-- Calendar & Events -->
+                    <div class="category-card" data-category="events">
+                        <div class="category-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Calendar & Events</h3>
+                        <p>35+ event management components</p>
+                        <div class="category-stats">
+                            <span class="stat">35 Components</span>
+                            <span class="stat">Calendars</span>
+                            <span class="stat">Events</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('events')">
+                            Explore Events
+                        </button>
+                    </div>
+
+                    <!-- Security -->
+                    <div class="category-card" data-category="security">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Security</h3>
+                        <p>30+ authentication components</p>
+                        <div class="category-stats">
+                            <span class="stat">30 Components</span>
+                            <span class="stat">Auth</span>
+                            <span class="stat">2FA</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('security')">
+                            Explore Security
+                        </button>
+                    </div>
+
+                    <!-- Maps & Location -->
+                    <div class="category-card" data-category="maps">
+                        <div class="category-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Maps & Location</h3>
+                        <p>35+ map and GPS components</p>
+                        <div class="category-stats">
+                            <span class="stat">35 Components</span>
+                            <span class="stat">Maps</span>
+                            <span class="stat">GPS</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('maps')">
+                            Explore Maps
+                        </button>
+                    </div>
+
+                    <!-- IoT & Smart Home -->
+                    <div class="category-card" data-category="iot">
+                        <div class="category-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>IoT & Smart Home</h3>
+                        <p>30+ smart device components</p>
+                        <div class="category-stats">
+                            <span class="stat">30 Components</span>
+                            <span class="stat">Devices</span>
+                            <span class="stat">Controls</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('iot')">
+                            Explore IoT
+                        </button>
+                    </div>
+
+                    <!-- Analytics & Reporting -->
+                    <div class="category-card" data-category="analytics">
+                        <div class="category-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Analytics</h3>
+                        <p>45+ data visualization components</p>
+                        <div class="category-stats">
+                            <span class="stat">45 Components</span>
+                            <span class="stat">Charts</span>
+                            <span class="stat">Reports</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('analytics')">
+                            Explore Analytics
+                        </button>
+                    </div>
+
+                    <!-- AI & Machine Learning -->
+                    <div class="category-card" data-category="ai">
+                        <div class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI & ML</h3>
+                        <p>40+ AI interface components</p>
+                        <div class="category-stats">
+                            <span class="stat">40 Components</span>
+                            <span class="stat">Chatbots</span>
+                            <span class="stat">Predictions</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('ai')">
+                            Explore AI
+                        </button>
+                    </div>
+
+                    <!-- AR/VR -->
+                    <div class="category-card" data-category="arvr">
+                        <div class="category-icon">
+                            <i class="fas fa-vr-cardboard"></i>
+                        </div>
+                        <h3>AR/VR</h3>
+                        <p>30+ immersive experience components</p>
+                        <div class="category-stats">
+                            <span class="stat">30 Components</span>
+                            <span class="stat">3D</span>
+                            <span class="stat">Immersive</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="showComponentCategory('arvr')">
+                            Explore AR/VR
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navbar Variants Section -->
+            <section class="navbar-variants-section" id="navbar-variants">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-bars"></i>
+                        Navigation Components
+                    </h2>
+                    <p class="section-description">
+                        Explore 5 different navbar designs with multiple color variants and interactive features.
                     </p>
-                    <div class="component-stats">
-                        <span class="stat"><i class="fas fa-sort"></i> Sortable</span>
-                        <span class="stat"><i class="fas fa-filter"></i> Filterable</span>
-                        <span class="stat"><i class="fas fa-pagelines"></i> Paginated</span>
+                </div>
+
+                <!-- Navbar Variant 1: Classic -->
+                <div class="component-showcase-card">
+                    <div class="showcase-header">
+                        <h3>Classic Navbar</h3>
+                        <p>Traditional navigation with centered logo and menu items</p>
+                        <div class="showcase-actions">
+                            <button class="showcase-btn active" data-action="preview">
+                                <i class="fas fa-eye"></i>
+                                Preview
+                            </button>
+                            <button class="showcase-btn" data-action="code">
+                                <i class="fas fa-code"></i>
+                                Code
+                            </button>
+                            <button class="showcase-btn" data-action="copy">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
                     </div>
-                    <div class="component-actions">
-                        <button class="btn btn-primary"><i class="fas fa-eye"></i> Preview</button>
-                        <button class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Code</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Color Variants Section -->
-    <section class="color-variants">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">8-Color System</h2>
-                <p class="section-subtitle">
-                    Every component comes with 8 beautiful color variants for any design system
-                </p>
-            </div>
-            
-            <div class="variants-grid">
-                <div class="variant-card fade-in stagger-1" style="--variant-color: #6c757d;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Gray</h3>
-                    <p class="variant-description">Neutral / Passive / Disabled</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-2" style="--variant-color: #6f42c1;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Purple</h3>
-                    <p class="variant-description">Special highlights / Premium / Important</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-3" style="--variant-color: #28a745;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Green</h3>
-                    <p class="variant-description">Success / Confirmation / Positive</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-4" style="--variant-color: #ffc107;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Yellow</h3>
-                    <p class="variant-description">Warning / Attention required</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-5" style="--variant-color: #007bff;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Blue</h3>
-                    <p class="variant-description">Info / Neutral messages / System notes</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-6" style="--variant-color: #dc3545;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Red</h3>
-                    <p class="variant-description">Error / Critical / Attention</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-1" style="--variant-color: #ffffff;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">White</h3>
-                    <p class="variant-description">Background / Clean / Contrast</p>
-                </div>
-                
-                <div class="variant-card fade-in stagger-2" style="--variant-color: #fd7e14;">
-                    <div class="variant-color"></div>
-                    <h3 class="variant-name">Orange</h3>
-                    <p class="variant-description">Processing / Pending / Energy</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Live Preview Section -->
-    <section class="live-preview-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Live Component Preview</h2>
-                <p class="section-subtitle">
-                    Click on any component to see it in action and copy the code
-                </p>
-            </div>
-            
-            <div class="preview-container">
-                <div class="preview-demo fade-in stagger-1">
-                    <h3 style="margin-bottom: 1rem; color: #ffffff;">Button Component Demo</h3>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-                        <button class="btn btn-primary"><i class="fas fa-rocket"></i> Primary</button>
-                        <button class="btn btn-secondary"><i class="fas fa-star"></i> Secondary</button>
-                        <button class="btn" style="background: #28a745; color: white;"><i class="fas fa-check"></i> Success</button>
-                        <button class="btn" style="background: #dc3545; color: white;"><i class="fas fa-times"></i> Danger</button>
-            </div>
-        </div>
-        
-                <div class="preview-code fade-in stagger-2">
-                    <div class="code-header">
-                        <h4 class="code-title">HTML Code</h4>
-                        <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
-                    </div>
-                    <div class="code-content">&lt;button class="btn btn-primary"&gt;
-  &lt;i class="fas fa-rocket"&gt;&lt;/i&gt; Primary
-&lt;/button&gt;
-
-&lt;button class="btn btn-secondary"&gt;
-  &lt;i class="fas fa-star"&gt;&lt;/i&gt; Secondary
-&lt;/button&gt;
-
-&lt;button class="btn" style="background: #28a745;"&gt;
-  &lt;i class="fas fa-check"&gt;&lt;/i&gt; Success
-&lt;/button&gt;</div>
-                </div>
-            </div>
-                </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section class="statistics">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item fade-in stagger-1">
-                    <div class="stat-icon"><i class="fas fa-puzzle-piece"></i></div>
-                    <div class="stat-number">250+</div>
-                    <div class="stat-label">UI Components</div>
-                    <div class="stat-description">Beautiful, customizable components</div>
-            </div>
-            
-                <div class="stat-item fade-in stagger-2">
-                    <div class="stat-icon"><i class="fas fa-palette"></i></div>
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Color Variants</div>
-                    <div class="stat-description">For every component</div>
-                </div>
-                
-                <div class="stat-item fade-in stagger-3">
-                    <div class="stat-icon"><i class="fas fa-universal-access"></i></div>
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Accessible</div>
-                    <div class="stat-description">WCAG 2.1 AA compliant</div>
-            </div>
-            
-                <div class="stat-item fade-in stagger-4">
-                    <div class="stat-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Responsive</div>
-                    <div class="stat-description">Mobile-first design</div>
-                </div>
-            
-                <div class="stat-item fade-in stagger-5">
-                    <div class="stat-icon"><i class="fas fa-bolt"></i></div>
-                    <div class="stat-number">&lt;50KB</div>
-                    <div class="stat-label">Bundle Size</div>
-                    <div class="stat-description">Lightweight and fast</div>
-            </div>
-            
-                <div class="stat-item fade-in stagger-6">
-                    <div class="stat-icon"><i class="fas fa-star"></i></div>
-                    <div class="stat-number">4.9</div>
-                    <div class="stat-label">Rating</div>
-                    <div class="stat-description">Developer satisfaction</div>
-                </div>
-            </div>
-                </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="ema-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Ema Framework</h4>
-                    <p>
-                        The future of web development is here. Build amazing applications 
-                        with the most advanced JavaScript framework ever created.
-                    </p>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="getting-started.html">Getting Started</a></li>
-                        <li><a href="components.html">Components</a></li>
-                        <li><a href="examples.html">Examples</a></li>
-                        <li><a href="api.html">API Reference</a></li>
-                </ul>
-            </div>
-            
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="playground.html">Playground</a></li>
-                        <li><a href="showcase.html">Showcase</a></li>
-                </ul>
-            </div>
-            
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="revolution.html">Revolution</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Ema Framework. All rights reserved. Built with <i class="fas fa-heart" style="color: #dc3545;"></i> for developers.</p>
-        </div>
-    </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="../js/3d-engine.js"></script>
-    <script src="../js/ema-alerts.js"></script>
-    <script src="../js/ema-3d-effects.js"></script>
-    <script src="../js/ema-live-preview.js"></script>
-    <script src="../js/ema-search.js"></script>
-    <script src="../js/ema-mobile-nav.js"></script>
-
-    <script>
-        // Initialize animations and effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize search trigger
-            const searchTrigger = document.querySelector('.search-trigger');
-            if (searchTrigger) {
-                searchTrigger.addEventListener('click', () => {
-                    if (window.emaSearch) {
-                        window.emaSearch.openSearch();
-                    }
-                });
-            }
-            
-            // Initialize 3D engine
-            if (typeof ema3DEngine !== 'undefined') {
-                console.log('3D Engine initialized');
-            }
-
-            // Initialize 3D effects
-            if (typeof ema3DEffects !== 'undefined') {
-                ema3DEffects.init();
-            }
-
-            // Initialize live preview
-            if (typeof emaLivePreview !== 'undefined') {
-                console.log('Live preview system ready');
-            }
-
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                const header = document.getElementById('header');
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Component showcase interactions
-            document.querySelectorAll('.component-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    if (typeof ema3DEffects !== 'undefined') {
-                        const rect = card.getBoundingClientRect();
-                        ema3DEffects.createExplosion(
-                            rect.left + rect.width / 2,
-                            rect.top + rect.height / 2,
-                            [0.4, 0.2, 0.7],
-                            10
-                        );
-                    }
-                });
-            });
-        });
-
-        // Enhanced component preview function
-        function showComponentPreview(type) {
-            // Create modal overlay
-            const modal = document.createElement('div');
-            modal.className = 'component-modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>${type.charAt(0).toUpperCase() + type.slice(1)} Component</h3>
-                        <button class="close-modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="component-demo">
-                            <div class="demo-preview">
-                                <!-- Component preview will be inserted here -->
+                    
+                    <div class="showcase-content">
+                        <div class="showcase-preview active">
+                            <div class="navbar-demo classic-navbar">
+                                <div class="demo-navbar">
+                                    <div class="demo-logo">
+                                        <i class="fas fa-cube"></i>
+                                        <span>Ema Framework</span>
+                                    </div>
+                                    <nav class="demo-nav">
+                                        <a href="#" class="demo-nav-link">Home</a>
+                                        <a href="#" class="demo-nav-link">Features</a>
+                                        <a href="#" class="demo-nav-link">Components</a>
+                                        <a href="#" class="demo-nav-link">Docs</a>
+                                        <a href="#" class="demo-nav-link demo-btn-primary">Get Started</a>
+                                    </nav>
+                                </div>
                             </div>
-                            <div class="demo-code">
+                        </div>
+                        
+                        <div class="showcase-code">
+                            <div class="terminal-code-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-buttons">
+                                        <button class="terminal-btn close"></button>
+                                        <button class="terminal-btn minimize"></button>
+                                        <button class="terminal-btn maximize"></button>
+                                    </div>
+                                    <div class="terminal-title">HTML</div>
+                                </div>
+                                <div class="terminal-content">
+<span class="line-number">1</span><span class="keyword">&lt;nav</span> <span class="variable">class</span>=<span class="string">"classic-navbar"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">2</span>    <span class="keyword">&lt;div</span> <span class="variable">class</span>=<span class="string">"navbar-container"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">3</span>        <span class="keyword">&lt;div</span> <span class="variable">class</span>=<span class="string">"navbar-logo"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">4</span>            <span class="keyword">&lt;i</span> <span class="variable">class</span>=<span class="string">"fas fa-cube"</span><span class="keyword">&gt;&lt;/i&gt;</span><br>
+<span class="line-number">5</span>            <span class="keyword">&lt;span&gt;</span>Ema Framework<span class="keyword">&lt;/span&gt;</span><br>
+<span class="line-number">6</span>        <span class="keyword">&lt;/div&gt;</span><br>
+<span class="line-number">7</span>        <span class="keyword">&lt;ul</span> <span class="variable">class</span>=<span class="string">"navbar-links"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">8</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>Home<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">9</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>Features<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">10</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>Components<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">11</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span> <span class="variable">class</span>=<span class="string">"btn-primary"</span><span class="keyword">&gt;</span>Get Started<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">12</span>        <span class="keyword">&lt;/ul&gt;</span><br>
+<span class="line-number">13</span>    <span class="keyword">&lt;/div&gt;</span><br>
+<span class="line-number">14</span><span class="keyword">&lt;/nav&gt;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navbar Variant 2: Modern -->
+                <div class="component-showcase-card">
+                    <div class="showcase-header">
+                        <h3>Modern Navbar</h3>
+                        <p>Contemporary design with glassmorphism effects</p>
+                        <div class="showcase-actions">
+                            <button class="showcase-btn active" data-action="preview">
+                                <i class="fas fa-eye"></i>
+                                Preview
+                            </button>
+                            <button class="showcase-btn" data-action="code">
+                                <i class="fas fa-code"></i>
+                                Code
+                            </button>
+                            <button class="showcase-btn" data-action="copy">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="showcase-content">
+                        <div class="showcase-preview active">
+                            <div class="navbar-demo modern-navbar">
+                                <div class="demo-navbar modern">
+                                    <div class="demo-logo">
+                                        <i class="fas fa-cube"></i>
+                                        <span>Ema Framework</span>
+                                    </div>
+                                    <nav class="demo-nav">
+                                        <a href="#" class="demo-nav-link">Home</a>
+                                        <a href="#" class="demo-nav-link">Features</a>
+                                        <a href="#" class="demo-nav-link">Components</a>
+                                        <a href="#" class="demo-nav-link">Docs</a>
+                                        <a href="#" class="demo-nav-link demo-btn-primary">Get Started</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="showcase-code">
+                            <div class="terminal-code-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-buttons">
+                                        <button class="terminal-btn close"></button>
+                                        <button class="terminal-btn minimize"></button>
+                                        <button class="terminal-btn maximize"></button>
+                                    </div>
+                                    <div class="terminal-title">HTML</div>
+                                </div>
+                                <div class="terminal-content">
+<span class="line-number">1</span><span class="keyword">&lt;nav</span> <span class="variable">class</span>=<span class="string">"modern-navbar"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">2</span>    <span class="keyword">&lt;div</span> <span class="variable">class</span>=<span class="string">"navbar-container"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">3</span>        <span class="keyword">&lt;div</span> <span class="variable">class</span>=<span class="string">"navbar-logo"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">4</span>            <span class="keyword">&lt;i</span> <span class="variable">class</span>=<span class="string">"fas fa-cube"</span><span class="keyword">&gt;&lt;/i&gt;</span><br>
+<span class="line-number">5</span>            <span class="keyword">&lt;span&gt;</span>Ema Framework<span class="keyword">&lt;/span&gt;</span><br>
+<span class="line-number">6</span>        <span class="keyword">&lt;/div&gt;</span><br>
+<span class="line-number">7</span>        <span class="keyword">&lt;ul</span> <span class="variable">class</span>=<span class="string">"navbar-links modern"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">8</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>Home<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">9</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>Features<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">10</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>Components<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">11</span>            <span class="keyword">&lt;li&gt;&lt;a</span> <span class="variable">href</span>=<span class="string">"#"</span> <span class="variable">class</span>=<span class="string">"btn-primary modern"</span><span class="keyword">&gt;</span>Get Started<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span><br>
+<span class="line-number">12</span>        <span class="keyword">&lt;/ul&gt;</span><br>
+<span class="line-number">13</span>    <span class="keyword">&lt;/div&gt;</span><br>
+<span class="line-number">14</span><span class="keyword">&lt;/nav&gt;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color Variants -->
+                <div class="color-variants-section">
+                    <h3>Color Variants</h3>
+                    <p>Each navbar comes with 8 different color themes</p>
+                    
+                    <div class="color-variants-grid">
+                        <div class="color-variant" data-color="purple">
+                            <div class="color-preview purple"></div>
+                            <span>Purple</span>
+                        </div>
+                        <div class="color-variant" data-color="blue">
+                            <div class="color-preview blue"></div>
+                            <span>Blue</span>
+                        </div>
+                        <div class="color-variant" data-color="green">
+                            <div class="color-preview green"></div>
+                            <span>Green</span>
+                        </div>
+                        <div class="color-variant" data-color="red">
+                            <div class="color-preview red"></div>
+                            <span>Red</span>
+                        </div>
+                        <div class="color-variant" data-color="orange">
+                            <div class="color-preview orange"></div>
+                            <span>Orange</span>
+                        </div>
+                        <div class="color-variant" data-color="yellow">
+                            <div class="color-preview yellow"></div>
+                            <span>Yellow</span>
+                        </div>
+                        <div class="color-variant" data-color="gray">
+                            <div class="color-preview gray"></div>
+                            <span>Gray</span>
+                        </div>
+                        <div class="color-variant" data-color="white">
+                            <div class="color-preview white"></div>
+                            <span>White</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DLI System Section -->
+            <section class="dli-system-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-terminal"></i>
+                        DLI System - Dynamic Language Interface
+                    </h2>
+                    <p class="section-description">
+                        Create components using natural language. Describe what you want and watch it come to life.
+                    </p>
+                    <div class="dli-badge">
+                        <i class="fas fa-star"></i>
+                        Revolutionary Feature
+                    </div>
+                </div>
+
+                <div class="dli-interface">
+                    <div class="dli-input-section">
+                        <textarea class="dli-input" placeholder="Describe your component...&#10;&#10;Example: Create a purple button with a rocket icon that shows a success message when clicked"></textarea>
+                        <button class="btn btn-primary dli-generate-btn" onclick="generateWithDLI()">
+                            <i class="fas fa-magic"></i>
+                            Generate Component
+                        </button>
+                    </div>
+                    
+                    <div class="dli-output-section">
+                        <div class="dli-tabs">
+                            <button class="dli-tab active" data-tab="preview">Preview</button>
+                            <button class="dli-tab" data-tab="html">HTML</button>
+                            <button class="dli-tab" data-tab="css">CSS</button>
+                            <button class="dli-tab" data-tab="js">JavaScript</button>
+                        </div>
+                        
+                        <div class="dli-output">
+                            <div class="dli-preview active">
+                                <div class="dli-placeholder">
+                                    <i class="fas fa-magic"></i>
+                                    <p>Your generated component will appear here</p>
+                                </div>
+                            </div>
+                            <div class="dli-code">
                                 <div class="terminal-code-block">
                                     <div class="terminal-header">
                                         <div class="terminal-buttons">
-                                            <button class="terminal-button close" title="Close"></button>
-                                            <button class="terminal-button minimize" title="Minimize"></button>
-                                            <button class="terminal-button maximize" title="Maximize"></button>
+                                            <button class="terminal-btn close"></button>
+                                            <button class="terminal-btn minimize"></button>
+                                            <button class="terminal-btn maximize"></button>
                                         </div>
-                                        <div class="terminal-title">terminal — bash — 80x24</div>
+                                        <div class="terminal-title">Generated Code</div>
+                                        <button class="copy-btn" onclick="copyDLICode()">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
                                     </div>
                                     <div class="terminal-content">
-                                        <button class="terminal-copy-btn" onclick="copyCode(document.getElementById('component-code').textContent)">
-                                            <i class="fas fa-copy"></i> Copy Code
-                                        </button>
-                                        <div class="terminal-line-numbers">1</div>
-                                        <div class="terminal-code">
-                                            <pre><code id="component-code">// Component code will be here</code></pre>
-                                        </div>
+<span class="comment">// Generated code will appear here</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // Add modal styles
-            const style = document.createElement('style');
-            style.textContent = `
-                .component-modal {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.8);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 1000;
-                    animation: fadeIn 0.3s ease;
-                }
-                
-                .modal-content {
-                    background: var(--ema-bg-primary);
-                    border-radius: 20px;
-                    padding: 2rem;
-                    max-width: 800px;
-                    width: 90%;
-                    max-height: 80vh;
-                    overflow-y: auto;
-                    border: 1px solid rgba(111, 66, 193, 0.3);
-                    box-shadow: 0 25px 50px rgba(111, 66, 193, 0.3);
-                }
-                
-                .modal-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 1.5rem;
-                    padding-bottom: 1rem;
-                    border-bottom: 1px solid rgba(111, 66, 193, 0.2);
-                }
-                
-                .close-modal {
-                    background: none;
-                    border: none;
-                    color: var(--ema-text-primary);
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    padding: 0.5rem;
-                    border-radius: 50%;
-                    transition: all 0.3s ease;
-                }
-                
-                .close-modal:hover {
-                    background: rgba(111, 66, 193, 0.2);
-                    transform: scale(1.1);
-                }
-                
-                .component-demo {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 2rem;
-                }
-                
-                .demo-preview {
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 15px;
-                    padding: 2rem;
-                    border: 1px solid rgba(111, 66, 193, 0.2);
-                }
-                
-                .demo-code {
-                    background: rgba(0, 0, 0, 0.3);
-                    border-radius: 15px;
-                    padding: 1.5rem;
-                    border: 1px solid rgba(111, 66, 193, 0.2);
-                }
-                
-                .demo-code pre {
-                    background: rgba(0, 0, 0, 0.5);
-                    border-radius: 10px;
-                    padding: 1rem;
-                    margin-bottom: 1rem;
-                    overflow-x: auto;
-                }
-                
-                .copy-code-btn {
-                    background: var(--ema-gradient-primary);
-                    color: white;
-                    border: none;
-                    padding: 0.75rem 1.5rem;
-                    border-radius: 10px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    width: 100%;
-                }
-                
-                .copy-code-btn:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 10px 20px rgba(111, 66, 193, 0.3);
-                }
-                
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: scale(0.9); }
-                    to { opacity: 1; transform: scale(1); }
-                }
-                
-                @media (max-width: 768px) {
-                    .component-demo {
-                        grid-template-columns: 1fr;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Close modal functionality
-            modal.querySelector('.close-modal').addEventListener('click', () => {
-                modal.remove();
-                style.remove();
-            });
-            
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                    style.remove();
-                }
-            });
-            
-            // Load component demo
-            loadComponentDemo(type, modal.querySelector('.demo-preview'), modal.querySelector('#component-code'));
-        }
-        
-        function loadComponentDemo(componentType, previewContainer, codeContainer) {
-            const demos = {
-                button: {
-                    html: `
-                        <div class="demo-buttons">
-                            <button class="ema-btn ema-btn-primary">Primary Button</button>
-                            <button class="ema-btn ema-btn-secondary">Secondary Button</button>
-                            <button class="ema-btn ema-btn-success">Success Button</button>
-                            <button class="ema-btn ema-btn-danger">Danger Button</button>
+
+                <!-- DLI Examples -->
+                <div class="dli-examples">
+                    <h3>Try These Examples</h3>
+                    <div class="example-grid">
+                        <div class="example-card" onclick="loadDLIExample('button')">
+                            <div class="example-icon">
+                                <i class="fas fa-hand-pointer"></i>
+                            </div>
+                            <h4>Button with Icon</h4>
+                            <p>Create a button with custom icon and styling</p>
                         </div>
-                    `,
-                    code: `<button class="ema-btn ema-btn-primary">Primary Button</button>
-<button class="ema-btn ema-btn-secondary">Secondary Button</button>
-<button class="ema-btn ema-btn-success">Success Button</button>
-<button class="ema-btn ema-btn-danger">Danger Button</button>`
-                },
-                card: {
-                    html: `
-                        <div class="ema-card" style="max-width: 300px;">
-                            <h4>Card Title</h4>
-                            <p>This is a beautiful card component with glassmorphism effects.</p>
-                            <button class="ema-btn ema-btn-primary">Action</button>
+                        <div class="example-card" onclick="loadDLIExample('card')">
+                            <div class="example-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <h4>Interactive Card</h4>
+                            <p>Build a card with hover effects and actions</p>
                         </div>
-                    `,
-                    code: `<div class="ema-card">
-    <h4>Card Title</h4>
-    <p>This is a beautiful card component with glassmorphism effects.</p>
-    <button class="ema-btn ema-btn-primary">Action</button>
-</div>`
-                },
-                input: {
-                    html: `
-                        <div class="demo-inputs">
-                            <input type="text" placeholder="Text input" class="ema-input">
-                            <input type="email" placeholder="Email input" class="ema-input">
-                            <textarea placeholder="Textarea" class="ema-input"></textarea>
+                        <div class="example-card" onclick="loadDLIExample('form')">
+                            <div class="example-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h4>Smart Form</h4>
+                            <p>Create a form with validation and auto-complete</p>
                         </div>
-                    `,
-                    code: `<input type="text" placeholder="Text input" class="ema-input">
-<input type="email" placeholder="Email input" class="ema-input">
-<textarea placeholder="Textarea" class="ema-input"></textarea>`
-                }
-            };
+                        <div class="example-card" onclick="loadDLIExample('navigation')">
+                            <div class="example-icon">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                            <h4>Navigation Menu</h4>
+                            <p>Build a responsive navigation with dropdowns</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <!-- Newsletter Section -->
+            <div class="footer-newsletter">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Updated</h2>
+                    <p class="newsletter-description">
+                        Get the latest updates, releases, and exclusive content delivered to your inbox.
+                    </p>
+                    <form class="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                        <p class="newsletter-privacy">
+                            We respect your privacy. Unsubscribe at any time.
+                        </p>
+                    </form>
+                </div>
+            </div>
             
-            const demo = demos[componentType] || {
-                html: `<div class="demo-placeholder">Demo for ${componentType} component</div>`,
-                code: `// ${componentType} component code`
-            };
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-cube" aria-hidden="true"></i>
+                        </div>
+                        <span>Ema Framework</span>
+                    </div>
+                    <p class="footer-description">
+                        The world's most advanced UI framework. Build extraordinary web experiences 
+                        with cutting-edge components and unmatched performance.
+                    </p>
+                    
+                    <div class="footer-stats">
+                        <div class="footer-stat">
+                            <span class="stat-number">250+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="footer-stat">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Modules</span>
+                        </div>
+                        <div class="footer-stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Features</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://github.com/aydocs/emadocs" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord">
+                            <i class="fab fa-discord" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Getting Started
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Quick Start</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="examples.html">Examples</a></li>
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="3d-showcase.html">3D Showcase</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
             
-            previewContainer.innerHTML = demo.html;
-            codeContainer.textContent = demo.code;
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                        Components
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="components.html">UI Components</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#forms">Forms</a></li>
+                        <li><a href="#navigation">Navigation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        Community
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Contributing</a></li>
+                </ul>
+            </div>
+            
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Resources
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="revolution.html">Revolution</a></li>
+                        <li><a href="#dli-system">DLI System</a></li>
+                        <li><a href="#">Changelog</a></li>
+                        <li><a href="#">License</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p class="footer-copyright">
+                        © 2024 Ema Framework. All rights reserved.
+                    </p>
+                    <div class="footer-badges">
+                        <span class="footer-badge">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            MIT License
+                        </span>
+                        <span class="footer-badge">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                            Made with Love
+                        </span>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/emadocs.js"></script>
+
+    <script>
+        // Components Page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeComponentsPage();
+        });
+
+        function initializeComponentsPage() {
+            // Initialize showcase buttons
+            initializeShowcaseButtons();
+            
+            // Initialize color variants
+            initializeColorVariants();
+            
+            // Initialize DLI system
+            initializeDLISystem();
+            
+            // Initialize category cards
+            initializeCategoryCards();
         }
 
-        // Enhanced copy code function
-        function copyCode(code) {
+        function initializeShowcaseButtons() {
+            const showcaseBtns = document.querySelectorAll('.showcase-btn');
+            
+            showcaseBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.dataset.action;
+                    const card = this.closest('.component-showcase-card');
+                    
+                    // Update button states
+                    card.querySelectorAll('.showcase-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Handle different actions
+                    if (action === 'copy') {
+                        copyComponentCode(card);
+                    } else if (action === 'code') {
+                        showCodePreview(card);
+                    } else if (action === 'preview') {
+                        showPreview(card);
+                    }
+                });
+            });
+        }
+
+        function initializeColorVariants() {
+            const colorVariants = document.querySelectorAll('.color-variant');
+            
+            colorVariants.forEach(variant => {
+                variant.addEventListener('click', function() {
+                    const color = this.dataset.color;
+                    
+                    // Update active state
+                    colorVariants.forEach(v => v.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Apply color theme to navbar demos
+                    applyColorTheme(color);
+                    
+                    emaToast({
+                        type: 'info',
+                        title: 'Color Theme',
+                        text: `Applied ${color} theme to navbar components`,
+                        timer: 2000
+                    });
+                });
+            });
+        }
+
+        function initializeDLISystem() {
+            const dliTabs = document.querySelectorAll('.dli-tab');
+            
+            dliTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Update tab states
+                    dliTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        function initializeCategoryCards() {
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    emaToast({
+                        type: 'info',
+                        title: 'Category Selected',
+                        text: `Loading ${category} components...`,
+                        timer: 2000
+                    });
+                });
+            });
+        }
+
+        // Utility functions
+        function showComponentCategory(category) {
+            emaToast({
+                type: 'info',
+                title: 'Component Category',
+                text: `Opening ${category} components...`,
+                timer: 2000
+            });
+        }
+
+        function copyComponentCode(card) {
+            const codeBlock = card.querySelector('.terminal-content');
+            const code = codeBlock.textContent;
+            
             navigator.clipboard.writeText(code).then(() => {
-                showToast('Code copied to clipboard!', 'success');
-            }).catch(() => {
-                showToast('Failed to copy code', 'error');
+                emaToast({
+                    type: 'success',
+                    title: 'Copied!',
+                    text: 'Component code copied to clipboard',
+                    timer: 2000
+                });
             });
         }
-        
-        // Toast notification system
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                    <span>${message}</span>
-    </div>
-            `;
+
+        function showCodePreview(card) {
+            const preview = card.querySelector('.showcase-preview');
+            const code = card.querySelector('.showcase-code');
             
-            // Add toast styles
-            const style = document.createElement('style');
-            style.textContent = `
-                .toast {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: var(--ema-bg-primary);
-                    border: 1px solid rgba(111, 66, 193, 0.3);
-                    border-radius: 15px;
-                    padding: 1rem 1.5rem;
-                    color: var(--ema-text-primary);
-                    z-index: 1001;
-                    animation: slideIn 0.3s ease;
-                    box-shadow: 0 10px 30px rgba(111, 66, 193, 0.3);
-                }
-                
-                .toast-success {
-                    border-left: 4px solid var(--ema-green);
-                }
-                
-                .toast-error {
-                    border-left: 4px solid var(--ema-red);
-                }
-                
-                .toast-content {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                }
-                
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
+            preview.classList.remove('active');
+            code.classList.add('active');
+        }
+
+        function showPreview(card) {
+            const preview = card.querySelector('.showcase-preview');
+            const code = card.querySelector('.showcase-code');
             
-            document.body.appendChild(toast);
+            code.classList.remove('active');
+            preview.classList.add('active');
+        }
+
+        function applyColorTheme(color) {
+            const navbarDemos = document.querySelectorAll('.navbar-demo');
             
+            navbarDemos.forEach(demo => {
+                demo.className = `navbar-demo ${demo.className.split(' ')[1]} ${color}`;
+            });
+        }
+
+        function generateWithDLI() {
+            const input = document.querySelector('.dli-input').value;
+            if (!input.trim()) {
+                emaToast({
+                    type: 'warning',
+                    title: 'Input Required',
+                    text: 'Please describe what you want to build',
+                    timer: 3000
+                });
+                return;
+            }
+            
+            emaToast({
+                type: 'success',
+                title: 'Generating...',
+                text: 'Creating your component with DLI system...',
+                timer: 2000
+            });
+            
+            // Simulate DLI generation
             setTimeout(() => {
-                toast.remove();
-                style.remove();
-            }, 3000);
+                document.querySelector('.dli-placeholder').innerHTML = `
+                    <div class="generated-component">
+                        <button class="ema-btn ema-btn-primary" style="background: #6f42c1; border: none; padding: 12px 24px; border-radius: 8px; color: white; cursor: pointer; font-size: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <i class="fas fa-rocket" style="margin-right: 8px;"></i>
+                            Generated Button
+                        </button>
+    </div>
+                `;
+                
+                emaToast({
+                    type: 'success',
+                    title: 'Generated!',
+                    text: 'Your component has been generated successfully',
+                    timer: 3000
+                });
+            }, 2000);
         }
-        
-        // Mega dropdown functionality
-        const dropdownTrigger = document.querySelector('.dropdown-trigger');
-        const megaDropdown = document.querySelector('.mega-dropdown');
-        
-        if (dropdownTrigger && megaDropdown) {
-            dropdownTrigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                megaDropdown.classList.toggle('active');
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!dropdownTrigger.contains(e.target) && !megaDropdown.contains(e.target)) {
-                    megaDropdown.classList.remove('active');
-                }
-            });
-            
-            // Close dropdown on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    megaDropdown.classList.remove('active');
-                }
-            });
-            
-            // Hamburger Menu Toggle
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            const mobileNav = document.getElementById('mobileNav');
-            const mobileFrameworkTrigger = document.querySelector('.mobile-framework-trigger');
-            const mobileMegaDropdown = document.getElementById('mobileMegaDropdown');
-            
-            if (hamburgerMenu && mobileNav) {
-                hamburgerMenu.addEventListener('click', () => {
-                    hamburgerMenu.classList.toggle('active');
-                    mobileNav.classList.toggle('active');
+
+        function copyDLICode() {
+            const code = `<!-- Generated Component -->
+<button class="ema-btn ema-btn-primary">
+    <i class="fas fa-rocket"></i>
+    Generated Button
+</button>`;
+            navigator.clipboard.writeText(code).then(() => {
+                emaToast({
+                    type: 'success',
+                    title: 'Copied!',
+                    text: 'Generated code copied to clipboard',
+                    timer: 2000
                 });
-            }
+            });
+        }
+
+        function loadDLIExample(type) {
+            const examples = {
+                button: 'Create a purple button with a rocket icon that shows a success message when clicked',
+                card: 'Create an interactive card with hover effects and action buttons',
+                form: 'Create a smart form with validation and auto-complete functionality',
+                navigation: 'Create a responsive navigation menu with dropdown submenus'
+            };
             
-            if (mobileFrameworkTrigger && mobileMegaDropdown) {
-                mobileFrameworkTrigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    mobileMegaDropdown.style.display = mobileMegaDropdown.style.display === 'block' ? 'none' : 'block';
-                });
-            }
+            document.querySelector('.dli-input').value = examples[type];
+            
+            emaToast({
+                type: 'info',
+                title: 'Example Loaded',
+                text: `${type} example loaded into DLI system`,
+                timer: 2000
+            });
         }
     </script>
 </body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation - Ema Framework</title>
-    <meta name="description" content="Comprehensive documentation for Ema Framework - Learn how to build amazing web applications">
+    <meta name="description" content="Complete documentation for Ema Framework - the world's most advanced UI framework">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -18,1059 +18,1278 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../css/ema-framework.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/index.css">
-    
-    <style>
-        /* Documentation Styles */
-        .docs-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            min-height: calc(100vh - 80px);
-            margin-top: 80px;
-        }
-
-        .docs-sidebar {
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(111, 66, 193, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .docs-main {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(111, 66, 193, 0.1);
-            border-radius: 20px;
-            padding: 3rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .docs-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .docs-nav-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .docs-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: var(--ema-text-muted);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .docs-nav-link:hover,
-        .docs-nav-link.active {
-            color: var(--ema-text-primary);
-            background: rgba(111, 66, 193, 0.1);
-            transform: translateX(5px);
-        }
-
-        .docs-nav-link i {
-            width: 20px;
-            color: var(--ema-purple);
-        }
-
-        .docs-section {
-            margin-bottom: 3rem;
-        }
-
-        .docs-section h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--ema-gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .docs-section h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--ema-text-primary);
-            margin: 2rem 0 1rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(111, 66, 193, 0.2);
-        }
-
-        .docs-section h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--ema-text-primary);
-            margin: 1.5rem 0 0.75rem 0;
-        }
-
-        .docs-section p {
-            color: var(--ema-text-muted);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .docs-section ul,
-        .docs-section ol {
-            color: var(--ema-text-muted);
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-
-        .docs-section li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-
-        .code-block {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(111, 66, 193, 0.3);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .code-block pre {
-            margin: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .code-block code {
-            color: #e6e6e6;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(111, 66, 193, 0.2);
-            border: 1px solid rgba(111, 66, 193, 0.3);
-            color: var(--ema-purple);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: var(--ema-purple);
-            color: white;
-        }
-
-        .alert {
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin: 1.5rem 0;
-            border-left: 4px solid;
-        }
-
-        .alert-info {
-            background: rgba(0, 123, 255, 0.1);
-            border-color: #007bff;
-            color: #007bff;
-        }
-
-        .alert-warning {
-            background: rgba(255, 193, 7, 0.1);
-            border-color: #ffc107;
-            color: #ffc107;
-        }
-
-        .alert-success {
-            background: rgba(40, 167, 69, 0.1);
-            border-color: #28a745;
-            color: #28a745;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(111, 66, 193, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--ema-purple);
-            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.2);
-        }
-
-        .feature-card h4 {
-            color: var(--ema-text-primary);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .feature-card h4 i {
-            color: var(--ema-purple);
-        }
-
-        .feature-card p {
-            color: var(--ema-text-muted);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 1024px) {
-            .docs-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            .docs-sidebar {
-                position: static;
-                order: 2;
-            }
-            
-            .docs-main {
-                order: 1;
-                padding: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/emadocs.css">
 </head>
-<body>
+<body class="docs-page">
     <!-- Header -->
-    <header class="ema-header">
-        <div class="nav-container">
-            <a href="../index.html" class="ema-logo">
-                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
-                <span>Ema Framework</span>
-            </a>
-            
-            <button class="hamburger-menu" aria-label="Toggle navigation">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            
-            <nav>
-                <ul class="ema-nav-links">
-                    <li class="nav-dropdown">
-                        <a href="#" class="ema-nav-link dropdown-trigger">
-                            <i class="fas fa-th-large"></i> 
-                            <span>Framework</span>
-                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+    <header class="header" id="header" role="banner">
+        <!-- Random Header Blobs -->
+        <div class="header-blobs" aria-hidden="true">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+            <div class="blob blob-5"></div>
+            <div class="blob blob-6"></div>
+            <div class="blob blob-7"></div>
+            <div class="blob blob-8"></div>
+        </div>
+        
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <a href="../" class="logo" aria-label="Ema Framework - Home">
+                    <div class="logo-icon" aria-hidden="true">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <span>Ema Framework</span>
+                </a>
+                
+                <ul class="nav-links" role="navigation">
+                    <li role="none">
+                        <a href="../" class="nav-link" role="menuitem">Home</a>
+                    </li>
+                    <li role="none" class="nav-dropdown">
+                        <a href="#" class="nav-link dropdown-trigger" role="menuitem" aria-expanded="false" aria-haspopup="true">
+                            Framework
+                            <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
                         </a>
-                    </li>
-                    <li>
-                        <button class="search-trigger" aria-label="Search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <a href="docs.html" class="ema-nav-link">
-                            <i class="fas fa-book"></i>
-                            <span>Docs</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="blog.html" class="ema-nav-link">
-                            <i class="fas fa-blog"></i>
-                            <span>Blog</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="getting-started.html" class="ema-nav-link">
-                            <i class="fas fa-rocket"></i>
-                            <span>Get Started</span>
-                        </a>
-                    </li>
-                        <div class="mega-dropdown">
-                            <div class="dropdown-content">
+                        <div class="mega-dropdown" role="group">
+                            <div class="mega-dropdown-content">
                                 <div class="dropdown-section">
-                                    <h3>Getting Started</h3>
-                                    <a href="getting-started.html" class="dropdown-item">
-                                        <i class="fas fa-rocket"></i>
-                                        <div>
-                                            <div class="item-title">Quick Start</div>
-                                            <div class="item-desc">Get up and running in minutes</div>
+                                    <h3 class="dropdown-section-title">Getting Started</h3>
+                                    <a href="getting-started.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-rocket"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Quick Start</div>
+                                            <div class="dropdown-item-desc">Begin your journey with Ema</div>
                                         </div>
                                     </a>
-                                    <a href="api.html" class="dropdown-item">
-                                        <i class="fas fa-cogs"></i>
-                                        <div>
-                                            <div class="item-title">API Reference</div>
-                                            <div class="item-desc">Complete API documentation</div>
+                                    <a href="docs.html" class="dropdown-item active" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Documentation</div>
+                                            <div class="dropdown-item-desc">Complete guides & API</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Components</h3>
-                                    <a href="components.html" class="dropdown-item">
-                                        <i class="fas fa-puzzle-piece"></i>
-                                        <div>
-                                            <div class="item-title">UI Components</div>
-                                            <div class="item-desc">250+ components</div>
+                                    <h3 class="dropdown-section-title">Components</h3>
+                                    <a href="components.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-puzzle-piece"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">UI Components</div>
+                                            <div class="dropdown-item-desc">250+ premium components</div>
                                         </div>
                                     </a>
-                                    <a href="showcase.html" class="dropdown-item">
-                                        <i class="fas fa-star"></i>
-                                        <div>
-                                            <div class="item-title">Showcase</div>
-                                            <div class="item-desc">Live examples</div>
+                                    <a href="showcase.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-eye"></i>
                                         </div>
-                                    </a>
-                                </div>
-                                
-                                <div class="dropdown-section">
-                                    <h3>Tools</h3>
-                                    <a href="playground.html" class="dropdown-item">
-                                        <i class="fas fa-play"></i>
-                                        <div>
-                                            <div class="item-title">Playground</div>
-                                            <div class="item-desc">Interactive builder</div>
-                                        </div>
-                                    </a>
-                                    <a href="dashboard.html" class="dropdown-item">
-                                        <i class="fas fa-chart-line"></i>
-                                        <div>
-                                            <div class="item-title">Dashboard</div>
-                                            <div class="item-desc">Analytics & stats</div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Showcase</div>
+                                            <div class="dropdown-item-desc">Live examples & demos</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Resources</h3>
-                                    <a href="examples.html" class="dropdown-item">
-                                        <i class="fas fa-code"></i>
-                                        <div>
-                                            <div class="item-title">Examples</div>
-                                            <div class="item-desc">Real-world projects</div>
+                                    <h3 class="dropdown-section-title">Resources</h3>
+                                    <a href="examples.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Examples</div>
+                                            <div class="dropdown-item-desc">Real-world projects</div>
                                         </div>
                                     </a>
-                                    <a href="revolution.html" class="dropdown-item">
-                                        <i class="fas fa-magic"></i>
-                                        <div>
-                                            <div class="item-title">Revolution</div>
-                                            <div class="item-desc">Next-gen features</div>
+                                    <a href="blog.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-blog"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Blog</div>
+                                            <div class="dropdown-item-desc">News & tutorials</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="dropdown-section">
+                                    <h3 class="dropdown-section-title">Community</h3>
+                                    <a href="https://github.com/aydocs/emadocs" class="dropdown-item" role="menuitem" target="_blank" rel="noopener noreferrer">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">GitHub</div>
+                                            <div class="dropdown-item-desc">Source code & issues</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fab fa-discord"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Discord</div>
+                                            <div class="dropdown-item-desc">Join our community</div>
                                         </div>
                                     </a>
                                 </div>
                             </div>
                             
-                            <div class="dropdown-footer">
-                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i>
-                                    <span>View on GitHub</span>
+                            <div class="mega-dropdown-footer">
+                                <a href="https://github.com/aydocs/emadocs" class="dropdown-footer-link secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    View on GitHub
                                 </a>
-                                <a href="getting-started.html" class="cta-link">
-                                    <i class="fas fa-rocket"></i>
-                                    <span>Get Started</span>
+                                <a href="getting-started.html" class="dropdown-footer-link primary">
+                                    <i class="fas fa-rocket" aria-hidden="true"></i>
+                                    Get Started Free
                                 </a>
                             </div>
                         </div>
                     </li>
+                    <li role="none">
+                        <a href="../#features" class="nav-link" role="menuitem">Features</a>
+                    </li>
+                    <li role="none">
+                        <a href="../#components" class="nav-link" role="menuitem">Components</a>
+                    </li>
+                    <li role="none">
+                        <a href="getting-started.html" class="btn btn-primary" role="menuitem">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            Get Started
+                        </a>
+                    </li>
                 </ul>
+                
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </nav>
         </div>
     </header>
-    
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li>
-                <a href="#" class="mobile-framework-trigger">
-                    <i class="fas fa-th-large"></i>
-                    <span>Framework</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="mobile-search-trigger">
-                    <i class="fas fa-search"></i>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="docs.html">
-                    <i class="fas fa-book"></i>
-                    <span>Docs</span>
-                </a>
-            </li>
-            <li>
-                <a href="blog.html">
-                    <i class="fas fa-blog"></i>
-                    <span>Blog</span>
-                </a>
-            </li>
-            <li>
-                <a href="getting-started.html">
-                    <i class="fas fa-rocket"></i>
-                    <span>Get Started</span>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
-            <h3>Getting Started</h3>
-            <a href="getting-started.html" class="mobile-dropdown-item">
-                <i class="fas fa-rocket"></i>
-                <span>Quick Start</span>
-            </a>
-            <a href="api.html" class="mobile-dropdown-item">
-                <i class="fas fa-cogs"></i>
-                <span>API Reference</span>
-            </a>
-            
-            <h3>Components</h3>
-            <a href="components.html" class="mobile-dropdown-item">
-                <i class="fas fa-puzzle-piece"></i>
-                <span>UI Components</span>
-            </a>
-            <a href="showcase.html" class="mobile-dropdown-item">
-                <i class="fas fa-star"></i>
-                <span>Showcase</span>
-            </a>
-            
-            <h3>Tools</h3>
-            <a href="playground.html" class="mobile-dropdown-item">
-                <i class="fas fa-play"></i>
-                <span>Playground</span>
-            </a>
-            <a href="dashboard.html" class="mobile-dropdown-item">
-                <i class="fas fa-chart-line"></i>
-                <span>Dashboard</span>
-            </a>
-            
-            <h3>Resources</h3>
-            <a href="examples.html" class="mobile-dropdown-item">
-                <i class="fas fa-code"></i>
-                <span>Examples</span>
-            </a>
-            <a href="revolution.html" class="mobile-dropdown-item">
-                <i class="fas fa-rocket"></i>
-                <span>Revolution</span>
-            </a>
-        </div>
-    </div>
 
-    <!-- Documentation Content -->
-    <div class="docs-container">
-        <aside class="docs-sidebar">
-            <nav>
-                <ul class="docs-nav">
-                    <li class="docs-nav-item">
-                        <a href="#introduction" class="docs-nav-link active">
-                            <i class="fas fa-home"></i>
-                            <span>Introduction</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#installation" class="docs-nav-link">
-                            <i class="fas fa-download"></i>
-                            <span>Installation</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#quick-start" class="docs-nav-link">
+    <!-- Main Content -->
+    <main class="main docs-main-layout">
+        <div class="docs-container">
+            <!-- Enhanced Sidebar -->
+            <aside class="docs-sidebar enhanced-sidebar">
+                <div class="sidebar-header">
+                    <h3 class="docs-sidebar-title">
+                        <i class="fas fa-book-open"></i>
+                        Documentation
+                    </h3>
+                    <div class="sidebar-search">
+                        <input type="text" placeholder="Search docs..." class="docs-search-input" id="docsSearch">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+                
+                <nav class="docs-nav">
+                    <!-- Getting Started Section -->
+                    <div class="nav-category">
+                        <div class="nav-category-header" data-category="getting-started">
+                            <i class="fas fa-rocket category-icon"></i>
+                            <span class="category-title">Getting Started</span>
+                            <i class="fas fa-chevron-down category-arrow"></i>
+                        </div>
+                        <ul class="nav-category-content" id="getting-started">
+                            <li class="docs-nav-item">
+                                <a href="#quick-start" class="docs-nav-link active">
+                                    <i class="fas fa-play-circle"></i>
+                                    Quick Start
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#installation" class="docs-nav-link">
+                                    <i class="fas fa-download"></i>
+                                    Installation
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#configuration" class="docs-nav-link">
+                                    <i class="fas fa-cogs"></i>
+                                    Configuration
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#first-project" class="docs-nav-link">
+                                    <i class="fas fa-folder-plus"></i>
+                                    First Project
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Components Section -->
+                    <div class="nav-category">
+                        <div class="nav-category-header" data-category="components">
+                            <i class="fas fa-puzzle-piece category-icon"></i>
+                            <span class="category-title">Components (250+)</span>
+                            <i class="fas fa-chevron-down category-arrow"></i>
+                        </div>
+                        <ul class="nav-category-content" id="components">
+                            <li class="docs-nav-item">
+                                <a href="#buttons" class="docs-nav-link">
+                                    <i class="fas fa-hand-pointer"></i>
+                                    Buttons
+                                    <span class="nav-badge">8 variants</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#forms" class="docs-nav-link">
+                                    <i class="fas fa-edit"></i>
+                                    Forms & Inputs
+                                    <span class="nav-badge">15+ types</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#navigation" class="docs-nav-link">
+                                    <i class="fas fa-bars"></i>
+                                    Navigation
+                                    <span class="nav-badge">12 styles</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#cards" class="docs-nav-link">
+                                    <i class="fas fa-id-card"></i>
+                                    Cards & Panels
+                                    <span class="nav-badge">20+ layouts</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#modals" class="docs-nav-link">
+                                    <i class="fas fa-window-maximize"></i>
+                                    Modals & Overlays
+                                    <span class="nav-badge">10+ types</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#data-display" class="docs-nav-link">
+                                    <i class="fas fa-table"></i>
+                                    Data Display
+                                    <span class="nav-badge">25+ components</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#feedback" class="docs-nav-link">
+                                    <i class="fas fa-comment-dots"></i>
+                                    Feedback
+                                    <span class="nav-badge">8 types</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#layout" class="docs-nav-link">
+                                    <i class="fas fa-th"></i>
+                                    Layout
+                                    <span class="nav-badge">15+ systems</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Advanced Features Section -->
+                    <div class="nav-category">
+                        <div class="nav-category-header" data-category="advanced">
+                            <i class="fas fa-magic category-icon"></i>
+                            <span class="category-title">Advanced Features</span>
+                            <i class="fas fa-chevron-down category-arrow"></i>
+                        </div>
+                        <ul class="nav-category-content" id="advanced">
+                            <li class="docs-nav-item">
+                                <a href="#3d-engine" class="docs-nav-link">
+                                    <i class="fas fa-cube"></i>
+                                    3D Engine
+                                    <span class="nav-badge">WebGL</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#animations" class="docs-nav-link">
+                                    <i class="fas fa-play"></i>
+                                    Animations
+                                    <span class="nav-badge">60+ effects</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#themes" class="docs-nav-link">
+                                    <i class="fas fa-palette"></i>
+                                    Theme System
+                                    <span class="nav-badge">8 colors</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#performance" class="docs-nav-link">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    Performance
+                                    <span class="nav-badge">Optimized</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- API Reference Section -->
+                    <div class="nav-category">
+                        <div class="nav-category-header" data-category="api">
+                            <i class="fas fa-code-branch category-icon"></i>
+                            <span class="category-title">API Reference</span>
+                            <i class="fas fa-chevron-down category-arrow"></i>
+                        </div>
+                        <ul class="nav-category-content" id="api">
+                            <li class="docs-nav-item">
+                                <a href="#javascript-api" class="docs-nav-link">
+                                    <i class="fab fa-js-square"></i>
+                                    JavaScript API
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#css-variables" class="docs-nav-link">
+                                    <i class="fab fa-css3-alt"></i>
+                                    CSS Variables
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#events" class="docs-nav-link">
+                                    <i class="fas fa-bolt"></i>
+                                    Events
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#methods" class="docs-nav-link">
+                                    <i class="fas fa-tools"></i>
+                                    Methods
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tools & Utilities Section -->
+                    <div class="nav-category">
+                        <div class="nav-category-header" data-category="tools">
+                            <i class="fas fa-tools category-icon"></i>
+                            <span class="category-title">Tools & Utilities</span>
+                            <i class="fas fa-chevron-down category-arrow"></i>
+                        </div>
+                        <ul class="nav-category-content" id="tools">
+                            <li class="docs-nav-item">
+                                <a href="#playground" class="docs-nav-link">
+                                    <i class="fas fa-play"></i>
+                                    Interactive Playground
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#code-generator" class="docs-nav-link">
+                                    <i class="fas fa-code"></i>
+                                    Code Generator
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#dli-system" class="docs-nav-link">
+                                    <i class="fas fa-terminal"></i>
+                                    DLI System
+                                    <span class="nav-badge">New</span>
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#cli-tools" class="docs-nav-link">
+                                    <i class="fas fa-terminal"></i>
+                                    CLI Tools
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Documentation Content -->
+            <div class="docs-content">
+                <!-- Quick Start Section -->
+                <section id="quick-start" class="docs-section active">
+                    <div class="section-header">
+                        <h1 class="docs-title">
                             <i class="fas fa-rocket"></i>
-                            <span>Quick Start</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#components" class="docs-nav-link">
+                            Quick Start with Ema Framework
+                        </h1>
+                    <p class="docs-intro">
+                        Get up and running with the world's most advanced UI framework in under 5 minutes. 
+                        Ema Framework provides 1200+ premium components, 100+ JavaScript modules, and revolutionary features.
+                    </p>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" onclick="copyInstallCode()">
+                                <i class="fas fa-copy"></i>
+                                Copy Install Command
+                            </button>
+                            <button class="btn btn-secondary" onclick="openPlayground()">
+                                <i class="fas fa-play"></i>
+                                Try Playground
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Installation Methods -->
+                    <div class="docs-subsection">
+                        <h2>Installation Methods</h2>
+                        <div class="install-tabs">
+                            <div class="install-tab active" data-tab="npm">
+                                <i class="fab fa-npm"></i>
+                                NPM
+                            </div>
+                            <div class="install-tab" data-tab="cdn">
+                                <i class="fas fa-cloud"></i>
+                                CDN
+                            </div>
+                            <div class="install-tab" data-tab="download">
+                                <i class="fas fa-download"></i>
+                                Download
+                            </div>
+                        </div>
+
+                        <div class="install-content active" id="npm">
+                            <div class="terminal-code-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-buttons">
+                                        <button class="terminal-btn close"></button>
+                                        <button class="terminal-btn minimize"></button>
+                                        <button class="terminal-btn maximize"></button>
+                                    </div>
+                                    <div class="terminal-title">Terminal</div>
+                                    <button class="copy-btn" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="terminal-content">
+<span class="line-number">1</span><span class="keyword">npm</span> <span class="function">install</span> <span class="variable">ema-framework</span><br>
+<span class="line-number">2</span><span class="comment"># or using yarn</span><br>
+<span class="line-number">3</span><span class="keyword">yarn</span> <span class="function">add</span> <span class="variable">ema-framework</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="install-content" id="cdn">
+                            <div class="terminal-code-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-buttons">
+                                        <button class="terminal-btn close"></button>
+                                        <button class="terminal-btn minimize"></button>
+                                        <button class="terminal-btn maximize"></button>
+                                    </div>
+                                    <div class="terminal-title">HTML</div>
+                                    <button class="copy-btn" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="terminal-content">
+<span class="line-number">1</span><span class="comment">&lt;!-- CSS --&gt;</span><br>
+<span class="line-number">2</span><span class="keyword">&lt;link</span> <span class="variable">rel</span>=<span class="string">"stylesheet"</span> <span class="variable">href</span>=<span class="string">"https://cdn.ema-framework.com/ema.css"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">3</span><br>
+<span class="line-number">4</span><span class="comment">&lt;!-- JavaScript --&gt;</span><br>
+<span class="line-number">5</span><span class="keyword">&lt;script</span> <span class="variable">src</span>=<span class="string">"https://cdn.ema-framework.com/ema.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="install-content" id="download">
+                            <div class="download-options">
+                                <div class="download-option">
+                                    <h3>Latest Release</h3>
+                                    <p>Download the latest stable version</p>
+                                    <button class="btn btn-primary" onclick="downloadLatest()">
+                                        <i class="fas fa-download"></i>
+                                        Download v2.1.0
+                                    </button>
+                                </div>
+                                <div class="download-option">
+                                    <h3>Development Build</h3>
+                                    <p>Get the latest development features</p>
+                                    <button class="btn btn-secondary" onclick="downloadDev()">
+                                        <i class="fas fa-code-branch"></i>
+                                        Download Dev Build
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Your First Component -->
+                    <div class="docs-subsection">
+                        <h2>Your First Component</h2>
+                        <p>Let's create your first interactive Ema component:</p>
+                        
+                        <div class="component-demo">
+                            <div class="demo-header">
+                                <h3>Button Component</h3>
+                                <div class="demo-actions">
+                                    <button class="demo-btn active" data-variant="primary">
+                                        <i class="fas fa-eye"></i>
+                                        Preview
+                                    </button>
+                                    <button class="demo-btn" data-variant="code">
+                                        <i class="fas fa-code"></i>
+                                        Code
+                                    </button>
+                                    <button class="demo-btn" data-variant="copy">
+                                        <i class="fas fa-copy"></i>
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-content">
+                                <div class="demo-preview active">
+                                    <div class="component-showcase">
+                                        <button class="ema-btn ema-btn-primary" onclick="emaToast({type: 'success', title: 'Success!', text: 'Primary button clicked!'})">
+                                            <i class="fas fa-rocket"></i>
+                                            Primary Button
+                                        </button>
+                                        <button class="ema-btn ema-btn-secondary" onclick="emaToast({type: 'info', title: 'Info', text: 'Secondary button clicked!'})">
+                                            <i class="fas fa-cog"></i>
+                                            Secondary Button
+                                        </button>
+                                        <button class="ema-btn ema-btn-success" onclick="emaToast({type: 'success', title: 'Success!', text: 'Success button clicked!'})">
+                                            <i class="fas fa-check"></i>
+                                            Success Button
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="demo-code">
+                                    <div class="terminal-code-block">
+                                        <div class="terminal-header">
+                                            <div class="terminal-buttons">
+                                                <button class="terminal-btn close"></button>
+                                                <button class="terminal-btn minimize"></button>
+                                                <button class="terminal-btn maximize"></button>
+                                            </div>
+                                            <div class="terminal-title">HTML</div>
+                                        </div>
+                                        <div class="terminal-content">
+<span class="line-number">1</span><span class="keyword">&lt;button</span> <span class="variable">class</span>=<span class="string">"ema-btn ema-btn-primary"</span><span class="keyword">&gt;</span><br>
+<span class="line-number">2</span>    <span class="keyword">&lt;i</span> <span class="variable">class</span>=<span class="string">"fas fa-rocket"</span><span class="keyword">&gt;&lt;/i&gt;</span><br>
+<span class="line-number">3</span>    Primary Button<br>
+<span class="line-number">4</span><span class="keyword">&lt;/button&gt;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="docs-subsection">
+                        <h2>Next Steps</h2>
+                        <div class="next-steps-grid">
+                            <div class="next-step-card">
+                                <div class="step-icon">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                </div>
+                                <h3>Explore Components</h3>
+                                <p>Discover 250+ premium components with interactive examples</p>
+                                <a href="#components" class="step-link">Browse Components <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="next-step-card">
+                                <div class="step-icon">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <h3>Try Playground</h3>
+                                <p>Experiment with components in our interactive playground</p>
+                                <a href="playground.html" class="step-link">Open Playground <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="next-step-card">
+                                <div class="step-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h3>Read Documentation</h3>
+                                <p>Deep dive into advanced features and API reference</p>
+                                <a href="#api" class="step-link">View API Docs <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Components Section -->
+                <section id="components" class="docs-section">
+                    <div class="section-header">
+                        <h1 class="docs-title">
                             <i class="fas fa-puzzle-piece"></i>
-                            <span>Components</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#styling" class="docs-nav-link">
-                            <i class="fas fa-palette"></i>
-                            <span>Styling</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#javascript" class="docs-nav-link">
-                            <i class="fas fa-code"></i>
-                            <span>JavaScript</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#3d-effects" class="docs-nav-link">
-                            <i class="fas fa-cube"></i>
-                            <span>3D Effects</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#theming" class="docs-nav-link">
-                            <i class="fas fa-paint-brush"></i>
-                            <span>Theming</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#performance" class="docs-nav-link">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Performance</span>
-                        </a>
-                    </li>
-                    <li class="docs-nav-item">
-                        <a href="#deployment" class="docs-nav-link">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <span>Deployment</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <main class="docs-main">
-            <section class="docs-section" id="introduction">
-                <h1>Ema Framework Documentation</h1>
-                <p>Welcome to the comprehensive documentation for Ema Framework - the most advanced frontend framework for building modern web applications. This guide will help you get started and master all the powerful features Ema has to offer.</p>
-                
-                <div class="alert alert-info">
-                    <strong>New to Ema?</strong> Start with our <a href="getting-started.html" style="color: inherit;">Getting Started guide</a> to set up your first project in minutes.
-                </div>
-
-                <h2>What is Ema Framework?</h2>
-                <p>Ema Framework is a revolutionary frontend development framework that combines the best of modern web technologies with cutting-edge features. Built with vanilla HTML, CSS, and JavaScript, Ema provides:</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-puzzle-piece"></i> 250+ Components</h4>
-                        <p>Comprehensive library of pre-built UI components with 8 color variants each, ready to use in your projects.</p>
+                            Components Library
+                        </h1>
+                        <p class="docs-intro">
+                            Explore our comprehensive library of 250+ premium components. Each component comes with 
+                            8 color variants, multiple sizes, and extensive customization options.
+                        </p>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-cogs"></i> 100+ Modules</h4>
-                        <p>Powerful JavaScript modules for animations, 3D effects, state management, routing, and much more.</p>
+
+                    <!-- Component Categories -->
+                    <div class="component-categories">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-hand-pointer"></i>
+                            </div>
+                            <h3>Buttons & Actions</h3>
+                            <p>25+ button styles with 8 color variants each</p>
+                            <div class="category-stats">
+                                <span class="stat">25 Components</span>
+                                <span class="stat">8 Colors</span>
+                                <span class="stat">3 Sizes</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="showComponentCategory('buttons')">
+                                Explore Buttons
+                            </button>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h3>Forms & Inputs</h3>
+                            <p>15+ form components with validation and styling</p>
+                            <div class="category-stats">
+                                <span class="stat">15 Components</span>
+                                <span class="stat">Smart Validation</span>
+                                <span class="stat">Auto Complete</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="showComponentCategory('forms')">
+                                Explore Forms
+                            </button>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                            <h3>Navigation</h3>
+                            <p>12+ navigation components including mega dropdowns</p>
+                            <div class="category-stats">
+                                <span class="stat">12 Components</span>
+                                <span class="stat">Mega Dropdowns</span>
+                                <span class="stat">Breadcrumbs</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="showComponentCategory('navigation')">
+                                Explore Navigation
+                            </button>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <h3>Cards & Panels</h3>
+                            <p>20+ card layouts with interactive features</p>
+                            <div class="category-stats">
+                                <span class="stat">20 Components</span>
+                                <span class="stat">Interactive</span>
+                                <span class="stat">Responsive</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="showComponentCategory('cards')">
+                                Explore Cards
+                            </button>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-window-maximize"></i>
+                            </div>
+                            <h3>Modals & Overlays</h3>
+                            <p>10+ modal types with advanced features</p>
+                            <div class="category-stats">
+                                <span class="stat">10 Components</span>
+                                <span class="stat">Advanced</span>
+                                <span class="stat">Accessible</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="showComponentCategory('modals')">
+                                Explore Modals
+                            </button>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <h3>Data Display</h3>
+                            <p>25+ data visualization and table components</p>
+                            <div class="category-stats">
+                                <span class="stat">25 Components</span>
+                                <span class="stat">Sortable</span>
+                                <span class="stat">Filterable</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="showComponentCategory('data-display')">
+                                Explore Data Display
+                            </button>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-magic"></i> 500+ Features</h4>
-                        <p>Advanced features including WebGL 3D effects, PWA support, accessibility compliance, and performance optimization.</p>
+                </section>
+
+                <!-- DLI System Section -->
+                <section id="dli-system" class="docs-section">
+                    <div class="section-header">
+                        <h1 class="docs-title">
+                            <i class="fas fa-terminal"></i>
+                            DLI System - Dynamic Language Interface
+                        </h1>
+                        <p class="docs-intro">
+                            The revolutionary DLI (Dynamic Language Interface) system allows you to write code 
+                            using natural language and get instant results. It's like having a coding assistant 
+                            built into the framework.
+                        </p>
+                        <div class="dli-badge">
+                            <i class="fas fa-star"></i>
+                            New Feature
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-mobile-alt"></i> Responsive Design</h4>
-                        <p>Mobile-first responsive design system that works perfectly on all devices and screen sizes.</p>
+
+                    <!-- DLI Demo -->
+                    <div class="dli-demo">
+                        <div class="dli-header">
+                            <h3>Try DLI System</h3>
+                            <p>Describe what you want to build and watch it come to life</p>
+                        </div>
+                        
+                        <div class="dli-interface">
+                            <div class="dli-input-section">
+                                <textarea class="dli-input" placeholder="Describe your component or feature...&#10;&#10;Example: Create a purple button with a rocket icon that shows a success message when clicked"></textarea>
+                                <button class="btn btn-primary dli-generate-btn" onclick="generateWithDLI()">
+                                    <i class="fas fa-magic"></i>
+                                    Generate Code
+                                </button>
+                            </div>
+                            
+                            <div class="dli-output-section">
+                                <div class="dli-tabs">
+                                    <button class="dli-tab active" data-tab="preview">Preview</button>
+                                    <button class="dli-tab" data-tab="html">HTML</button>
+                                    <button class="dli-tab" data-tab="css">CSS</button>
+                                    <button class="dli-tab" data-tab="js">JavaScript</button>
+                                </div>
+                                
+                                <div class="dli-output">
+                                    <div class="dli-preview active">
+                                        <div class="dli-placeholder">
+                                            <i class="fas fa-magic"></i>
+                                            <p>Your generated component will appear here</p>
+                                        </div>
+                                    </div>
+                                    <div class="dli-code">
+                                        <div class="terminal-code-block">
+                                            <div class="terminal-header">
+                                                <div class="terminal-buttons">
+                                                    <button class="terminal-btn close"></button>
+                                                    <button class="terminal-btn minimize"></button>
+                                                    <button class="terminal-btn maximize"></button>
+                                                </div>
+                                                <div class="terminal-title">Generated Code</div>
+                                                <button class="copy-btn" onclick="copyDLICode()">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <div class="terminal-content">
+<span class="comment">// Generated code will appear here</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
 
-            <section class="docs-section" id="installation">
-                <h2>Installation</h2>
-                <p>Getting started with Ema Framework is simple. You can include it in your project using CDN or download the files locally.</p>
-
-                <h3>CDN Installation</h3>
-                <p>The easiest way to get started is using our CDN:</p>
-                
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>&lt;!-- CSS --&gt;
-&lt;link rel="stylesheet" href="https://cdn.ema-framework.com/css/ema-framework.css"&gt;
-
-&lt;!-- JavaScript --&gt;
-&lt;script src="https://cdn.ema-framework.com/js/ema-framework.js"&gt;&lt;/script&gt;</code></pre>
-                </div>
-
-                <h3>Local Installation</h3>
-                <p>Download the framework files and include them in your project:</p>
-                
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>&lt;!-- Include in your HTML --&gt;
-&lt;link rel="stylesheet" href="css/ema-framework.css"&gt;
-&lt;script src="js/ema-framework.js"&gt;&lt;/script&gt;</code></pre>
-                </div>
-
-                <div class="alert alert-success">
-                    <strong>Pro Tip:</strong> For production applications, consider using the minified versions for better performance.
-                </div>
-            </section>
-
-            <section class="docs-section" id="quick-start">
-                <h2>Quick Start</h2>
-                <p>Let's create your first Ema application in just a few steps:</p>
-
-                <h3>1. Basic HTML Structure</h3>
-            <div class="terminal-code-block">
-                <div class="terminal-header">
-                    <div class="terminal-buttons">
-                        <button class="terminal-button close" title="Close"></button>
-                        <button class="terminal-button minimize" title="Minimize"></button>
-                        <button class="terminal-button maximize" title="Maximize"></button>
+                    <!-- DLI Examples -->
+                    <div class="dli-examples">
+                        <h3>DLI Examples</h3>
+                        <div class="example-grid">
+                            <div class="example-card" onclick="loadDLIExample('button')">
+                                <div class="example-icon">
+                                    <i class="fas fa-hand-pointer"></i>
+                                </div>
+                                <h4>Button with Icon</h4>
+                                <p>Create a button with custom icon and styling</p>
+                            </div>
+                            <div class="example-card" onclick="loadDLIExample('card')">
+                                <div class="example-icon">
+                                    <i class="fas fa-id-card"></i>
+                                </div>
+                                <h4>Interactive Card</h4>
+                                <p>Build a card with hover effects and actions</p>
+                            </div>
+                            <div class="example-card" onclick="loadDLIExample('form')">
+                                <div class="example-icon">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <h4>Smart Form</h4>
+                                <p>Create a form with validation and auto-complete</p>
+                            </div>
+                            <div class="example-card" onclick="loadDLIExample('navigation')">
+                                <div class="example-icon">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                                <h4>Navigation Menu</h4>
+                                <p>Build a responsive navigation with dropdowns</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="terminal-title">terminal — bash — 80x24</div>
-                </div>
-                <div class="terminal-content">
-                    <button class="terminal-copy-btn" onclick="copyCode(this)">Copy</button>
-                    <div class="terminal-line-numbers">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18</div>
-                    <div class="terminal-code">
-                        <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My Ema App&lt;/title&gt;
-    &lt;link rel="stylesheet" href="css/ema-framework.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;Hello Ema Framework!&lt;/h1&gt;
-        &lt;button class="ema-btn ema-btn-primary"&gt;Click me&lt;/button&gt;
-    &lt;/div&gt;
-    
-    &lt;script src="js/ema-framework.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                    </div>
-                </div>
+                </section>
             </div>
-
-                <h3>2. Initialize the Framework</h3>
-                <div class="terminal-code-block">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <button class="terminal-button close" title="Close"></button>
-                            <button class="terminal-button minimize" title="Minimize"></button>
-                            <button class="terminal-button maximize" title="Maximize"></button>
-                        </div>
-                        <div class="terminal-title">terminal — bash — 80x24</div>
-                    </div>
-                    <div class="terminal-content">
-                        <button class="terminal-copy-btn" onclick="copyCode(this)">Copy</button>
-                        <div class="terminal-line-numbers">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11</div>
-                        <div class="terminal-code">
-                            <pre><code>&lt;script&gt;
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Ema Framework
-    if (window.emaFramework) {
-        emaFramework.init();
-    }
-    
-    // Your custom code here
-    console.log('Ema Framework is ready!');
-});
-&lt;/script&gt;</code></pre>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="docs-section" id="components">
-                <h2>Components</h2>
-                <p>Ema Framework comes with 250+ pre-built components, each with 8 color variants. Here are some of the most commonly used ones:</p>
-
-                <h3>Buttons</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>&lt;!-- Primary Button --&gt;
-&lt;button class="ema-btn ema-btn-primary"&gt;Primary&lt;/button&gt;
-
-&lt;!-- Secondary Button --&gt;
-&lt;button class="ema-btn ema-btn-secondary"&gt;Secondary&lt;/button&gt;
-
-&lt;!-- Success Button --&gt;
-&lt;button class="ema-btn ema-btn-success"&gt;Success&lt;/button&gt;</code></pre>
-                </div>
-
-                <h3>Cards</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>&lt;div class="ema-card"&gt;
-    &lt;div class="ema-card-header"&gt;
-        &lt;h3&gt;Card Title&lt;/h3&gt;
-    &lt;/div&gt;
-    &lt;div class="ema-card-body"&gt;
-        &lt;p&gt;Card content goes here.&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class="ema-card-footer"&gt;
-        &lt;button class="ema-btn ema-btn-primary"&gt;Action&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-            </section>
-
-            <section class="docs-section" id="styling">
-                <h2>Styling</h2>
-                <p>Ema Framework uses a comprehensive design system with 8 color variants and consistent spacing.</p>
-
-                <h3>Color System</h3>
-                <p>Each component supports 8 color variants:</p>
-                <ul>
-                    <li><strong>Primary (Purple):</strong> #6f42c1 - Main brand color</li>
-                    <li><strong>Secondary (Gray):</strong> #6c757d - Neutral elements</li>
-                    <li><strong>Success (Green):</strong> #28a745 - Success states</li>
-                    <li><strong>Warning (Yellow):</strong> #ffc107 - Warning states</li>
-                    <li><strong>Danger (Red):</strong> #dc3545 - Error states</li>
-                    <li><strong>Info (Blue):</strong> #007bff - Information</li>
-                    <li><strong>Light (White):</strong> #ffffff - Light backgrounds</li>
-                    <li><strong>Dark (Orange):</strong> #fd7e14 - Dark accents</li>
-                </ul>
-
-                <h3>Custom CSS Variables</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>:root {
-    --ema-primary: #6f42c1;
-    --ema-secondary: #6c757d;
-    --ema-success: #28a745;
-    --ema-warning: #ffc107;
-    --ema-danger: #dc3545;
-    --ema-info: #007bff;
-    --ema-light: #ffffff;
-    --ema-dark: #fd7e14;
-}</code></pre>
-                </div>
-            </section>
-
-            <section class="docs-section" id="javascript">
-                <h2>JavaScript</h2>
-                <p>Ema Framework includes 100+ JavaScript modules for enhanced functionality.</p>
-
-                <h3>Core Modules</h3>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-cube"></i> 3D Engine</h4>
-                        <p>WebGL-based 3D rendering and particle effects system.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-bell"></i> Alert System</h4>
-                        <p>Advanced notification system with multiple alert types.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-route"></i> Router</h4>
-                        <p>Client-side routing for single-page applications.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-database"></i> Store</h4>
-                        <p>State management and data persistence.</p>
-                    </div>
-                </div>
-
-                <h3>Using JavaScript Modules</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>// Initialize 3D effects
-if (window.ema3DEngine) {
-    ema3DEngine.init();
-}
-
-// Show alert
-if (window.emaAlerts) {
-    emaAlerts.success('Operation completed successfully!');
-}
-
-// Use router
-if (window.emaRouter) {
-    emaRouter.navigate('/dashboard');
-}</code></pre>
-                </div>
-            </section>
-
-            <section class="docs-section" id="3d-effects">
-                <h2>3D Effects</h2>
-                <p>Ema Framework includes a powerful WebGL-based 3D engine for creating stunning visual effects.</p>
-
-                <h3>Particle Effects</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>// Create explosion effect
-ema3DEffects.createExplosion(x, y, color, particleCount);
-
-// Create trail effect
-ema3DEffects.createTrail(element, color, duration);
-
-// Create spiral effect
-ema3DEffects.createSpiral(centerX, centerY, radius, color);</code></pre>
-                </div>
-
-                <h3>Interactive 3D Objects</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>// Add 3D hover effect to element
-element.addEventListener('mouseenter', () => {
-    ema3DEffects.addHoverEffect(element, 'float');
-});
-
-// Add 3D click effect
-element.addEventListener('click', () => {
-    ema3DEffects.addClickEffect(element, 'explosion');
-});</code></pre>
-                </div>
-            </section>
-
-            <section class="docs-section" id="theming">
-                <h2>Theming</h2>
-                <p>Ema Framework supports both light and dark themes with easy customization options.</p>
-
-                <h3>Theme Switching</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>// Switch to dark theme
-emaTheme.setTheme('dark');
-
-// Switch to light theme
-emaTheme.setTheme('light');
-
-// Toggle theme
-emaTheme.toggleTheme();</code></pre>
-                </div>
-
-                <h3>Custom Themes</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>// Create custom theme
-const customTheme = {
-    primary: '#ff6b6b',
-    secondary: '#4ecdc4',
-    background: '#2c3e50',
-    text: '#ecf0f1'
-};
-
-emaTheme.createTheme('custom', customTheme);
-emaTheme.setTheme('custom');</code></pre>
-                </div>
-            </section>
-
-            <section class="docs-section" id="performance">
-                <h2>Performance</h2>
-                <p>Ema Framework is optimized for maximum performance and minimal bundle size.</p>
-
-                <h3>Optimization Features</h3>
-                <ul>
-                    <li><strong>Lazy Loading:</strong> Components load only when needed</li>
-                    <li><strong>Tree Shaking:</strong> Unused code is automatically removed</li>
-                    <li><strong>Code Splitting:</strong> JavaScript is split into smaller chunks</li>
-                    <li><strong>CSS Optimization:</strong> Unused styles are purged</li>
-                    <li><strong>Image Optimization:</strong> Automatic image compression and WebP support</li>
-                </ul>
-
-                <h3>Performance Monitoring</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>// Monitor performance
-emaPerformance.startMonitoring();
-
-// Get performance metrics
-const metrics = emaPerformance.getMetrics();
-console.log('Load time:', metrics.loadTime);
-console.log('Render time:', metrics.renderTime);</code></pre>
-                </div>
-            </section>
-
-            <section class="docs-section" id="deployment">
-                <h2>Deployment</h2>
-                <p>Deploy your Ema applications to any hosting platform with ease.</p>
-
-                <h3>Static Hosting</h3>
-                <p>Ema applications are static and can be deployed to any static hosting service:</p>
-                <ul>
-                    <li>Netlify</li>
-                    <li>Vercel</li>
-                    <li>GitHub Pages</li>
-                    <li>Firebase Hosting</li>
-                    <li>AWS S3</li>
-                </ul>
-
-                <h3>Build Process</h3>
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code># Install dependencies
-npm install
-
-# Build for production
-npm run build
-
-# Deploy to Netlify
-netlify deploy --prod --dir=dist</code></pre>
-                </div>
-
-                <div class="alert alert-warning">
-                    <strong>Remember:</strong> Always test your application thoroughly before deploying to production.
-                </div>
-            </section>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="ema-footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Ema Framework</h4>
-                    <p>
-                        The future of web development is here. Build amazing applications 
-                        with the most advanced JavaScript framework ever created.
+            <!-- Newsletter Section -->
+            <div class="footer-newsletter">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Updated</h2>
+                    <p class="newsletter-description">
+                        Get the latest updates, releases, and exclusive content delivered to your inbox.
                     </p>
+                    <form class="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                        <p class="newsletter-privacy">
+                            We respect your privacy. Unsubscribe at any time.
+                        </p>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-cube" aria-hidden="true"></i>
+                        </div>
+                        <span>Ema Framework</span>
+                    </div>
+                    <p class="footer-description">
+                        The world's most advanced UI framework. Build extraordinary web experiences 
+                        with cutting-edge components and unmatched performance.
+                    </p>
+                    
+                    <div class="footer-stats">
+                        <div class="footer-stat">
+                            <span class="stat-number">250+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div class="footer-stat">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Modules</span>
+                        </div>
+                        <div class="footer-stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Features</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://github.com/aydocs/emadocs" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord">
+                            <i class="fab fa-discord" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Resources</h4>
+                    <h3 class="footer-title">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Getting Started
+                    </h3>
                     <ul class="footer-links">
-                        <li><a href="getting-started.html">Getting Started</a></li>
-                        <li><a href="components.html">Components</a></li>
+                        <li><a href="getting-started.html">Quick Start</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
                         <li><a href="examples.html">Examples</a></li>
-                        <li><a href="api.html">API Reference</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="playground.html">Playground</a></li>
-                        <li><a href="showcase.html">Showcase</a></li>
+                        <li><a href="3d-showcase.html">3D Showcase</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h3 class="footer-title">
+                        <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                        Components
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="components.html">UI Components</a></li>
+                        <li><a href="showcase.html">Showcase</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#forms">Forms</a></li>
+                        <li><a href="#navigation">Navigation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        Community
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Contributing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Resources
+                    </h3>
                     <ul class="footer-links">
                         <li><a href="revolution.html">Revolution</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#dli-system">DLI System</a></li>
+                        <li><a href="#">Changelog</a></li>
+                        <li><a href="#">License</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Accessibility</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
+                <div class="footer-bottom-left">
+                    <p class="footer-copyright">
+                        © 2024 Ema Framework. All rights reserved.
+                    </p>
+                    <div class="footer-badges">
+                        <span class="footer-badge">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            MIT License
+                        </span>
+                        <span class="footer-badge">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                            Made with Love
+                        </span>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="../js/3d-engine.js"></script>
-    <script src="../js/ema-alerts.js"></script>
-    <script src="../js/ema-3d-effects.js"></script>
-    <script src="../js/ema-live-preview.js"></script>
-    <script src="../js/ema-search.js"></script>
-    <script src="../js/ema-mobile-nav.js"></script>
+    <script src="../js/emadocs.js"></script>
 
     <script>
-        // Initialize documentation page
+        // Enhanced Documentation Page JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize search trigger
-            const searchTrigger = document.querySelector('.search-trigger');
-            if (searchTrigger) {
-                searchTrigger.addEventListener('click', () => {
-                    if (window.emaSearch) {
-                        window.emaSearch.openSearch();
-                    }
-                });
-            }
+            initializeDocsPage();
+        });
+
+        function initializeDocsPage() {
+            // Initialize category dropdowns
+            initializeCategoryDropdowns();
             
-            // Initialize 3D engine
-            if (window.ema3DEngine) {
-                ema3DEngine.init();
-            }
+            // Initialize search functionality
+            initializeDocsSearch();
             
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('.docs-nav-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
+            // Initialize install tabs
+            initializeInstallTabs();
+            
+            // Initialize demo buttons
+            initializeDemoButtons();
+            
+            // Initialize DLI system
+            initializeDLISystem();
+            
+            // Initialize navigation
+            initializeDocsNavigation();
+        }
+
+        function initializeCategoryDropdowns() {
+            const categoryHeaders = document.querySelectorAll('.nav-category-header');
+            
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    const content = document.getElementById(category);
+                    const arrow = this.querySelector('.category-arrow');
                     
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Update active link
-                        document.querySelectorAll('.docs-nav-link').forEach(l => l.classList.remove('active'));
-                        link.classList.add('active');
+                    if (content.style.display === 'none' || content.style.display === '') {
+                        content.style.display = 'block';
+                        arrow.style.transform = 'rotate(180deg)';
+                    } else {
+                        content.style.display = 'none';
+                        arrow.style.transform = 'rotate(0deg)';
                     }
                 });
             });
+        }
+
+        function initializeDocsSearch() {
+            const searchInput = document.getElementById('docsSearch');
             
-            // Copy code functionality
-            window.copyCode = function(button) {
-                const codeBlock = button.nextElementSibling.querySelector('code');
-                const text = codeBlock.textContent;
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                const navItems = document.querySelectorAll('.docs-nav-link');
                 
-                navigator.clipboard.writeText(text).then(() => {
-                    button.textContent = 'Copied!';
-                    setTimeout(() => {
-                        button.textContent = 'Copy';
-                    }, 2000);
+                navItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.parentElement.style.display = 'block';
+                    } else {
+                        item.parentElement.style.display = query ? 'none' : 'block';
+                    }
                 });
+            });
+        }
+
+        function initializeInstallTabs() {
+            const tabs = document.querySelectorAll('.install-tab');
+            const contents = document.querySelectorAll('.install-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Update tab states
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update content states
+                    contents.forEach(c => c.classList.remove('active'));
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
+        function initializeDemoButtons() {
+            const demoBtns = document.querySelectorAll('.demo-btn');
+            
+            demoBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const variant = this.dataset.variant;
+                    
+                    // Update button states
+                    demoBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Handle different variants
+                    if (variant === 'copy') {
+                        copyComponentCode();
+                    }
+                });
+            });
+        }
+
+        function initializeDLISystem() {
+            const dliTabs = document.querySelectorAll('.dli-tab');
+            
+            dliTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Update tab states
+                    dliTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        function initializeDocsNavigation() {
+            const navLinks = document.querySelectorAll('.docs-nav-link');
+            const sections = document.querySelectorAll('.docs-section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active nav link
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetId = this.getAttribute('href').substring(1);
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        }
+                    });
+                    
+                    // Show toast notification
+                    const sectionName = this.textContent.trim();
+                    emaToast({
+                        type: 'info',
+                        title: 'Navigation',
+                        text: `Navigated to ${sectionName}`,
+                        timer: 2000
+                    });
+                });
+            });
+        }
+
+        // Utility functions
+        function copyInstallCode() {
+            const npmCommand = 'npm install ema-framework';
+            navigator.clipboard.writeText(npmCommand).then(() => {
+                emaToast({
+                    type: 'success',
+                    title: 'Copied!',
+                    text: 'Install command copied to clipboard',
+                    timer: 2000
+                });
+            });
+        }
+
+        function openPlayground() {
+            window.open('playground.html', '_blank');
+        }
+
+        function copyCode(button) {
+            const codeBlock = button.closest('.terminal-code-block');
+            const code = codeBlock.querySelector('.terminal-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                emaToast({
+                    type: 'success',
+                    title: 'Copied!',
+                    text: 'Code copied to clipboard',
+                    timer: 2000
+                });
+            });
+        }
+
+        function downloadLatest() {
+            emaToast({
+                type: 'info',
+                title: 'Download',
+                text: 'Starting download of latest release...',
+                timer: 3000
+            });
+        }
+
+        function downloadDev() {
+            emaToast({
+                type: 'warning',
+                title: 'Development Build',
+                text: 'Starting download of development build...',
+                timer: 3000
+            });
+        }
+
+        function copyComponentCode() {
+            const code = `<button class="ema-btn ema-btn-primary">
+    <i class="fas fa-rocket"></i>
+    Primary Button
+</button>`;
+            navigator.clipboard.writeText(code).then(() => {
+                emaToast({
+                    type: 'success',
+                    title: 'Copied!',
+                    text: 'Component code copied to clipboard',
+                    timer: 2000
+                });
+            });
+        }
+
+        function showComponentCategory(category) {
+            emaToast({
+                type: 'info',
+                title: 'Component Category',
+                text: `Opening ${category} components...`,
+                timer: 2000
+            });
+        }
+
+        function generateWithDLI() {
+            const input = document.querySelector('.dli-input').value;
+            if (!input.trim()) {
+                emaToast({
+                    type: 'warning',
+                    title: 'Input Required',
+                    text: 'Please describe what you want to build',
+                    timer: 3000
+                });
+                return;
+            }
+            
+            emaToast({
+                type: 'success',
+                title: 'Generating...',
+                text: 'Creating your component with DLI system...',
+                timer: 2000
+            });
+            
+            // Simulate DLI generation
+            setTimeout(() => {
+                document.querySelector('.dli-placeholder').innerHTML = `
+                    <div class="generated-component">
+                        <button class="ema-btn ema-btn-primary" style="background: #6f42c1; border: none; padding: 12px 24px; border-radius: 8px; color: white; cursor: pointer; font-size: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <i class="fas fa-rocket" style="margin-right: 8px;"></i>
+                            Generated Button
+                        </button>
+                    </div>
+                `;
+                
+                emaToast({
+                    type: 'success',
+                    title: 'Generated!',
+                    text: 'Your component has been generated successfully',
+                    timer: 3000
+                });
+            }, 2000);
+        }
+
+        function copyDLICode() {
+            const code = `<!-- Generated Component -->
+<button class="ema-btn ema-btn-primary">
+    <i class="fas fa-rocket"></i>
+    Generated Button
+</button>`;
+            navigator.clipboard.writeText(code).then(() => {
+                emaToast({
+                    type: 'success',
+                    title: 'Copied!',
+                    text: 'Generated code copied to clipboard',
+                    timer: 2000
+                });
+            });
+        }
+
+        function loadDLIExample(type) {
+            const examples = {
+                button: 'Create a purple button with a rocket icon that shows a success message when clicked',
+                card: 'Create an interactive card with hover effects and action buttons',
+                form: 'Create a smart form with validation and auto-complete functionality',
+                navigation: 'Create a responsive navigation menu with dropdown submenus'
             };
             
-            // Intersection Observer for active navigation
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        const navLink = document.querySelector(`.docs-nav-link[href="#${id}"]`);
-                        
-                        if (navLink) {
-                            document.querySelectorAll('.docs-nav-link').forEach(l => l.classList.remove('active'));
-                            navLink.classList.add('active');
-                        }
-                    }
-                });
-            }, { threshold: 0.5 });
+            document.querySelector('.dli-input').value = examples[type];
             
-            // Observe all sections
-            document.querySelectorAll('.docs-section').forEach(section => {
-                observer.observe(section);
+            emaToast({
+                type: 'info',
+                title: 'Example Loaded',
+                text: `${type} example loaded into DLI system`,
+                timer: 2000
             });
-        });
+        }
     </script>
 </body>
 </html>

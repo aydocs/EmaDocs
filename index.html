@@ -1,1078 +1,1556 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ema Framework - The Future of Web Development</title>
-    <meta name="description" content="Revolutionary JavaScript framework with 250+ components, 100+ modules, and 500+ features. Build amazing web applications with cutting-edge design and 3D effects.">
+    <title>Ema Framework - The World's Most Advanced UI Framework | 250+ Components</title>
+    <meta name="description" content="Ema Framework - The ultimate UI framework with 250+ premium components, 100+ JavaScript modules, and 500+ features. More advanced than Tailwind, Next.js, and React combined.">
+    <meta name="keywords" content="UI framework, components, JavaScript, CSS, web development, Tailwind alternative, Next.js alternative, React components">
+    <meta name="author" content="Ema Framework Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#a855f7">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emaframework.com/">
+    <meta property="og:title" content="Ema Framework - The World's Most Advanced UI Framework">
+    <meta property="og:description" content="250+ premium components, 100+ JavaScript modules, 500+ features. More advanced than Tailwind, Next.js, and React combined.">
+    <meta property="og:image" content="https://emaframework.com/og-image.jpg">
+    <meta property="og:site_name" content="Ema Framework">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emaframework.com/">
+    <meta property="twitter:title" content="Ema Framework - The World's Most Advanced UI Framework">
+    <meta property="twitter:description" content="250+ premium components, 100+ JavaScript modules, 500+ features. More advanced than Tailwind, Next.js, and React combined.">
+    <meta property="twitter:image" content="https://emaframework.com/twitter-image.jpg">
+    <meta property="twitter:creator" content="@emaframework">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://emaframework.com/">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236f42c1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>E</text></svg>">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#a855f7">
+    <meta name="msapplication-TileColor" content="#a855f7">
     
-    <!-- Google Fonts -->
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/emadocs.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/emadocs.css" as="style">
+    <link rel="preload" href="js/emadocs.js" as="script">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ema Framework",
+        "description": "The world's most advanced UI framework with 250+ premium components, 100+ JavaScript modules, and 500+ features.",
+        "url": "https://emaframework.com",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Ema Framework Team"
+        }
+    }
+    </script>
 </head>
-<body class="dark-mode-enhanced">
-    <!-- Beautiful 3D Background Elements -->
-    <div class="background-3d-elements">
-        <div class="floating-geometry geometry-1"></div>
-        <div class="floating-geometry geometry-2"></div>
-        <div class="floating-geometry geometry-3"></div>
-        <div class="floating-geometry geometry-4"></div>
-        
-        <div class="particle-field">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-        
-        <div class="gradient-orbs">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-            <div class="orb orb-3"></div>
-        </div>
-    </div>
+<body class="index-page">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg">
+        Skip to main content
+    </a>
+
     <!-- Header -->
-    <header class="ema-header" id="header">
-        <div class="nav-container">
-            <a href="/" class="ema-logo">
-                <div class="ema-logo-icon"><i class="fas fa-cube"></i></div>
-                <span>Ema Framework</span>
-            </a>
-            
-            <button class="hamburger-menu" aria-label="Toggle navigation">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            
-            <nav>
-                <ul class="ema-nav-links">
-                    <li class="nav-dropdown">
-                        <a href="#" class="ema-nav-link dropdown-trigger">
-                            <i class="fas fa-th-large"></i> 
-                            <span>Framework</span>
-                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+    <header class="header" id="header" role="banner">
+        <!-- Random Header Blobs -->
+        <div class="header-blobs" aria-hidden="true">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+            <div class="blob blob-5"></div>
+            <div class="blob blob-6"></div>
+            <div class="blob blob-7"></div>
+            <div class="blob blob-8"></div>
+        </div>
+        
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <a href="/" class="logo" aria-label="Ema Framework - Home">
+                    <div class="logo-icon" aria-hidden="true">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <span>Ema Framework</span>
+                </a>
+                
+                <ul class="nav-links" role="navigation">
+                    <li role="none">
+                        <a href="#home" class="nav-link active" role="menuitem" aria-current="page">Home</a>
+                    </li>
+                    <li role="none" class="nav-dropdown">
+                        <a href="#" class="nav-link dropdown-trigger" role="menuitem" aria-expanded="false" aria-haspopup="true">
+                            Framework
+                            <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
                         </a>
-                    </li>
-                    <li>
-                        <button class="search-trigger" aria-label="Search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <a href="pages/docs.html" class="ema-nav-link">
-                <i class="fas fa-book"></i>
-                            <span>Docs</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/blog.html" class="ema-nav-link">
-                            <i class="fas fa-blog"></i>
-                            <span>Blog</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/getting-started.html" class="ema-nav-link">
-                            <i class="fas fa-rocket"></i>
-                            <span>Get Started</span>
-                        </a>
-                    </li>
-                        <div class="mega-dropdown">
-                            <div class="dropdown-content">
+                        <div class="mega-dropdown" role="group">
+                            <div class="mega-dropdown-content">
                                 <div class="dropdown-section">
-                                    <h3>Getting Started</h3>
-                                    <a href="pages/getting-started.html" class="dropdown-item">
-                                        <i class="fas fa-rocket"></i>
-                                        <div>
-                                            <span class="item-title">Quick Start</span>
-                                            <span class="item-desc">Begin your journey</span>
+                                    <h3 class="dropdown-section-title">Getting Started</h3>
+                                    <a href="pages/getting-started.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-rocket"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Quick Start</div>
+                                            <div class="dropdown-item-desc">Begin your journey with Ema</div>
                                         </div>
                                     </a>
-                                    <a href="pages/api.html" class="dropdown-item">
-                                        <i class="fas fa-cogs"></i>
-                                        <div>
-                                            <span class="item-title">API Reference</span>
-                                            <span class="item-desc">Complete documentation</span>
+                                    <a href="pages/docs.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Documentation</div>
+                                            <div class="dropdown-item-desc">Complete guides & API</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Components</h3>
-                                    <a href="pages/components.html" class="dropdown-item">
-                                        <i class="fas fa-puzzle-piece"></i>
-                                        <div>
-                                            <span class="item-title">UI Components</span>
-                                            <span class="item-desc">250+ components</span>
+                                    <h3 class="dropdown-section-title">Components</h3>
+                                    <a href="pages/components.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-puzzle-piece"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">UI Components</div>
+                                            <div class="dropdown-item-desc">250+ premium components</div>
                                         </div>
                                     </a>
-                                    <a href="pages/showcase.html" class="dropdown-item">
-                                        <i class="fas fa-star"></i>
-                                        <div>
-                                            <span class="item-title">Showcase</span>
-                                            <span class="item-desc">Live examples</span>
+                                    <a href="#showcase" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-eye"></i>
                                         </div>
-                                    </a>
-                                </div>
-                                
-                                <div class="dropdown-section">
-                                    <h3>Tools</h3>
-                                    <a href="pages/playground.html" class="dropdown-item">
-                                        <i class="fas fa-play"></i>
-                                        <div>
-                                            <span class="item-title">Playground</span>
-                                            <span class="item-desc">Interactive builder</span>
-                                        </div>
-                                    </a>
-                                    <a href="pages/dashboard.html" class="dropdown-item">
-                                        <i class="fas fa-chart-line"></i>
-                                        <div>
-                                            <span class="item-title">Dashboard</span>
-                                            <span class="item-desc">Analytics & stats</span>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Showcase</div>
+                                            <div class="dropdown-item-desc">Live examples & demos</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Resources</h3>
-                                    <a href="pages/examples.html" class="dropdown-item">
-                    <i class="fas fa-code"></i>
-                                        <div>
-                                            <span class="item-title">Examples</span>
-                                            <span class="item-desc">Real projects</span>
+                                    <h3 class="dropdown-section-title">Resources</h3>
+                                    <a href="pages/examples.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Examples</div>
+                                            <div class="dropdown-item-desc">Real-world projects</div>
                                         </div>
                                     </a>
-                                    <a href="pages/revolution.html" class="dropdown-item">
-                                        <i class="fas fa-rocket"></i>
-                                        <div>
-                                            <span class="item-title">Revolution</span>
-                                            <span class="item-desc">Next-gen features</span>
+                                    <a href="pages/blog.html" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fas fa-blog"></i>
                                         </div>
-                                    </a>
-                                </div>
-                                
-                                <div class="dropdown-section">
-                                    <h3>Documentation</h3>
-                                    <a href="pages/docs.html" class="dropdown-item">
-                                        <i class="fas fa-book"></i>
-                                        <div>
-                                            <span class="item-title">Documentation</span>
-                                            <span class="item-desc">Complete guides</span>
-                                        </div>
-                                    </a>
-                                    <a href="pages/blog.html" class="dropdown-item">
-                                        <i class="fas fa-blog"></i>
-                                        <div>
-                                            <span class="item-title">Blog</span>
-                                            <span class="item-desc">News & tutorials</span>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Blog</div>
+                                            <div class="dropdown-item-desc">News & tutorials</div>
                                         </div>
                                     </a>
                                 </div>
                                 
                                 <div class="dropdown-section">
-                                    <h3>Community</h3>
-                                    <a href="https://github.com/aydocs/emadocs" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                        <div>
-                                            <span class="item-title">GitHub</span>
-                                            <span class="item-desc">Source code & issues</span>
+                                    <h3 class="dropdown-section-title">Community</h3>
+                                    <a href="https://github.com/emaframework" class="dropdown-item" role="menuitem" target="_blank" rel="noopener noreferrer">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">GitHub</div>
+                                            <div class="dropdown-item-desc">Source code & issues</div>
                                         </div>
                                     </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-users"></i>
-                                        <div>
-                                            <span class="item-title">Discord</span>
-                                            <span class="item-desc">Join our community</span>
+                                    <a href="#" class="dropdown-item" role="menuitem">
+                                        <div class="dropdown-item-icon">
+                                            <i class="fab fa-discord"></i>
+                                        </div>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Discord</div>
+                                            <div class="dropdown-item-desc">Join our community</div>
                                         </div>
                                     </a>
                                 </div>
                             </div>
                             
-                            <div class="dropdown-footer">
-                                <a href="https://github.com/aydocs/emadocs" class="github-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                                    <span>View on GitHub</span>
+                            <div class="mega-dropdown-footer">
+                                <a href="https://github.com/emaframework" class="dropdown-footer-link secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    View on GitHub
                                 </a>
-                                <a href="pages/getting-started.html" class="cta-link">
-                                    <i class="fas fa-rocket"></i>
-                                    <span>Get Started</span>
-                </a>
-            </div>
-        </div>
+                                <a href="pages/getting-started.html" class="dropdown-footer-link primary">
+                                    <i class="fas fa-rocket" aria-hidden="true"></i>
+                                    Get Started Free
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li role="none">
+                        <a href="#features" class="nav-link" role="menuitem">Features</a>
+                    </li>
+                    <li role="none">
+                        <a href="#components" class="nav-link" role="menuitem">Components</a>
+                    </li>
+                    <li role="none">
+                        <a href="pages/getting-started.html" class="btn btn-primary" role="menuitem">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            Get Started
+                        </a>
                     </li>
                 </ul>
-    </nav>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+            </nav>
         </div>
     </header>
-    
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li>
-                <a href="#" class="mobile-framework-trigger">
-                    <i class="fas fa-th-large"></i>
-                    <span>Framework</span>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+        <div class="container">
+            <h2 id="mobile-menu-title" class="sr-only">Mobile Navigation Menu</h2>
+            <ul class="mobile-nav-links" role="menu">
+                <li role="none">
+                    <a href="#home" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-home" aria-hidden="true"></i>
+                        Home
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#features" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        Features
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#components" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                    Components
                 </a>
-            </li>
-            <li>
-                <a href="#" class="mobile-search-trigger">
-                    <i class="fas fa-search"></i>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="pages/docs.html">
-                    <i class="fas fa-book"></i>
-                    <span>Docs</span>
-                </a>
-            </li>
-            <li>
-                <a href="pages/blog.html">
-                    <i class="fas fa-blog"></i>
-                    <span>Blog</span>
-                </a>
-            </li>
-            <li>
-                <a href="pages/getting-started.html">
-                    <i class="fas fa-rocket"></i>
-                    <span>Get Started</span>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="mobile-mega-dropdown" id="mobileMegaDropdown">
-            <h3>Getting Started</h3>
-            <a href="pages/getting-started.html" class="mobile-dropdown-item">
-                <i class="fas fa-rocket"></i>
-                <span>Quick Start</span>
-            </a>
-            <a href="pages/api.html" class="mobile-dropdown-item">
-                <i class="fas fa-cogs"></i>
-                <span>API Reference</span>
-            </a>
-            
-            <h3>Components</h3>
-            <a href="pages/components.html" class="mobile-dropdown-item">
-                <i class="fas fa-puzzle-piece"></i>
-                <span>UI Components</span>
-            </a>
-            <a href="pages/showcase.html" class="mobile-dropdown-item">
-                <i class="fas fa-star"></i>
-                <span>Showcase</span>
-            </a>
-            
-            <h3>Tools</h3>
-            <a href="pages/playground.html" class="mobile-dropdown-item">
-                <i class="fas fa-play"></i>
-                <span>Playground</span>
-            </a>
-            <a href="pages/dashboard.html" class="mobile-dropdown-item">
-                <i class="fas fa-chart-line"></i>
-                <span>Dashboard</span>
-            </a>
-            
-            <h3>Resources</h3>
-            <a href="pages/examples.html" class="mobile-dropdown-item">
-                <i class="fas fa-code"></i>
-                <span>Examples</span>
-            </a>
-            <a href="pages/revolution.html" class="mobile-dropdown-item">
-                <i class="fas fa-rocket"></i>
-                <span>Revolution</span>
-            </a>
+                </li>
+                <li role="none">
+                    <a href="#showcase" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                        Showcase
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="pages/docs.html" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-book" aria-hidden="true"></i>
+                        Documentation
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="pages/blog.html" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-blog" aria-hidden="true"></i>
+                        Blog
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="pages/getting-started.html" class="mobile-nav-link" role="menuitem">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Get Started
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
+
+    <!-- 3D Floating Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="floating-cube floating-cube-1"></div>
+        <div class="floating-cube floating-cube-2"></div>
+        <div class="floating-cube floating-cube-3"></div>
+        <div class="floating-orb floating-orb-1"></div>
+        <div class="floating-orb floating-orb-2"></div>
+        <div class="floating-orb floating-orb-3"></div>
+        <div class="floating-triangle floating-triangle-1"></div>
+        <div class="floating-triangle floating-triangle-2"></div>
+        <div class="floating-ring floating-ring-1"></div>
+        <div class="floating-ring floating-ring-2"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
     <!-- Hero Section -->
-    <section class="ema-hero">
-        <div class="container">
-            <h1 class="hero-title fade-in">
-                The Future of 
-                <span class="gradient-text">Web Development</span>
-                is Here
-            </h1>
-            <p class="hero-subtitle fade-in stagger-1">
-                Build stunning, high-performance web applications with Ema Framework. 
-                250+ components, 100+ modules, and 500+ features in a single revolutionary package.
-            </p>
+        <section class="hero" id="home" aria-labelledby="hero-title">
             
-            <div class="hero-buttons fade-in stagger-2">
-                 <a href="pages/getting-started.html" class="ema-btn ema-btn-primary">
-                     <i class="fas fa-rocket"></i>
-                     Start Building
-                 </a>
-                 <a href="pages/examples.html" class="ema-btn ema-btn-secondary">
-                     <i class="fas fa-lightbulb"></i>
-                    View Examples
-                </a>
-                 <a href="pages/dashboard.html" class="ema-btn ema-btn-secondary">
-                     <i class="fas fa-chart-line"></i>
-                     Dashboard
-                 </a>
-                 <a href="pages/playground.html" class="ema-btn ema-btn-secondary">
-                     <i class="fas fa-play"></i>
-                     Playground
-                 </a>
-                 <a href="pages/showcase.html" class="ema-btn ema-btn-secondary">
-                     <i class="fas fa-palette"></i>
-                     Showcase
-                </a>
+            <div class="container">
+                
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title animate-fade-in-up">
+                        Ema Framework
+                    </h1>
+                    <p class="hero-subtitle animate-fade-in-up">
+                        The World's Most Advanced UI Framework
+                    </p>
+                    <p class="hero-description animate-fade-in-up">
+                        Build extraordinary web experiences with 250+ premium components. 
+                        More powerful than any existing framework.
+                    </p>
+                    
+                    <div class="hero-actions animate-fade-in-up">
+                        <a href="pages/getting-started.html" class="btn btn-primary btn-xl hero-cta" onclick="EmaFramework.components.createToast('Welcome to Ema Framework! 🚀', 'success', 4000)">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            Get Started Free
+                            <div class="btn-glow"></div>
+                        </a>
+                        <a href="#showcase" class="btn btn-outline btn-xl" onclick="document.getElementById('components').scrollIntoView({behavior: 'smooth'})">
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            View Showcase
+                        </a>
+                        <button class="btn btn-secondary btn-xl" id="liveDemoBtn">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                            Live Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="hero-trust animate-fade-in-up">
+                        <p class="trust-text">Trusted by developers worldwide</p>
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Enterprise Ready</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>Secure by Design</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-universal-access"></i>
+                                <span>WCAG 2.2 AAA</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Mobile First</span>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>
 
-    <!-- Fantasy Grid Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Revolutionary Features</h2>
-                <p class="section-subtitle">
-                    Discover the most advanced web development framework ever created
-                </p>
+    <!-- Features Section -->
+        <section class="section" id="features" aria-labelledby="features-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="features-title" class="section-title">Revolutionary Features</h2>
+                    <p class="section-subtitle">
+                        Everything you need to build extraordinary web experiences that surpass industry standards
+                    </p>
+                </header>
+                
+                <div class="grid grid-auto" role="list">
+                    <article class="feature-card animate-fade-in-up" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                        <h3 class="feature-title">1200+ Premium Components</h3>
+                        <p class="feature-description">
+                            Meticulously crafted components across 25+ categories with 8 color variants each. 
+                            From simple buttons to complex AI interfaces, everything is included 
+                            with pixel-perfect design and smooth animations.
+                        </p>
+                        <div class="feature-stats" role="list" aria-label="Component categories">
+                            <span class="feature-stat" role="listitem">Buttons & Forms</span>
+                            <span class="feature-stat" role="listitem">Data Tables</span>
+                            <span class="feature-stat" role="listitem">Charts & Graphs</span>
+                            <span class="feature-stat" role="listitem">Modals & Overlays</span>
+                            <span class="feature-stat" role="listitem">Navigation</span>
             </div>
+                    </article>
+
+                    <article class="feature-card animate-fade-in-up" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-code"></i>
+                </div>
+                        <h3 class="feature-title">100+ Advanced Modules</h3>
+                        <p class="feature-description">
+                            Cutting-edge JavaScript modules built with modern ES2023+ syntax. 
+                            Advanced 3D effects, real-time animations, data processing, 
+                            and performance optimization tools.
+                        </p>
+                        <div class="feature-stats" role="list" aria-label="Module categories">
+                            <span class="feature-stat" role="listitem">3D Engine</span>
+                            <span class="feature-stat" role="listitem">Animation System</span>
+                            <span class="feature-stat" role="listitem">Data Processing</span>
+                            <span class="feature-stat" role="listitem">Performance Tools</span>
+            </div>
+                    </article>
             
-            <div class="fantasy-grid layout-1">
-                 <div class="ema-card hero-card area-hero fade-in stagger-1">
-                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                     <h3 class="feature-title">Lightning Fast</h3>
-                    <p class="feature-description">
-                        No virtual DOM overhead. Direct DOM manipulation with smart caching 
-                        delivers unmatched performance for modern web applications.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-bolt"></i> 0.3s Load Time</span>
-                        <span class="stat"><i class="fas fa-box"></i> 50KB Bundle</span>
-                    </div>
+                    <article class="feature-card animate-fade-in-up" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                    <i class="fas fa-palette"></i>
                 </div>
-                
-                <div class="ema-card feature-card area-main fade-in stagger-2">
-                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
-                    <h3 class="feature-title">Beautiful Design System</h3>
-                    <p class="feature-description">
-                        8-color system with 250+ components. Every component comes with 
-                        multiple variants and accessibility features built-in.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-puzzle-piece"></i> 250+ Components</span>
-                        <span class="stat"><i class="fas fa-palette"></i> 8 Color Themes</span>
-                    </div>
+                        <h3 class="feature-title">Advanced Color System</h3>
+                        <p class="feature-description">
+                            Sophisticated 8-color semantic system with automatic dark mode, 
+                            accessibility compliance, and dynamic theme generation. 
+                            More advanced than any existing framework.
+                        </p>
+                        <div class="feature-stats" role="list" aria-label="Color features">
+                            <span class="feature-stat" role="listitem">Smart Themes</span>
+                            <span class="feature-stat" role="listitem">Auto Dark Mode</span>
+                            <span class="feature-stat" role="listitem">A11y Compliant</span>
+                            <span class="feature-stat" role="listitem">Dynamic Colors</span>
+            </div>
+                    </article>
+
+                    <article class="feature-card animate-fade-in-up" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-mobile-alt"></i>
                 </div>
-                
-                <div class="ema-card feature-card area-sidebar fade-in stagger-3">
-                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-                    <h3 class="feature-title">3D Graphics Engine</h3>
-                    <p class="feature-description">
-                        Built-in WebGL engine with physics simulation, particle systems, 
-                        and advanced rendering capabilities for immersive experiences.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-cube"></i> WebGL Powered</span>
-                        <span class="stat"><i class="fas fa-sparkles"></i> Particle Systems</span>
-                    </div>
+                        <h3 class="feature-title">Ultra Responsive</h3>
+                        <p class="feature-description">
+                            Revolutionary mobile-first approach with fluid typography, 
+                            adaptive layouts, and intelligent breakpoints. 
+                            Perfect display from smartwatches to 8K displays.
+                        </p>
+                        <div class="feature-stats" role="list" aria-label="Responsive features">
+                            <span class="feature-stat" role="listitem">Fluid Typography</span>
+                            <span class="feature-stat" role="listitem">Smart Breakpoints</span>
+                            <span class="feature-stat" role="listitem">Adaptive Layouts</span>
+            </div>
+                    </article>
+
+                    <article class="feature-card animate-fade-in-up" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-rocket"></i>
+                </div>
+                        <h3 class="feature-title">Blazing Performance</h3>
+                        <p class="feature-description">
+                            Optimized for maximum performance with advanced lazy loading, 
+                            tree shaking, code splitting, and intelligent caching. 
+                            Faster than any competitor by 300%.
+                        </p>
+                        <div class="feature-stats" role="list" aria-label="Performance features">
+                            <span class="feature-stat" role="listitem">Smart Caching</span>
+                            <span class="feature-stat" role="listitem">Code Splitting</span>
+                            <span class="feature-stat" role="listitem">Lazy Loading</span>
+            </div>
+                    </article>
+            
+                    <article class="feature-card animate-fade-in-up" role="listitem">
+                        <div class="feature-icon" aria-hidden="true">
+                    <i class="fas fa-universal-access"></i>
+                        </div>
+                        <h3 class="feature-title">Accessibility Leader</h3>
+                        <p class="feature-description">
+                            Industry-leading accessibility with WCAG 2.2 AAA compliance, 
+                            advanced screen reader support, and intelligent keyboard navigation. 
+                            Sets new standards for inclusive design.
+                        </p>
+                        <div class="feature-stats" role="list" aria-label="Accessibility features">
+                            <span class="feature-stat" role="listitem">WCAG 2.2 AAA</span>
+                            <span class="feature-stat" role="listitem">Screen Readers</span>
+                            <span class="feature-stat" role="listitem">Keyboard Nav</span>
+                        </div>
+                    </article>
                 </div>
             </div>
-            
-            <div class="fantasy-grid layout-2">
-                <div class="ema-card feature-card area-card1 fade-in stagger-4">
-                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3 class="feature-title">Mobile First</h3>
-                    <p class="feature-description">
-                        Responsive by default with mobile-first design principles. 
-                        Your applications look perfect on every device.
+        </section>
+
+        <!-- Components Preview Section -->
+        <section class="section" id="components" aria-labelledby="components-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="components-title" class="section-title">Live Component Showcase</h2>
+                    <p class="section-subtitle">
+                        Experience our components in action with real-time interactions and animations
                     </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-mobile-alt"></i> 100% Mobile</span>
-                        <span class="stat"><i class="fas fa-desktop"></i> All Screen Sizes</span>
-                    </div>
-                </div>
+                </header>
                 
-                <div class="ema-card feature-card area-card2 fade-in stagger-5">
-                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
-                    <h3 class="feature-title">Zero Configuration</h3>
-                    <p class="feature-description">
-                        No build tools, no dependencies, no configuration. Just include 
-                        and start building amazing applications instantly.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-book"></i> Full Docs</span>
-                        <span class="stat"><i class="fas fa-lightbulb"></i> Live Examples</span>
-                    </div>
-                </div>
-                
-                <div class="ema-card feature-card area-card3 fade-in stagger-6">
-                    <div class="feature-icon"><i class="fas fa-universal-access"></i></div>
-                    <h3 class="feature-title">Accessibility First</h3>
-                    <p class="feature-description">
-                        WCAG 2.1 AA compliant with built-in ARIA support, keyboard 
-                        navigation, and screen reader optimization.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-crystal-ball"></i> Future-Proof</span>
-                        <span class="stat"><i class="fas fa-check-circle"></i> Best Practices</span>
-                    </div>
+                <div class="parent" role="list">
+                    <!-- Floating Action Button - div1 -->
+                    <article class="div1 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-magic"></i>
+                            <span class="card-title">Floating Actions</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="fab-container">
+                                <button class="fab-main" onclick="toggleFAB(this)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <div class="fab-menu">
+                                    <button class="fab-item"><i class="fas fa-heart"></i></button>
+                                    <button class="fab-item"><i class="fas fa-share"></i></button>
+                                    <button class="fab-item"><i class="fas fa-bookmark"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Voice Input - div2 -->
+                    <article class="div2 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-microphone"></i>
+                            <span class="card-title">Voice Input</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="voice-input-container">
+                                <button class="voice-btn" onclick="toggleVoiceInput(this)">
+                                    <div class="voice-wave">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </button>
+                                <span class="voice-status">Tap to speak</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Gesture Controls - div3 -->
+                    <article class="div3 animate-fade-in-right" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-hand-paper"></i>
+                            <span class="card-title">Gesture Controls</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="gesture-area" onmousedown="startGesture(event)" onmousemove="trackGesture(event)" onmouseup="endGesture(event)">
+                                <div class="gesture-indicator">
+                                    <i class="fas fa-hand-pointer"></i>
+                                </div>
+                                <div class="gesture-trail"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- AR/VR Preview - div4 -->
+                    <article class="div4 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-vr-cardboard"></i>
+                            <span class="card-title">AR/VR Preview</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="ar-viewport">
+                                <div class="ar-scene">
+                                    <div class="ar-object" onclick="rotateARObject(this)">
+                                        <div class="ar-cube">
+                                            <div class="cube-face front"></div>
+                                            <div class="cube-face back"></div>
+                                            <div class="cube-face left"></div>
+                                            <div class="cube-face right"></div>
+                                            <div class="cube-face top"></div>
+                                            <div class="cube-face bottom"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ar-controls">
+                                    <button class="ar-btn"><i class="fas fa-expand"></i></button>
+                                    <button class="ar-btn"><i class="fas fa-sync"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Smart Forms - div5 -->
+                    <article class="div5 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-wpforms"></i>
+                            <span class="card-title">Smart Forms</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="smart-form">
+                                <div class="form-group">
+                                    <input type="text" class="smart-input" placeholder="Enter name" onclick="focusSmartInput(this)">
+                                    <span class="input-highlight"></span>
+                                </div>
+                                <div class="form-group">
+                                    <select class="smart-select" onclick="toggleSmartSelect(this)">
+                                        <option>Choose option</option>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                    </select>
+                                </div>
+                                <button class="smart-submit-btn" onclick="submitSmartForm(this)">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Interactive Badges - div6 -->
+                    <article class="div6 animate-fade-in-right" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-tags"></i>
+                            <span class="card-title">Interactive Badges</span>
+                        </div>
+                        <div class="card-demo">
+                            <span class="ema-badge ema-badge-primary interactive-badge" onclick="cycleBadgeType(this)">New</span>
+                            <span class="ema-badge ema-badge-success interactive-badge" onclick="cycleBadgeType(this)">Pro</span>
+                            <span class="ema-badge ema-badge-warning interactive-badge" onclick="cycleBadgeType(this)">Beta</span>
+                        </div>
+                    </article>
+
+                    <!-- Interactive Code Editor - div7 -->
+                    <article class="div7 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-code"></i>
+                            <span class="card-title">Live Code Editor</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="interactive-code-editor">
+                                <div class="code-toolbar">
+                                    <button class="code-btn" onclick="runCode(this)"><i class="fas fa-play"></i></button>
+                                    <button class="code-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                                    <button class="code-btn" onclick="toggleTheme(this)"><i class="fas fa-palette"></i></button>
+                                </div>
+                                <div class="code-preview interactive-code" onclick="editCode(this)">
+                                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">ema</span> = <span class="code-string">'framework'</span>;</div>
+                                    <div class="code-line"><span class="code-keyword">export</span> <span class="code-keyword">default</span> <span class="code-variable">ema</span>;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Modals - div10 -->
+                    <article class="div10 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-window-restore"></i>
+                            <span class="card-title">Modals</span>
+                        </div>
+                        <div class="card-demo">
+                            <button class="btn btn-primary btn-xs" onclick="showDemoModal()">Open Modal</button>
+                        </div>
+                    </article>
+
+                    <!-- Interactive Tabs - div11 -->
+                    <article class="div11 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-folder"></i>
+                            <span class="card-title">Dynamic Tabs</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="ema-tabs compact-tabs interactive-tabs">
+                                <div class="ema-tab-list">
+                                    <button class="ema-tab-button active" onclick="switchTab(this, 0)">Overview</button>
+                                    <button class="ema-tab-button" onclick="switchTab(this, 1)">Features</button>
+                                    <button class="ema-tab-button" onclick="switchTab(this, 2)">Settings</button>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-panel active">📊 Dashboard</div>
+                                    <div class="tab-panel">⚡ Components</div>
+                                    <div class="tab-panel">⚙️ Configuration</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Interactive Tooltips - div12 -->
+                    <article class="div12 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-comment"></i>
+                            <span class="card-title">Smart Tooltips</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="interactive-tooltip-container">
+                                <button class="btn btn-outline btn-xs interactive-tooltip" 
+                                        onmouseenter="showTooltip(this, 'Click me for more!')" 
+                                        onmouseleave="hideTooltip(this)"
+                                        onclick="cycleTooltip(this)">
+                                    Hover & Click
+                                </button>
+                                <div class="ema-tooltip-content"></div>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- Interactive Animated Charts - div13 -->
+                    <article class="div13 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="card-title">Interactive Animated Charts</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="chart-collection">
+                                <div class="chart-container">
+                                    <div class="chart-title">Performance Metrics</div>
+                                    <div class="animated-chart" onclick="animateChart(this)">
+                                        <div class="chart-bar interactive-bar" data-value="85" style="height: 85%; background: var(--primary-500);">
+                                            <span class="bar-label">Speed</span>
+                                            <span class="bar-value">85%</span>
+                                        </div>
+                                        <div class="chart-bar interactive-bar" data-value="92" style="height: 92%; background: var(--success-500);">
+                                            <span class="bar-label">Quality</span>
+                                            <span class="bar-value">92%</span>
+                                        </div>
+                                        <div class="chart-bar interactive-bar" data-value="78" style="height: 78%; background: var(--warning-500);">
+                                            <span class="bar-label">Usage</span>
+                                            <span class="bar-value">78%</span>
+                                        </div>
+                                        <div class="chart-bar interactive-bar" data-value="96" style="height: 96%; background: var(--info-500);">
+                                            <span class="bar-label">Score</span>
+                                            <span class="bar-value">96%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chart-controls">
+                                    <button class="chart-btn" onclick="randomizeChart(this)"><i class="fas fa-random"></i> Randomize</button>
+                                    <button class="chart-btn" onclick="resetChart(this)"><i class="fas fa-undo"></i> Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Avatars - div14 -->
+                    <article class="div14 animate-fade-in-right" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-user-circle"></i>
+                            <span class="card-title">Avatars</span>
             </div>
-            
-                <div class="ema-card feature-card area-card4 fade-in stagger-7">
-                    <div class="feature-icon"><i class="fas fa-bell"></i></div>
-                    <h3 class="feature-title">Smart Alerts</h3>
-                    <p class="feature-description">
-                        Advanced notification system with beautiful animations and customizable themes. Better than Sweet Alert.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-magic"></i> Animated</span>
-                        <span class="stat"><i class="fas fa-palette"></i> Customizable</span>
-                    </div>
-                </div>
-                
-                <div class="ema-card feature-card area-card5 fade-in stagger-8">
-                    <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3 class="feature-title">Data Visualization</h3>
-                    <p class="feature-description">
-                        Powerful charting library with real-time updates and interactive features. Perfect for dashboards.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-chart-line"></i> 10+ Chart Types</span>
-                        <span class="stat"><i class="fas fa-sync-alt"></i> Real-time</span>
-                    </div>
+                        <div class="card-demo">
+                            <div class="avatar-group">
+                                <div class="mini-avatar" style="background: var(--primary-500);">A</div>
+                                <div class="mini-avatar" style="background: var(--success-500);">B</div>
+                                <div class="mini-avatar" style="background: var(--warning-500);">C</div>
+        </div>
+                        </div>
+                    </article>
+
+                    <!-- Loading - div15 -->
+                    <article class="div15 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-spinner"></i>
+                            <span class="card-title">Loading</span>
             </div>
-            
-                <div class="ema-card feature-card area-card6 fade-in stagger-9">
-                    <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
-                    <h3 class="feature-title">Interactive Playground</h3>
-                    <p class="feature-description">
-                        Live code editor with real-time preview and component testing. Experiment without limits.
-                    </p>
-                    <div class="feature-stats">
-                        <span class="stat"><i class="fas fa-bolt"></i> Live Preview</span>
-                        <span class="stat"><i class="fas fa-flask"></i> Component Testing</span>
-                    </div>
+                        <div class="card-demo">
+                            <div class="loading-spinner"></div>
+        </div>
+                    </article>
+
+                    <!-- Notifications - div16 -->
+                    <article class="div16 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-bell"></i>
+                            <span class="card-title">Notifications</span>
                 </div>
+                        <div class="card-demo">
+                            <button class="btn btn-primary btn-xs" onclick="EmaFramework.components.createToast('New notification! 🔔', 'info')">Show Toast</button>
+                </div>
+                    </article>
+
+                    <!-- Cards - div17 -->
+                    <article class="div17 animate-fade-in-right" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-id-card"></i>
+                            <span class="card-title">Cards</span>
+                </div>
+                        <div class="card-demo">
+                            <div class="mini-card">
+                                <div class="mini-card-header">Card Title</div>
+                                <div class="mini-card-body">Content</div>
+                </div>
+                </div>
+                    </article>
+
+                    <!-- Interactive Data Grid - div18 -->
+                    <article class="div18 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-table"></i>
+                            <span class="card-title">Interactive Data Grid</span>
+            </div>
+                        <div class="card-demo">
+                            <div class="data-grid-container">
+                                <div class="data-grid" onclick="sortDataGrid(this)">
+                                    <div class="grid-header">
+                                        <div class="grid-cell">Name <i class="fas fa-sort"></i></div>
+                                        <div class="grid-cell">Status <i class="fas fa-sort"></i></div>
+                                        <div class="grid-cell">Score <i class="fas fa-sort"></i></div>
+                                    </div>
+                                    <div class="grid-row">
+                                        <div class="grid-cell">John</div>
+                                        <div class="grid-cell"><span class="status-badge active">Active</span></div>
+                                        <div class="grid-cell">95</div>
+                                    </div>
+                                    <div class="grid-row">
+                                        <div class="grid-cell">Sarah</div>
+                                        <div class="grid-cell"><span class="status-badge pending">Pending</span></div>
+                                        <div class="grid-cell">87</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Interactive Color Picker - div19 -->
+                    <article class="div19 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-palette"></i>
+                            <span class="card-title">Color Picker</span>
+                </div>
+                        <div class="card-demo">
+                            <div class="color-picker-container">
+                                <div class="color-palette" onclick="selectColor(this)">
+                                    <div class="color-swatch" data-color="#a855f7" style="background: #a855f7;"></div>
+                                    <div class="color-swatch" data-color="#3b82f6" style="background: #3b82f6;"></div>
+                                    <div class="color-swatch" data-color="#22c55e" style="background: #22c55e;"></div>
+                                    <div class="color-swatch" data-color="#f59e0b" style="background: #f59e0b;"></div>
+                                    <div class="color-swatch" data-color="#ef4444" style="background: #ef4444;"></div>
+                                    <div class="color-swatch active" data-color="#06b6d4" style="background: #06b6d4;"></div>
+                </div>
+                                <div class="color-preview" style="background: #06b6d4;">#06b6d4</div>
+                </div>
+            </div>
+                    </article>
+
+                    <!-- Sliders - div21 -->
+                    <article class="div21 animate-fade-in-right" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-sliders-h"></i>
+                            <span class="card-title">Sliders</span>
+                        </div>
+                        <div class="card-demo">
+                            <input type="range" class="mini-slider" min="0" max="100" value="60">
+                        </div>
+                    </article>
+
+                    <!-- Tables - div22 -->
+                    <article class="div22 animate-fade-in-left" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-table"></i>
+                            <span class="card-title">Data Tables</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="mini-table">
+                                <div class="table-header">
+                                    <div class="table-cell header-cell">
+                                        <i class="fas fa-user"></i>
+                                        <span>Name</span>
+                                    </div>
+                                    <div class="table-cell header-cell">
+                                        <i class="fas fa-circle"></i>
+                                        <span>Status</span>
+                                    </div>
+                                </div>
+                                <div class="table-body">
+                                    <div class="table-row" onclick="selectTableRow(this)">
+                                        <div class="table-cell">John</div>
+                                        <div class="table-cell">
+                                            <span class="status-badge active">Active</span>
+                                        </div>
+                                    </div>
+                                    <div class="table-row" onclick="selectTableRow(this)">
+                                        <div class="table-cell">Jane</div>
+                                        <div class="table-cell">
+                                            <span class="status-badge inactive">Inactive</span>
+                                        </div>
+                                    </div>
+                                    <div class="table-row" onclick="selectTableRow(this)">
+                                        <div class="table-cell">Mike</div>
+                                        <div class="table-cell">
+                                            <span class="status-badge pending">Pending</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Interactive Timeline - div8 -->
+                    <article class="div8 animate-fade-in-up" role="listitem">
+                        <div class="card-header">
+                            <i class="fas fa-history"></i>
+                            <span class="card-title">Interactive Timeline</span>
+                        </div>
+                        <div class="card-demo">
+                            <div class="interactive-timeline">
+                                <div class="timeline-item active" onclick="selectTimelineItem(this)">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>Project Start</h4>
+                                        <span class="timeline-date">Jan 2024</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item" onclick="selectTimelineItem(this)">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>Beta Release</h4>
+                                        <span class="timeline-date">Mar 2024</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item" onclick="selectTimelineItem(this)">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>Launch</h4>
+                                        <span class="timeline-date">May 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                  
             </div>
         </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="statistics">
-        <div class="container">
-            <div class="stats-grid">
-                 <div class="stat-item fade-in stagger-1">
-                     <div class="stat-icon"><i class="fas fa-puzzle-piece"></i></div>
-                     <div class="stat-number" id="components-count">250+</div>
-                     <div class="stat-label">UI Components</div>
-                     <div class="stat-description">Beautiful, customizable components</div>
-                 </div>
-                 
-                 <div class="stat-item fade-in stagger-2">
-                     <div class="stat-icon"><i class="fas fa-cogs"></i></div>
-                     <div class="stat-number" id="modules-count">100+</div>
-                     <div class="stat-label">JavaScript Modules</div>
-                     <div class="stat-description">Powerful utility modules</div>
-                 </div>
-                 
-                 <div class="stat-item fade-in stagger-3">
-                     <div class="stat-icon"><i class="fas fa-star"></i></div>
-                     <div class="stat-number" id="features-count">500+</div>
-                     <div class="stat-label">Total Features</div>
-                     <div class="stat-description">Everything you need</div>
-                 </div>
-                 
-                 <div class="stat-item fade-in stagger-4">
-                     <div class="stat-icon"><i class="fas fa-users"></i></div>
-                     <div class="stat-number" id="users-count">10K+</div>
-                     <div class="stat-label">Happy Developers</div>
-                     <div class="stat-description">Growing community</div>
-                 </div>
-                 
-                 <div class="stat-item fade-in stagger-5">
-                     <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                     <div class="stat-number" id="projects-count">5K+</div>
-                     <div class="stat-label">Projects Built</div>
-                     <div class="stat-description">Success stories</div>
-                 </div>
-                 
-                 <div class="stat-item fade-in stagger-6">
-                     <div class="stat-icon"><i class="fas fa-star"></i></div>
-                     <div class="stat-number" id="rating-count">4.9</div>
-                     <div class="stat-label">User Rating</div>
-                     <div class="stat-description">Outstanding reviews</div>
-                 </div>
+        <!-- Testimonials Section -->
+        <section class="section testimonials-section" id="testimonials" aria-labelledby="testimonials-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="testimonials-title" class="section-title">What Developers Say</h2>
+                    <p class="section-subtitle">
+                        Join thousands of developers who chose Ema Framework for their projects
+                    </p>
+                </header>
+                
+                <div class="testimonials-grid">
+                    <article class="testimonial-card animate-fade-in-left">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                </div>
+                            <blockquote class="testimonial-quote">
+                                "Ema Framework completely transformed our development workflow. The components are incredibly polished and the performance is unmatched. We shipped 3x faster!"
+                            </blockquote>
+            </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <div class="avatar-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="avatar-status"></div>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Sarah Chen</h4>
+                                <p class="author-title">Senior Frontend Developer at TechCorp</p>
+                                <div class="author-badges">
+                                    <span class="ema-badge ema-badge-outline">React Expert</span>
+                                    <span class="ema-badge ema-badge-outline">5+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card animate-fade-in-up">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                </div>
+                            <blockquote class="testimonial-quote">
+                                "The accessibility features are outstanding. Every component follows WCAG 2.2 AAA standards out of the box. This saved us months of work!"
+                            </blockquote>
+            </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <div class="avatar-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="avatar-status"></div>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Marcus Rodriguez</h4>
+                                <p class="author-title">Lead UX Engineer at StartupXYZ</p>
+                                <div class="author-badges">
+                                    <span class="ema-badge ema-badge-outline">Accessibility Expert</span>
+                                    <span class="ema-badge ema-badge-outline">10+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card animate-fade-in-right">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                </div>
+                            <blockquote class="testimonial-quote">
+                                "Best framework I've ever used. The documentation is crystal clear, components are beautiful, and the performance metrics speak for themselves."
+                            </blockquote>
+                </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <div class="avatar-placeholder">
+                                    <i class="fas fa-user"></i>
+                </div>
+                                <div class="avatar-status"></div>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Emily Watson</h4>
+                                <p class="author-title">Full-Stack Developer at MegaCorp</p>
+                                <div class="author-badges">
+                                    <span class="ema-badge ema-badge-outline">Full-Stack</span>
+                                    <span class="ema-badge ema-badge-outline">Team Lead</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+            </div>
+            
+                <!-- Stats Bar -->
+                <div class="testimonials-stats">
+                    <div class="stats-item">
+                        <span class="stats-number" data-target="50000">0</span>
+                        <span class="stats-label">Happy Developers</span>
+                </div>
+                    <div class="stats-item">
+                        <span class="stats-number" data-target="1000">0</span>
+                        <span class="stats-label">Companies Using</span>
+            </div>
+                    <div class="stats-item">
+                        <span class="stats-number" data-target="99">0</span>
+                        <span class="stats-label">% Satisfaction</span>
+                    </div>
+                    <div class="stats-item">
+                        <span class="stats-number" data-target="24">0</span>
+                        <span class="stats-label">7 Support</span>
+                    </div>
             </div>
         </div>
     </section>
 
-    <!-- Technology Stack -->
-    <section class="tech-stack">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Built with Modern Technologies</h2>
-                <p class="section-subtitle">
-                    Cutting-edge web technologies for the best performance and developer experience
-                </p>
+        <!-- Pricing Section -->
+        <section class="section pricing-section" id="pricing" aria-labelledby="pricing-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="pricing-title" class="section-title">Choose Your Plan</h2>
+                    <p class="section-subtitle">
+                        Start free, scale as you grow. No hidden fees, cancel anytime.
+                    </p>
+                </header>
+                
+                <div class="pricing-toggle">
+                    <span class="toggle-label">Monthly</span>
+                    <button class="pricing-switch" id="pricingSwitch" aria-label="Toggle pricing period">
+                        <span class="switch-slider"></span>
+                    </button>
+                    <span class="toggle-label">Annual <span class="discount-badge">Save 20%</span></span>
+                </div>
+            
+                <div class="pricing-grid">
+                    <div class="pricing-card starter-plan">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Starter</h3>
+                            <p class="plan-description">Perfect for personal projects and learning</p>
+                            <div class="plan-price">
+                                <span class="price-currency">$</span>
+                                <span class="price-amount" data-monthly="0" data-annual="0">0</span>
+                                <span class="price-period">/month</span>
+                </div>
+            </div>
+                        <div class="plan-features">
+                            <ul class="features-list">
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>50 UI Components</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Basic JavaScript Modules</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Community Support</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>MIT License</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Basic Documentation</span>
+                                </li>
+                            </ul>
+                </div>
+                        <button class="plan-cta btn btn-outline btn-lg" onclick="EmaFramework.components.createToast('Starter plan activated! 🎉', 'success')">
+                            Get Started Free
+                        </button>
             </div>
             
-            <div class="tech-grid">
-                 <div class="tech-item fade-in stagger-1">
-                     <div class="tech-icon"><i class="fab fa-html5"></i></div>
-                     <h3 class="tech-name">HTML5</h3>
-                     <p class="tech-desc">Semantic markup and modern standards</p>
-                 </div>
-                 
-                 <div class="tech-item fade-in stagger-2">
-                     <div class="tech-icon"><i class="fab fa-css3-alt"></i></div>
-                     <h3 class="tech-name">CSS3</h3>
-                     <p class="tech-desc">Advanced styling and animations</p>
-                 </div>
-                 
-                 <div class="tech-item fade-in stagger-3">
-                     <div class="tech-icon"><i class="fab fa-js-square"></i></div>
-                     <h3 class="tech-name">ES6+</h3>
-                     <p class="tech-desc">Modern JavaScript features</p>
-                 </div>
-                 
-                 <div class="tech-item fade-in stagger-4">
-                     <div class="tech-icon"><i class="fas fa-cube"></i></div>
-                     <h3 class="tech-name">WebGL</h3>
-                     <p class="tech-desc">Hardware-accelerated 3D graphics</p>
-                 </div>
-                 
-                 <div class="tech-item fade-in stagger-5">
-                     <div class="tech-icon"><i class="fas fa-chart-bar"></i></div>
-                     <h3 class="tech-name">Canvas API</h3>
-                     <p class="tech-desc">Dynamic graphics and charts</p>
-                 </div>
-                 
-                 <div class="tech-item fade-in stagger-6">
-                     <div class="tech-icon"><i class="fas fa-tools"></i></div>
-                     <h3 class="tech-name">Web APIs</h3>
-                     <p class="tech-desc">Modern browser capabilities</p>
-                 </div>
+                    <div class="pricing-card pro-plan featured-plan">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Professional</h3>
+                            <p class="plan-description">For teams and commercial projects</p>
+                            <div class="plan-price">
+                                <span class="price-currency">$</span>
+                                <span class="price-amount" data-monthly="49" data-annual="39">49</span>
+                                <span class="price-period">/month</span>
+                </div>
+            </div>
+                        <div class="plan-features">
+                            <ul class="features-list">
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>250+ Premium Components</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>100+ Advanced Modules</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Priority Support</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Commercial License</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Advanced Documentation</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Figma Design System</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Custom Themes</span>
+                                </li>
+                            </ul>
+                </div>
+                        <button class="plan-cta btn btn-primary btn-lg" onclick="showProfessionalPlan()">
+                            Start Free Trial
+                        </button>
+            </div>
+            
+                    <div class="pricing-card enterprise-plan">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Enterprise</h3>
+                            <p class="plan-description">For large organizations with custom needs</p>
+                            <div class="plan-price">
+                                <span class="price-text">Custom</span>
+                </div>
+            </div>
+                        <div class="plan-features">
+                            <ul class="features-list">
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Everything in Professional</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Custom Components</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Dedicated Support</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>SLA Guarantee</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>On-premise Deployment</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="fas fa-check feature-check"></i>
+                                    <span>Training & Consulting</span>
+                                </li>
+                            </ul>
+                </div>
+                        <button class="plan-cta btn btn-secondary btn-lg" onclick="showEnterprisePlan()">
+                            Contact Sales
+                        </button>
             </div>
                 </div>
-    </section>
+            </div>
+        </section>
 
-    <!-- Component Showcase -->
-    <section class="component-showcase-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Live Component Preview</h2>
-                <p class="section-subtitle">
-                    Click on any component to see it in action and copy the code
-                </p>
+        <!-- Showcase Section -->
+        <section class="section" id="showcase" aria-labelledby="showcase-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="showcase-title" class="section-title">Built for Excellence</h2>
+                    <p class="section-subtitle">
+                        Trusted by industry leaders and innovative startups worldwide
+                    </p>
+                </header>
+                
+                <div class="grid grid-2">
+                    <article class="card animate-fade-in-left">
+                        <h3 style="color: var(--text-primary); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-3);">
+                            <i class="fas fa-code" style="color: var(--primary-400); font-size: var(--text-2xl);" aria-hidden="true"></i>
+                            Superior Developer Experience
+                        </h3>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-8); line-height: var(--leading-relaxed); font-size: var(--text-lg);">
+                            Revolutionary API design with intelligent IntelliSense, comprehensive TypeScript support, 
+                            and instant hot reload. Get productive in minutes, not hours. 
+                            Our developer tools are more advanced than VS Code extensions.
+                        </p>
+                        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                            <span class="feature-stat">TypeScript Native</span>
+                            <span class="feature-stat">Smart IntelliSense</span>
+                            <span class="feature-stat">Instant Hot Reload</span>
+                            <span class="feature-stat">Advanced Debugging</span>
+                </div>
+                    </article>
+
+                    <article class="card animate-fade-in-right">
+                        <h3 style="color: var(--text-primary); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-3);">
+                            <i class="fas fa-shield-alt" style="color: var(--success-500); font-size: var(--text-2xl);" aria-hidden="true"></i>
+                            Enterprise-Grade Security
+                        </h3>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-8); line-height: var(--leading-relaxed); font-size: var(--text-lg);">
+                            Military-grade security with advanced threat detection, automatic vulnerability scanning, 
+                            and compliance with SOC 2, GDPR, and HIPAA standards. 
+                            Trusted by Fortune 500 companies and government agencies.
+                        </p>
+                        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                            <span class="feature-stat">SOC 2 Certified</span>
+                            <span class="feature-stat">GDPR Compliant</span>
+                            <span class="feature-stat">Zero Vulnerabilities</span>
+                            <span class="feature-stat">24/7 Monitoring</span>
+                        </div>
+                    </article>
             </div>
             
-            <div class="component-showcase">
-                <div class="component-item fade-in stagger-1" onclick="showComponentPreview('button')">
-                    <div class="component-preview">
-                        <button class="ema-btn ema-btn-primary">Button</button>
-                    </div>
-                    <h3 class="component-name">Button Components</h3>
-                    <p class="component-description">Beautiful buttons with hover effects and multiple variants</p>
-                    <div class="component-actions">
-                        <button class="ema-btn ema-btn-primary">Preview</button>
-                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
-                    </div>
-                </div>
-                
-                <div class="component-item fade-in stagger-2" onclick="showComponentPreview('card')">
-                    <div class="component-preview">
-                        <div class="ema-card" style="max-width: 200px; padding: 1rem;">
-                            <h4>Card</h4>
-                            <p>Beautiful card</p>
-                        </div>
-                    </div>
-                    <h3 class="component-name">Card Components</h3>
-                    <p class="component-description">Modern cards with glassmorphism effects</p>
-                    <div class="component-actions">
-                        <button class="ema-btn ema-btn-primary">Preview</button>
-                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
-                    </div>
-                </div>
-                
-                <div class="component-item fade-in stagger-3" onclick="showComponentPreview('input')">
-                    <div class="component-preview">
-                        <input type="text" placeholder="Input field" style="padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(111, 66, 193, 0.3); background: rgba(255, 255, 255, 0.05); color: white;">
-                    </div>
-                    <h3 class="component-name">Input Components</h3>
-                    <p class="component-description">Form inputs with validation and animations</p>
-                    <div class="component-actions">
-                        <button class="ema-btn ema-btn-primary">Preview</button>
-                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
-                    </div>
-                    <div class="component-preview-3d">
-                        <div class="floating-elements">
-                            <div class="floating-dot" style="--delay: 0s; background: var(--ema-blue);"></div>
-                            <div class="floating-dot" style="--delay: 1s; background: var(--ema-green);"></div>
-                            <div class="floating-dot" style="--delay: 2s; background: var(--ema-purple);"></div>
-                        </div>
-                    </div>
-            </div>
-            
-                <div class="component-item fade-in stagger-4" onclick="showComponentPreview('navbar')">
-                    <div class="component-preview">
-                        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
-                            <div style="width: 20px; height: 20px; background: #6f42c1; border-radius: 4px;"></div>
-                            <span style="color: white; font-size: 0.875rem;">Navbar</span>
-                        </div>
-                    </div>
-                    <h3 class="component-name">Navigation</h3>
-                    <p class="component-description">Responsive navigation bars with animations</p>
-                    <div class="component-actions">
-                        <button class="ema-btn ema-btn-primary">Preview</button>
-                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
-                    </div>
-                </div>
-                
-                <div class="component-item fade-in stagger-5" onclick="showComponentPreview('alert')">
-                    <div class="component-preview">
-                         <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: rgba(40, 167, 69, 0.1); border: 1px solid rgba(40, 167, 69, 0.3); border-radius: 8px;">
-                             <i class="fas fa-check-circle" style="color: #28a745;"></i>
-                             <span style="color: white; font-size: 0.875rem;">Alert</span>
-                         </div>
-                    </div>
-                    <h3 class="component-name">Alert Components</h3>
-                    <p class="component-description">Beautiful alerts with different types</p>
-                    <div class="component-actions">
-                        <button class="ema-btn ema-btn-primary">Preview</button>
-                        <button class="ema-btn ema-btn-secondary">Copy Code</button>
-                    </div>
-            </div>
-            
-                <div class="component-item fade-in stagger-6" onclick="showComponentPreview('button')">
-                    <div class="component-preview">
-                        <div style="display: flex; gap: 0.5rem;">
-                            <div style="width: 20px; height: 20px; background: #6f42c1; border-radius: 50%;"></div>
-                            <div style="width: 20px; height: 20px; background: #28a745; border-radius: 50%;"></div>
-                            <div style="width: 20px; height: 20px; background: #dc3545; border-radius: 50%;"></div>
-                        </div>
-                    </div>
-                    <h3 class="component-name">More Components</h3>
-                    <p class="component-description">Explore 250+ components in our library</p>
-                    <div class="component-actions">
-                        <button class="ema-btn ema-btn-primary">Explore All</button>
-                        <button class="ema-btn ema-btn-secondary">View Docs</button>
-                    </div>
+                <div style="text-align: center; margin-top: var(--space-20);">
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-8); font-size: var(--text-4xl); font-weight: var(--font-bold);">
+                        Ready to revolutionize your development?
+                    </h3>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--space-10); font-size: var(--text-xl); max-width: 600px; margin-left: auto; margin-right: auto; line-height: var(--leading-relaxed);">
+                        Join over 100,000 developers who have already upgraded to the future of web development. 
+                        Start building extraordinary experiences today.
+                    </p>
+                    <div style="display: flex; gap: var(--space-6); justify-content: center; flex-wrap: wrap;">
+                        <a href="pages/getting-started.html" class="btn btn-primary btn-xl">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            Start Building Now
+                        </a>
+                        <a href="pages/components.html" class="btn btn-outline btn-xl">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                            Explore All Components
+                        </a>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="ema-footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Ema Framework</h4>
-                    <p>
-                        The future of web development is here. Build amazing applications 
-                        with the most advanced JavaScript framework ever created.
+            <!-- Newsletter Section -->
+            <div class="footer-newsletter">
+                <div class="newsletter-content">
+                    <h3 class="newsletter-title">Stay Updated</h3>
+                    <p class="newsletter-description">
+                        Get the latest updates, tutorials, and exclusive content delivered to your inbox.
                     </p>
                 </div>
-                
+                <div class="newsletter-form">
+                    <div class="newsletter-input-group">
+                        <input type="email" placeholder="Enter your email address" class="newsletter-input" id="newsletterEmail">
+                        <button class="newsletter-btn btn btn-primary" onclick="EmaFramework.components.createToast('Thanks for subscribing! 🎉', 'success')">
+                            <i class="fas fa-paper-plane"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="newsletter-privacy">
+                        <i class="fas fa-lock"></i>
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-section footer-main">
+                    <div class="footer-logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <span>Ema Framework</span>
+                    </div>
+                    <p class="footer-description">
+                        The world's most advanced UI framework. Build faster, ship better, scale infinitely. 
+                        Trusted by 50,000+ developers worldwide.
+                    </p>
+                    <div class="footer-stats">
+                        <div class="footer-stat">
+                        <span class="stat-number">1200+</span>
+                        <span class="stat-label">Components</span>
+                        </div>
+                        <div class="footer-stat">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Developers</span>
+                        </div>
+                        <div class="footer-stat">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">Satisfaction</span>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="GitHub" onclick="EmaFramework.components.createToast('Opening GitHub...', 'info')">
+                        <i class="fab fa-github"></i>
+                    </a>
+                        <a href="#" class="social-link" aria-label="Twitter" onclick="EmaFramework.components.createToast('Opening Twitter...', 'info')">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord" onclick="EmaFramework.components.createToast('Opening Discord...', 'info')">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube" onclick="EmaFramework.components.createToast('Opening YouTube...', 'info')">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn" onclick="EmaFramework.components.createToast('Opening LinkedIn...', 'info')">
+                            <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            
                 <div class="footer-section">
-                    <h4>Resources</h4>
+                    <h3 class="footer-title">
+                        <i class="fas fa-rocket"></i>
+                        Framework
+                    </h3>
                     <ul class="footer-links">
                         <li><a href="pages/getting-started.html">Getting Started</a></li>
                         <li><a href="pages/components.html">Components</a></li>
                         <li><a href="pages/examples.html">Examples</a></li>
-                        <li><a href="pages/api.html">API Reference</a></li>
-                    </ul>
-            </div>
-            
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a href="pages/dashboard.html">Dashboard</a></li>
-                        <li><a href="pages/playground.html">Playground</a></li>
-                        <li><a href="pages/showcase.html">Showcase</a></li>
+                        <li><a href="pages/3d-showcase.html">3D Showcase</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Coming soon! 🚀', 'info')">Templates</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Coming soon! 🎨', 'info')">Themes</a></li>
                 </ul>
             </div>
             
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h3 class="footer-title">
+                        <i class="fas fa-book"></i>
+                        Resources
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="pages/docs.html">Documentation</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening API Reference...', 'info')">API Reference</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Tutorials...', 'info')">Tutorials</a></li>
+                        <li><a href="pages/blog.html">Blog</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Changelog...', 'info')">Changelog</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Roadmap...', 'info')">Roadmap</a></li>
+                </ul>
+            </div>
+            
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-users"></i>
+                        Community
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/emaframework" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Discord...', 'info')">Discord</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Stack Overflow...', 'info')">Stack Overflow</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Discussions...', 'info')">Discussions</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Reddit...', 'info')">Reddit</a></li>
+                        <li><a href="#" onclick="EmaFramework.components.createToast('Opening Forum...', 'info')">Forum</a></li>
+                </ul>
+            </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Getting Started
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="pages/getting-started.html">Quick Start</a></li>
+                        <li><a href="pages/docs.html">Documentation</a></li>
+                        <li><a href="pages/examples.html">Examples</a></li>
+                        <li><a href="pages/playground.html">Playground</a></li>
+                        <li><a href="pages/3d-showcase.html">3D Showcase</a></li>
+                        <li><a href="pages/dashboard.html">Dashboard</a></li>
+                    </ul>
+        </div>
+        
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                        Components
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="pages/components.html">UI Components</a></li>
+                        <li><a href="pages/showcase.html">Showcase</a></li>
+                        <li><a href="pages/api.html">API Reference</a></li>
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#forms">Forms</a></li>
+                        <li><a href="#navigation">Navigation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        Community
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="pages/blog.html">Blog</a></li>
+                        <li><a href="https://github.com/aydocs/emadocs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Discord', text: 'Opening Discord...'})">Discord</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Twitter', text: 'Opening Twitter...'})">Twitter</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Support', text: 'Opening Support...'})">Support</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Contributing', text: 'Opening Contributing Guide...'})">Contributing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Resources
+                    </h3>
                     <ul class="footer-links">
                         <li><a href="pages/revolution.html">Revolution</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact</a></li>
-                </ul>
+                        <li><a href="#dli-system">DLI System</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Changelog', text: 'Opening Changelog...'})">Changelog</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'License', text: 'Opening License...'})">License</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Security', text: 'Opening Security...'})">Security</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Accessibility', text: 'Opening Accessibility...'})">Accessibility</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <i class="fas fa-building" aria-hidden="true"></i>
+                        Company
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'About', text: 'Opening About page...'})">About</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Careers', text: 'Opening Careers...'})">Careers <span class='footer-badge'>We're hiring!</span></a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Contact', text: 'Opening Contact...'})">Contact</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Press Kit', text: 'Opening Press Kit...'})">Press Kit</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Partners', text: 'Opening Partners...'})">Partners</a></li>
+                        <li><a href="#" onclick="emaToast({type: 'info', title: 'Enterprise', text: 'Opening Enterprise...'})">Enterprise</a></li>
+                    </ul>
+                </div>
+        </div>
+        
+            <!-- Footer Features -->
+            <div class="footer-features">
+                <div class="footer-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">Enterprise Security</h4>
+                        <p class="feature-desc">SOC 2 Type II certified with end-to-end encryption</p>
+                    </div>
+                </div>
+                <div class="footer-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">24/7 Support</h4>
+                        <p class="feature-desc">Round-the-clock expert support for all plans</p>
+                    </div>
+                </div>
+                <div class="footer-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">Global CDN</h4>
+                        <p class="feature-desc">Lightning-fast delivery from 200+ edge locations</p>
+                    </div>
+                </div>
+                <div class="footer-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4 class="feature-title">99.9% Uptime</h4>
+                        <p class="feature-desc">Industry-leading reliability with SLA guarantee</p>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Ema Framework. All rights reserved. Built with ❤️ for developers.</p>
+                <div class="footer-bottom-left">
+                    <p class="footer-copyright">
+                        © 2024 Ema Framework. All rights reserved.
+                    </p>
+                    <div class="footer-badges">
+                        <span class="footer-badge">
+                            <i class="fas fa-heart"></i>
+                            Made with love
+                        </span>
+                        <span class="footer-badge">
+                            <i class="fas fa-code"></i>
+                            Open Source
+                        </span>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    <a href="#" onclick="emaToast({type: 'info', title: 'Privacy Policy', text: 'Opening Privacy Policy...'})">Privacy Policy</a>
+                    <a href="#" onclick="emaToast({type: 'info', title: 'Terms of Service', text: 'Opening Terms of Service...'})">Terms of Service</a>
+                    <a href="#" onclick="emaToast({type: 'info', title: 'Cookie Policy', text: 'Opening Cookie Policy...'})">Cookie Policy</a>
+                    <a href="#" onclick="emaToast({type: 'info', title: 'Security', text: 'Opening Security...'})">Security</a>
+                </div>
             </div>
         </div>
     </footer>
 
-     <!-- Scripts -->
-    <script src="js/3d-engine.js"></script>
-    <script src="js/ema-alerts.js"></script>
-    <script src="js/ema-3d-effects.js"></script>
-    <script src="js/ema-live-preview.js"></script>
-    <script src="js/ema-search.js"></script>
-    <!-- Navbar Script -->
-    <script src="js/navbar.js"></script>
-
+    <!-- Scripts -->
+    <script src="js/emadocs.js"></script>
+    
+    <!-- Performance monitoring -->
     <script>
-        // Initialize animations and effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize search trigger
-            const searchTrigger = document.querySelector('.search-trigger');
-            if (searchTrigger) {
-                searchTrigger.addEventListener('click', () => {
-                    if (window.emaSearch) {
-                        window.emaSearch.openSearch();
-                    }
-                });
-            }
-            
-            // Animate stats
-            const stats = document.querySelectorAll('.stat-number');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const finalValue = target.textContent;
-                        const isPercentage = finalValue.includes('%');
-                        const isPlus = finalValue.includes('+');
-                        const isK = finalValue.includes('K');
-                        const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
-                        
-                        if (numericValue > 0) {
-                            let current = 0;
-                            const increment = numericValue / 50;
-                            const timer = setInterval(() => {
-                                current += increment;
-                                if (current >= numericValue) {
-                                    current = numericValue;
-                                    clearInterval(timer);
-                                }
-                                
-                                let displayValue = Math.floor(current);
-                                if (isK) displayValue += 'K';
-                                if (isPlus) displayValue += '+';
-                                if (isPercentage) displayValue += '%';
-                                
-                                target.textContent = displayValue;
-                            }, 40);
-                        }
-                    }
-                });
-            });
-
-            stats.forEach(stat => observer.observe(stat));
-
-             // Initialize 3D engine
-             if (typeof ema3DEngine !== 'undefined') {
-                 console.log('3D Engine initialized');
-             }
-             
-             // Hamburger Menu Toggle
-             const hamburgerMenu = document.querySelector('.hamburger-menu');
-             const mobileNav = document.getElementById('mobileNav');
-             const mobileFrameworkTrigger = document.querySelector('.mobile-framework-trigger');
-             const mobileMegaDropdown = document.getElementById('mobileMegaDropdown');
-             
-             if (hamburgerMenu && mobileNav) {
-                 hamburgerMenu.addEventListener('click', () => {
-                     hamburgerMenu.classList.toggle('active');
-                     mobileNav.classList.toggle('active');
-                 });
-             }
-             
-             if (mobileFrameworkTrigger && mobileMegaDropdown) {
-                 mobileFrameworkTrigger.addEventListener('click', (e) => {
-                     e.preventDefault();
-                     mobileMegaDropdown.style.display = mobileMegaDropdown.style.display === 'block' ? 'none' : 'block';
-                 });
-             }
-
-             // Initialize 3D effects
-             if (typeof ema3DEffects !== 'undefined') {
-                 ema3DEffects.init();
-             }
-
-            // Initialize live preview
-            if (typeof emaLivePreview !== 'undefined') {
-                console.log('Live preview system ready');
-            }
-
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                const header = document.getElementById('header');
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-             // Component showcase interactions
-             document.querySelectorAll('.component-item').forEach(item => {
-                 item.addEventListener('click', () => {
-                     if (typeof ema3DEngine !== 'undefined') {
-                         const rect = item.getBoundingClientRect();
-                         ema3DEngine.createExplosion(
-                             rect.left + rect.width / 2,
-                             rect.top + rect.height / 2,
-                             [0.4, 0.2, 0.7],
-                             25
-                         );
-                     }
-                 });
-                 
-                 item.addEventListener('mouseenter', () => {
-                     if (typeof ema3DEngine !== 'undefined') {
-                         const rect = item.getBoundingClientRect();
-                         ema3DEngine.createTrail(
-                             rect.left + rect.width / 2,
-                             rect.top + rect.height / 2,
-                             [0.2, 0.8, 1],
-                             10
-                         );
-                     }
-                 });
-             });
-             
-             // Feature cards interactions
-             document.querySelectorAll('.ema-card').forEach(card => {
-                 card.addEventListener('click', () => {
-                     if (typeof ema3DEngine !== 'undefined') {
-                         const rect = card.getBoundingClientRect();
-                         ema3DEngine.createSpiral(
-                             rect.left + rect.width / 2,
-                             rect.top + rect.height / 2,
-                             [0.8, 0.4, 1],
-                             20
-                         );
-                     }
-                 });
-             });
-             
-             // Hero section special effects
-             const heroSection = document.querySelector('.ema-hero');
-             if (heroSection) {
-                 heroSection.addEventListener('mouseenter', () => {
-                     if (typeof ema3DEngine !== 'undefined') {
-                         const rect = heroSection.getBoundingClientRect();
-                         ema3DEngine.createTrail(
-                             rect.left + rect.width / 2,
-                             rect.top + rect.height / 2,
-                             [0.4, 0.2, 0.7],
-                             15
-                         );
-                     }
-                 });
-             }
-             
-             // Enhanced scroll animations
-             const observerOptions = {
-                 threshold: 0.1,
-                 rootMargin: '0px 0px -50px 0px'
-             };
-             
-             const scrollObserver = new IntersectionObserver((entries) => {
-                 entries.forEach(entry => {
-                     if (entry.isIntersecting) {
-                         entry.target.classList.add('revealed');
-                     }
-                 });
-             }, observerOptions);
-             
-             // Observe all scroll-reveal elements
-             document.querySelectorAll('.scroll-reveal').forEach(el => {
-                 scrollObserver.observe(el);
-             });
-             
-             // Enhanced card interactions
-             document.querySelectorAll('.ema-card').forEach(card => {
-                 card.addEventListener('mouseenter', () => {
-                     card.style.transform = 'translateY(-12px) translateZ(20px) rotateX(8deg) rotateY(3deg) scale(1.03)';
-                 });
-                 
-                 card.addEventListener('mouseleave', () => {
-                     card.style.transform = '';
-                 });
-                 
-                 card.addEventListener('click', () => {
-                     // Add click animation
-                     card.style.transform = 'translateY(-8px) translateZ(15px) rotateX(5deg) rotateY(2deg) scale(1.01)';
-                     setTimeout(() => {
-                         card.style.transform = '';
-                     }, 150);
-                     
-                     // Create explosion effect
-                     if (typeof ema3DEngine !== 'undefined') {
-                         const rect = card.getBoundingClientRect();
-                         ema3DEngine.createExplosion(
-                             rect.left + rect.width / 2,
-                             rect.top + rect.height / 2,
-                             [0.4, 0.2, 0.7],
-                             20
-                         );
-                     }
-                 });
-             });
-             
-             // Enhanced button interactions
-             document.querySelectorAll('.ema-btn').forEach(btn => {
-                 btn.addEventListener('click', (e) => {
-                     // Ripple effect
-                     const ripple = document.createElement('span');
-                     const rect = btn.getBoundingClientRect();
-                     const size = Math.max(rect.width, rect.height);
-                     const x = e.clientX - rect.left - size / 2;
-                     const y = e.clientY - rect.top - size / 2;
-                     
-                     ripple.style.width = ripple.style.height = size + 'px';
-                     ripple.style.left = x + 'px';
-                     ripple.style.top = y + 'px';
-                     ripple.classList.add('ripple');
-                     
-                     btn.appendChild(ripple);
-                     
-                     setTimeout(() => {
-                         ripple.remove();
-                     }, 600);
-                 });
-             });
-             
-             // Enhanced statistics counter animation
-             function animateCounter(element, target, duration = 2000) {
-                 let start = 0;
-                 const increment = target / (duration / 16);
-                 
-                 const timer = setInterval(() => {
-                     start += increment;
-                     if (start >= target) {
-                         element.textContent = target + (target >= 1000 ? '+' : '');
-                         clearInterval(timer);
-                     } else {
-                         element.textContent = Math.floor(start) + (target >= 1000 ? '+' : '');
-                     }
-                 }, 16);
-             }
-             
-             // Animate counters when they come into view
-             const counterObserver = new IntersectionObserver((entries) => {
-                 entries.forEach(entry => {
-                     if (entry.isIntersecting) {
-                         const counter = entry.target;
-                         const target = parseInt(counter.textContent.replace(/\D/g, ''));
-                         animateCounter(counter, target);
-                         counterObserver.unobserve(counter);
-                     }
-                 });
-             }, { threshold: 0.5 });
-             
-             document.querySelectorAll('.stat-number').forEach(counter => {
-                 counterObserver.observe(counter);
-             });
-             
-             // Enhanced feature icon interactions
-             document.querySelectorAll('.feature-icon').forEach(icon => {
-                 icon.addEventListener('mouseenter', () => {
-                     icon.style.transform = 'translateZ(20px) scale(1.2) rotateY(15deg)';
-                     icon.style.filter = 'drop-shadow(0 10px 20px rgba(111, 66, 193, 0.5))';
-                 });
-                 
-                 icon.addEventListener('mouseleave', () => {
-                     icon.style.transform = '';
-                     icon.style.filter = '';
-                 });
-             });
-             
-             // Enhanced navigation interactions
-             document.querySelectorAll('.ema-nav-link').forEach(link => {
-                 link.addEventListener('mouseenter', () => {
-                     link.style.transform = 'translateY(-2px)';
-                     link.style.color = 'var(--ema-purple)';
-                     link.style.textShadow = '0 0 10px rgba(111, 66, 193, 0.5)';
-                 });
-                 
-                 link.addEventListener('mouseleave', () => {
-                     link.style.transform = '';
-                     link.style.color = '';
-                     link.style.textShadow = '';
-                 });
-             });
-             
-             // Enhanced logo interaction
-             const logo = document.querySelector('.ema-logo');
-             if (logo) {
-                 logo.addEventListener('mouseenter', () => {
-                     logo.style.transform = 'scale(1.1) rotateY(10deg)';
-                     logo.style.filter = 'drop-shadow(0 5px 15px rgba(111, 66, 193, 0.4))';
-                 });
-                 
-                 logo.addEventListener('mouseleave', () => {
-                     logo.style.transform = '';
-                     logo.style.filter = '';
-                 });
-             }
-             
-             // Add ripple effect CSS
-             const style = document.createElement('style');
-             style.textContent = `
-                 .ripple {
-                     position: absolute;
-                     border-radius: 50%;
-                     background: rgba(255, 255, 255, 0.3);
-                     transform: scale(0);
-                     animation: ripple-animation 0.6s linear;
-                     pointer-events: none;
-                 }
-                 
-                 @keyframes ripple-animation {
-                     to {
-                         transform: scale(4);
-                         opacity: 0;
-                     }
-                 }
-             `;
-             document.head.appendChild(style);
-             
-             // Mega dropdown functionality
-             const dropdownTrigger = document.querySelector('.dropdown-trigger');
-             const megaDropdown = document.querySelector('.mega-dropdown');
-             
-             if (dropdownTrigger && megaDropdown) {
-                 dropdownTrigger.addEventListener('click', (e) => {
-                     e.preventDefault();
-                     megaDropdown.classList.toggle('active');
-                 });
-                 
-                 // Close dropdown when clicking outside
-                 document.addEventListener('click', (e) => {
-                     if (!dropdownTrigger.contains(e.target) && !megaDropdown.contains(e.target)) {
-                         megaDropdown.classList.remove('active');
-                     }
-                 });
-                 
-                 // Close dropdown on escape key
-                 document.addEventListener('keydown', (e) => {
-                     if (e.key === 'Escape') {
-                         megaDropdown.classList.remove('active');
-                     }
-                 });
-             }
+        // Mark when the page starts loading
+        performance.mark('page-start');
+        
+        // Mark when the page is fully loaded
+        window.addEventListener('load', () => {
+            performance.mark('page-end');
+            performance.measure('page-load-time', 'page-start', 'page-end');
         });
     </script>
+
 </body>
 </html>
